@@ -9,10 +9,10 @@ import { Dialog, DialogContent } from "./ui/dialog";
 import {
   Command,
   CommandEmpty,
-  CommandGroup,
   CommandInput,
   CommandList,
 } from "@/components/ui/command";
+import Image from "next/image";
 // import { RiPuzzleFill } from "react-icons/ri";
 
 export default function Header() {
@@ -31,8 +31,16 @@ export default function Header() {
   }, []);
 
   return (
-    <div className="fixed top-0 z-50 flex justify-between items-center w-full bg-white/5 p-3 h-16">
-      <p>Logo</p>
+    <div className="sticky top-0 z-50 flex justify-between items-center w-full border-b border-white/10 bg-white/5 backdrop-blur-md p-3 h-16">
+      <Link href="/">
+        <Image
+          alt="DuskUI"
+          src="https://pub-f215723903f74ba688c6a4a886cd3abb.r2.dev/duskui.svg"
+          height={25}
+          width={25}
+          className="[filter:invert(100%)]"
+        />
+      </Link>
       <div className="__links flex justify-cente items-center gap-3">
         <Link
           href="/components"
@@ -43,7 +51,7 @@ export default function Header() {
         <div className="">
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild className="outline-none">
-              <Button className="px-0 bg-white/5 hover:bg-white/10 w-[220px]">
+              <Button className="px-0 bg-white/5 hover:bg-white/10 w-[220px] border">
                 <Input
                   placeholder="🔍 Search UI Components or pages..."
                   className="bg-transparent focus-visible:ring-0 w-full text-xs text-white pointer-events-none"
@@ -55,8 +63,8 @@ export default function Header() {
                 <CommandInput placeholder="Search any component or page..." />
                 <CommandList>
                   <CommandEmpty>No results found.</CommandEmpty>
-                  <CommandGroup heading="Components">
-                    {/* <CommandItem>
+                  {/* <CommandGroup heading="Components"> */}
+                  {/* <CommandItem>
                       <RiPuzzleFill className="mr-2 h-4 w-4 text-white/40" />
                       <span>Calendar</span>
                     </CommandItem>
@@ -64,7 +72,7 @@ export default function Header() {
                       <RiPuzzleFill className="mr-2 h-4 w-4 text-white/40" />
                       <span>Search Emoji</span>
                     </CommandItem> */}
-                  </CommandGroup>
+                  {/* </CommandGroup> */}
                   {/* <CommandSeparator /> */}
                   {/* <CommandGroup heading="Settings">
               <CommandItem>
