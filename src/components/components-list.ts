@@ -8,5 +8,5 @@ export const components: IComponentItem = [
 ];
 
 export const backgrounds: IComponentItem = [
-  { href: "matrix-bg", label: "Matrix Rain Background" },
+  { href: "/components/matrix-bg", label: "Matrix Rain Background" },
 ];

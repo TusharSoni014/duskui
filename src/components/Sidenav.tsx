@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { RiPuzzleFill } from "react-icons/ri";
 import { backgrounds, components } from "./components-list";
+import { TbBackground } from "react-icons/tb";
 
 export default function Sidenav() {
   return (
@@ -29,7 +30,7 @@ export default function Sidenav() {
               className="text-sm text-white/60 transition hover:text-white flex  justify-center items-center gap-1 w-fit"
               href={item.href}
             >
-              <RiPuzzleFill />
+              <TbBackground />
               {item.label}
             </Link>
           );

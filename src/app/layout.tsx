@@ -51,8 +51,6 @@ export const metadata: Metadata = {
       "Open-source UI component library for Next.js and React with animated and customizable components.",
     images: ["https://duskui.com/twitter-image.png"],
   },
-  viewport: "width=device-width, initial-scale=1",
-  themeColor: "#000000",
 };
 
 export default function RootLayout({
