@@ -12,7 +12,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 export const metadata: Metadata = {
-  title: "DuskUI - Animated React Component Library",
+  metadataBase: new URL("https://duskui.com"),
+  title: {
+    default: "DuskUI - Animated React Component Library",
+    template: "%s | DuskUI",
+  },
   description:
     "Open-source UI component library for Next.js and React with animated and customizable components.",
   keywords: [
@@ -23,14 +27,33 @@ export const metadata: Metadata = {
     "animated",
     "customizable",
     "open-source",
+    "DuskUI",
+    "React components",
+    "UI components",
+    "component library",
   ],
   authors: [{ name: "Tushar Verma" }],
+  creator: "Tushar Verma",
+  publisher: "DuskUI",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     title: "DuskUI - Animated React Component Library",
     description:
       "Open-source UI component library for Next.js and React with animated and customizable components.",
     type: "website",
     url: "https://duskui.com",
+    siteName: "DuskUI",
+    locale: "en_US",
     images: [
       {
         url: "https://duskui.com/og-image.png",
@@ -46,6 +69,13 @@ export const metadata: Metadata = {
     description:
       "Open-source UI component library for Next.js and React with animated and customizable components.",
     images: ["https://duskui.com/twitter-image.png"],
+    creator: "@tusharsoni014",
+  },
+  alternates: {
+    canonical: "https://duskui.com",
+  },
+  verification: {
+    google: "your-google-verification-code",
   },
 };
 
