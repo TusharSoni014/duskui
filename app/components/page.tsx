@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/seo";
 
 const title = "React Component Library — Animated shadcn/ui Components";
 const description =
-  "Browse DuskUI's animated React components: shadcn/ui upgrades, neon, glass, hacker and techy styles. Copy-paste or install with the shadcn CLI.";
+  "Browse every DuskUI component: animated React buttons, inputs, dialogs, cards, text effects and backgrounds built on shadcn/ui and Motion. Copy-paste or install with the shadcn CLI.";
 
 export const metadata: Metadata = pageMetadata({
   title,

@@ -8,7 +8,6 @@ import FrostButtonEffects from "@/components/demos/frost-button/frost-button-eff
 const demo = (file: string) => `components/demos/frost-button/${file}`;
 
 const config: DocConfig = {
-  category: "Glassmorphism",
   title: "Frost Button",
   intro:
     "A frosted-glass button for React, built on the DuskUI Button with Motion and Tailwind CSS. A band of light sweeps across on hover and keyboard focus, a ripple spreads from where you press, and loading states, sizes and every shadcn/ui Button prop keep working.",

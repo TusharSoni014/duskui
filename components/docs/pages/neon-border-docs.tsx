@@ -8,7 +8,6 @@ import NeonBorderTwoToneDemo from "@/components/demos/neon-border/neon-border-tw
 const demo = (file: string) => `components/demos/neon-border/${file}`;
 
 const config: DocConfig = {
-  category: "Neon",
   title: "Neon Border",
   intro:
     "An animated neon border for any React element: a beam of light travels around the edge with a soft glow. Built with Motion and Tailwind CSS using a masked conic gradient, so it fits cards, pricing tables, pills and inputs at any size or aspect ratio.",

@@ -9,7 +9,6 @@ import CyberButtonLoadingDemo from "@/components/demos/cyber-button/cyber-button
 const demo = (file: string) => `components/demos/cyber-button/${file}`;
 
 const config: DocConfig = {
-  category: "Hacker",
   title: "Cyber Button",
   intro:
     "A cyberpunk React button with angled clip-path corners and a hacker-style text scramble on hover: the label cycles through random characters, then resolves — or glitches with an RGB split. Built on the DuskUI Button with Tailwind CSS and Motion, so variants, sizes and the width-stable loading state all keep working.",

@@ -9,7 +9,6 @@ import NeonButtonLoadingDemo from "@/components/demos/neon-button/neon-button-lo
 const demo = (file: string) => `components/demos/neon-button/${file}`;
 
 const config: DocConfig = {
-  category: "Neon",
   title: "Neon Button",
   intro:
     "A React button that glows like a neon tube, built on the DuskUI Button with Motion and Tailwind CSS. The glow brightens on hover and keyboard focus, can flicker on when it scrolls into view, and takes any CSS color — while loading states and every shadcn/ui Button prop keep working.",

@@ -11,7 +11,6 @@ const demo = (file: string) => `components/demos/dialog/${file}`;
 const block = (file: string) => `components/dusk/dialog/${file}`;
 
 const config: DocConfig = {
-  category: "Shadcn+",
   title: "Dialog",
   intro:
     "The shadcn/ui Dialog (modal) with a smoother open and close animation, blurred backdrop and scrollable content — plus three accessible React dialog blocks built with Motion and Radix: a card that morphs into a dialog, an async confirm dialog and a drag-to-dismiss bottom sheet drawer.",

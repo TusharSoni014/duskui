@@ -1,4 +1,5 @@
 import * as React from "react";
+import Link from "next/link";
 
 import { CodeBlock } from "@/components/docs/code-block";
 import { ComponentPreview } from "@/components/docs/component-preview";
@@ -33,7 +34,8 @@ export type DocBlock = DocExample & {
 };
 
 export type DocConfig = {
-  category: string;
+  /** @deprecated Components are a flat list now; ignored. */
+  category?: string;
   title: string;
   intro: React.ReactNode;
   tags: string[];
@@ -111,7 +113,9 @@ export function ComponentDocs({ config }: { config: DocConfig }) {
     <div className="flex gap-12">
       <article className="min-w-0 max-w-3xl flex-1">
         <header>
-          <p className="mb-3 text-sm font-medium text-primary">{config.category}</p>
+          <Link href="/components" className="mb-3 inline-block text-sm font-medium text-primary hover:underline">
+            Components
+          </Link>
           <h1 className="text-4xl font-bold tracking-tight">{config.title}</h1>
           <p className="mt-3 text-lg leading-relaxed text-white/60">{config.intro}</p>
           <ul className="mt-5 flex flex-wrap gap-2 text-xs text-white/60">

@@ -8,7 +8,6 @@ import CircuitBoardDense from "@/components/demos/circuit-board/circuit-board-de
 const demo = (file: string) => `components/demos/circuit-board/${file}`;
 
 const config: DocConfig = {
-  category: "Techy",
   title: "Circuit Board",
   intro:
     "An animated circuit board background for React: 45°-routed PCB traces with solder pads and pulses of light racing along them. Built with SVG and Tailwind CSS, seeded so it renders the same every time, and paused off-screen.",

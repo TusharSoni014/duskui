@@ -8,7 +8,6 @@ import HologramCardMinimal from "@/components/demos/hologram-card/hologram-card-
 const demo = (file: string) => `components/demos/hologram-card/${file}`;
 
 const config: DocConfig = {
-  category: "Techy",
   title: "Hologram Card",
   intro:
     "A holographic card for React with an iridescent foil, rainbow rim, CRT scanlines and a glare that follows the pointer as the card tilts in 3D. Built with Motion springs and Tailwind CSS — perfect for event passes, profile cards and collectibles.",

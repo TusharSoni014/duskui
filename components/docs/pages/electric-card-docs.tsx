@@ -8,7 +8,6 @@ import ElectricCardChaosDemo from "@/components/demos/electric-card/electric-car
 const demo = (file: string) => `components/demos/electric-card/${file}`;
 
 const config: DocConfig = {
-  category: "Neon",
   title: "Electric Card",
   intro:
     "A React card with an electric border effect: procedurally generated SVG lightning crackles around the edge and the card glows on hover or keyboard focus. Built with Tailwind CSS and Motion, with tunable chaos, arc count, speed and color.",

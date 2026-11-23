@@ -17,7 +17,6 @@ const demo = (file: string) => `components/demos/button/${file}`;
 const block = (file: string) => `components/dusk/button/${file}`;
 
 const config: DocConfig = {
-  category: "Shadcn+",
   title: "Button",
   intro:
     "The shadcn/ui Button, upgraded with Motion: a width-stable loading state, tactile press feedback and reduced-motion support — plus six animated blocks built on top of it.",

@@ -8,7 +8,6 @@ import GlitchTextInViewDemo from "@/components/demos/glitch-text/glitch-text-in-
 const demo = (file: string) => `components/demos/glitch-text/${file}`;
 
 const config: DocConfig = {
-  category: "Hacker",
   title: "Glitch Text",
   intro:
     "A React glitch text effect for cyberpunk and hacker designs: RGB-split copies of your text jump around in clipped horizontal slices for a short burst — on hover, on a loop or once when scrolled into view. The text stays real, selectable and accessible. Built with Tailwind CSS and Motion.",

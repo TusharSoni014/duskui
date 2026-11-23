@@ -3,8 +3,8 @@ import { ArrowUpRight, Layers, MousePointerClick } from "lucide-react";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const links = [
-  { href: "/components/shadcn-plus/button", title: "Button", text: "Loading states and Motion blocks.", Icon: MousePointerClick },
-  { href: "/components/shadcn-plus/input", title: "Input", text: "Floating labels, OTP and more.", Icon: Layers },
+  { href: "/components/button", title: "Button", text: "Loading states and Motion blocks.", Icon: MousePointerClick },
+  { href: "/components/input", title: "Input", text: "Floating labels, OTP and more.", Icon: Layers },
 ];
 
 export default function CardInteractiveDemo() {

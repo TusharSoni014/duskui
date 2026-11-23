@@ -7,7 +7,6 @@ import CrystalModalForm from "@/components/demos/crystal-modal/crystal-modal-for
 const demo = (file: string) => `components/demos/crystal-modal/${file}`;
 
 const config: DocConfig = {
-  category: "Glassmorphism",
   title: "Crystal Modal",
   intro:
     "A glassmorphism modal dialog for React built on Radix Dialog, Motion and Tailwind CSS. The pane scales up out of a blur while the page behind it frosts over — and focus trapping, Escape to close, scroll lock and ARIA all come from Radix.",

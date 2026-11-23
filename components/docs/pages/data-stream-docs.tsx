@@ -8,7 +8,6 @@ import DataStreamMonitor from "@/components/demos/data-stream/data-stream-monito
 const demo = (file: string) => `components/demos/data-stream/${file}`;
 
 const config: DocConfig = {
-  category: "Techy",
   title: "Data Stream",
   intro:
     "A flowing data visualization effect for React: packets of light stream along horizontal lanes at different speeds, with glowing tails and short data blocks. Drawn on a high-DPI canvas — a lightweight hero accent for real-time, networking and AI products.",

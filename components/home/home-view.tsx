@@ -170,7 +170,7 @@ export function HomeView() {
           </Link>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-white/60">
             <Link
-              href="/components/shadcn-plus/button"
+              href="/components/button"
               className="hover:text-white transition-colors"
             >
               Docs
@@ -238,7 +238,7 @@ export function HomeView() {
                   variant="outline"
                   className="border-white/20 text-white hover:bg-white/5 rounded-full px-8 h-12 text-base"
                 >
-                  <Link href="/components/shadcn-plus/button">
+                  <Link href="/components/button">
                     Try the Button
                   </Link>
                 </Button>

@@ -11,7 +11,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { categories, searchComponents } from "@/lib/components-data";
+import { componentHref, searchComponents } from "@/lib/components-data";
 
 export function GlobalSearch() {
   const [open, setOpen] = React.useState(false);
@@ -30,7 +30,7 @@ export function GlobalSearch() {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
-  const filteredComponents = query ? searchComponents(query) : [];
+  const results = searchComponents(query);
 
   const handleSelect = (href: string) => {
     setOpen(false);
@@ -59,54 +59,21 @@ export function GlobalSearch() {
         />
         <CommandList>
           <CommandEmpty>No components found.</CommandEmpty>
-
-          {query ? (
-            // Show search results
-            filteredComponents.length > 0 && (
-              <CommandGroup heading="Results">
-                {filteredComponents.map((component) => {
-                  const category = categories.find(
-                    (c) => c.slug === component.categorySlug
-                  );
-                  const Icon = category?.icon;
-
-                  return (
-                    <CommandItem
-                      key={component.href}
-                      value={component.name}
-                      onSelect={() => handleSelect(component.href)}
-                      className="flex items-center gap-3 cursor-pointer"
-                    >
-                      {Icon && <Icon className="w-4 h-4 text-primary" />}
-                      <div className="flex flex-col">
-                        <span>{component.name}</span>
-                        <span className="text-xs text-white/40">
-                          {component.category}
-                        </span>
-                      </div>
-                    </CommandItem>
-                  );
-                })}
-              </CommandGroup>
-            )
-          ) : (
-            // Show categories when no query
-            categories.map((category) => (
-              <CommandGroup key={category.slug} heading={category.name}>
-                {category.components.slice(0, 3).map((component) => (
-                  <CommandItem
-                    key={component.href}
-                    value={component.name}
-                    onSelect={() => handleSelect(component.href)}
-                    className="flex items-center gap-3 cursor-pointer"
-                  >
-                    <category.icon className="w-4 h-4 text-primary" />
-                    <span>{component.name}</span>
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            ))
-          )}
+          <CommandGroup heading={query ? "Results" : "Components"}>
+            {results.map((component) => (
+              <CommandItem
+                key={component.slug}
+                value={`${component.name} ${component.keywords.join(" ")}`}
+                onSelect={() => handleSelect(componentHref(component.slug))}
+                className="flex cursor-pointer flex-col items-start gap-0.5"
+              >
+                <span>{component.name}</span>
+                <span className="line-clamp-1 text-xs text-white/40">
+                  {component.description}
+                </span>
+              </CommandItem>
+            ))}
+          </CommandGroup>
         </CommandList>
       </CommandDialog>
     </>

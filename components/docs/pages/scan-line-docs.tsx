@@ -8,7 +8,6 @@ import ScanLineMatrixDemo from "@/components/demos/scan-line/scan-line-matrix";
 const demo = (file: string) => `components/demos/scan-line/${file}`;
 
 const config: DocConfig = {
-  category: "Hacker",
   title: "Scan Line",
   intro:
     "A CRT scan line overlay for React: wrap any element to add retro horizontal scanlines, a slowly rolling scan bar, and optional vignette, flicker and screen curvature. Pure CSS with Tailwind — no JavaScript, Server Component friendly, and it never blocks clicks.",

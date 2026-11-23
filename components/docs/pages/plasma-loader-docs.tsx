@@ -8,7 +8,6 @@ import PlasmaLoaderInlineDemo from "@/components/demos/plasma-loader/plasma-load
 const demo = (file: string) => `components/demos/plasma-loader/${file}`;
 
 const config: DocConfig = {
-  category: "Neon",
   title: "Plasma Loader",
   intro:
     "An animated React loading spinner with a plasma effect: glowing blobs orbit a ring and fuse together through an SVG gooey filter. Built with Motion and Tailwind CSS, sized with one prop, and accessible out of the box with a status role and screen-reader label.",

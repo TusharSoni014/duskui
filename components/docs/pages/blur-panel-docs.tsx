@@ -8,7 +8,6 @@ import BlurPanelIntensity from "@/components/demos/blur-panel/blur-panel-intensi
 const demo = (file: string) => `components/demos/blur-panel/${file}`;
 
 const config: DocConfig = {
-  category: "Glassmorphism",
   title: "Blur Panel",
   intro:
     "A React backdrop-blur panel for sticky headers, floating toolbars and sidebars. Built with Motion's useScroll and Tailwind CSS, its blur, saturation and tint fade in as the page scrolls — without re-rendering — and it falls back to a solid fill where backdrop-filter isn't available.",

@@ -8,7 +8,6 @@ import GlassCardBlur from "@/components/demos/glass-card/glass-card-blur";
 const demo = (file: string) => `components/demos/glass-card/${file}`;
 
 const config: DocConfig = {
-  category: "Glassmorphism",
   title: "Glass Card",
   intro:
     "A glassmorphism card for React built with Tailwind CSS and Motion: real backdrop blur and saturation, a gradient hairline border, film grain and a specular highlight that follows the pointer — with optional 3D tilt and a readable fallback where backdrop-filter isn't supported.",

@@ -15,7 +15,6 @@ const demo = (file: string) => `components/demos/input/${file}`;
 const block = (file: string) => `components/dusk/input/${file}`;
 
 const config: DocConfig = {
-  category: "Shadcn+",
   title: "Input",
   intro:
     "The shadcn/ui Input with a hover state, softer focus ring, clear invalid state and on-theme autofill — plus five Motion blocks: floating label, password with strength meter, search, one-time code and a shimmering AI prompt field.",

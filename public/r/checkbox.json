@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "title": "Checkbox",
+  "description": "Drop-in upgrade of the shadcn/ui Checkbox: the check draws itself, indeterminate draws a dash, pure CSS so forms keep working.",
+  "dependencies": [
+    "@radix-ui/react-checkbox"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/checkbox.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport * as CheckboxPrimitive from \"@radix-ui/react-checkbox\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * DuskUI Checkbox — a drop-in upgrade of the shadcn/ui Checkbox.\n *\n * Same API and data-slot attributes as shadcn plus:\n * - The check mark draws itself (SVG `pathLength` + stroke-dashoffset) and\n *   erases faster than it draws.\n * - `checked=\"indeterminate\"` draws a dash instead of a check.\n * - Smooth fill, a hover border and a tactile press.\n * - Still works uncontrolled, in forms and with form reset (pure CSS, no\n *   extra React state).\n * - Under `prefers-reduced-motion` the mark appears instantly.\n * Powered by Radix for keyboard support, form submission and aria.\n */\nfunction Checkbox({ className, ...props }: React.ComponentProps<typeof CheckboxPrimitive.Root>) {\n  return (\n    <CheckboxPrimitive.Root\n      data-slot=\"checkbox\"\n      className={cn(\n        \"peer group/checkbox relative grid size-4 shrink-0 place-items-center rounded-[4px] border border-input bg-input/30 shadow-xs outline-none\",\n        \"transition-[background-color,border-color,box-shadow,scale] duration-150 ease-out motion-reduce:transition-none\",\n        \"hover:border-ring/50 active:scale-90 motion-reduce:active:scale-100\",\n        \"focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50\",\n        \"aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        \"data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground\",\n        \"data-[state=indeterminate]:border-primary data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-primary-foreground\",\n        className\n      )}\n      {...props}\n    >\n      {/* forceMount keeps the SVG in the DOM so the mark can animate out as well as in. */}\n      <CheckboxPrimitive.Indicator\n        forceMount\n        data-slot=\"checkbox-indicator\"\n        className=\"pointer-events-none grid place-content-center text-current\"\n      >\n        <svg\n          viewBox=\"0 0 16 16\"\n          fill=\"none\"\n          stroke=\"currentColor\"\n          strokeWidth={2.25}\n          strokeLinecap=\"round\"\n          strokeLinejoin=\"round\"\n          className=\"size-3.5\"\n          aria-hidden\n        >\n          <path\n            d=\"M3.5 8.5l3 3 6-7\"\n            pathLength={1}\n            className={cn(\n              \"opacity-0 [stroke-dasharray:1] [stroke-dashoffset:1]\",\n              \"transition-[stroke-dashoffset,opacity] duration-100 ease-in\",\n              \"group-data-[state=checked]/checkbox:opacity-100 group-data-[state=checked]/checkbox:[stroke-dashoffset:0]\",\n              \"group-data-[state=checked]/checkbox:delay-75 group-data-[state=checked]/checkbox:duration-250 group-data-[state=checked]/checkbox:ease-out\",\n              \"motion-reduce:transition-none\"\n            )}\n          />\n          <path\n            d=\"M4 8h8\"\n            pathLength={1}\n            className={cn(\n              \"opacity-0 [stroke-dasharray:1] [stroke-dashoffset:1]\",\n              \"transition-[stroke-dashoffset,opacity] duration-100 ease-in\",\n              \"group-data-[state=indeterminate]/checkbox:opacity-100 group-data-[state=indeterminate]/checkbox:[stroke-dashoffset:0]\",\n              \"group-data-[state=indeterminate]/checkbox:delay-75 group-data-[state=indeterminate]/checkbox:duration-200 group-data-[state=indeterminate]/checkbox:ease-out\",\n              \"motion-reduce:transition-none\"\n            )}\n          />\n        </svg>\n      </CheckboxPrimitive.Indicator>\n    </CheckboxPrimitive.Root>\n  );\n}\n\nexport { Checkbox };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "checkbox"
+  ],
+  "type": "registry:ui"
+}

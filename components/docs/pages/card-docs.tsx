@@ -11,7 +11,6 @@ const demo = (file: string) => `components/demos/card/${file}`;
 const block = (file: string) => `components/dusk/card/${file}`;
 
 const config: DocConfig = {
-  category: "Shadcn+",
   title: "Card",
   intro:
     "The shadcn/ui Card with smooth border and shadow transitions and an interactive mode for clickable cards — plus three animated React card blocks built with Motion: a cursor-following glow border, a 3D tilt card with glare, and a loading card that crossfades from a shimmer skeleton.",

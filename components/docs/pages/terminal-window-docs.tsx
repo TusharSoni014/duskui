@@ -9,7 +9,6 @@ import TerminalWindowOnCompleteDemo from "@/components/demos/terminal-window/ter
 const demo = (file: string) => `components/demos/terminal-window/${file}`;
 
 const config: DocConfig = {
-  category: "Hacker",
   title: "Terminal Window",
   intro:
     "An animated React terminal component: a macOS-style console window that types commands character by character, reveals their output, auto-scrolls and blinks a cursor. Script a session with an array of lines — perfect for install instructions, CLI landing pages and hacker-themed hero sections. Built with Tailwind CSS and Motion.",

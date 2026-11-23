@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-reveal-text",
+  "title": "Scroll Reveal Text",
+  "description": "Paragraph whose words light up one by one as it scrolls through the viewport. Scroll-linked Motion values with no React re-renders.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/dusk/text/scroll-reveal-text.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport {\n  motion,\n  useMotionValue,\n  useReducedMotion,\n  useScroll,\n  useTransform,\n  type MotionValue,\n  type UseScrollOptions,\n} from \"motion/react\";\n\nimport { cn } from \"@/lib/utils\";\n\ntype ScrollRevealTag = \"p\" | \"div\" | \"blockquote\" | \"span\" | \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\";\n\nexport interface ScrollRevealTextProps extends Omit<React.HTMLAttributes<HTMLElement>, \"children\"> {\n  /** The text to reveal. Plain text only: it is split into words. */\n  children: string;\n  /** Element to render. */\n  as?: ScrollRevealTag;\n  /** Opacity of words that haven't been reached yet (0–1). */\n  baseOpacity?: number;\n  /**\n   * When the reveal starts and ends, as Motion `useScroll` offsets\n   * (`\"<element edge> <viewport edge>\"`). Default: starts when the top of the\n   * text is 85% down the viewport, ends when its bottom reaches the middle.\n   */\n  offset?: UseScrollOptions[\"offset\"];\n  /** The scrolling element, if the text lives in a scroll container instead of the page. */\n  container?: React.RefObject<HTMLElement | null>;\n  /** Classes for each word, e.g. a highlight color. */\n  wordClassName?: string;\n}\n\nconst DEFAULT_OFFSET: UseScrollOptions[\"offset\"] = [\"start 0.85\", \"end 0.5\"];\n\n/**\n * A paragraph whose words light up one by one as it scrolls through the\n * viewport (or a scroll container).\n *\n * Each word's opacity is a Motion value derived from scroll progress, so\n * scrolling never re-renders React. The words stay one real, selectable text\n * node sequence (no duplicated copy). The server, no-JS visitors and\n * reduced-motion users get the fully revealed paragraph.\n */\nexport function ScrollRevealText({\n  children,\n  as = \"p\",\n  baseOpacity = 0.18,\n  offset = DEFAULT_OFFSET,\n  container,\n  wordClassName,\n  className,\n  ...props\n}: ScrollRevealTextProps) {\n  const Comp = as as React.ElementType;\n  const ref = React.useRef<HTMLElement>(null);\n  const reduceMotion = useReducedMotion();\n  const { scrollYProgress } = useScroll({ target: ref, container, offset });\n\n  // 0 on the server and during hydration (everything fully visible), 1 once the reveal is live.\n  const active = useMotionValue(0);\n  React.useLayoutEffect(() => {\n    active.set(reduceMotion ? 0 : 1);\n  }, [reduceMotion, active]);\n\n  // Split into words, keeping the original whitespace between them as plain text.\n  const { tokens, wordCount } = React.useMemo(() => {\n    let words = 0;\n    const list = children\n      .split(/(\\s+)/)\n      .filter(Boolean)\n      .map((text) => (/^\\s+$/.test(text) ? { text, word: -1 } : { text, word: words++ }));\n    return { tokens: list, wordCount: words };\n  }, [children]);\n\n  return (\n    <Comp ref={ref} data-slot=\"scroll-reveal-text\" className={cn(\"relative\", className)} {...props}>\n      {tokens.map(({ text, word }, i) =>\n        word < 0 ? (\n          text\n        ) : (\n          <Word\n            key={i}\n            progress={scrollYProgress}\n            active={active}\n            start={word / wordCount}\n            end={(word + 1) / wordCount}\n            base={baseOpacity}\n            className={wordClassName}\n          >\n            {text}\n          </Word>\n        )\n      )}\n    </Comp>\n  );\n}\n\nfunction Word({\n  progress,\n  active,\n  start,\n  end,\n  base,\n  className,\n  children,\n}: {\n  progress: MotionValue<number>;\n  active: MotionValue<number>;\n  start: number;\n  end: number;\n  base: number;\n  className?: string;\n  children: string;\n}) {\n  const opacity = useTransform([progress, active], ([p, on]: number[]) => {\n    if (!on) return 1;\n    const t = Math.min(1, Math.max(0, (p - start) / (end - start)));\n    return base + (1 - base) * t;\n  });\n  return (\n    <motion.span style={{ opacity }} className={className}>\n      {children}\n    </motion.span>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "text"
+  ],
+  "type": "registry:component"
+}

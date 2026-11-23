@@ -11,7 +11,6 @@ const demo = (file: string) => `components/demos/badge/${file}`;
 const block = (file: string) => `components/dusk/badge/${file}`;
 
 const config: DocConfig = {
-  category: "Shadcn+",
   title: "Badge",
   intro:
     "The shadcn/ui Badge with soft, success, warning and info variants, three sizes and a status dot — plus three animated React badge blocks built with Motion: a pulsing live status badge, a notification count that rolls like an odometer and a shimmering “New” badge.",

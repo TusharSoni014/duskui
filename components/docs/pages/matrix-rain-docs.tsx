@@ -8,7 +8,6 @@ import MatrixRainPausedDemo from "@/components/demos/matrix-rain/matrix-rain-pau
 const demo = (file: string) => `components/demos/matrix-rain/${file}`;
 
 const config: DocConfig = {
-  category: "Hacker",
   title: "Matrix Rain",
   intro:
     "The classic Matrix digital rain as a React component: falling katakana and digits drawn on a high-DPI <canvas>, with configurable color, font size, speed, trail fade and characters. Drop it into any container as an animated hacker background — it fills its parent and pauses itself when off-screen.",

@@ -8,7 +8,6 @@ import TechGridCustom from "@/components/demos/tech-grid/tech-grid-custom";
 const demo = (file: string) => `components/demos/tech-grid/${file}`;
 
 const config: DocConfig = {
-  category: "Techy",
   title: "Tech Grid",
   intro:
     "An animated tech grid background for React and Tailwind CSS: a blueprint grid whose cells light up around the cursor while a scan line sweeps past, or a retro perspective floor that scrolls toward the viewer. Built with Motion and pure CSS — no canvas.",

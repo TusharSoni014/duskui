@@ -9,7 +9,6 @@ import GlowTextInlineDemo from "@/components/demos/glow-text/glow-text-inline";
 const demo = (file: string) => `components/demos/glow-text/${file}`;
 
 const config: DocConfig = {
-  category: "Neon",
   title: "Glow Text",
   intro:
     "A neon text effect for React and Tailwind CSS: layered text-shadow glow with optional breathing or flickering animation, any color and any heading level. It stays real, selectable text, so headings remain readable by search engines and screen readers.",

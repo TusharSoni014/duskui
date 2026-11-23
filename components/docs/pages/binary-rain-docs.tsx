@@ -8,7 +8,6 @@ import BinaryRainLogin from "@/components/demos/binary-rain/binary-rain-login";
 const demo = (file: string) => `components/demos/binary-rain/${file}`;
 
 const config: DocConfig = {
-  category: "Techy",
   title: "Binary Rain",
   intro:
     "A binary rain background for React: columns of falling 0s and 1s with bright heads, fading trails and flickering glyphs, drawn on a high-DPI canvas. A fast, accessible take on the classic hacker effect for heroes, login screens and 404 pages.",

@@ -8,7 +8,6 @@ import IceInputInvalid from "@/components/demos/ice-input/ice-input-invalid";
 const demo = (file: string) => `components/demos/ice-input/${file}`;
 
 const config: DocConfig = {
-  category: "Glassmorphism",
   title: "Ice Input",
   intro:
     "A frosted-glass text input for React, built on the DuskUI Input with Motion and Tailwind CSS. On focus, frost spreads across the field from where you clicked and a cool glow lights the border — while it stays a native input that works with labels, autofill and forms.",
