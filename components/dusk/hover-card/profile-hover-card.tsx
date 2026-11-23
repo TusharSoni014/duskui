@@ -21,7 +21,7 @@ export interface ProfileUser {
   verified?: boolean;
   /** Short stats under the bio, e.g. [{ label: "Followers", value: "12.4k" }]. */
   stats?: { label: string; value: React.ReactNode }[];
-  /** Cover gradient or image behind the avatar. Any CSS background. */
+  /** Cover color or image behind the avatar. Any CSS background. */
   cover?: string;
 }
 
@@ -42,9 +42,9 @@ export interface ProfileHoverCardProps
 }
 
 /**
- * A user preview card that springs out of the trigger. It scales up from
+ * A user preview card that opens out of the trigger. It scales up from
  * Radix's transform origin (the edge nearest the trigger, even after a flip),
- * then the avatar pops and the details rise in sequence. The avatar is a
+ * then the avatar and the details fade up in sequence. The avatar is a
  * plain <img> layered over the user's initials, so a missing or broken image
  * still looks intentional. Opens on hover and on keyboard focus of the
  * trigger; Escape closes it. Fades only under reduced motion.
@@ -76,28 +76,26 @@ export function ProfileHoverCard({
   const surface: Variants = reduceMotion
     ? { closed: { opacity: 0, transition: { duration: 0.1 } }, open: { opacity: 1, transition: { duration: 0.15 } } }
     : {
-        closed: { opacity: 0, scale: 0.88, filter: "blur(4px)", transition: { duration: 0.14, ease: "easeIn" } },
+        closed: { opacity: 0, scale: 0.96, transition: { duration: 0.12, ease: "easeIn" } },
         open: {
           opacity: 1,
           scale: 1,
-          filter: "blur(0px)",
-          transitionEnd: { filter: "none" },
-          transition: { type: "spring", duration: 0.45, bounce: 0.28, staggerChildren: 0.045, delayChildren: 0.06 },
+          transition: { duration: 0.18, ease: "easeOut", staggerChildren: 0.04, delayChildren: 0.05 },
         },
       };
 
   const item: Variants = reduceMotion
     ? { closed: { opacity: 1 }, open: { opacity: 1 } }
     : {
-        closed: { opacity: 0, y: 6, transition: { duration: 0.08 } },
-        open: { opacity: 1, y: 0, transition: { type: "spring", duration: 0.4, bounce: 0 } },
+        closed: { opacity: 0, y: 4, transition: { duration: 0.08 } },
+        open: { opacity: 1, y: 0, transition: { duration: 0.2, ease: "easeOut" } },
       };
 
   const pop: Variants = reduceMotion
     ? item
     : {
-        closed: { opacity: 0, scale: 0.6, transition: { duration: 0.08 } },
-        open: { opacity: 1, scale: 1, transition: { type: "spring", duration: 0.5, bounce: 0.45 } },
+        closed: { opacity: 0, scale: 0.96, transition: { duration: 0.08 } },
+        open: { opacity: 1, scale: 1, transition: { duration: 0.2, ease: "easeOut" } },
       };
 
   return (
@@ -120,7 +118,7 @@ export function ProfileHoverCard({
                 className={cn(
                   "z-50 w-80 overflow-hidden rounded-xl border bg-popover text-popover-foreground outline-none",
                   "origin-(--radix-hover-card-content-transform-origin)",
-                  "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_20px_48px_-12px_rgb(0_0_0/0.75),0_0_0_1px_rgb(0_0_0/0.2)]",
+                  "shadow-lg",
                   className
                 )}
                 variants={surface}
@@ -133,8 +131,7 @@ export function ProfileHoverCard({
                   className="h-16"
                   style={{
                     background:
-                      user.cover ??
-                      "radial-gradient(120% 140% at 0% 0%, color-mix(in oklab, var(--primary) 35%, transparent), transparent 60%), linear-gradient(135deg, color-mix(in oklab, var(--primary) 12%, var(--popover)), var(--popover))",
+                      user.cover ?? "var(--muted)",
                   }}
                 />
                 <div className="relative px-4 pb-4">
@@ -157,7 +154,7 @@ export function ProfileHoverCard({
                     <p className="flex items-center gap-1.5 leading-tight font-semibold">
                       {user.name}
                       {user.verified && (
-                        <BadgeCheck className="size-4 shrink-0 text-primary" aria-label="Verified" role="img" />
+                        <BadgeCheck className="size-4 shrink-0 text-muted-foreground" aria-label="Verified" role="img" />
                       )}
                     </p>
                     {user.handle && <p className="text-sm text-muted-foreground">@{user.handle}</p>}
@@ -225,7 +222,7 @@ export function ProfileAvatar({ name, src, className }: { name: string; src?: st
     <span
       aria-hidden
       className={cn(
-        "relative grid shrink-0 place-items-center overflow-hidden rounded-full bg-primary/15 font-semibold text-primary select-none",
+        "relative grid shrink-0 place-items-center overflow-hidden rounded-full bg-muted font-semibold text-foreground select-none",
         className
       )}
     >

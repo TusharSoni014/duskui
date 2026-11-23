@@ -56,7 +56,7 @@ export interface DockProps extends Omit<React.ComponentProps<"nav">, "children">
  * A macOS-style dock. Icons swell as the cursor approaches — each one's size
  * comes from its distance to the pointer through motion values and springs,
  * so moving the mouse never re-renders React. Keyboard focus magnifies too,
- * labels pop out on hover and focus, and an active dot glides between items.
+ * labels fade in on hover and focus, and an active dot glides between items.
  *
  * The bar keeps its height: icons grow out of it, so nothing around it moves.
  * Static on touch screens and under reduced motion. Arrow keys move between items.
@@ -110,8 +110,8 @@ export function Dock({
         data-slot="dock"
         data-position={position}
         className={cn(
-          "relative inline-flex rounded-2xl border border-white/10 bg-background/60 shadow-[inset_0_1px_0_rgb(255_255_255/0.06),0_16px_40px_-16px_rgb(0_0_0/0.8)]",
-          "supports-[backdrop-filter]:bg-background/40 supports-[backdrop-filter]:backdrop-blur-xl",
+          "relative inline-flex rounded-2xl border border-white/10 bg-background/90 shadow-lg",
+          "supports-[backdrop-filter]:bg-background/70 supports-[backdrop-filter]:backdrop-blur-md",
           className
         )}
         style={{ ...(vertical ? { width: iconSize + pad * 2 } : { height: iconSize + pad * 2 }), ...style }}
@@ -229,13 +229,13 @@ export function DockItem({
         {showLabel && (
           <motion.span
             aria-hidden
-            initial={{ opacity: 0, scale: 0.9, ...(reduceMotion ? {} : labelOffset[position]) }}
+            initial={{ opacity: 0, scale: 0.96, ...(reduceMotion ? {} : labelOffset[position]) }}
             animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.1 } }}
-            transition={{ type: "spring", duration: 0.25, bounce: 0.2 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
             className={cn(
               "pointer-events-none absolute z-10 rounded-md border border-white/10 bg-popover px-2 py-1 text-xs font-medium whitespace-nowrap text-popover-foreground",
-              "shadow-[0_8px_24px_-8px_rgb(0_0_0/0.8)]",
+              "shadow-md",
               labelPlacement[position]
             )}
           >
@@ -251,12 +251,11 @@ export function DockItem({
         {...(Comp === "button" ? { type: "button" } : {})}
         {...(href && !asChild ? { href } : {})}
         className={cn(
-          "flex size-full items-center justify-center rounded-[28%] border border-white/10 bg-linear-to-b from-white/12 to-white/4 text-foreground outline-none",
-          "shadow-[inset_0_1px_0_rgb(255_255_255/0.12),0_4px_12px_-4px_rgb(0_0_0/0.6)]",
-          "transition-[background-color,border-color,box-shadow] duration-200 hover:border-white/20",
+          "flex size-full items-center justify-center rounded-[28%] border border-white/10 bg-white/[0.06] text-foreground outline-none",
+          "transition-colors duration-150 hover:border-white/20 hover:bg-white/10",
           "focus-visible:ring-[3px] focus-visible:ring-ring/60",
           "[&_svg]:pointer-events-none [&_svg]:size-[45%] [&_svg]:shrink-0",
-          active && "border-primary/30 text-primary",
+          active && "border-white/20 bg-white/10",
           className
         )}
         onPointerEnter={(event: React.PointerEvent<HTMLButtonElement>) => {
@@ -289,9 +288,9 @@ export function DockItem({
         <motion.span
           layoutId="dock-active-dot"
           aria-hidden
-          transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
+          transition={reduceMotion ? { duration: 0 } : { type: "spring", bounce: 0.1, duration: 0.3 }}
           className={cn(
-            "pointer-events-none absolute size-1 rounded-full bg-primary shadow-[0_0_8px_var(--color-primary)]",
+            "pointer-events-none absolute size-1 rounded-full bg-primary",
             dotPlacement[position]
           )}
         />

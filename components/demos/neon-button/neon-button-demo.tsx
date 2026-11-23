@@ -6,10 +6,10 @@ export default function NeonButtonDemo() {
     <>
       <NeonButton size="lg">
         <Zap />
-        Power up
+        Upgrade
       </NeonButton>
-      <NeonButton size="lg" color="#ff2bd6" flicker>
-        Open late
+      <NeonButton size="lg" color="#f472b6" flicker>
+        Book a table
       </NeonButton>
       <NeonButton size="lg" color="#22d3ee" solid>
         Get started

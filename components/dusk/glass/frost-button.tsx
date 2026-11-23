@@ -18,10 +18,9 @@ const tones = {
     "hover:bg-zinc-900/90 supports-[backdrop-filter]:hover:bg-black/40",
   ],
   primary: [
-    "border-primary/45 text-white",
+    "border-primary/35 text-white",
     "bg-[color-mix(in_oklab,var(--primary)_30%,var(--background))] supports-[backdrop-filter]:bg-primary/20",
     "hover:bg-[color-mix(in_oklab,var(--primary)_38%,var(--background))] supports-[backdrop-filter]:hover:bg-primary/[0.28]",
-    "shadow-[inset_0_1px_0_rgb(255_255_255/0.25),0_8px_28px_-8px_color-mix(in_oklab,var(--primary)_55%,transparent)]",
   ],
 } as const;
 
@@ -30,7 +29,7 @@ type Ripple = { id: number; x: number; y: number; size: number };
 export interface FrostButtonProps extends Omit<ButtonProps, "variant"> {
   /** Glass color. `clear` is white frost, `dark` smoked glass, `primary` a mint-tinted pane. */
   tone?: keyof typeof tones;
-  /** Press and hover effects: a light sweep on hover/focus, a ripple on press, or both. */
+  /** Press and hover effects: a faint light sweep on hover/focus, a ripple on press (default), or both. */
   effect?: "sweep" | "ripple" | "both" | "none";
 }
 
@@ -38,14 +37,14 @@ export interface FrostButtonProps extends Omit<ButtonProps, "variant"> {
  * A frosted-glass button built on the DuskUI Button, so `loading`,
  * `loadingText`, sizes and focus styles all keep working.
  *
- * A band of light sweeps across on hover / keyboard focus and a ripple spreads
- * from the press point (from the center for keyboard presses). With reduced
+ * A ripple spreads from the press point (from the center for keyboard
+ * presses); optionally a faint band of light sweeps across on hover / focus. With reduced
  * motion the sweep is skipped and the ripple becomes a soft flash.
  * Effects are not rendered with `asChild`, since Slot needs a single child.
  */
 export function FrostButton({
   tone = "clear",
-  effect = "both",
+  effect = "ripple",
   size,
   asChild,
   loading,
@@ -97,16 +96,16 @@ export function FrostButton({
         {sweeps && (
           <span
             ref={sweepScope}
-            className="absolute inset-y-0 left-0 w-full bg-[linear-gradient(105deg,transparent_25%,rgb(255_255_255/0.28)_45%,rgb(255_255_255/0.45)_50%,rgb(255_255_255/0.28)_55%,transparent_75%)]"
+            className="absolute inset-y-0 left-0 w-full bg-[linear-gradient(105deg,transparent_30%,rgb(255_255_255/0.1)_45%,rgb(255_255_255/0.16)_50%,rgb(255_255_255/0.1)_55%,transparent_70%)]"
             style={{ transform: "translateX(-120%)" }}
           />
         )}
         {ripples.map((r) => (
           <motion.span
             key={r.id}
-            className="absolute rounded-full bg-white/30"
+            className="absolute rounded-full bg-white/20"
             style={{ left: r.x - r.size / 2, top: r.y - r.size / 2, width: r.size, height: r.size }}
-            initial={{ scale: reduceMotion ? 1 : 0, opacity: reduceMotion ? 0.25 : 0.45 }}
+            initial={{ scale: reduceMotion ? 1 : 0, opacity: reduceMotion ? 0.2 : 0.35 }}
             animate={{ scale: 1, opacity: 0 }}
             transition={{
               scale: { duration: 0.55, ease: [0.2, 0.7, 0.3, 1] },
@@ -133,7 +132,7 @@ export function FrostButton({
       className={cn(
         "overflow-hidden border font-medium [text-shadow:0_1px_2px_rgb(0_0_0/0.35)]",
         "supports-[backdrop-filter]:backdrop-blur-md supports-[backdrop-filter]:backdrop-saturate-150",
-        "shadow-[inset_0_1px_0_rgb(255_255_255/0.22),0_8px_24px_-10px_rgb(0_0_0/0.5)]",
+        "shadow-[inset_0_1px_0_rgb(255_255_255/0.12),0_1px_2px_rgb(0_0_0/0.3)]",
         tones[tone],
         className
       )}

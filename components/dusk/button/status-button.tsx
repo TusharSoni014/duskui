@@ -22,10 +22,10 @@ const defaultLabels = {
 } as const;
 
 const swap = {
-  initial: { opacity: 0, y: 18, filter: "blur(3px)" },
-  animate: { opacity: 1, y: 0, filter: "blur(0px)" },
-  exit: { opacity: 0, y: -18, filter: "blur(3px)" },
-  transition: { type: "spring", duration: 0.35, bounce: 0 },
+  initial: { opacity: 0, y: 8 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -8 },
+  transition: { type: "spring", duration: 0.25, bounce: 0 },
 } as const;
 
 function AnimatedCheck() {
@@ -59,7 +59,7 @@ function useWidth<T extends HTMLElement>() {
 
 /**
  * One button that walks through idle → loading → success / error.
- * The width springs between labels, the success check draws itself and
+ * The width eases between labels, the success check draws itself and
  * errors give a short shake. Status changes are announced to screen readers.
  */
 export function StatusButton({
@@ -126,7 +126,7 @@ export function StatusButton({
         className="inline-flex justify-center"
         initial={false}
         animate={{ width: width ?? "auto" }}
-        transition={{ type: "spring", duration: 0.4, bounce: 0.15 }}
+        transition={{ type: "spring", duration: 0.3, bounce: 0 }}
       >
         <span ref={measureRef} aria-live="polite" className="relative inline-flex items-center whitespace-nowrap">
           <AnimatePresence mode="popLayout" initial={false}>

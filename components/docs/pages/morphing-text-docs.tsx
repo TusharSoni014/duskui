@@ -26,7 +26,7 @@ export function Hero() {
   return (
     <h1 className="text-5xl font-bold">
       Build{" "}
-      <MorphingText words={["faster", "smarter", "together"]} align="start" className="text-primary" />
+      <MorphingText words={["faster", "smarter", "together"]} align="start" className="text-muted-foreground" />
     </h1>
   )
 }`,
@@ -52,7 +52,7 @@ export function Hero() {
       description: (
         <>
           <Code>gooey</Code> fuses the letters into liquid shapes and works best with bold, solid-color
-          type. <Code>blur</Code> is a plain blur crossfade that also suits thin weights and gradient text.
+          type. <Code>blur</Code> is a plain blur crossfade that also suits thin weights.
         </>
       ),
       Demo: MorphingTextVariantsDemo,
@@ -71,7 +71,7 @@ export function Hero() {
       { name: "align", type: '"start" | "center" | "end"', default: '"center"', description: "Alignment of shorter words inside the reserved width." },
       { name: "reserveSpace", type: "boolean", default: "true", description: "Reserve the widest word's width so surrounding content never moves." },
       { name: "announce", type: '"all" | "polite"', default: '"all"', description: "Expose every word once as hidden text, or announce each new word in a polite live region." },
-      { name: "wordClassName", type: "string", description: "Classes for each word, e.g. a color or gradient." },
+      { name: "wordClassName", type: "string", description: "Classes for each word, e.g. a color." },
     ],
   },
   accessibility: [

@@ -12,7 +12,7 @@ import { toggleVariants } from "@/components/ui/toggle";
  *
  * Same parts, props and data-slot attributes as shadcn (ToggleGroup,
  * ToggleGroupItem with `variant`, `size` and `spacing`) plus everything the
- * DuskUI Toggle adds: tactile press, smooth transitions and a mint "on" icon.
+ * DuskUI Toggle adds: smooth transitions and a clear neutral "on" surface.
  * With `spacing={0}` (default) the items join into one segmented bar and the
  * focused item lifts above its neighbours so its ring is never clipped.
  * `type="single"` picks one value, `type="multiple"` an array. Radix handles

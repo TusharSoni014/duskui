@@ -18,17 +18,13 @@ export default function CircularProgressDemo() {
           strokeWidth={8}
           caption="Tasks"
           aria-label="Tasks done"
-          indicatorClassName="text-sky-400"
-          trackClassName="text-sky-400/15"
+          indicatorClassName="text-foreground"
         />
         <CircularProgress
           value={values[2]}
           size={72}
           strokeWidth={6}
-          glow={false}
           aria-label="Profile complete"
-          indicatorClassName="text-amber-300"
-          trackClassName="text-amber-300/15"
         />
       </div>
       <Button

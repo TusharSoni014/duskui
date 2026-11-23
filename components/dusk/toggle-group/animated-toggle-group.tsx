@@ -6,7 +6,7 @@ import { AnimatePresence, LayoutGroup, motion, useReducedMotion, type Transition
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { cn } from "@/lib/utils";
 
-const pillSpring: Transition = { type: "spring", bounce: 0.22, duration: 0.45 };
+const pillSpring: Transition = { type: "spring", bounce: 0.1, duration: 0.3 };
 
 type Size = "sm" | "default" | "lg";
 
@@ -53,7 +53,7 @@ const toArray = (value: string | string[] | undefined) =>
   Array.isArray(value) ? value : value ? [value] : [];
 
 /**
- * A toggle group on a recessed track. With `type="single"` one glowing pill
+ * A toggle group on a recessed track. With `type="single"` one pill
  * glides to the pressed item (a shared Motion `layoutId`); with
  * `type="multiple"` every pressed item gets its own pill that springs in and
  * shrinks away. Built on the DuskUI Toggle Group (Radix), so arrow keys move
@@ -87,7 +87,7 @@ export function AnimatedToggleGroup(props: AnimatedToggleGroupProps) {
           size={size}
           spacing={1}
           className={cn(
-            "relative isolate rounded-lg bg-muted p-1 shadow-[inset_0_1px_2px_rgb(0_0_0/0.35)]",
+            "relative isolate rounded-lg bg-muted p-1",
             className
           )}
           {...rest}
@@ -115,16 +115,15 @@ export function AnimatedToggleGroupItem({
   const { type, selected, size, layoutId, reduceMotion } = useAnimatedToggleGroup();
   const on = selected.includes(value);
   const pillClass =
-    "pointer-events-none absolute inset-0 -z-10 rounded-md bg-primary/12 shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--color-primary)_35%,transparent),0_0_18px_-6px_var(--color-primary)]";
+    "pointer-events-none absolute inset-0 -z-10 rounded-md border border-white/10 bg-background shadow-sm";
 
   return (
     <ToggleGroupItem
       value={value}
       className={cn(
-        "group/item relative isolate rounded-md border-0 shadow-none active:scale-[0.94]",
+        "group/item relative isolate rounded-md border-0 shadow-none",
         // The pill replaces the base "on" surface.
-        "hover:bg-white/[0.04] data-[state=on]:bg-transparent data-[state=on]:text-primary data-[state=on]:shadow-none data-[state=on]:hover:bg-transparent",
-        "data-[state=on]:[&_svg:not([class*='text-'])]:text-primary",
+        "hover:bg-white/[0.04] data-[state=on]:bg-transparent data-[state=on]:text-foreground data-[state=on]:shadow-none data-[state=on]:hover:bg-transparent",
         itemSizes[size],
         className
       )}
@@ -145,10 +144,10 @@ export function AnimatedToggleGroupItem({
             <motion.span
               key="pill"
               aria-hidden
-              initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.6 }}
+              initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={reduceMotion ? { opacity: 0, transition: { duration: 0.1 } } : { opacity: 0, scale: 0.7, transition: { duration: 0.15 } }}
-              transition={reduceMotion ? { duration: 0.1 } : { type: "spring", bounce: 0.35, duration: 0.4 }}
+              exit={reduceMotion ? { opacity: 0, transition: { duration: 0.1 } } : { opacity: 0, scale: 0.96, transition: { duration: 0.12 } }}
+              transition={reduceMotion ? { duration: 0.1 } : { type: "spring", bounce: 0.1, duration: 0.2 }}
               className={pillClass}
             />
           )}

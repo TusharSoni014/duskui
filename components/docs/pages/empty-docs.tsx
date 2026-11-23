@@ -12,7 +12,7 @@ const block = (file: string) => `components/dusk/empty/${file}`;
 const config: DocConfig = {
   title: "Empty State",
   intro:
-    "A React empty state component with shadcn/ui's Empty API — icon tile, title, description and actions on a dashed, softly glowing surface — plus an animated empty state block with a floating illustration, drifting icons and a staggered entrance built with Motion.",
+    "A React empty state component with shadcn/ui's Empty API — icon tile, title, description and actions on a quiet dashed surface — plus an animated empty state block with a floating illustration, drifting icons and a staggered entrance built with Motion.",
   tags: ["shadcn API", "Server Component friendly", "Motion block", "prefers-reduced-motion"],
   hero: { Demo: AnimatedEmptyDemo, file: demo("animated-empty-demo.tsx"), minHeight: 440 },
   install: {
@@ -62,8 +62,8 @@ export function NoProjects() {
       title: "Default",
       description: (
         <>
-          <Code>EmptyMedia variant=&quot;icon&quot;</Code> puts a single icon in a glassy tile with a mint
-          halo. The surface has a dashed outline and a faint glow from the top.
+          <Code>EmptyMedia variant=&quot;icon&quot;</Code> puts a single icon in a small neutral tile. The
+          surface has a quiet dashed outline.
         </>
       ),
       Demo: EmptyBasicDemo,
@@ -76,7 +76,7 @@ export function NoProjects() {
       description: (
         <>
           Inside a card or panel, pass <Code>outline={"{false}"}</Code> to drop the border. Links in the
-          description are underlined and turn mint on hover.
+          description are underlined and brighten on hover.
         </>
       ),
       Demo: EmptySearchDemo,
@@ -93,8 +93,7 @@ export function NoProjects() {
       deps: "motion lucide-react class-variance-authority",
       description: (
         <>
-          A floating tile holds your icon and bobs gently while up to three satellite icons drift around it
-          and soft rings breathe behind. The title, description and actions rise in one after another when
+          A floating tile holds your icon while up to three satellite icons drift slowly around it. The title, description and actions rise in one after another when
           the block scrolls into view. Pass any lucide icons; children become the action row.
         </>
       ),
@@ -108,7 +107,7 @@ export function NoProjects() {
         { name: "satellites", type: "LucideIcon[]", default: "[Search, FileText, Sparkles]", description: "Up to three drifting icons. [] for none." },
         { name: "titleAs", type: '"h2" | "h3" | "h4" | "p"', default: '"h3"', description: "Heading level of the title, to fit your page outline." },
         { name: "children", type: "ReactNode", description: "Actions under the text, usually Buttons." },
-        { name: "outline", type: "boolean", default: "true", description: "Dashed border and glow (from Empty)." },
+        { name: "outline", type: "boolean", default: "true", description: "Dashed border (from Empty)." },
       ],
     },
     {
@@ -137,7 +136,7 @@ export function NoProjects() {
       </>
     ),
     props: [
-      { name: "outline", type: "boolean", default: "true", description: "Empty. Dashed border and top glow. Turn off inside cards." },
+      { name: "outline", type: "boolean", default: "true", description: "Empty. Dashed border. Turn off inside cards." },
       { name: "variant", type: '"default" | "icon"', default: '"default"', description: "EmptyMedia. icon wraps a single icon in a tile; default leaves your illustration as is." },
     ],
   },

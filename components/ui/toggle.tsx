@@ -10,17 +10,15 @@ import { cn } from "@/lib/utils";
  * DuskUI Toggle — a drop-in upgrade of the shadcn/ui Toggle.
  *
  * Same API (variant, size, pressed, onPressedChange) and data-slot as shadcn
- * plus a tactile press, smooth color transitions and a mint "on" state: the
- * icon lights up and the surface gets a faint inner highlight. CSS only;
+ * plus smooth color transitions and a clear neutral "on" surface. CSS only;
  * Radix handles aria-pressed and keyboard.
  */
 const toggleVariants = cva(
   [
     "inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium text-muted-foreground outline-none select-none",
-    "transition-[color,background-color,border-color,box-shadow,scale] duration-150 ease-out motion-reduce:transition-none",
-    "hover:bg-muted hover:text-foreground active:scale-[0.96] motion-reduce:active:scale-100",
-    "data-[state=on]:bg-accent data-[state=on]:text-accent-foreground data-[state=on]:shadow-[inset_0_1px_0_rgb(255_255_255/0.05)]",
-    "data-[state=on]:[&_svg:not([class*='text-'])]:text-primary",
+    "transition-[color,background-color,border-color,box-shadow] duration-150 ease-out motion-reduce:transition-none",
+    "hover:bg-muted hover:text-foreground",
+    "data-[state=on]:bg-accent data-[state=on]:text-accent-foreground",
     "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
     "aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
     "disabled:pointer-events-none disabled:opacity-50",
@@ -31,7 +29,7 @@ const toggleVariants = cva(
       variant: {
         default: "bg-transparent",
         outline:
-          "border border-input bg-transparent shadow-xs hover:border-ring/40 hover:bg-accent/60 dark:bg-input/20",
+          "border border-input bg-transparent shadow-xs hover:bg-accent/60 dark:bg-input/20",
       },
       size: {
         default: "h-9 min-w-9 px-2",

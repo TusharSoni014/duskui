@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { FrostButton } from "@/components/dusk/glass/frost-button";
 import { GlassBackdrop } from "@/components/demos/glass-card/glass-backdrop";
@@ -8,15 +8,14 @@ export default function FrostButtonDemo() {
     <>
       <GlassBackdrop />
       <div className="relative flex flex-wrap items-center justify-center gap-3">
-        <FrostButton size="lg" className="rounded-full">
+        <FrostButton size="lg">
           Get started
           <ArrowRight />
         </FrostButton>
-        <FrostButton size="lg" tone="primary" className="rounded-full">
-          <Sparkles />
+        <FrostButton size="lg" tone="primary">
           Upgrade
         </FrostButton>
-        <FrostButton size="lg" tone="dark" className="rounded-full">
+        <FrostButton size="lg" tone="dark">
           Learn more
         </FrostButton>
       </div>

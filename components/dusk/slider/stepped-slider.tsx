@@ -37,7 +37,7 @@ function normalize(step: SteppedSliderStep) {
 
 /**
  * A slider that snaps between named steps (sizes, plans, levels). Tick marks
- * light up as the range passes them, the selected tick stretches and glows,
+ * light up as the range passes them, the selected tick stretches,
  * and clicking a label jumps to it. Works with arrows, Home/End and Page keys,
  * announces the step's label via aria-valuetext and can submit the step's
  * value in a form. Ticks change instantly under reduced motion.
@@ -99,7 +99,7 @@ export function SteppedSlider({
         {...props}
       >
         <SliderPrimitive.Track className="relative h-1.5 w-full grow overflow-hidden rounded-full bg-muted">
-          <SliderPrimitive.Range className="absolute h-full rounded-full bg-[linear-gradient(90deg,color-mix(in_oklab,var(--color-primary)_65%,transparent),var(--color-primary))]" />
+          <SliderPrimitive.Range className="absolute h-full rounded-full bg-primary" />
         </SliderPrimitive.Track>
 
         {/* Ticks and labels. Inset by half a thumb so they line up with the thumb's centre at every step. */}
@@ -112,27 +112,23 @@ export function SteppedSlider({
               <span key={item.value} className="absolute top-0 flex -translate-x-1/2 flex-col items-center" style={{ left: `${percent}%` }}>
                 <motion.span
                   className={cn(
-                    "block h-1.5 w-0.5 origin-top rounded-full transition-[background-color,box-shadow] duration-300",
-                    lit ? "bg-primary" : "bg-muted-foreground/35",
-                    current && "shadow-[0_0_8px_var(--color-primary)]"
+                    "block h-1.5 w-0.5 origin-top rounded-full transition-colors duration-200",
+                    lit ? "bg-primary" : "bg-muted-foreground/35"
                   )}
                   initial={false}
-                  animate={{ scaleY: current && !reduceMotion ? 1.7 : 1 }}
-                  transition={reduceMotion ? { duration: 0 } : { type: "spring", duration: 0.35, bounce: 0.5 }}
+                  animate={{ scaleY: current && !reduceMotion ? 1.5 : 1 }}
+                  transition={reduceMotion ? { duration: 0 } : { duration: 0.2, ease: "easeOut" }}
                 />
                 {!hideLabels && (
-                  <motion.span
+                  <span
                     className={cn(
                       "mt-2 cursor-pointer text-xs whitespace-nowrap transition-colors duration-200",
                       current ? "font-medium text-foreground" : lit ? "text-foreground/70" : "text-muted-foreground",
                       disabled && "cursor-default"
                     )}
-                    initial={false}
-                    animate={{ y: current && !reduceMotion ? 1 : 0, scale: current && !reduceMotion ? 1.06 : 1 }}
-                    transition={reduceMotion ? { duration: 0 } : { type: "spring", duration: 0.3, bounce: 0.3 }}
                   >
                     {item.label}
-                  </motion.span>
+                  </span>
                 )}
               </span>
             );
@@ -143,9 +139,9 @@ export function SteppedSlider({
           aria-label={ariaLabel}
           aria-valuetext={items[index]?.valueText}
           className={cn(
-            "block size-5 rounded-full border-2 border-primary bg-background shadow-[0_1px_3px_rgb(0_0_0/0.5)] outline-none",
-            "transition-[scale,box-shadow] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none",
-            "hover:scale-110 group-data-[dragging]/slider:scale-125 focus-visible:ring-[3px] focus-visible:ring-ring/50",
+            "block size-5 rounded-full border-2 border-primary bg-background shadow-sm outline-none",
+            "transition-[scale,box-shadow] duration-150 ease-out motion-reduce:transition-none",
+            "group-data-[dragging]/slider:scale-110 focus-visible:ring-[3px] focus-visible:ring-ring/50",
             "data-[disabled]:pointer-events-none"
           )}
         />

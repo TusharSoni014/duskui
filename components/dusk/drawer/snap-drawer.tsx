@@ -106,7 +106,7 @@ export function SnapDrawer({
           {...(description ? {} : { "aria-describedby": undefined })}
           className={cn(
             "fixed inset-x-0 bottom-0 z-50 mx-auto flex h-full max-h-[97%] w-full max-w-xl flex-col rounded-t-2xl border border-b-0 bg-background outline-none",
-            "shadow-[inset_0_1px_0_rgb(255_255_255/0.06),0_-24px_64px_-16px_rgb(0_0_0/0.75)]",
+            "shadow-lg",
             // vaul animates snaps with inline transitions; reduced motion makes them jump.
             "motion-reduce:transition-none!",
             className
@@ -118,7 +118,7 @@ export function SnapDrawer({
               className="h-1.5 rounded-full bg-white/20"
               initial={false}
               animate={{ width: 36 + index * 12, opacity: atTop ? 0.6 : 1 }}
-              transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 30 }}
+              transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 42 }}
             />
           </div>
 
@@ -142,8 +142,8 @@ export function SnapDrawer({
                   {i === index && (
                     <motion.span
                       layoutId={`${id}-snap`}
-                      className="absolute inset-1 rounded-full bg-primary/20 shadow-[0_0_10px_color-mix(in_oklab,var(--color-primary)_40%,transparent)]"
-                      transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 500, damping: 34 }}
+                      className="absolute inset-1 rounded-full bg-white/10"
+                      transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 500, damping: 44 }}
                     />
                   )}
                   <span

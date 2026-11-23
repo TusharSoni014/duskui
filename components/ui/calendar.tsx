@@ -16,7 +16,7 @@ import { motion, useReducedMotion, type Transition } from "motion/react";
 import { buttonVariants, type ButtonProps } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const pillSpring: Transition = { type: "spring", stiffness: 520, damping: 36, mass: 0.7 };
+const pillSpring: Transition = { type: "spring", duration: 0.25, bounce: 0 };
 
 /** Shared with the day buttons, so the selected pill can glide between days in single mode. */
 const CalendarContext = React.createContext<{ pillId?: string }>({});
@@ -30,12 +30,12 @@ export type CalendarProps = DayPickerProps & {
  * DuskUI Calendar — the shadcn/ui Calendar rebuilt on react-day-picker v10.
  *
  * Same API as shadcn (every DayPicker prop, plus `buttonVariant`) with:
- * - A glowing mint pill for the selected day. In `mode="single"` it glides
- *   from the old day to the new one with a spring.
- * - A mint ring and text for today, so it stays visible next to a selection.
- * - Range styles: solid caps on the start and end days joined by a tinted band.
- * - Month transitions: the weeks slide in from the side you navigated toward
- *   while the caption crossfades (react-day-picker's `animate`, on by default).
+ * - A solid mint pill for the selected day. In `mode="single"` it glides
+ *   from the old day to the new one (short, no overshoot).
+ * - A neutral background for today, so it stays visible next to a selection.
+ * - Range styles: solid caps on the start and end days joined by a neutral band.
+ * - Month transitions: the weeks shift in slightly from the side you navigated
+ *   toward while the caption crossfades (react-day-picker's `animate`, on by default).
  * - Styled month / year dropdowns for `captionLayout="dropdown"`.
  * - Under `prefers-reduced-motion` months crossfade without sliding and the
  *   pill jumps.
@@ -92,7 +92,7 @@ function Calendar({
           ),
           month_caption: cn(
             "flex h-(--cell-size) w-full items-center justify-center px-(--cell-size)",
-            "duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] [--tw-animation-fill-mode:forwards]",
+            "duration-200 ease-out [--tw-animation-fill-mode:forwards]",
             "motion-reduce:[--tw-enter-translate-x:0]! motion-reduce:[--tw-exit-translate-x:0]!",
             "[&.cal-caption-after-enter]:animate-in [&.cal-caption-after-enter]:fade-in-0 [&.cal-caption-after-enter]:slide-in-from-right-3",
             "[&.cal-caption-before-enter]:animate-in [&.cal-caption-before-enter]:fade-in-0 [&.cal-caption-before-enter]:slide-in-from-left-3",
@@ -102,7 +102,7 @@ function Calendar({
           dropdowns: "flex h-(--cell-size) w-full items-center justify-center gap-1.5 text-sm font-medium",
           dropdown_root: cn(
             "relative rounded-md border border-input bg-input/30 shadow-xs transition-[border-color,box-shadow] duration-150",
-            "hover:border-ring/40 has-focus:border-ring has-focus:ring-[3px] has-focus:ring-ring/40"
+            "has-focus:border-ring has-focus:ring-[3px] has-focus:ring-ring/50"
           ),
           dropdown: "absolute inset-0 cursor-pointer bg-popover opacity-0",
           caption_label: cn(
@@ -115,12 +115,12 @@ function Calendar({
           weekdays: "flex",
           weekday: "flex-1 rounded-md text-[0.8rem] font-normal text-muted-foreground select-none",
           weeks: cn(
-            "duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] [--tw-animation-fill-mode:forwards]",
+            "duration-200 ease-out [--tw-animation-fill-mode:forwards]",
             "motion-reduce:[--tw-enter-translate-x:0]! motion-reduce:[--tw-exit-translate-x:0]!",
-            "[&.cal-weeks-after-enter]:animate-in [&.cal-weeks-after-enter]:fade-in-0 [&.cal-weeks-after-enter]:slide-in-from-right-10",
-            "[&.cal-weeks-before-enter]:animate-in [&.cal-weeks-before-enter]:fade-in-0 [&.cal-weeks-before-enter]:slide-in-from-left-10",
-            "[&.cal-weeks-after-exit]:animate-out [&.cal-weeks-after-exit]:fade-out-0 [&.cal-weeks-after-exit]:slide-out-to-right-10",
-            "[&.cal-weeks-before-exit]:animate-out [&.cal-weeks-before-exit]:fade-out-0 [&.cal-weeks-before-exit]:slide-out-to-left-10"
+            "[&.cal-weeks-after-enter]:animate-in [&.cal-weeks-after-enter]:fade-in-0 [&.cal-weeks-after-enter]:slide-in-from-right-2",
+            "[&.cal-weeks-before-enter]:animate-in [&.cal-weeks-before-enter]:fade-in-0 [&.cal-weeks-before-enter]:slide-in-from-left-2",
+            "[&.cal-weeks-after-exit]:animate-out [&.cal-weeks-after-exit]:fade-out-0 [&.cal-weeks-after-exit]:slide-out-to-right-2",
+            "[&.cal-weeks-before-exit]:animate-out [&.cal-weeks-before-exit]:fade-out-0 [&.cal-weeks-before-exit]:slide-out-to-left-2"
           ),
           week: "mt-1.5 flex w-full",
           week_number_header: "w-(--cell-size) select-none",
@@ -129,9 +129,9 @@ function Calendar({
             "group/day relative aspect-square h-full w-full p-0 text-center select-none",
             "[&:first-child[data-selected=true]_button]:rounded-l-md [&:last-child[data-selected=true]_button]:rounded-r-md"
           ),
-          range_start: "rounded-l-md bg-primary/12",
-          range_middle: "rounded-none bg-primary/12 first:rounded-l-md last:rounded-r-md",
-          range_end: "rounded-r-md bg-primary/12",
+          range_start: "rounded-l-md bg-accent",
+          range_middle: "rounded-none bg-accent first:rounded-l-md last:rounded-r-md",
+          range_end: "rounded-r-md bg-accent",
           today: "",
           outside: "text-muted-foreground/60 aria-selected:text-muted-foreground",
           disabled: "text-muted-foreground opacity-40",
@@ -204,18 +204,18 @@ function CalendarDayButton({ className, day, modifiers, children, ...props }: Da
       data-today={(modifiers.today && !modifiers.outside && !modifiers.selected) || undefined}
       className={cn(
         "relative isolate flex aspect-square size-auto w-full min-w-(--cell-size) items-center justify-center rounded-md text-sm leading-none font-normal tabular-nums outline-none",
-        "transition-[color,background-color,box-shadow,scale] duration-150 ease-out motion-reduce:transition-none",
-        "hover:bg-accent hover:text-accent-foreground active:scale-90 motion-reduce:active:scale-100",
+        "transition-[color,background-color,box-shadow] duration-150 ease-out motion-reduce:transition-none",
+        "hover:bg-accent hover:text-accent-foreground",
         "focus-visible:z-20 focus-visible:ring-[3px] focus-visible:ring-ring/50",
         "disabled:pointer-events-none aria-disabled:pointer-events-none",
-        // Today: a mint ring that stays visible next to a selection.
-        "data-today:font-semibold data-today:text-primary data-today:shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--color-primary)_50%,transparent)]",
+        // Today: a neutral background that stays visible next to a selection.
+        "data-today:bg-accent data-today:text-accent-foreground",
         // Selected single / multiple day: the pill layer paints the background.
         "data-selected-single:text-primary-foreground data-selected-single:hover:bg-transparent data-selected-single:hover:text-primary-foreground",
         // Range caps and band.
-        "data-range-start:bg-primary data-range-start:text-primary-foreground data-range-start:shadow-[0_0_16px_-6px_var(--color-primary)] data-range-start:hover:bg-primary/90",
-        "data-range-end:bg-primary data-range-end:text-primary-foreground data-range-end:shadow-[0_0_16px_-6px_var(--color-primary)] data-range-end:hover:bg-primary/90",
-        "data-range-middle:rounded-none data-range-middle:text-foreground data-range-middle:hover:bg-primary/15",
+        "data-range-start:bg-primary data-range-start:text-primary-foreground data-range-start:hover:bg-primary/90",
+        "data-range-end:bg-primary data-range-end:text-primary-foreground data-range-end:hover:bg-primary/90",
+        "data-range-middle:rounded-none data-range-middle:bg-transparent data-range-middle:text-foreground data-range-middle:hover:bg-white/5",
         className
       )}
       {...props}
@@ -225,7 +225,7 @@ function CalendarDayButton({ className, day, modifiers, children, ...props }: Da
           aria-hidden
           layoutId={sharedPill}
           transition={reduceMotion ? { duration: 0 } : pillSpring}
-          className="absolute inset-0 -z-10 rounded-md bg-primary shadow-[inset_0_1px_0_rgb(255_255_255/0.25),0_0_16px_-6px_var(--color-primary)]"
+          className="absolute inset-0 -z-10 rounded-md bg-primary"
         />
       )}
       {children}

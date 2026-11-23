@@ -10,7 +10,7 @@ const demo = (file: string) => `components/demos/pricing-table/${file}`;
 const config: DocConfig = {
   title: "Pricing Table",
   intro:
-    "An animated pricing table for React and Tailwind CSS: a monthly/yearly toggle with a gliding pill, prices that roll digit by digit without layout shift, a highlighted popular plan with a travelling gradient border and feature lists with check icons. Fully data-driven and localized with Intl.NumberFormat.",
+    "An animated pricing table for React and Tailwind CSS: a monthly/yearly toggle with a gliding pill, prices that roll digit by digit without layout shift, a popular plan marked with a primary border and label, and feature lists with check icons. Fully data-driven and localized with Intl.NumberFormat.",
   tags: ["Monthly / yearly toggle", "Rolling digits", "No width jitter", "Data-driven", "Intl currency", "prefers-reduced-motion"],
   hero: { Demo: PricingTableDemo, file: demo("pricing-table-demo.tsx"), minHeight: 640 },
   install: {
@@ -80,7 +80,7 @@ export function Pricing() {
       { name: "plan.price", type: "{ monthly: number; yearly: number } | number | string", description: "Per-month price for each period (yearly = monthly price when billed yearly), one number, or text like \"Custom\"." },
       { name: "plan.features", type: "(string | { label; included? })[]", description: "Feature list. included: false shows a muted dash." },
       { name: "plan.cta", type: "{ label; href?; onClick? }", description: "Call to action. href renders the DuskUI Button as a link." },
-      { name: "plan.popular", type: "boolean", description: "Highlight with an animated border and a badge (plan.badge, default \"Most popular\")." },
+      { name: "plan.popular", type: "boolean", description: "Highlight with a 1px primary border and a label (plan.badge, default \"Most popular\")." },
       { name: "billing", type: '"monthly" | "yearly"', description: "Billing period (controlled)." },
       { name: "defaultBilling", type: '"monthly" | "yearly"', default: '"monthly"', description: "Initial period when uncontrolled." },
       { name: "onBillingChange", type: "(billing) => void", description: "Called when the period changes." },
@@ -95,7 +95,7 @@ export function Pricing() {
     "Each price has a plain-text copy, e.g. “$15 per month”, while the rolling digits are aria-hidden.",
     "Each plan is an article labelled by its name; features are a list, and excluded features are prefixed with a hidden “Not included:”.",
     "Digits use tabular-nums and the widest possible price is reserved, so toggling never shifts the layout.",
-    "With prefers-reduced-motion prices and the pill switch instantly and the popular border is a steady glow.",
+    "With prefers-reduced-motion prices and the pill switch instantly.",
   ],
 };
 

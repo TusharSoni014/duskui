@@ -1,6 +1,6 @@
 import { NeonButton } from "@/components/dusk/neon/neon-button";
 
-const colors = ["#ff2bd6", "#22d3ee", "#facc15", "#a78bfa", "oklch(0.7 0.25 25)"];
+const colors = ["#f472b6", "#22d3ee", "#facc15", "#a78bfa"];
 
 export default function NeonButtonColorsDemo() {
   return (

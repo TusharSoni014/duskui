@@ -15,7 +15,7 @@ export default function KbdButtonDemo() {
       </Button>
       <Button size="sm">
         Save changes
-        <Kbd size="sm" className="border-black/15 from-black/10 to-black/5 text-primary-foreground/80 shadow-none">
+        <Kbd size="sm" className="border-black/15 bg-black/10 text-primary-foreground/80 shadow-none">
           ↵<span className="sr-only">Enter</span>
         </Kbd>
       </Button>

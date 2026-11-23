@@ -10,7 +10,7 @@ const demo = (file: string) => `components/demos/dot-spotlight/${file}`;
 const config: DocConfig = {
   title: "Dot Spotlight",
   intro:
-    "A dot grid background with a cursor spotlight for React: a soft light follows the mouse and brightens the dots beneath it. Built with Motion values and a CSS mask, so it never re-renders, and it rests as a centered glow on touch screens.",
+    "A dot grid background with a subtle cursor spotlight for React: a small light follows the mouse and brightens only the dots beneath it, with no color wash. Built with Motion values and a CSS mask, so it never re-renders, and it rests dimly in the center on touch screens.",
   tags: ["Background", "Dot grid", "Cursor spotlight", "Motion values", "Touch fallback"],
   hero: { Demo: DotSpotlightDemo, file: demo("dot-spotlight-demo.tsx"), minHeight: 360 },
   install: {
@@ -45,7 +45,7 @@ export function Hero() {
       description: (
         <>
           <Code>gap</Code> and <Code>dotSize</Code> shape the grid, <Code>radius</Code> sizes the light, and{" "}
-          <Code>glow={"{false}"}</Code> lights only the dots without the color wash.
+          <Code>color</Code> sets the lit dots. Keep it low-alpha so the light stays subtle.
         </>
       ),
       Demo: DotSpotlightCustom,
@@ -74,19 +74,18 @@ export function Hero() {
       </>
     ),
     props: [
-      { name: "color", type: "string", default: '"var(--color-primary)"', description: "Color of the spotlight and lit dots." },
-      { name: "dotColor", type: "string", default: '"rgb(255 255 255 / 0.14)"', description: "Color of the resting dots." },
+      { name: "color", type: "string", default: '"rgb(255 255 255 / 0.4)"', description: "Color of the lit dots." },
+      { name: "dotColor", type: "string", default: '"rgb(255 255 255 / 0.1)"', description: "Color of the resting dots." },
       { name: "gap", type: "number", default: "20", description: "Distance between dots in px." },
       { name: "dotSize", type: "number", default: "1.25", description: "Dot radius in px." },
-      { name: "radius", type: "number", default: "220", description: "Radius of the spotlight in px." },
-      { name: "glow", type: "boolean", default: "true", description: "Paint a soft color wash under the spotlight." },
+      { name: "radius", type: "number", default: "160", description: "Radius of the spotlight in px." },
       { name: "fade", type: "boolean", default: "true", description: "Fade the pattern out toward the edges." },
       { name: "className", type: "string", description: "Merged onto the absolutely positioned root." },
     ],
   },
   accessibility: [
     <>The pattern is decorative: it is <Code>aria-hidden</Code> and <Code>pointer-events-none</Code>, so it never reaches screen readers or blocks clicks.</>,
-    "On touch screens and with prefers-reduced-motion the light stays as a static glow in the center.",
+    "On touch screens and with prefers-reduced-motion the light rests, dim and still, in the center.",
     "Pointer tracking is skipped while the pattern is off-screen or the tab is hidden.",
     "The effect is pure decoration; never rely on it to reveal content.",
   ],

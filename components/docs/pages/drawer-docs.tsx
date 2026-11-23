@@ -12,7 +12,7 @@ const block = (file: string) => `components/dusk/drawer/${file}`;
 const config: DocConfig = {
   title: "Drawer",
   intro:
-    "A draggable React drawer built on shadcn/ui and vaul: swipe-to-dismiss bottom sheets and side drawers with a handle bar and blurred backdrop, plus a responsive dialog that becomes a drawer on phones and an Apple Maps-style snap-points sheet.",
+    "A draggable React drawer built on shadcn/ui and vaul: swipe-to-dismiss bottom sheets and side drawers with a handle bar and dimmed backdrop, plus a responsive dialog that becomes a drawer on phones and an Apple Maps-style snap-points sheet.",
   tags: ["Drop-in shadcn API", "vaul", "Drag to dismiss", "Snap points", "Responsive dialog"],
   hero: { Demo: SnapDrawerDemo, file: demo("snap-drawer-demo.tsx"), minHeight: 260 },
   install: {

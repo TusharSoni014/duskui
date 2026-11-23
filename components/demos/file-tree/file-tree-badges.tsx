@@ -19,11 +19,11 @@ const items: FileTreeItem[] = [
     name: "src",
     children: [
       { id: "src/auth.ts", name: "auth.ts", badge: status("M", "text-amber-300") },
-      { id: "src/session.ts", name: "session.ts", badge: status("A", "text-primary") },
+      { id: "src/session.ts", name: "session.ts", badge: status("A", "text-emerald-400") },
       {
         id: "src/db",
         name: "db",
-        icon: <Database className="size-4 text-sky-400" />,
+        icon: <Database className="size-4 text-white/55" />,
         children: [
           { id: "src/db/schema.sql", name: "schema.sql", badge: status("U", "text-white/50") },
           { id: "src/db/seed.ts", name: "seed.ts" },
@@ -31,7 +31,7 @@ const items: FileTreeItem[] = [
       },
     ],
   },
-  { id: "secrets", name: "secrets.enc", icon: <Lock className="size-4 text-rose-400" />, disabled: true },
+  { id: "secrets", name: "secrets.enc", icon: <Lock className="size-4 text-white/55" />, disabled: true },
   { id: "tsconfig.json", name: "tsconfig.json" },
 ];
 

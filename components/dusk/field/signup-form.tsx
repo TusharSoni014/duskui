@@ -92,9 +92,9 @@ export function SignupForm({ onSubmit, submitLabel = "Create account", className
   const swap = reduceMotion
     ? { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } }
     : {
-        initial: { opacity: 0, y: 8, filter: "blur(4px)" },
-        animate: { opacity: 1, y: 0, filter: "blur(0px)" },
-        exit: { opacity: 0, y: -8, filter: "blur(4px)" },
+        initial: { opacity: 0, y: 8 },
+        animate: { opacity: 1, y: 0 },
+        exit: { opacity: 0, y: -8 },
       };
 
   return (
@@ -104,15 +104,15 @@ export function SignupForm({ onSubmit, submitLabel = "Create account", className
           <motion.div
             key="done"
             {...swap}
-            transition={{ type: "spring", duration: 0.45, bounce: 0.15 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
             role="status"
             className="flex flex-col items-center gap-3 py-10 text-center [grid-area:1/1]"
           >
             <motion.span
-              initial={reduceMotion ? false : { scale: 0.4, rotate: -30 }}
-              animate={{ scale: 1, rotate: 0 }}
-              transition={{ type: "spring", duration: 0.5, bounce: 0.45, delay: 0.1 }}
-              className="grid size-11 place-items-center rounded-full bg-primary/15 text-primary shadow-[0_0_24px_-6px_var(--color-primary)]"
+              initial={reduceMotion ? false : { scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.2, ease: "easeOut", delay: 0.1 }}
+              className="grid size-11 place-items-center rounded-full bg-primary/15 text-primary"
             >
               <CheckIcon className="size-5" />
             </motion.span>
@@ -123,7 +123,7 @@ export function SignupForm({ onSubmit, submitLabel = "Create account", className
           <motion.div
             key="form"
             {...swap}
-            transition={{ type: "spring", duration: 0.45, bounce: 0 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
             className="[grid-area:1/1]"
           >
             <form noValidate onSubmit={handleSubmit} {...props}>

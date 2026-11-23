@@ -12,11 +12,11 @@ import { cn } from "@/lib/utils";
  * Same parts, props and data-slot attributes as shadcn (Select, SelectGroup,
  * SelectValue, SelectTrigger, SelectContent, SelectLabel, SelectItem,
  * SelectSeparator, SelectScrollUpButton, SelectScrollDownButton) plus:
- * - The chevron flips while open and the trigger keeps its focus ring.
- * - The list grows out of the trigger on an expo-out curve and closes faster
- *   than it opens (popper mode slides in from the side it opens on).
- * - Items highlight with a smooth color transition; the check mark pops in.
- * - A hover state on the trigger and a clear invalid state.
+ * - The chevron flips while open.
+ * - The list grows out of the trigger (150ms ease-out) and closes faster
+ *   than it opens (popper mode shifts in slightly from the side it opens on).
+ * - Items highlight with a smooth color transition; the check mark fades in.
+ * - A subtle hover background on the trigger and a clear invalid state.
  * - Under `prefers-reduced-motion` the list only fades.
  * CSS only (tw-animate-css). Radix handles typeahead, keyboard, focus,
  * form submission (`name`) and aria.
@@ -50,11 +50,10 @@ function SelectTrigger({
       data-size={size}
       className={cn(
         "group/select-trigger flex w-fit items-center justify-between gap-2 rounded-md border border-input bg-transparent px-3 py-2 text-sm whitespace-nowrap shadow-xs outline-none select-none dark:bg-input/30",
-        "transition-[color,background-color,border-color,box-shadow] duration-200 ease-out motion-reduce:transition-none",
-        "hover:border-ring/40 dark:hover:bg-input/45",
+        "transition-[color,background-color,border-color,box-shadow] duration-150 ease-out motion-reduce:transition-none",
+        "dark:hover:bg-input/45",
         "data-[placeholder]:text-muted-foreground",
-        "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/30",
-        "data-[state=open]:border-ring/60 data-[state=open]:ring-[3px] data-[state=open]:ring-ring/15",
+        "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
         "aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
         "disabled:cursor-not-allowed disabled:opacity-50",
         "data-[size=default]:h-9 data-[size=sm]:h-8",
@@ -68,7 +67,7 @@ function SelectTrigger({
       <SelectPrimitive.Icon asChild>
         <ChevronDownIcon
           className={cn(
-            "size-4 opacity-60 transition-[rotate,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none",
+            "size-4 opacity-60 transition-[rotate,opacity] duration-200 ease-out motion-reduce:transition-none",
             "group-hover/select-trigger:opacity-90 group-data-[state=open]/select-trigger:rotate-180 group-data-[state=open]/select-trigger:opacity-100"
           )}
         />
@@ -98,9 +97,8 @@ function SelectContent({
         className={cn(
           "relative z-50 max-h-(--radix-select-content-available-height) min-w-[8rem] overflow-x-hidden overflow-y-auto rounded-lg border bg-popover text-popover-foreground",
           "origin-(--radix-select-content-transform-origin)",
-          "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_16px_40px_-12px_rgb(0_0_0/0.7),0_0_0_1px_rgb(0_0_0/0.2)]",
-          "ease-[cubic-bezier(0.16,1,0.3,1)]",
-          "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:duration-200",
+          "shadow-md ease-out",
+          "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:duration-150",
           "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:duration-100",
           "motion-reduce:data-[state=open]:zoom-in-100 motion-reduce:data-[state=closed]:zoom-out-100",
           position === "popper" && [
@@ -156,8 +154,8 @@ function SelectItem({ className, children, ...props }: React.ComponentProps<type
       {...props}
     >
       <span className="absolute right-2 flex size-3.5 items-center justify-center">
-        <SelectPrimitive.ItemIndicator className="animate-in fade-in-0 zoom-in-50 duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] motion-reduce:zoom-in-100">
-          <CheckIcon className="size-4 text-primary" />
+        <SelectPrimitive.ItemIndicator className="animate-in fade-in-0 duration-150 ease-out motion-reduce:animate-none">
+          <CheckIcon className="size-4" />
         </SelectPrimitive.ItemIndicator>
       </span>
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>

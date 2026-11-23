@@ -27,8 +27,8 @@ export default function AnimatedListActivityDemo() {
   const { items } = useListStream(events, { initial: 2, interval: 1600, paused: !inView });
 
   return (
-    <div ref={ref} className="w-full max-w-md rounded-xl border border-white/10 bg-black/30 p-4">
-      <p className="mb-3 font-mono text-xs uppercase tracking-widest text-white/40">Activity</p>
+    <div ref={ref} className="w-full max-w-md rounded-xl border border-white/10 bg-card p-4">
+      <p className="mb-3 text-sm font-medium text-white/80">Activity</p>
       <div className="h-[9.5rem] overflow-hidden">
         <AnimatedList as="ol" max={4} className="gap-1.5" aria-label="Deployment activity">
           {items.map(({ id, item }) => (

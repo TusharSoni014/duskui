@@ -16,14 +16,12 @@ export default function BlurFadeList() {
       as="ul"
       stagger={0.07}
       direction="right"
-      offset={16}
-      blur={6}
       className="w-full max-w-md space-y-2"
       itemClassName="flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white/80"
     >
       {features.map((feature) => (
         <span key={feature} className="contents">
-          <Check className="size-4 shrink-0 text-primary" aria-hidden />
+          <Check className="size-4 shrink-0 text-muted-foreground" aria-hidden />
           {feature}
         </span>
       ))}

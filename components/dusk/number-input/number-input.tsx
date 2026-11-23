@@ -47,9 +47,9 @@ const sizes = {
 const rollSpring: Transition = { type: "spring", stiffness: 520, damping: 40, mass: 0.7 };
 
 const roll: Variants = {
-  enter: (direction: number) => ({ y: direction > 0 ? "70%" : "-70%", opacity: 0, filter: "blur(1.5px)" }),
-  center: { y: "0%", opacity: 1, filter: "blur(0px)" },
-  exit: (direction: number) => ({ y: direction > 0 ? "-70%" : "70%", opacity: 0, filter: "blur(1.5px)" }),
+  enter: (direction: number) => ({ y: direction > 0 ? "60%" : "-60%", opacity: 0 }),
+  center: { y: "0%", opacity: 1 },
+  exit: (direction: number) => ({ y: direction > 0 ? "-60%" : "60%", opacity: 0 }),
 };
 
 const fade: Variants = {
@@ -347,7 +347,7 @@ export function NumberInput({
           "hover:bg-accent/60 hover:text-foreground active:bg-accent dark:hover:bg-input/50",
           "aria-disabled:cursor-not-allowed aria-disabled:text-muted-foreground/40 aria-disabled:hover:bg-transparent",
           "disabled:pointer-events-none",
-          "[&_svg]:transition-transform [&_svg]:duration-150 active:[&_svg]:scale-75 aria-disabled:active:[&_svg]:scale-100 motion-reduce:active:[&_svg]:scale-100",
+          "[&_svg]:transition-transform [&_svg]:duration-150 active:[&_svg]:scale-90 aria-disabled:active:[&_svg]:scale-100 motion-reduce:active:[&_svg]:scale-100",
           dir > 0 ? "order-last border-l border-input" : "order-first border-r border-input",
           sizes[size].button
         )}

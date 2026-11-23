@@ -42,7 +42,7 @@ function mulberry32(seed: number) {
   };
 }
 
-const DEFAULT_COLORS = ["var(--color-primary)", "#a7f3d0", "#ffffff"];
+const DEFAULT_COLORS = ["rgb(255 255 255 / 0.8)", "rgb(255 255 255 / 0.5)"];
 
 function makeSparkle(rand: () => number, id: number, colors: string[], [min, max]: [number, number]): Sparkle {
   return {
@@ -77,9 +77,9 @@ function SparkleStar({ size, color }: { size: number; color: string }) {
 export function SparklesText({
   as = "span",
   colors = DEFAULT_COLORS,
-  count = 8,
-  size = [8, 16],
-  lifetime = 1.6,
+  count = 4,
+  size = [6, 10],
+  lifetime = 2,
   seed = 7,
   className,
   children,
@@ -154,11 +154,11 @@ export function SparklesText({
               initial={reduceMotion ? false : { scale: 0, rotate: s.rotate - 90, opacity: 0 }}
               animate={
                 reduceMotion
-                  ? { scale: 0.85, rotate: s.rotate, opacity: 0.7 }
+                  ? { scale: 0.85, rotate: s.rotate, opacity: 0.5 }
                   : {
                       scale: [0, 1, 0],
                       rotate: [s.rotate - 90, s.rotate, s.rotate + 90],
-                      opacity: [0, 1, 0],
+                      opacity: [0, 0.8, 0],
                     }
               }
               exit={{ opacity: 0, transition: { duration: 0.1 } }}

@@ -12,8 +12,8 @@ import {
 
 function Artwork() {
   return (
-    <div className="grid size-full place-items-center bg-[radial-gradient(120%_90%_at_20%_0%,color-mix(in_oklab,var(--color-primary)_55%,transparent),transparent_60%),linear-gradient(160deg,#0f2a24,#05100d)]">
-      <Mountain className="size-10 text-white/80" aria-hidden />
+    <div className="grid size-full place-items-center bg-muted">
+      <Mountain className="size-10 text-muted-foreground" aria-hidden />
     </div>
   );
 }

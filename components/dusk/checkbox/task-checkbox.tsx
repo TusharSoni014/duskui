@@ -16,7 +16,7 @@ export interface TaskCheckboxProps
   label: React.ReactNode;
   /** Optional secondary line (due date, project…). */
   description?: React.ReactNode;
-  /** Burst of mint particles around the box when checked. */
+  /** Small ring and particle burst around the box when checked. Off by default. */
   celebrate?: boolean;
   /** Classes for the outer row. */
   containerClassName?: string;
@@ -34,8 +34,8 @@ const particles = [
 
 /**
  * A to-do row: checking it draws the check, strikes the label through from
- * left to right (wrapping onto every line), dims the text and pops a small
- * ring + particle burst. The whole label is clickable.
+ * left to right (wrapping onto every line) and dims the text; `celebrate`
+ * adds a small ring + particle burst. The whole label is clickable.
  * Built on the DuskUI Checkbox (Radix), so it works in forms and with the keyboard.
  */
 export function TaskCheckbox({
@@ -44,7 +44,7 @@ export function TaskCheckbox({
   onCheckedChange,
   label,
   description,
-  celebrate = true,
+  celebrate = false,
   id,
   className,
   containerClassName,
@@ -90,16 +90,16 @@ export function TaskCheckbox({
               >
                 <motion.span
                   className="absolute inset-0 rounded-[5px] border border-primary"
-                  initial={{ scale: 1, opacity: 0.9 }}
-                  animate={{ scale: 2.2, opacity: 0 }}
+                  initial={{ scale: 1, opacity: 0.5 }}
+                  animate={{ scale: 1.8, opacity: 0 }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 />
                 {particles.map(([x, y]) => (
                   <motion.span
                     key={`${x}-${y}`}
                     className="absolute top-1/2 left-1/2 -mt-[2px] -ml-[2px] size-1 rounded-full bg-primary"
-                    initial={{ x: 0, y: 0, scale: 1, opacity: 1 }}
-                    animate={{ x: x * 16, y: y * 16, scale: 0, opacity: 0 }}
+                    initial={{ x: 0, y: 0, scale: 1, opacity: 0.7 }}
+                    animate={{ x: x * 12, y: y * 12, scale: 0, opacity: 0 }}
                     transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
                   />
                 ))}
@@ -117,7 +117,7 @@ export function TaskCheckbox({
           <span
             className={cn(
               "bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1.5px] bg-[position:0_58%] bg-no-repeat",
-              "transition-[background-size] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] motion-reduce:transition-none",
+              "transition-[background-size] duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] motion-reduce:transition-none",
               "group-data-done/task:bg-[length:100%_1.5px]"
             )}
           >

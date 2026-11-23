@@ -60,8 +60,8 @@ export function getPaginationItems(
   ];
 }
 
-const indicatorSpring: Transition = { type: "spring", bounce: 0.2, duration: 0.45 };
-const rollSpring: Transition = { type: "spring", bounce: 0, duration: 0.35 };
+const indicatorSpring: Transition = { type: "spring", bounce: 0.1, duration: 0.3 };
+const rollSpring: Transition = { type: "spring", bounce: 0, duration: 0.25 };
 
 export interface AnimatedPaginationProps
   extends Omit<React.ComponentProps<"nav">, "onChange" | "children"> {
@@ -91,7 +91,7 @@ export interface AnimatedPaginationProps
 }
 
 /**
- * Pagination with a mint indicator that glides to the current page (a shared
+ * Pagination with an indicator that glides to the current page (a shared
  * Motion `layoutId`), page numbers that roll up or down as the window of pages
  * shifts, and a smart ellipsis range that keeps the bar a constant width.
  *
@@ -228,7 +228,7 @@ export function AnimatedPagination({
                           layoutId="pagination-indicator"
                           aria-hidden
                           transition={reduceMotion ? { duration: 0 } : indicatorSpring}
-                          className="pointer-events-none absolute inset-0 -z-10 rounded-md bg-primary/12 shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--color-primary)_40%,transparent),0_0_18px_-6px_var(--color-primary)]"
+                          className="pointer-events-none absolute inset-0 -z-10 rounded-md border bg-accent"
                         />
                       )}
                       <span className="relative grid h-full min-w-[3ch] place-items-center overflow-hidden">

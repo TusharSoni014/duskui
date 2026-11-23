@@ -138,7 +138,7 @@ function UndoToast({ id, title, description, duration, undoLabel, undoneTitle, s
   }, [shortcut, undone, handleUndo]);
 
   return (
-    <ToastSurface ref={ref} data-status={undone ? "success" : "pending"} className={cn(undone && "border-primary/25")}>
+    <ToastSurface ref={ref} data-status={undone ? "success" : "pending"}>
       {undone ? <ToastStatusIcon status="success" /> : <CountdownRing progress={progress} duration={duration} />}
       <div className="grid min-w-0 flex-1 gap-0.5 pt-1">
         <motion.p
@@ -157,8 +157,8 @@ function UndoToast({ id, title, description, duration, undoLabel, undoneTitle, s
           type="button"
           onClick={handleUndo}
           className={cn(
-            "mt-0.5 inline-flex h-7 shrink-0 items-center gap-1.5 self-start rounded-md bg-primary/10 px-2.5 text-xs font-medium text-primary outline-none",
-            "transition-[background-color,box-shadow] duration-150 hover:bg-primary/20 focus-visible:ring-[3px] focus-visible:ring-ring/50"
+            "mt-0.5 inline-flex h-7 shrink-0 items-center gap-1.5 self-start rounded-md border bg-secondary px-2.5 text-xs font-medium text-secondary-foreground outline-none",
+            "transition-[background-color,box-shadow] duration-150 hover:bg-accent focus-visible:ring-[3px] focus-visible:ring-ring/50"
           )}
         >
           <Undo2 className="size-3.5" aria-hidden />
@@ -192,11 +192,11 @@ function CountdownRing({ progress, duration }: { progress: MotionValue<number>; 
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeDasharray={CIRCUMFERENCE}
-          className="stroke-primary"
+          className="stroke-muted-foreground"
           style={{ strokeDashoffset: dashOffset }}
         />
       </svg>
-      <motion.span className="font-mono text-[0.6875rem] font-semibold text-foreground tabular-nums">{seconds}</motion.span>
+      <motion.span className="text-[0.6875rem] font-medium text-foreground tabular-nums">{seconds}</motion.span>
     </span>
   );
 }

@@ -10,7 +10,7 @@ const demo = (file: string) => `components/demos/file-tree/${file}`;
 const config: DocConfig = {
   title: "File Tree",
   intro:
-    "An accessible file tree component for React and Tailwind CSS: folders and files with icons by extension, folders that spring open, a selection highlight that glides between rows and optional indent guides. Data-driven, controllable and fully keyboard navigable following the WAI-ARIA tree pattern.",
+    "An accessible file tree component for React and Tailwind CSS: folders and files with icons by extension, folders that expand smoothly, a selection highlight that glides between rows and optional indent guides. Data-driven, controllable and fully keyboard navigable following the WAI-ARIA tree pattern.",
   tags: ["WAI-ARIA tree", "Arrow keys & type-ahead", "Icons by extension", "Gliding selection", "Controlled or uncontrolled"],
   hero: { Demo: FileTreeDemo, file: demo("file-tree-demo.tsx"), minHeight: 460 },
   install: {

@@ -10,7 +10,7 @@ const demo = (file: string) => `components/demos/dock/${file}`;
 const config: DocConfig = {
   title: "Dock",
   intro:
-    "A macOS-style dock for React built with Motion and Tailwind CSS: icons magnify smoothly as the cursor approaches, labels pop out on hover and focus, and an active dot glides between apps. Pointer tracking runs on motion values and springs, so it never re-renders — and it works horizontally or vertically.",
+    "A macOS-style dock for React built with Motion and Tailwind CSS: icons magnify smoothly as the cursor approaches, labels fade in on hover and focus, and an active dot glides between apps. Pointer tracking runs on motion values and springs, so it never re-renders — and it works horizontally or vertically.",
   tags: ["macOS magnification", "No re-renders", "Keyboard magnify", "Vertical option", "Static on touch", "prefers-reduced-motion"],
   hero: { Demo: DockDemo, file: demo("dock-demo.tsx"), minHeight: 300 },
   install: {
@@ -102,7 +102,7 @@ export function AppDock() {
     "The dock is a nav landmark containing a list; every item is a real button or link named by its label, so screen readers never depend on the icon.",
     "Tab reaches each item, and arrow keys (Left / Right, or Up / Down when vertical) plus Home / End move between them.",
     "Keyboard focus magnifies the focused icon and its neighbours and shows its label, just like hovering.",
-    "Active items carry aria-current (\"page\" for links); the glowing dot and the floating label are decorative and aria-hidden.",
+    "Active items carry aria-current (\"page\" for links); the active dot and the floating label are decorative and aria-hidden.",
     "Magnification only follows a mouse — touch screens get a static, tappable dock — and it's off entirely under prefers-reduced-motion.",
   ],
 };

@@ -18,14 +18,13 @@ function useMotionCollapsible() {
 }
 
 export interface MotionCollapsibleProps extends React.ComponentProps<typeof CollapsiblePrimitive.Root> {
-  /** Outline the panel and tint it mint while open. */
+  /** Outline the panel and brighten its border while open. */
   bordered?: boolean;
 }
 
 /**
- * A collapsible with spring physics: the panel springs its height open, the
- * content fades, rises and un-blurs in after it, and the chevron turns with a
- * little overshoot. Closed content stays mounted but `inert`, so it is
+ * A collapsible with gentle spring physics: the panel eases its height open,
+ * the content fades in after it, and the chevron turns. Closed content stays mounted but `inert`, so it is
  * indexed by search engines yet skipped by keyboard and screen readers.
  * Built on Radix Collapsible (aria-expanded, aria-controls). Under reduced
  * motion it opens and closes instantly.
@@ -57,9 +56,8 @@ export function MotionCollapsible({
           "w-full",
           bordered && [
             "rounded-xl border bg-white/[0.015]",
-            "transition-[border-color,background-color,box-shadow] duration-300 ease-out motion-reduce:transition-none",
-            "data-[state=open]:border-primary/25 data-[state=open]:bg-primary/[0.03]",
-            "data-[state=open]:shadow-[inset_0_1px_0_rgb(255_255_255/0.04),0_0_28px_-16px_var(--color-primary)]",
+            "transition-[border-color,background-color] duration-200 ease-out motion-reduce:transition-none",
+            "data-[state=open]:border-white/15 data-[state=open]:bg-white/[0.025]",
           ],
           className
         )}
@@ -69,7 +67,7 @@ export function MotionCollapsible({
   );
 }
 
-const chevronSpring: Transition = { type: "spring", stiffness: 380, damping: 18 };
+const chevronSpring: Transition = { type: "spring", bounce: 0, duration: 0.25 };
 
 export interface MotionCollapsibleTriggerProps
   extends Omit<React.ComponentProps<typeof CollapsiblePrimitive.Trigger>, "asChild"> {
@@ -77,7 +75,7 @@ export interface MotionCollapsibleTriggerProps
   icon?: React.ReactNode;
 }
 
-/** The full-width toggle row. Its chevron springs between down and up. */
+/** The full-width toggle row. Its chevron turns between down and up. */
 export function MotionCollapsibleTrigger({ className, children, icon, ...props }: MotionCollapsibleTriggerProps) {
   const { open, reduceMotion } = useMotionCollapsible();
 
@@ -98,7 +96,7 @@ export function MotionCollapsibleTrigger({ className, children, icon, ...props }
           aria-hidden
           className={cn(
             "flex size-6 shrink-0 items-center justify-center rounded-md transition-colors duration-200",
-            open ? "bg-primary/10 text-primary" : "text-muted-foreground group-hover/trigger:text-foreground"
+            open ? "text-foreground" : "text-muted-foreground group-hover/trigger:text-foreground"
           )}
           initial={false}
           animate={{ rotate: open ? 180 : 0 }}
@@ -114,11 +112,11 @@ export function MotionCollapsibleTrigger({ className, children, icon, ...props }
 const panel = (instant: boolean): Variants => ({
   open: {
     height: "auto",
-    transition: instant ? { duration: 0 } : { type: "spring", bounce: 0.1, duration: 0.5 },
+    transition: instant ? { duration: 0 } : { type: "spring", bounce: 0, duration: 0.3 },
   },
   closed: {
     height: 0,
-    transition: instant ? { duration: 0 } : { type: "spring", bounce: 0, duration: 0.32 },
+    transition: instant ? { duration: 0 } : { type: "spring", bounce: 0, duration: 0.25 },
   },
 });
 
@@ -126,15 +124,13 @@ const inner = (instant: boolean): Variants => ({
   open: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
-    transition: instant ? { duration: 0 } : { duration: 0.35, delay: 0.07, ease: [0.16, 1, 0.3, 1] },
-    transitionEnd: { filter: "none" },
+    transition: instant ? { duration: 0 } : { duration: 0.2, delay: 0.05, ease: "easeOut" },
   },
   // Same closed values either way (they're hidden at height 0), so server and client markup match.
-  closed: { opacity: 0, y: -6, filter: "blur(4px)", transition: { duration: instant ? 0 : 0.14 } },
+  closed: { opacity: 0, y: -4, transition: { duration: instant ? 0 : 0.14 } },
 });
 
-/** The panel. Springs its height and fades / un-blurs its content. `className` styles the inner wrapper. */
+/** The panel. Animates its height and fades its content. `className` styles the inner wrapper. */
 export function MotionCollapsibleContent({
   className,
   children,

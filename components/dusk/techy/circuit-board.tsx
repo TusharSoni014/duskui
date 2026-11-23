@@ -146,7 +146,7 @@ function chunkTraces(
 
 /**
  * An animated printed-circuit background: 45°-routed traces with pads, and
- * pulses of light travelling along them. Fills its nearest positioned parent.
+ * small pulses travelling along them. Fills its nearest positioned parent.
  *
  * The board is generated in fixed-size chunks from a seed, so it is identical
  * on every render and resizing never reshuffles it. Pulses use SVG animation,
@@ -154,8 +154,8 @@ function chunkTraces(
  */
 export function CircuitBoard({
   color = "var(--color-primary)",
-  density = 0.5,
-  speed = 120,
+  density = 0.4,
+  speed = 90,
   cellSize = 20,
   seed = 1,
   fade = true,
@@ -247,16 +247,16 @@ export function CircuitBoard({
           className="absolute left-0 top-0"
           fill="none"
         >
-          <g stroke="currentColor" strokeWidth={1.25} strokeLinejoin="round" strokeOpacity={0.2}>
+          <g stroke="currentColor" strokeWidth={1} strokeLinejoin="round" strokeOpacity={0.12}>
             {traces.map((t) => (
               <path
                 key={t.key}
                 d={t.d}
-                strokeOpacity={reduceMotion && t.pulse ? 0.45 : undefined}
+                strokeOpacity={reduceMotion && t.pulse ? 0.25 : undefined}
               />
             ))}
           </g>
-          <g stroke="currentColor" strokeOpacity={0.45} style={{ fill: "var(--color-background, #000)" }}>
+          <g stroke="currentColor" strokeOpacity={0.25} style={{ fill: "var(--color-background, #000)" }}>
             {traces.map((t) => (
               <React.Fragment key={t.key}>
                 <circle cx={t.start[0]} cy={t.start[1]} r={pad} />
@@ -265,7 +265,7 @@ export function CircuitBoard({
             ))}
           </g>
           {!reduceMotion && (
-            <g stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
+            <g stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeOpacity={0.6}>
               {traces.map((t) =>
                 t.pulse ? (
                   <g
@@ -273,8 +273,7 @@ export function CircuitBoard({
                     strokeDasharray={`${t.pulse.length} ${t.pulse.travel}`}
                     strokeDashoffset={t.pulse.length}
                   >
-                    <path d={t.d} strokeWidth={5} strokeOpacity={0.18} />
-                    <path d={t.d} strokeWidth={1.75} />
+                    <path d={t.d} strokeWidth={1.5} />
                     <animate
                       attributeName="stroke-dashoffset"
                       values={`${t.pulse.length};${t.pulse.length - t.pulse.travel}`}

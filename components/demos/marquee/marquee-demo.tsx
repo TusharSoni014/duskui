@@ -27,9 +27,7 @@ function Logo({ name, icon: Icon }: (typeof brands)[number]) {
 export default function MarqueeDemo() {
   return (
     <section aria-label="Trusted by" className="w-full max-w-2xl space-y-4">
-      <p className="text-center text-xs font-medium uppercase tracking-widest text-white/40">
-        Trusted by teams who ship at night
-      </p>
+      <p className="text-center text-sm text-muted-foreground">Used by product teams at</p>
       <Marquee speed={36} gap={24}>
         {brands.map((brand) => (
           <Logo key={brand.name} {...brand} />

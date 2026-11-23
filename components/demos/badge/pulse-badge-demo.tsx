@@ -4,7 +4,7 @@ export default function PulseBadgeDemo() {
   return (
     <>
       <PulseBadge>Online</PulseBadge>
-      <PulseBadge tone="danger" speed={1}>Live</PulseBadge>
+      <PulseBadge tone="danger">Live</PulseBadge>
       <PulseBadge tone="warning">Deploying</PulseBadge>
       <PulseBadge tone="muted" pulse={false}>Offline</PulseBadge>
       <span className="relative inline-flex">

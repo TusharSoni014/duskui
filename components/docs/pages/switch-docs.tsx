@@ -13,8 +13,8 @@ const block = (file: string) => `components/dusk/switch/${file}`;
 const config: DocConfig = {
   title: "Switch",
   intro:
-    "An animated React toggle switch built on shadcn/ui and Radix: the drop-in Switch has a spring-loaded thumb, a glowing on state and three sizes — plus Motion blocks for a sun-to-moon theme toggle and an async switch that shows a spinner while saving and springs back if the request fails.",
-  tags: ["Drop-in shadcn API", "Radix Switch", "CSS spring", "Optimistic UI", "prefers-reduced-motion"],
+    "An animated React toggle switch built on shadcn/ui and Radix: the drop-in Switch has a smoothly sliding thumb and three sizes — plus Motion blocks for a sun-to-moon theme toggle and an async switch that shows a spinner while saving and springs back if the request fails.",
+  tags: ["Drop-in shadcn API", "Radix Switch", "CSS transitions", "Optimistic UI", "prefers-reduced-motion"],
   hero: { Demo: IconSwitchDemo, file: demo("icon-switch-demo.tsx"), minHeight: 200 },
   install: {
     registry: "switch",
@@ -22,8 +22,8 @@ const config: DocConfig = {
     deps: "@radix-ui/react-switch class-variance-authority",
     note: (
       <>
-        Replaces <Code>components/ui/switch.tsx</Code> with the same API. The thumb&apos;s spring is a CSS{" "}
-        <Code>linear()</Code> easing curve, so the base Switch runs no JavaScript per frame.
+        Replaces <Code>components/ui/switch.tsx</Code> with the same API. The thumb slides with a short CSS
+        ease-out, so the base Switch runs no JavaScript per frame.
       </>
     ),
   },
@@ -44,7 +44,7 @@ export function AirplaneMode() {
     {
       id: "default",
       title: "Default",
-      description: "Click or press Space: the thumb overshoots slightly and settles, and the track lights up mint.",
+      description: "Click or press Space: the thumb slides across and the track turns mint.",
       Demo: SwitchBasicDemo,
       file: demo("switch-basic.tsx"),
       minHeight: 160,

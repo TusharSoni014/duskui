@@ -6,7 +6,7 @@ export default function FlipWordsStyles() {
       <p className="text-3xl tracking-tight text-white/80">
         Made for{" "}
         <FlipWords
-          words={["dreamers", "builders", "night owls"]}
+          words={["designers", "builders", "small teams"]}
           interval={2600}
           className="font-serif text-white italic"
         />
@@ -17,7 +17,7 @@ export default function FlipWordsStyles() {
           words={["edge", "staging", "production"]}
           interval={2200}
           letterStagger={0.05}
-          className="rounded-md border border-primary/30 bg-primary/10 px-2 font-mono text-primary"
+          className="rounded-md border border-white/10 bg-white/5 px-2 text-white"
         />
       </p>
     </div>

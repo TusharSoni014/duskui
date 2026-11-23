@@ -22,7 +22,7 @@ export interface MorphingTextProps extends Omit<React.HTMLAttributes<HTMLElement
   morphDuration?: number;
   /**
    * - `"gooey"` (default): an SVG threshold filter melts the letters into each other.
-   * - `"blur"`: a soft blur crossfade, better for thin fonts and gradient text.
+   * - `"blur"`: a soft blur crossfade, better for thin fonts.
    */
   variant?: "gooey" | "blur";
   /** Element to render. */

@@ -11,8 +11,8 @@ import { cn } from "@/lib/utils";
  * DuskUI Alert Dialog — a drop-in upgrade of the shadcn/ui Alert Dialog.
  *
  * Same parts, props and data-slot attributes as shadcn, plus:
- * - The DuskUI Dialog motion: fade + scale + short rise on an expo-out curve,
- *   a quicker exit, and a blurred backdrop.
+ * - The DuskUI Dialog motion: a short fade + slight scale, ease-out, with a
+ *   quicker exit, over a dimmed backdrop.
  * - `size="sm"` on AlertDialogContent for compact, centered confirmations.
  * - `AlertDialogMedia`: an icon slot above the title.
  * - `variant` and `size` on AlertDialogAction / AlertDialogCancel (DuskUI
@@ -37,7 +37,7 @@ function AlertDialogPortal({ ...props }: React.ComponentProps<typeof AlertDialog
   return <AlertDialogPrimitive.Portal data-slot="alert-dialog-portal" {...props} />;
 }
 
-/** The dimmed, blurred backdrop. Clicking it does nothing, by design. */
+/** The dimmed backdrop. Clicking it does nothing, by design. */
 function AlertDialogOverlay({
   className,
   ...props
@@ -46,9 +46,9 @@ function AlertDialogOverlay({
     <AlertDialogPrimitive.Overlay
       data-slot="alert-dialog-overlay"
       className={cn(
-        "fixed inset-0 z-50 bg-black/65 backdrop-blur-[2px]",
-        "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:duration-300",
-        "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:duration-200",
+        "fixed inset-0 z-50 bg-black/60",
+        "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:duration-200",
+        "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:duration-150",
         className
       )}
       {...props}
@@ -74,11 +74,10 @@ function AlertDialogContent({
         className={cn(
           "group/alert-dialog-content fixed top-[50%] left-[50%] z-50 grid max-h-[calc(100dvh-2rem)] w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 overflow-y-auto rounded-xl border bg-background p-6 outline-none",
           "data-[size=default]:sm:max-w-lg data-[size=sm]:sm:max-w-sm",
-          "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_24px_64px_-12px_rgb(0_0_0/0.7),0_0_0_1px_rgb(0_0_0/0.3)]",
-          "ease-[cubic-bezier(0.16,1,0.3,1)]",
-          "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:slide-in-from-bottom-2 data-[state=open]:duration-300",
+          "shadow-lg ease-out",
+          "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-[0.97] data-[state=open]:duration-200",
           "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-[0.97] data-[state=closed]:duration-150",
-          "motion-reduce:data-[state=open]:zoom-in-100 motion-reduce:data-[state=open]:slide-in-from-bottom-0 motion-reduce:data-[state=closed]:zoom-out-100",
+          "motion-reduce:data-[state=open]:zoom-in-100 motion-reduce:data-[state=closed]:zoom-out-100",
           className
         )}
         {...props}
@@ -117,13 +116,13 @@ function AlertDialogFooter({ className, ...props }: React.ComponentProps<"div">)
   );
 }
 
-/** A tinted icon badge above the title. Recolor it with classes, e.g. `bg-destructive/15 text-destructive`. */
+/** A neutral icon badge above the title. Recolor it with classes, e.g. `bg-destructive/10 text-destructive`. */
 function AlertDialogMedia({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="alert-dialog-media"
       className={cn(
-        "mb-2 inline-grid size-11 shrink-0 place-items-center rounded-full bg-primary/10 text-primary [&_svg:not([class*='size-'])]:size-5",
+        "mb-2 inline-grid size-11 shrink-0 place-items-center rounded-full bg-muted text-foreground [&_svg:not([class*='size-'])]:size-5",
         className
       )}
       {...props}

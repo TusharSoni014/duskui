@@ -16,9 +16,8 @@ export default function MorphingTextVariantsDemo() {
           variant="blur"
           morphDuration={700}
           className="text-4xl font-light"
-          wordClassName="bg-gradient-to-r from-primary to-cyan-300 bg-clip-text text-transparent"
         />
-        <figcaption className="font-mono text-xs text-muted-foreground">variant=&quot;blur&quot; + gradient</figcaption>
+        <figcaption className="font-mono text-xs text-muted-foreground">variant=&quot;blur&quot;</figcaption>
       </figure>
     </div>
   );

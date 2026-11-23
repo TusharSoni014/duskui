@@ -331,8 +331,6 @@ export function FileUpload({
         htmlFor={inputId}
         data-dragging={dragging || undefined}
         data-disabled={disabled || undefined}
-        animate={{ scale: dragging && !reduceMotion ? 1.015 : 1 }}
-        transition={{ type: "spring", stiffness: 400, damping: 28 }}
         onDragEnter={(event) => {
           if (disabled || !hasFiles(event)) return;
           event.preventDefault();
@@ -357,23 +355,18 @@ export function FileUpload({
         }}
         className={cn(
           "group/drop relative isolate flex cursor-pointer flex-col items-center justify-center gap-3 overflow-hidden rounded-xl border border-dashed border-white/15 bg-white/[0.02] px-6 py-10 text-center",
-          "transition-[border-color,background-color,box-shadow] duration-300 hover:border-white/30 hover:bg-white/[0.04]",
-          "has-[input:focus-visible]:border-primary/60 has-[input:focus-visible]:ring-[3px] has-[input:focus-visible]:ring-ring/40",
-          "data-dragging:border-primary data-dragging:bg-primary/[0.06] data-dragging:shadow-[0_0_0_4px_color-mix(in_oklab,var(--color-primary)_12%,transparent),0_0_40px_-8px_color-mix(in_oklab,var(--color-primary)_45%,transparent)]",
+          "transition-colors duration-150 hover:border-white/30 hover:bg-white/[0.04]",
+          "has-[input:focus-visible]:border-ring has-[input:focus-visible]:ring-[3px] has-[input:focus-visible]:ring-ring/50",
+          "data-dragging:border-primary/60 data-dragging:bg-white/[0.04]",
           "data-disabled:cursor-not-allowed data-disabled:opacity-50",
           dropzoneClassName
         )}
       >
-        {/* Glow that fades in while dragging. */}
-        <span
-          aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_80%_at_50%_0%,color-mix(in_oklab,var(--color-primary)_22%,transparent),transparent)] opacity-0 transition-opacity duration-300 group-data-dragging/drop:opacity-100"
-        />
         <motion.span
           aria-hidden
-          className="flex size-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/70 transition-colors duration-300 group-hover/drop:text-white group-data-dragging/drop:border-primary/50 group-data-dragging/drop:text-primary"
-          animate={dragging && !reduceMotion ? { y: [0, -6, 0] } : { y: 0 }}
-          transition={dragging ? { duration: 1, repeat: Infinity, ease: "easeInOut" } : { duration: 0.2 }}
+          className="flex size-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/70 transition-colors duration-150 group-hover/drop:text-white group-data-dragging/drop:text-white"
+          animate={dragging && !reduceMotion ? { y: -3 } : { y: 0 }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
         >
           <UploadCloud className="size-6" />
         </motion.span>
@@ -457,13 +450,13 @@ export function FileUpload({
                 initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.98 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={reduceMotion ? { opacity: 0 } : { opacity: 0, x: -16, transition: { duration: 0.18 } }}
-                transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                transition={reduceMotion ? { duration: 0.15 } : { type: "spring", stiffness: 420, damping: 42 }}
                 data-status={item.status}
                 className="group/file flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.03] p-3 data-[status=error]:border-destructive/40"
               >
                 <span
                   aria-hidden
-                  className="flex size-9 shrink-0 items-center justify-center rounded-md bg-white/[0.06] text-white/70 group-data-[status=done]/file:text-primary group-data-[status=error]/file:text-red-400"
+                  className="flex size-9 shrink-0 items-center justify-center rounded-md bg-white/[0.06] text-white/70 group-data-[status=error]/file:text-red-400"
                 >
                   <Icon className="size-4.5" />
                 </span>

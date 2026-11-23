@@ -15,8 +15,8 @@ export default function TerminalWindowLoopDemo() {
         "PORT     STATE SERVICE VERSION",
         "22/tcp   open  ssh     OpenSSH 9.6",
         "443/tcp  open  https   nginx 1.27",
-        { type: "command", text: "ssh operator@10.0.0.42", typingSpeed: 70 },
-        { text: "Access granted. Welcome back, operator.", className: "text-primary", delay: 900 },
+        { type: "command", text: "ssh deploy@10.0.0.42", typingSpeed: 70 },
+        { text: "Last login: Mon Nov 23 09:14 from 10.0.0.7", className: "text-primary", delay: 900 },
       ]}
     />
   );

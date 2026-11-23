@@ -6,8 +6,8 @@ export default function GlowTextInlineDemo() {
       Ship animated interfaces with{" "}
       <GlowText as="strong" intensity={0.7} className="font-semibold">
         DuskUI
-      </GlowText>{" "}
-      — the glow is pure text-shadow, so the words stay selectable and searchable.
+      </GlowText>
+      . The glow is a plain text-shadow, so the words stay selectable and searchable.
     </p>
   );
 }

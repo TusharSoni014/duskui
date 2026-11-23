@@ -97,7 +97,7 @@ export function ExpandableCard({
             style={{ borderRadius: list ? 14 : 18 }}
             className={cn(
               "group/card relative flex overflow-hidden border bg-card text-left text-card-foreground outline-none",
-              "transition-[border-color,box-shadow] duration-200 hover:border-primary/30",
+              "transition-colors duration-150 hover:border-foreground/20",
               "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40",
               list ? "items-center gap-4 p-2.5 pr-4" : "flex-col",
               cardClassName
@@ -149,7 +149,7 @@ export function ExpandableCard({
             {list && (
               <ArrowUpRight
                 aria-hidden
-                className="size-4 shrink-0 text-muted-foreground transition-transform duration-200 group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5 group-hover/card:text-primary motion-reduce:transition-none"
+                className="size-4 shrink-0 text-muted-foreground transition-transform duration-200 group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5 group-hover/card:text-foreground motion-reduce:transition-none"
               />
             )}
           </motion.button>
@@ -189,7 +189,7 @@ export function ExpandableCard({
                     style={{ borderRadius: 24 }}
                     className={cn(
                       "pointer-events-auto relative flex max-h-[calc(100dvh-2rem)] w-full max-w-lg flex-col overflow-y-auto overflow-x-hidden border bg-card text-card-foreground outline-none",
-                      "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_24px_64px_-12px_rgb(0_0_0/0.7)]",
+                      "shadow-lg",
                       panelClassName
                     )}
                   >
@@ -240,9 +240,9 @@ export function ExpandableCard({
                       {(active.content || active.action) && (
                         <motion.div
                           className="mt-4 space-y-4 text-sm leading-relaxed text-muted-foreground"
-                          initial={{ opacity: 0, y: reduceMotion ? 0 : 12 }}
+                          initial={{ opacity: 0, y: reduceMotion ? 0 : 8 }}
                           animate={{ opacity: 1, y: 0, transition: { ...fade, delay: reduceMotion ? 0 : 0.15 } }}
-                          exit={{ opacity: 0, y: reduceMotion ? 0 : 6, transition: { duration: 0.1 } }}
+                          exit={{ opacity: 0, y: reduceMotion ? 0 : 4, transition: { duration: 0.1 } }}
                         >
                           {active.content}
                           {active.action && <div className="pt-2">{active.action}</div>}
@@ -256,9 +256,9 @@ export function ExpandableCard({
                           "absolute top-3 right-3 z-10 inline-flex size-8 items-center justify-center rounded-full bg-black/40 text-white/80 outline-none backdrop-blur",
                           "transition-colors hover:bg-black/60 hover:text-white focus-visible:ring-[3px] focus-visible:ring-ring/50"
                         )}
-                        initial={{ opacity: 0, scale: 0.6 }}
-                        animate={{ opacity: 1, scale: 1, transition: { type: "spring", duration: 0.35, bounce: 0.3, delay: 0.15 } }}
-                        exit={{ opacity: 0, scale: 0.6, transition: { duration: 0.1 } }}
+                        initial={{ opacity: 0, scale: reduceMotion ? 1 : 0.96 }}
+                        animate={{ opacity: 1, scale: 1, transition: { duration: 0.2, ease: "easeOut", delay: reduceMotion ? 0 : 0.15 } }}
+                        exit={{ opacity: 0, scale: reduceMotion ? 1 : 0.96, transition: { duration: 0.1 } }}
                       >
                         <XIcon className="size-4" aria-hidden />
                         <span className="sr-only">Close</span>

@@ -15,11 +15,11 @@ export default function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#020604",
+          backgroundColor: "#121212",
           backgroundImage: "radial-gradient(circle at 50% 35%, rgba(52,230,160,0.22), transparent 65%)",
         }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
+        { }
         <img src={logoDataUri} width={120} height={120} alt="" />
       </div>
     ),

@@ -10,9 +10,9 @@ import { cn } from "@/lib/utils";
  *
  * Same parts, props and data-slot attributes as shadcn (RadioGroup,
  * RadioGroupItem) plus:
- * - The dot springs in with a little overshoot (a CSS `linear()` spring, no
- *   JavaScript per frame) and shrinks away when another option is picked.
- * - The ring turns mint and glows softly when checked; hover and press states.
+ * - The dot scales in quickly (CSS only, no overshoot) and shrinks away when
+ *   another option is picked.
+ * - The ring turns mint when checked.
  * - Works uncontrolled, in forms and with form reset (pure CSS, no extra state).
  * - Under `prefers-reduced-motion` the dot appears instantly.
  * Powered by Radix for roving focus (arrow keys), form submission and aria.
@@ -34,9 +34,8 @@ function RadioGroupItem({ className, ...props }: React.ComponentProps<typeof Rad
       data-slot="radio-group-item"
       className={cn(
         "peer group/radio relative grid aspect-square size-4 shrink-0 place-items-center rounded-full border border-input bg-input/30 text-primary shadow-xs outline-none",
-        "transition-[border-color,box-shadow,scale] duration-200 ease-out motion-reduce:transition-none",
-        "hover:border-ring/50 active:scale-90 motion-reduce:active:scale-100",
-        "data-[state=checked]:border-primary data-[state=checked]:shadow-[0_0_12px_-3px_var(--color-primary)]",
+        "transition-[border-color,box-shadow] duration-150 ease-out motion-reduce:transition-none",
+        "data-[state=checked]:border-primary",
         "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
         "aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
         "disabled:cursor-not-allowed disabled:opacity-50",
@@ -44,7 +43,7 @@ function RadioGroupItem({ className, ...props }: React.ComponentProps<typeof Rad
       )}
       {...props}
     >
-      {/* forceMount keeps the dot in the DOM so it can shrink away as well as spring in. */}
+      {/* forceMount keeps the dot in the DOM so it can shrink away as well as scale in. */}
       <RadioGroupPrimitive.Indicator
         forceMount
         data-slot="radio-group-indicator"
@@ -53,11 +52,11 @@ function RadioGroupItem({ className, ...props }: React.ComponentProps<typeof Rad
         <span
           aria-hidden
           className={cn(
-            "block size-2 rounded-full bg-current shadow-[0_0_6px_var(--color-primary)]",
+            "block size-2 rounded-full bg-current",
             "scale-0 opacity-0 group-data-[state=checked]/radio:scale-100 group-data-[state=checked]/radio:opacity-100",
-            // Out: quick ease-in. In: spring (~12% overshoot).
+            // Out: quick ease-in. In: short ease-out, no overshoot.
             "[transition:scale_120ms_ease-in,opacity_120ms_ease-in]",
-            "group-data-[state=checked]/radio:[transition:scale_450ms_linear(0,0.04,0.15,0.3,0.47,0.64,0.79,0.92,1.02,1.08,1.115,1.125,1.12,1.105,1.085,1.06,1.04,1.02,1.005,0.995,0.99,0.99,0.993,0.997,1),opacity_150ms_ease-out]",
+            "group-data-[state=checked]/radio:[transition:scale_180ms_ease-out,opacity_150ms_ease-out]",
             "motion-reduce:transition-none motion-reduce:group-data-[state=checked]/radio:transition-none"
           )}
         />

@@ -1,8 +1,8 @@
 import { BackgroundBeams } from "@/components/dusk/backgrounds/background-beams";
 
 const variants = [
-  { label: 'color="#a78bfa" count={24}', props: { color: "#a78bfa", count: 24, seed: 4 } },
-  { label: 'color="#f472b6" speed={1.8}', props: { color: "#f472b6", speed: 1.8, count: 10, seed: 9 } },
+  { label: 'color="#a5b4fc" count={16}', props: { color: "#a5b4fc", count: 16, seed: 4 } },
+  { label: 'color="#e5e5e5" speed={1.5}', props: { color: "#e5e5e5", speed: 1.5, count: 8, seed: 9 } },
 ];
 
 export default function BackgroundBeamsCustom() {

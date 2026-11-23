@@ -6,7 +6,7 @@ import { AnimatePresence, motion, useReducedMotion, type Transition } from "moti
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 
-const spring: Transition = { type: "spring", stiffness: 380, damping: 28, mass: 0.7 };
+const spring: Transition = { type: "spring", duration: 0.3, bounce: 0.1 };
 const instant: Transition = { duration: 0 };
 
 const sizes = {
@@ -94,7 +94,7 @@ export function AvatarGroup({
             className={cn("relative", index > 0 && config.overlap)}
             style={{ zIndex: isHovered ? count + 1 : index }}
             initial={false}
-            animate={{ x: offset(index), y: isHovered && !reduceMotion ? -4 : 0, scale: isHovered && !reduceMotion ? 1.08 : 1 }}
+            animate={{ x: offset(index), y: isHovered && !reduceMotion ? -4 : 0, scale: isHovered && !reduceMotion ? 1.04 : 1 }}
             transition={transition}
             onPointerEnter={() => setHovered(index)}
             onPointerLeave={() => setHovered((h) => (h === index ? null : h))}
@@ -114,10 +114,10 @@ export function AvatarGroup({
                     key="name"
                     aria-hidden
                     className="pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 rounded-md border bg-popover px-2 py-1 text-xs font-medium whitespace-nowrap text-popover-foreground shadow-lg"
-                    initial={{ opacity: 0, y: reduceMotion ? 0 : 4, scale: reduceMotion ? 1 : 0.9 }}
+                    initial={{ opacity: 0, y: reduceMotion ? 0 : 4, scale: reduceMotion ? 1 : 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: reduceMotion ? 0 : 2, scale: reduceMotion ? 1 : 0.95, transition: { duration: 0.1 } }}
-                    transition={reduceMotion ? { duration: 0.15 } : { type: "spring", duration: 0.3, bounce: 0.25 }}
+                    exit={{ opacity: 0, y: reduceMotion ? 0 : 2, scale: reduceMotion ? 1 : 0.96, transition: { duration: 0.1 } }}
+                    transition={reduceMotion ? { duration: 0.15 } : { duration: 0.15, ease: "easeOut" }}
                   >
                     {item.name}
                   </motion.span>

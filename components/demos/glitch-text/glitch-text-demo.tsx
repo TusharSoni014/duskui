@@ -5,10 +5,10 @@ export default function GlitchTextDemo() {
     <GlitchText
       as="h2"
       trigger="loop"
-      interval={2600}
-      className="font-mono text-5xl font-black uppercase tracking-tight sm:text-6xl"
+      interval={3200}
+      className="text-5xl font-bold tracking-tight sm:text-6xl"
     >
-      System Breach
+      Signal lost
     </GlitchText>
   );
 }

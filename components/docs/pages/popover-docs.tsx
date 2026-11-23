@@ -12,7 +12,7 @@ const block = (file: string) => `components/dusk/popover/${file}`;
 const config: DocConfig = {
   title: "Popover",
   intro:
-    "The shadcn/ui Popover that grows out of its trigger with a softer, faster animation and a layered surface — plus two animated React popover blocks built with Motion and Radix: a spring popover that scales from the trigger's origin, and a feedback button that morphs into a form.",
+    "The shadcn/ui Popover that grows out of its trigger with a short, calm animation and a neutral shadow — plus two animated React popover blocks built with Motion and Radix: a spring popover that scales from the trigger's origin, and a feedback button that morphs into a form.",
   tags: ["Drop-in shadcn API", "Radix positioning", "Motion blocks", "prefers-reduced-motion"],
   hero: { Demo: FeedbackPopoverDemo, file: demo("feedback-popover-demo.tsx"), minHeight: 340 },
   install: {
@@ -47,7 +47,7 @@ export function LayerSettings() {
       id: "default",
       title: "Default",
       description:
-        "Scales and slides out of the trigger on an expo-out curve and closes quicker than it opened. Focus moves into the popover; Escape or a click outside closes it and focus returns to the trigger.",
+        "Scales out of the trigger with a short ease-out and closes quicker than it opened. Focus moves into the popover; Escape or a click outside closes it and focus returns to the trigger.",
       Demo: PopoverBasicDemo,
       file: demo("popover-basic.tsx"),
       minHeight: 320,
@@ -76,8 +76,8 @@ export function LayerSettings() {
       deps: "motion @radix-ui/react-popover",
       description: (
         <>
-          A Motion-powered popover that springs out of its trigger&apos;s transform origin with a touch
-          of blur, then fades its content up a beat later; the exit is short and crisp. Optional{" "}
+          A Motion-powered popover that scales out of its trigger&apos;s transform origin, then fades
+          its content in a beat later; the exit is short and crisp. Optional{" "}
           <Code>showArrow</Code> draws an arrow that follows Radix&apos;s placement.
         </>
       ),

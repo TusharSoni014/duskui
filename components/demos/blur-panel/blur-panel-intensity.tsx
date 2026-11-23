@@ -16,7 +16,7 @@ export default function BlurPanelIntensity() {
             edge="none"
             className="rounded-xl p-5 ring-1 ring-white/15"
           >
-            <p className="font-mono text-xs text-white/70">intensity=&quot;{level}&quot;</p>
+            <p className="text-xs text-white/70">intensity=&quot;{level}&quot;</p>
             <p className="mt-6 text-sm leading-relaxed text-white/85">
               Always frosted — handy for sidebars and docked panels.
             </p>

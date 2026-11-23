@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils";
  * Same parts, props and data-slot attributes as shadcn (Alert, AlertTitle,
  * AlertDescription, variants `default` and `destructive`) plus:
  * - Tinted status variants for dark UIs: `success`, `warning`, `info`.
- * - A soft glow on the leading icon and a top highlight on the surface.
  * - `AlertAction`: a top-right slot for a close button or menu; the text
  *   makes room for it automatically.
  * - Titles wrap instead of being clipped to one line.
@@ -20,14 +19,13 @@ const alertVariants = cva(
     "relative grid w-full grid-cols-[0_1fr] items-start gap-y-1 rounded-xl border px-4 py-3.5 text-sm",
     "has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] has-[>svg]:gap-x-3",
     "has-data-[slot=alert-action]:pr-12",
-    "shadow-[inset_0_1px_0_rgb(255_255_255/0.04)]",
-    "[&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current [&>svg]:drop-shadow-[0_0_6px_color-mix(in_oklab,currentColor_50%,transparent)]",
+    "[&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current",
   ],
   {
     variants: {
       variant: {
         default:
-          "bg-card text-card-foreground [&>svg]:text-primary",
+          "bg-card text-card-foreground",
         destructive:
           "border-destructive/30 bg-destructive/[0.08] text-destructive *:data-[slot=alert-description]:text-destructive/85",
         success:

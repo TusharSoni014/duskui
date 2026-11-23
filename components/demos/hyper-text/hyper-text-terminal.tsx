@@ -13,7 +13,7 @@ export default function HyperTextTerminal() {
       {lines.map((line, i) => (
         <div key={line.label} className="flex justify-between gap-4">
           <dt className="text-white/40">{line.label}</dt>
-          <dd className="text-primary">
+          <dd className="text-white">
             <HyperText trigger="mount" delay={line.delay} duration={700} characters="01#%&*+=<>/" seed={i + 3}>
               {line.value}
             </HyperText>

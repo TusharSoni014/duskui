@@ -10,7 +10,7 @@ const demo = (file: string) => `components/demos/navbar/${file}`;
 const config: DocConfig = {
   title: "Navbar",
   intro:
-    "A floating, glassy React navbar built with Motion and Tailwind CSS that hides when you scroll down and reappears when you scroll up. A mint pill glides to the active link, a soft highlight follows the cursor, and on narrow layouts it becomes an animated mobile menu — all keyboard accessible.",
+    "A floating, glassy React navbar built with Motion and Tailwind CSS that hides when you scroll down and reappears when you scroll up. A pill glides to the active link, a hover highlight slides between links, and on narrow layouts it becomes an animated mobile menu — all keyboard accessible.",
   tags: ["Hide on scroll", "Motion layoutId pill", "Animated mobile menu", "Container queries", "Scroll container support", "prefers-reduced-motion"],
   hero: { Demo: FloatingNavbarDemo, file: demo("floating-navbar-demo.tsx"), minHeight: 500 },
   install: {

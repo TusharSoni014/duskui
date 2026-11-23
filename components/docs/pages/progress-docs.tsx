@@ -86,7 +86,6 @@ export function UploadStatus({ percent }: { percent: number }) {
         { name: "showValue", type: "boolean", default: "true", description: "Show the counting number." },
         { name: "formatValue", type: "(value: number, max: number) => string", description: "Formats the number. Defaults to a whole percentage." },
         { name: "caption", type: "ReactNode", description: "Small text under the number." },
-        { name: "glow", type: "boolean", default: "true", description: "Soft glow under the arc." },
         { name: "indicatorClassName / trackClassName", type: "string", description: "Classes for the arc and the track (use text-*)." },
       ],
     },
@@ -99,7 +98,7 @@ export function UploadStatus({ percent }: { percent: number }) {
       description: (
         <>
           A stepper for onboarding, checkout or any multi-step form. Connectors fill with a spring as
-          you advance, finished steps draw a check mark and the current step breathes. Set{" "}
+          you advance, finished steps draw a check mark and the current step is outlined. Set{" "}
           <Code>current</Code> to <Code>steps.length</Code> to mark everything complete.
         </>
       ),
@@ -122,7 +121,7 @@ export function UploadStatus({ percent }: { percent: number }) {
         <>
           A bar split into segments that fill one after another, for chunked uploads, quotas or
           checklists. A single spring drives the whole bar and each segment takes its slice of it, so
-          the fill flows from segment to segment, and the segment being filled glows.
+          the fill flows from segment to segment.
         </>
       ),
       Demo: SegmentedProgressDemo,
@@ -155,7 +154,7 @@ export function UploadStatus({ percent }: { percent: number }) {
     <>Give every bar a name with <Code>aria-label</Code> or <Code>aria-labelledby</Code> pointing at its visible label.</>,
     <>The circular ring&apos;s counting number is hidden from screen readers; the progressbar value is announced instead.</>,
     <>Stepper Progress is an ordered list with <Code>aria-current=&quot;step&quot;</Code> and each step&apos;s state (completed, current, not started) spelled out.</>,
-    "Under prefers-reduced-motion bars, rings and segments jump to their value, the indeterminate sweep becomes a pulse and the stepper halo stops.",
+    "Under prefers-reduced-motion bars, rings and segments jump to their value and the indeterminate sweep becomes a pulse.",
   ],
 };
 

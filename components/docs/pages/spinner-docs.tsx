@@ -40,8 +40,7 @@ export function Loading() {
       title: "Sizes & colors",
       description: (
         <>
-          <Code>size</Code> is sm, default, lg or xl, and <Code>text-*</Code> classes recolor it. The arc
-          has a soft glow at its rounded head.
+          <Code>size</Code> is sm, default, lg or xl, and <Code>text-*</Code> classes recolor it.
         </>
       ),
       Demo: SpinnerBasicDemo,

@@ -36,17 +36,17 @@ export interface TextAnimateProps extends Omit<React.HTMLAttributes<HTMLElement>
   once?: boolean;
   /** How much of the element must be visible to start (0–1). */
   amount?: number;
-  /** Classes for every animated piece, e.g. a gradient fill. */
+  /** Classes for every animated piece, e.g. a color. */
   segmentClassName?: string;
 }
 
 const HIDDEN: Record<TextAnimatePreset, DOMKeyframesDefinition> = {
   fadeIn: { opacity: 0 },
-  blurIn: { opacity: 0, filter: "blur(10px)" },
-  slideUp: { opacity: 0, transform: "translateY(0.6em)" },
-  slideDown: { opacity: 0, transform: "translateY(-0.6em)" },
-  scaleUp: { opacity: 0, transform: "scale(0.6)" },
-  blurInUp: { opacity: 0, filter: "blur(10px)", transform: "translateY(0.45em)" },
+  blurIn: { opacity: 0, filter: "blur(6px)" },
+  slideUp: { opacity: 0, transform: "translateY(0.35em)" },
+  slideDown: { opacity: 0, transform: "translateY(-0.35em)" },
+  scaleUp: { opacity: 0, transform: "scale(0.9)" },
+  blurInUp: { opacity: 0, filter: "blur(6px)", transform: "translateY(0.3em)" },
 };
 
 const SHOWN: Record<TextAnimatePreset, DOMKeyframesDefinition> = {

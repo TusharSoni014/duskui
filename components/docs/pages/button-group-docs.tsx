@@ -85,7 +85,7 @@ export function Pager() {
       source: block("animated-button-group.tsx"),
       deps: "motion",
       description:
-        "Joined outline buttons where a mint indicator springs to the selected segment. It's a radio group under the hood: one Tab stop, arrow keys and Home / End move the selection, and the value can be submitted with a form.",
+        "Joined outline buttons where a quiet indicator slides to the selected segment. It's a radio group under the hood: one Tab stop, arrow keys and Home / End move the selection, and the value can be submitted with a form.",
       Demo: AnimatedButtonGroupDemo,
       file: demo("animated-button-group-demo.tsx"),
       minHeight: 220,

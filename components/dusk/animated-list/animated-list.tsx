@@ -5,7 +5,7 @@ import { AnimatePresence, motion, useReducedMotion, type Transition } from "moti
 
 import { cn } from "@/lib/utils";
 
-const layoutSpring: Transition = { type: "spring", stiffness: 420, damping: 34, mass: 0.8 };
+const layoutSpring: Transition = { type: "spring", duration: 0.35, bounce: 0.1 };
 
 export interface AnimatedListProps
   extends Omit<React.HTMLAttributes<HTMLUListElement>, "children" | "onDrag" | "onDragStart" | "onDragEnd" | "onAnimationStart"> {
@@ -24,7 +24,7 @@ export interface AnimatedListProps
 }
 
 /**
- * A notification-style list. Put the newest item first: it springs in at the
+ * A notification-style list. Put the newest item first: it fades in at the
  * top while the items below glide down to make room (shared layout
  * animation), and anything past `max` fades out without taking up space
  * (`AnimatePresence` in `popLayout` mode).
@@ -83,12 +83,12 @@ export function AnimatedList({
               key={item.key}
               data-key={String(item.key)}
               layout={reduceMotion ? false : "position"}
-              initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -16, scale: 0.94 }}
+              initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={
                 reduceMotion
                   ? { opacity: 0, transition: { duration: 0.15 } }
-                  : { opacity: 0, scale: 0.94, transition: { duration: 0.2, ease: "easeIn" } }
+                  : { opacity: 0, scale: 0.97, transition: { duration: 0.15, ease: "easeIn" } }
               }
               transition={{ ...layoutSpring, opacity: { duration: 0.25 } }}
               className={cn("origin-top", itemClassName)}

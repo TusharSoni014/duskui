@@ -14,7 +14,7 @@ export default function CardInteractiveDemo() {
         <Card key={href} asChild interactive className="group">
           <Link href={href}>
             <CardHeader>
-              <Icon className="mb-2 size-5 text-primary" aria-hidden />
+              <Icon className="mb-2 size-5 text-muted-foreground" aria-hidden />
               <CardTitle className="flex items-center gap-1">
                 {title}
                 <ArrowUpRight

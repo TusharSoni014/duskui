@@ -7,7 +7,7 @@ import { CheckIcon, MessageSquareText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const morph: Transition = { type: "spring", bounce: 0.12, duration: 0.5 };
+const morph: Transition = { type: "spring", bounce: 0.1, duration: 0.35 };
 const fade: Transition = { duration: 0.2, ease: "easeOut" };
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -151,9 +151,9 @@ export function FeedbackPopover({
         style={{ borderRadius: 999 }}
         className={cn(
           "inline-flex h-9 items-center gap-2 border bg-card px-4 text-sm font-medium text-card-foreground outline-none",
-          "transition-[border-color,box-shadow,background-color] duration-200 hover:border-primary/30 hover:bg-accent/40",
+          "transition-[border-color,box-shadow,background-color] duration-150 hover:bg-accent",
           "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40",
-          "[&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-primary"
+          "[&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-muted-foreground"
         )}
       >
         {icon && (
@@ -178,7 +178,7 @@ export function FeedbackPopover({
             initial={reduceMotion ? { opacity: 0 } : undefined}
             animate={reduceMotion ? { opacity: 1 } : undefined}
             exit={reduceMotion ? { opacity: 0 } : undefined}
-            style={{ borderRadius: 16 }}
+            style={{ borderRadius: 12 }}
             onKeyDown={(event) => {
               if (event.key === "Escape") {
                 event.stopPropagation();
@@ -193,13 +193,13 @@ export function FeedbackPopover({
             }}
             className={cn(
               "absolute z-50 w-80 overflow-hidden border bg-popover text-popover-foreground",
-              "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_20px_48px_-12px_rgb(0_0_0/0.75)]",
+              "shadow-lg",
               side === "bottom" ? "top-0" : "bottom-0",
               align === "start" ? "left-0" : "right-0",
               panelClassName
             )}
           >
-            <div className="flex items-center gap-2 px-4 pt-3.5 pb-2 text-sm font-medium [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-primary">
+            <div className="flex items-center gap-2 px-4 pt-3.5 pb-2 text-sm font-medium [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-muted-foreground">
               {icon && (
                 <motion.span layoutId={layoutId("icon")} transition={morph} className="inline-flex">
                   {icon}
@@ -307,19 +307,14 @@ export function FeedbackPopover({
                     key="success"
                     role="status"
                     className="col-start-1 row-start-1 flex flex-col items-center justify-center gap-3 px-6 pb-6 text-center"
-                    initial={{ opacity: 0, scale: reduceMotion ? 1 : 0.92 }}
+                    initial={{ opacity: 0, scale: reduceMotion ? 1 : 0.96 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, transition: { duration: 0.1 } }}
-                    transition={reduceMotion ? fade : { type: "spring", duration: 0.45, bounce: 0.3 }}
+                    transition={reduceMotion ? fade : { type: "spring", duration: 0.25, bounce: 0.1 }}
                   >
-                    <motion.span
-                      className="grid size-11 place-items-center rounded-full bg-primary/15 text-primary"
-                      initial={{ scale: reduceMotion ? 1 : 0.4 }}
-                      animate={{ scale: 1 }}
-                      transition={reduceMotion ? { duration: 0 } : { type: "spring", duration: 0.5, bounce: 0.5, delay: 0.05 }}
-                    >
+                    <span className="grid size-10 place-items-center rounded-full border text-primary">
                       <CheckIcon className="size-5" aria-hidden />
-                    </motion.span>
+                    </span>
                     <p className="text-sm text-muted-foreground">{successMessage}</p>
                   </motion.div>
                 )}

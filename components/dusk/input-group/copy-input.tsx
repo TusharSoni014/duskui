@@ -25,7 +25,7 @@ export interface CopyInputProps
   groupClassName?: string;
 }
 
-const iconSwap: Transition = { type: "spring", duration: 0.3, bounce: 0.3 };
+const iconSwap: Transition = { duration: 0.18, ease: "easeOut" };
 
 async function writeClipboard(text: string) {
   try {
@@ -48,9 +48,8 @@ async function writeClipboard(text: string) {
 
 /**
  * A read-only field with a copy button — for API keys, invite links and
- * install commands. On copy the icon morphs into a check, the label rolls to
- * "Copied" without changing the button's width, and a mint sweep runs across
- * the field. Focusing the field selects the whole value. The result is
+ * install commands. On copy the icon swaps to a check and the label rolls to
+ * "Copied" without changing the button's width. Focusing the field selects the whole value. The result is
  * announced to screen readers. Under reduced motion it only cross-fades.
  */
 export function CopyInput({
@@ -67,7 +66,6 @@ export function CopyInput({
 }: CopyInputProps) {
   const reduceMotion = useReducedMotion() ?? false;
   const [copied, setCopied] = React.useState(false);
-  const [sweep, setSweep] = React.useState(0);
   const timer = React.useRef<number | undefined>(undefined);
 
   React.useEffect(() => () => window.clearTimeout(timer.current), []);
@@ -76,7 +74,6 @@ export function CopyInput({
     const ok = await writeClipboard(value);
     if (!ok) return;
     setCopied(true);
-    setSweep((n) => n + 1);
     onCopy?.(value);
     window.clearTimeout(timer.current);
     timer.current = window.setTimeout(() => setCopied(false), timeout);
@@ -85,16 +82,16 @@ export function CopyInput({
   const labelSwap = reduceMotion
     ? { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } }
     : {
-        initial: { opacity: 0, y: 8, filter: "blur(2px)" },
-        animate: { opacity: 1, y: 0, filter: "blur(0px)" },
-        exit: { opacity: 0, y: -8, filter: "blur(2px)" },
+        initial: { opacity: 0, y: 6 },
+        animate: { opacity: 1, y: 0 },
+        exit: { opacity: 0, y: -6 },
       };
   const iconMotion = reduceMotion
     ? { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } }
     : {
-        initial: { opacity: 0, scale: 0.4, rotate: -45 },
-        animate: { opacity: 1, scale: 1, rotate: 0 },
-        exit: { opacity: 0, scale: 0.4, rotate: 45 },
+        initial: { opacity: 0, scale: 0.8 },
+        animate: { opacity: 1, scale: 1 },
+        exit: { opacity: 0, scale: 0.8 },
       };
 
   return (
@@ -149,16 +146,6 @@ export function CopyInput({
         </InputGroupButton>
       </InputGroupAddon>
 
-      {sweep > 0 && !reduceMotion && (
-        <motion.span
-          key={sweep}
-          aria-hidden
-          initial={{ x: "-100%", opacity: 1 }}
-          animate={{ x: "100%", opacity: 0.2 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="pointer-events-none absolute inset-0 bg-linear-to-r from-transparent via-primary/20 to-transparent"
-        />
-      )}
       <span className="sr-only" aria-live="polite">
         {copied ? "Copied to clipboard" : ""}
       </span>

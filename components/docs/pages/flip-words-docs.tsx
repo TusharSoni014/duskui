@@ -25,7 +25,7 @@ const config: DocConfig = {
 export function Tagline() {
   return (
     <h1 className="text-5xl font-bold">
-      Ship <FlipWords words={["faster", "calmer", "together"]} className="text-primary" />
+      Ship <FlipWords words={["faster", "calmer", "together"]} className="text-muted-foreground" />
     </h1>
   )
 }`,

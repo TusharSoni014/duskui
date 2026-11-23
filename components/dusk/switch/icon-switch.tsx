@@ -15,7 +15,7 @@ export interface IconSwitchProps extends Omit<SwitchProps, "thumbContent" | "che
   uncheckedIcon?: React.ReactNode;
 }
 
-const morph: Transition = { type: "spring", bounce: 0.25, duration: 0.6 };
+const morph: Transition = { type: "spring", bounce: 0.1, duration: 0.4 };
 
 // Precomputed so server and client render identical markup.
 const rays = [
@@ -80,10 +80,10 @@ export function SunMoonIcon({ moon, className }: { moon: boolean; className?: st
 }
 
 const swap = {
-  initial: { opacity: 0, scale: 0.3, rotate: -120 },
+  initial: { opacity: 0, scale: 0.6, rotate: -45 },
   animate: { opacity: 1, scale: 1, rotate: 0 },
-  exit: { opacity: 0, scale: 0.3, rotate: 120 },
-  transition: { type: "spring", bounce: 0.3, duration: 0.45 },
+  exit: { opacity: 0, scale: 0.6, rotate: 45 },
+  transition: { type: "spring", bounce: 0.1, duration: 0.3 },
 } as const;
 
 /**
@@ -115,7 +115,7 @@ export function IconSwitch({
         onCheckedChange?.(next);
       }}
       thumbClassName={cn(
-        "data-[state=unchecked]:text-amber-500 data-[state=checked]:text-primary [&_svg]:size-[70%]",
+        "data-[state=unchecked]:text-background data-[state=checked]:text-foreground [&_svg]:size-[70%]",
         thumbClassName
       )}
       thumbContent={

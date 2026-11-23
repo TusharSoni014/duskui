@@ -5,7 +5,7 @@ export default function GlitchTextHoverDemo() {
     <p className="max-w-md text-center text-lg text-muted-foreground">
       Hover the words{" "}
       <GlitchText className="font-semibold text-foreground">access denied</GlitchText> or{" "}
-      <GlitchText className="font-semibold text-primary" intensity={6}>
+      <GlitchText className="font-semibold text-foreground">
         kernel panic
       </GlitchText>{" "}
       to glitch them. The text stays selectable.

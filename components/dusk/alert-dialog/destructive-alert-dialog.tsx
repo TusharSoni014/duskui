@@ -34,7 +34,7 @@ export interface DestructiveAlertDialogProps {
   pendingLabel?: React.ReactNode;
   /** Require the user to type this exact text before confirming, e.g. a project name. */
   confirmText?: string;
-  /** Icon in the pulsing badge. Defaults to a trash can. */
+  /** Icon in the red badge. Defaults to a trash can. */
   icon?: React.ReactNode;
   /** Message shown when `onConfirm` throws. Defaults to the error's message. */
   errorMessage?: React.ReactNode;
@@ -45,7 +45,7 @@ const spring = { type: "spring", duration: 0.35, bounce: 0 } as const;
 /**
  * A destructive confirmation built on Alert Dialog semantics: clicking outside
  * never closes it, focus starts on Cancel (or the confirm field), and Escape
- * is blocked while the action runs. The red icon sends out a slow pulse, an
+ * is blocked while the action runs. A red icon marks the danger, an
  * optional list spells out what will be lost, and type-to-confirm lights up
  * each character as it matches. The confirm button uses the DuskUI Button
  * `loading` state for async work; a failure shakes the dialog and shows the
@@ -235,26 +235,17 @@ export function DestructiveAlertDialog({
   );
 }
 
-/** The red icon badge. Two rings ripple out from it on a slow loop; static under reduced motion. */
+/** The red icon badge. Fades in with the dialog; static under reduced motion. */
 function PulseIcon({ children }: { children: React.ReactNode }) {
   const reduceMotion = useReducedMotion();
   return (
     <motion.div
       aria-hidden
       className="relative mb-2 grid size-12 shrink-0 place-items-center rounded-full bg-destructive/15 text-destructive [&_svg]:size-5"
-      initial={reduceMotion ? { opacity: 0 } : { scale: 0.6, opacity: 0 }}
+      initial={reduceMotion ? { opacity: 0 } : { scale: 0.96, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
-      transition={{ type: "spring", duration: 0.5, bounce: 0.45, delay: 0.05 }}
+      transition={{ duration: 0.2, ease: "easeOut", delay: 0.05 }}
     >
-      {[0, 1].map((ring) => (
-        <motion.span
-          key={ring}
-          className="absolute inset-0 rounded-full border border-destructive/50 motion-reduce:hidden"
-          initial={{ scale: 1, opacity: 0.6 }}
-          animate={{ scale: 1.9, opacity: 0 }}
-          transition={{ duration: 2, ease: "easeOut", repeat: Infinity, delay: 0.4 + ring * 1 }}
-        />
-      ))}
       {children}
     </motion.div>
   );
@@ -275,7 +266,7 @@ function MatchedText({ target, typed }: { target: string; typed: string }) {
             key={index}
             className={cn(
               "transition-colors duration-150",
-              index < matchedCount ? "text-destructive [text-shadow:0_0_8px_var(--destructive)]" : "text-foreground"
+              index < matchedCount ? "text-destructive" : "text-foreground"
             )}
           >
             {char}

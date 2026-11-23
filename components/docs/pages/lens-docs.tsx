@@ -47,10 +47,10 @@ export function ProductPhoto() {
     },
     {
       id: "pattern",
-      title: "Zoom & ring style",
+      title: "Zoom & size",
       description: (
         <>
-          A 3.5× lens over a CSS gradient with a dot grid. Restyle the ring with <Code>lensClassName</Code>. For
+          A 3.5× lens with a larger ring over a fine dot grid. Restyle the ring with <Code>lensClassName</Code>. For
           images, pass a higher-resolution copy as <Code>lensContent</Code> for a sharper view.
         </>
       ),

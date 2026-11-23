@@ -13,7 +13,7 @@ const block = (file: string) => `components/dusk/card/${file}`;
 const config: DocConfig = {
   title: "Card",
   intro:
-    "The shadcn/ui Card with smooth border and shadow transitions and an interactive mode for clickable cards — plus three animated React card blocks built with Motion: a cursor-following glow border, a 3D tilt card with glare, and a loading card that crossfades from a shimmer skeleton.",
+    "The shadcn/ui Card with smooth border and shadow transitions and an interactive mode for clickable cards — plus three animated React card blocks built with Motion: a subtle cursor-aware border highlight, a gentle 3D tilt card, and a loading card that crossfades from a shimmer skeleton.",
   tags: ["Drop-in shadcn API", "Server Component friendly", "Motion blocks", "prefers-reduced-motion"],
   hero: { Demo: GlowCardDemo, file: demo("glow-card-demo.tsx"), minHeight: 300 },
   install: {
@@ -74,8 +74,8 @@ export function PlanCard() {
       title: "Interactive link cards",
       description: (
         <>
-          Add <Code>interactive</Code> for clickable cards: a small lift, a mint-tinted border and a
-          focus-visible ring. Combine it with <Code>asChild</Code> to render a real link, so the whole
+          Add <Code>interactive</Code> for clickable cards: a subtle border and background change on hover
+          and a focus-visible ring. Combine it with <Code>asChild</Code> to render a real link, so the whole
           card is one keyboard stop.
         </>
       ),
@@ -92,18 +92,17 @@ export function PlanCard() {
       deps: "motion",
       description: (
         <>
-          The border lights up where the cursor is, with a soft bloom and a faint wash on the surface.
-          The light follows the pointer through motion values, so it never re-renders React, and it
-          also lights up when a child receives keyboard focus.
+          The 1px border catches a faint highlight where the cursor is, with a barely visible tint on
+          the surface. The highlight follows the pointer through motion values, so it never re-renders
+          React, and it also shows when a child receives keyboard focus.
         </>
       ),
       Demo: GlowCardDemo,
       file: demo("glow-card-demo.tsx"),
       minHeight: 300,
       props: [
-        { name: "radius", type: "number", default: "260", description: "Radius of the light in px." },
-        { name: "color", type: "string", default: '"var(--color-primary)"', description: "Any CSS color." },
-        { name: "bloom", type: "boolean", default: "true", description: "Blurred glow that spills outside the border." },
+        { name: "radius", type: "number", default: "160", description: "Radius of the highlight in px." },
+        { name: "color", type: "string", default: '"#ffffff"', description: "Any CSS color, mixed in at low opacity." },
       ],
     },
     {
@@ -114,8 +113,8 @@ export function PlanCard() {
       deps: "motion",
       description: (
         <>
-          A 3D tilt toward the cursor on springs, with a glare highlight sliding across the surface.
-          Give elements inside the card parts <Code>[transform:translateZ(40px)]</Code> to lift them
+          A gentle 3D tilt toward the cursor on damped springs, with an optional, barely visible glare.
+          Give elements inside the card parts <Code>[transform:translateZ(24px)]</Code> to lift them
           off the surface. Mouse
           only (never hijacks touch scrolling) and completely still under reduced motion.
         </>
@@ -124,9 +123,9 @@ export function PlanCard() {
       file: demo("tilt-card-demo.tsx"),
       minHeight: 340,
       props: [
-        { name: "maxTilt", type: "number", default: "10", description: "Maximum rotation in degrees." },
-        { name: "hoverScale", type: "number", default: "1.02", description: "Scale while hovered; 1 to disable." },
-        { name: "glare", type: "boolean", default: "true", description: "Show the moving light reflection." },
+        { name: "maxTilt", type: "number", default: "6", description: "Maximum rotation in degrees." },
+        { name: "hoverScale", type: "number", default: "1", description: "Scale while hovered; 1 disables it." },
+        { name: "glare", type: "boolean", default: "false", description: "Show a faint light reflection that follows the cursor." },
         { name: "perspective", type: "number", default: "900", description: "CSS perspective in px. Lower is more dramatic." },
         { name: "containerClassName", type: "string", description: "Classes for the wrapper that receives pointer events." },
       ],
@@ -164,14 +163,14 @@ export function PlanCard() {
       </>
     ),
     props: [
-      { name: "interactive", type: "boolean", default: "false", description: "Hover lift, tinted border and focus ring for clickable cards." },
+      { name: "interactive", type: "boolean", default: "false", description: "Subtle hover border and background, plus a focus ring, for clickable cards." },
       { name: "asChild", type: "boolean", default: "false", description: "Render the child element instead (Radix Slot), e.g. a Link." },
       { name: "className", type: "string", description: "Merged with tailwind-merge, so overrides win." },
     ],
   },
   accessibility: [
     <>Interactive cards should be a single link or button (<Code>asChild</Code>) so the whole card is one focus stop with a visible focus ring.</>,
-    "Glow and glare layers are aria-hidden and pointer-events-none; they never intercept clicks or reach screen readers.",
+    "Highlight and glare layers are aria-hidden and pointer-events-none; they never intercept clicks or reach screen readers.",
     <>Loading Card sets <Code>aria-busy</Code>, hides the skeleton from assistive tech and announces the loading label politely.</>,
     "Tilt Card ignores touch and stays still with prefers-reduced-motion; the skeleton shimmer stops too.",
   ],

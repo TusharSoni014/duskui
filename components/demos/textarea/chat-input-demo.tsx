@@ -14,7 +14,7 @@ export default function ChatInputDemo() {
         {messages.map((message, i) => (
           <li
             key={i}
-            className="max-w-[85%] justify-self-end rounded-2xl rounded-br-md bg-primary/10 px-3 py-2 text-sm whitespace-pre-wrap text-foreground"
+            className="max-w-[85%] justify-self-end rounded-xl rounded-br-sm bg-muted px-3 py-2 text-sm whitespace-pre-wrap text-foreground"
           >
             {message}
           </li>

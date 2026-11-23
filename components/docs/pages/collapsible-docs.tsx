@@ -69,8 +69,8 @@ export function Details() {
       deps: "motion @radix-ui/react-collapsible lucide-react",
       description: (
         <>
-          The panel springs its height open while the content fades, rises and un-blurs in after it, and the
-          chevron turns with a little overshoot. Open panels get a mint outline. Closed content stays in the
+          The panel eases its height open while the content fades in after it, and the chevron turns. Open
+          panels get a slightly brighter outline. Closed content stays in the
           DOM as <Code>inert</Code>, so it&apos;s indexed by search engines but skipped by keyboard and screen
           readers.
         </>
@@ -80,7 +80,7 @@ export function Details() {
       minHeight: 360,
       props: [
         { name: "open / defaultOpen / onOpenChange", type: "boolean", default: "false", description: "On MotionCollapsible: controlled or uncontrolled state." },
-        { name: "bordered", type: "boolean", default: "true", description: "On MotionCollapsible: card outline that tints mint while open." },
+        { name: "bordered", type: "boolean", default: "true", description: "On MotionCollapsible: card outline that brightens while open." },
         { name: "disabled", type: "boolean", default: "false", description: "On MotionCollapsible: prevent toggling." },
         { name: "icon", type: "ReactNode | null", description: "On MotionCollapsibleTrigger: replaces the chevron (still rotates); null hides it." },
         { name: "className", type: "string", description: "On MotionCollapsibleContent: styles the inner padded wrapper." },

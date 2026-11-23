@@ -26,9 +26,9 @@ export default function AnimatedContextMenuDemo() {
     <AnimatedContextMenu>
       <AnimatedContextMenuTrigger
         tabIndex={0}
-        className="group flex w-full max-w-sm flex-col items-center gap-3 rounded-2xl border border-dashed p-8 text-center outline-none select-none transition-colors focus-visible:ring-[3px] focus-visible:ring-ring/50 data-[state=open]:border-primary/40 data-[state=open]:bg-primary/[0.03]"
+        className="group flex w-full max-w-sm flex-col items-center gap-3 rounded-xl border border-dashed p-8 text-center outline-none select-none transition-colors focus-visible:ring-[3px] focus-visible:ring-ring/50 data-[state=open]:border-foreground/25 data-[state=open]:bg-accent/40"
       >
-        <span className="flex size-14 items-center justify-center rounded-xl border bg-card text-muted-foreground transition-colors group-data-[state=open]:text-primary">
+        <span className="flex size-14 items-center justify-center rounded-xl border bg-card text-muted-foreground transition-colors group-data-[state=open]:text-foreground">
           <FileImage className="size-6" aria-hidden />
         </span>
         <span>

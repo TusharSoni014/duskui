@@ -33,7 +33,7 @@ function Sidebar({ collapsed }: { collapsed: boolean }) {
     <div className="flex h-full flex-col">
       <div className={cn("flex h-11 shrink-0 items-center gap-2 border-b px-2.5", collapsed && "justify-center px-0")}>
         <ResizableLayoutToggle />
-        {!collapsed && <span className="truncate text-xs font-medium tracking-wide text-muted-foreground uppercase">Explorer</span>}
+        {!collapsed && <span className="truncate text-xs font-medium text-muted-foreground">Explorer</span>}
       </div>
       {collapsed ? (
         <nav aria-label="Activity bar" className="flex flex-col items-center gap-1 py-2">
@@ -59,7 +59,7 @@ function Sidebar({ collapsed }: { collapsed: boolean }) {
                 style={{ paddingLeft: 8 + depth * 14 }}
                 className={cn(
                   "flex w-full items-center gap-2 truncate rounded-md py-1 pr-2 text-left outline-none transition-colors focus-visible:ring-[3px] focus-visible:ring-ring/50",
-                  active ? "bg-primary/10 text-primary" : "text-foreground/80 hover:bg-accent hover:text-foreground"
+                  active ? "bg-accent text-foreground" : "text-foreground/80 hover:bg-accent hover:text-foreground"
                 )}
               >
                 <Icon className="size-4 shrink-0 opacity-80" aria-hidden />

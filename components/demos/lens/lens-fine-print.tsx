@@ -4,8 +4,8 @@ export default function LensFinePrint() {
   return (
     <Lens zoom={2.6} size={140} className="w-full max-w-md border border-white/10 bg-card">
       <div className="space-y-3 p-6">
-        <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">Pro plan</p>
-        <p className="text-3xl font-semibold text-white">
+        <p className="text-sm font-medium text-muted-foreground">Pro plan</p>
+        <p className="text-3xl font-semibold text-foreground">
           $12<span className="text-base font-normal text-white/50"> / month</span>
         </p>
         <p className="text-[9px] leading-snug text-white/45">

@@ -6,7 +6,7 @@ import { ChevronDownIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-const heightSpring = { type: "spring", bounce: 0.08, duration: 0.55 } as const;
+const heightSpring = { type: "spring", bounce: 0, duration: 0.35 } as const;
 
 /** Fully opaque down to `stop`%, then fading to transparent. Same shape both ways so Motion can tween it. */
 const fadeMask = (stop: number) =>
@@ -35,8 +35,8 @@ function ShowMoreButton({
       aria-controls={controls}
       onClick={onClick}
       className={cn(
-        "group/more inline-flex items-center gap-1.5 rounded-md text-sm font-medium text-primary outline-none",
-        "transition-[color,box-shadow] duration-150 hover:text-primary/80 focus-visible:ring-[3px] focus-visible:ring-ring/50",
+        "group/more inline-flex items-center gap-1.5 rounded-md text-sm font-medium text-foreground outline-none",
+        "transition-[color,box-shadow] duration-150 hover:text-foreground/80 focus-visible:ring-[3px] focus-visible:ring-ring/50",
         className
       )}
     >
@@ -54,7 +54,7 @@ function ShowMoreButton({
         className="flex"
         initial={false}
         animate={{ rotate: expanded ? 180 : 0 }}
-        transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 380, damping: 18 }}
+        transition={reduceMotion ? { duration: 0 } : { type: "spring", bounce: 0, duration: 0.25 }}
       >
         <ChevronDownIcon className="size-4" />
       </motion.span>

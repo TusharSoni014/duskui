@@ -39,7 +39,7 @@ export function Showcase() {
       title: "Hover labels",
       description: (
         <>
-          Add <Code>data-cursor-label</Code> to any element and the ring fills with mint and shows the text.
+          Add <Code>data-cursor-label</Code> to any element and the ring fills in and shows the text.
           Keep labels to a word or two; size the bubble with <Code>labelSize</Code>.
         </>
       ),

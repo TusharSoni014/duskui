@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
  * - The check mark draws itself (SVG `pathLength` + stroke-dashoffset) and
  *   erases faster than it draws.
  * - `checked="indeterminate"` draws a dash instead of a check.
- * - Smooth fill, a hover border and a tactile press.
+ * - A smooth fill transition.
  * - Still works uncontrolled, in forms and with form reset (pure CSS, no
  *   extra React state).
  * - Under `prefers-reduced-motion` the mark appears instantly.
@@ -24,8 +24,7 @@ function Checkbox({ className, ...props }: React.ComponentProps<typeof CheckboxP
       data-slot="checkbox"
       className={cn(
         "peer group/checkbox relative grid size-4 shrink-0 place-items-center rounded-[4px] border border-input bg-input/30 shadow-xs outline-none",
-        "transition-[background-color,border-color,box-shadow,scale] duration-150 ease-out motion-reduce:transition-none",
-        "hover:border-ring/50 active:scale-90 motion-reduce:active:scale-100",
+        "transition-[background-color,border-color,box-shadow] duration-150 ease-out motion-reduce:transition-none",
         "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
         "aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
         "disabled:cursor-not-allowed disabled:opacity-50",

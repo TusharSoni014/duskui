@@ -16,14 +16,14 @@ import { cn } from "@/lib/utils";
  *   The button stays focusable (aria-disabled + aria-busy) instead of being
  *   `disabled`, so keyboard and screen-reader users don't lose their place.
  * - `loadingText`: optional label shown next to the spinner.
- * - Tactile press feedback (CSS only, so it also works with `asChild`).
+ * - A subtle press state (CSS only, so it also works with `asChild`).
  * - Respects `prefers-reduced-motion`.
  */
 const buttonVariants = cva(
   [
     "relative inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium select-none outline-none",
     "transition-[color,background-color,border-color,box-shadow,transform] duration-150 ease-out",
-    "active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100",
+    "active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100",
     "disabled:pointer-events-none disabled:opacity-50 aria-busy:cursor-wait",
     "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
     "aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
@@ -33,7 +33,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground shadow-[inset_0_1px_0_rgb(255_255_255/0.25),0_1px_2px_rgb(0_0_0/0.25)] hover:bg-primary/90",
+          "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
         destructive:
           "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:bg-destructive/60 dark:focus-visible:ring-destructive/40",
         outline:
@@ -62,9 +62,8 @@ const buttonVariants = cva(
 );
 
 const contentTransition: Transition = {
-  type: "spring",
-  duration: 0.3,
-  bounce: 0,
+  duration: 0.18,
+  ease: "easeOut",
 };
 
 export interface ButtonProps
@@ -138,10 +137,8 @@ function Button({
           initial={false}
           animate={
             loading
-              ? { opacity: 0, y: -6, filter: "blur(2px)" }
-              : // Clear the filter when idle: a filter makes this span the
-                // containing block for absolutely positioned children.
-                { opacity: 1, y: 0, filter: "blur(0px)", transitionEnd: { filter: "none" } }
+              ? { opacity: 0, y: -4 }
+              : { opacity: 1, y: 0 }
           }
           transition={contentTransition}
           aria-hidden={loading || undefined}
@@ -154,9 +151,9 @@ function Button({
               key="loader"
               data-slot="button-loader"
               className="col-start-1 row-start-1 inline-flex items-center justify-center [gap:inherit]"
-              initial={{ opacity: 0, y: 6, filter: "blur(2px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              exit={{ opacity: 0, y: 6, filter: "blur(2px)" }}
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 4 }}
               transition={contentTransition}
             >
               <LoaderIcon className="animate-spin" aria-hidden />

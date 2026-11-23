@@ -6,7 +6,7 @@ import { AnimatePresence, motion, useReducedMotion, type Transition } from "moti
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 
-const heightSpring: Transition = { type: "spring", bounce: 0.15, duration: 0.35 };
+const heightSpring: Transition = { type: "spring", bounce: 0, duration: 0.25 };
 
 // Shared by the textarea and its invisible twin, so both wrap text identically.
 const metrics = "px-3 py-2 text-base leading-6 md:text-sm md:leading-6 border";
@@ -197,9 +197,9 @@ function CharacterCounter({
         {showNumber && (
           <motion.span
             key="number"
-            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, x: 6, filter: "blur(2px)" }}
-            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, x: 6, filter: "blur(2px)" }}
+            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, x: 4 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, x: 4 }}
             transition={{ type: "spring", duration: 0.3, bounce: 0 }}
           >
             {remaining}
@@ -210,7 +210,7 @@ function CharacterCounter({
         viewBox="0 0 18 18"
         className="size-4.5 -rotate-90"
         aria-hidden
-        animate={level === "full" || level === "over" ? (reduceMotion ? {} : { scale: [1, 1.25, 1] }) : { scale: 1 }}
+        animate={level === "full" || level === "over" ? (reduceMotion ? {} : { scale: [1, 1.1, 1] }) : { scale: 1 }}
         transition={{ duration: 0.3 }}
       >
         <circle cx="9" cy="9" r={radius} fill="none" stroke="currentColor" strokeOpacity={0.2} strokeWidth={2} />
@@ -226,7 +226,7 @@ function CharacterCounter({
           initial={false}
           animate={{ strokeDashoffset: circumference * (1 - progress) }}
           transition={reduceMotion ? { duration: 0 } : { type: "spring", duration: 0.3, bounce: 0 }}
-          className={cn(level === "ok" && "text-primary")}
+          className={cn(level === "ok" && "text-foreground/70")}
         />
       </motion.svg>
       <span id={id} className="sr-only">

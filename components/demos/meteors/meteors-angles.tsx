@@ -1,8 +1,8 @@
 import { Meteors } from "@/components/dusk/backgrounds/meteors";
 
 const skies = [
-  { label: "angle={100}", props: { angle: 100, color: "#38bdf8", count: 14, seed: 3 } },
-  { label: "angle={200}", props: { angle: 200, color: "#f472b6", tailLength: 160, seed: 8 } },
+  { label: "angle={100}", props: { angle: 100, color: "rgb(125 211 252 / 0.7)", seed: 3 } },
+  { label: "angle={200}", props: { angle: 200, tailLength: 140, seed: 8 } },
 ];
 
 export default function MeteorsAngles() {

@@ -6,7 +6,7 @@ export default function TypewriterDemo() {
       Built for{" "}
       <Typewriter
         phrases={["landing pages", "dashboards", "design systems", "side projects"]}
-        className="text-primary"
+        className="text-white/60"
       />
     </h2>
   );

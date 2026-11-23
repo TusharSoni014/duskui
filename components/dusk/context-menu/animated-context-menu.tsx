@@ -41,7 +41,7 @@ function useSurfaceState() {
 export type AnimatedContextMenuProps = React.ComponentProps<typeof ContextMenuPrimitive.Root>;
 
 /**
- * A context menu that springs open from the exact point you right-clicked.
+ * A context menu that opens from the exact point you right-clicked.
  * Items cascade in, a highlight pill glides between them as you hover or
  * arrow through, check marks draw themselves and sub-menus slide out the same
  * way. Built on Radix Context Menu, so long-press on touch, focus, typeahead,
@@ -80,20 +80,19 @@ function surfaceVariants(reduceMotion: boolean, stagger: number, fromX = 0): Var
         open: { opacity: 1, transition: { duration: 0.15 } },
       }
     : {
-        closed: { opacity: 0, scale: 0.85, x: fromX, transition: { duration: 0.12, ease: "easeIn" } },
+        closed: { opacity: 0, scale: 0.96, x: fromX, transition: { duration: 0.1, ease: "easeIn" } },
         open: {
           opacity: 1,
           scale: 1,
           x: 0,
-          transition: { type: "spring", duration: 0.38, bounce: 0.25, staggerChildren: stagger, delayChildren: 0.02 },
+          transition: { duration: 0.18, ease: "easeOut", staggerChildren: stagger, delayChildren: 0.02 },
         },
       };
 }
 
 const surfaceClass = cn(
-  "z-50 min-w-52 overflow-x-hidden overflow-y-auto rounded-xl border bg-popover/95 p-1.5 text-popover-foreground outline-none backdrop-blur-md",
-  "origin-(--radix-context-menu-content-transform-origin)",
-  "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_16px_40px_-12px_rgb(0_0_0/0.7),0_0_0_1px_rgb(0_0_0/0.2)]"
+  "z-50 min-w-52 overflow-x-hidden overflow-y-auto rounded-xl border bg-popover p-1.5 text-popover-foreground shadow-lg outline-none",
+  "origin-(--radix-context-menu-content-transform-origin)"
 );
 
 export interface AnimatedContextMenuContentProps
@@ -150,8 +149,8 @@ function useItemVariants(): Variants {
   return reduceMotion
     ? { closed: { opacity: 0, transition: { duration: 0.1 } }, open: { opacity: 1 } }
     : {
-        closed: { opacity: 0, x: -6, transition: { duration: 0.1 } },
-        open: { opacity: 1, x: 0, transition: { type: "spring", duration: 0.35, bounce: 0.15 } },
+        closed: { opacity: 0, x: -4, transition: { duration: 0.1 } },
+        open: { opacity: 1, x: 0, transition: { duration: 0.18, ease: "easeOut" } },
       };
 }
 
@@ -169,7 +168,7 @@ function useItemHighlight() {
         layoutId={`${id}-pill`}
         className={cn(
           "absolute inset-0 rounded-lg",
-          variant === "destructive" ? "bg-destructive/15" : "bg-accent shadow-[inset_0_1px_0_rgb(255_255_255/0.04)]"
+          variant === "destructive" ? "bg-destructive/15" : "bg-accent"
         )}
         transition={reduceMotion ? { duration: 0 } : pillSpring}
       />
@@ -231,7 +230,7 @@ export function AnimatedContextMenuItem({
             aria-hidden
             className={cn(
               "relative flex transition-colors duration-150",
-              variant === "destructive" ? "text-destructive" : isActive ? "text-primary" : "text-muted-foreground"
+              variant === "destructive" ? "text-destructive" : isActive ? "text-foreground" : "text-muted-foreground"
             )}
           >
             {icon}
@@ -336,10 +335,10 @@ export function AnimatedContextMenuRadioItem({
         >
           <ContextMenuPrimitive.ItemIndicator asChild>
             <motion.span
-              className="size-2 rounded-full bg-primary shadow-[0_0_8px_var(--color-primary)]"
+              className="size-2 rounded-full bg-primary"
               initial={reduceMotion ? { opacity: 0 } : { scale: 0 }}
               animate={reduceMotion ? { opacity: 1 } : { scale: 1 }}
-              transition={{ type: "spring", duration: 0.3, bounce: 0.45 }}
+              transition={reduceMotion ? { duration: 0 } : { type: "spring", duration: 0.2, bounce: 0.1 }}
             />
           </ContextMenuPrimitive.ItemIndicator>
         </span>
@@ -380,7 +379,7 @@ export function AnimatedContextMenuSeparator({
             ? { closed: { opacity: 0, transition: { duration: 0.1 } }, open: { opacity: 1 } }
             : {
                 closed: { scaleX: 0, opacity: 0, transition: { duration: 0.1 } },
-                open: { scaleX: 1, opacity: 1, transition: { duration: 0.3, ease: "easeOut" } },
+                open: { scaleX: 1, opacity: 1, transition: { duration: 0.2, ease: "easeOut" } },
               }
         }
         className={cn("-mx-1.5 my-1.5 h-px origin-left bg-border", className)}
@@ -445,7 +444,7 @@ export function AnimatedContextMenuSubTrigger({
         {isActive && pill()}
         {!isActive && sub?.open && <span aria-hidden className="absolute inset-0 rounded-lg bg-accent/70" />}
         {icon && (
-          <span aria-hidden className={cn("relative flex transition-colors duration-150", lit ? "text-primary" : "text-muted-foreground")}>
+          <span aria-hidden className={cn("relative flex transition-colors duration-150", lit ? "text-foreground" : "text-muted-foreground")}>
             {icon}
           </span>
         )}

@@ -21,7 +21,7 @@ export default function FloatingNavbarStaticDemo() {
         links={links}
         defaultActiveHref="#components"
         onNavigate={(_, event) => event.preventDefault()}
-        logo={<span className="size-6 rounded-md bg-linear-to-br from-primary to-cyan-500" aria-label="DuskUI" role="img" />}
+        logo={<span className="font-semibold tracking-tight">dusk.ui</span>}
         actions={
           <Button variant="ghost" size="icon-sm" aria-label="GitHub">
             <Github />

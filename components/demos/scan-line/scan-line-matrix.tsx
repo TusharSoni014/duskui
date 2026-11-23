@@ -3,7 +3,7 @@ import { ScanLine } from "@/components/dusk/hacker/scan-line";
 
 export default function ScanLineMatrixDemo() {
   return (
-    <ScanLine className="h-80 w-full rounded-lg bg-black" lineOpacity={0.5} barDuration={4}>
+    <ScanLine className="h-80 w-full rounded-lg bg-black" barDuration={6}>
       <MatrixRain fontSize={14} />
     </ScanLine>
   );

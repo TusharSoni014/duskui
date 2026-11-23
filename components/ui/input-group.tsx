@@ -14,9 +14,9 @@ import { cn } from "@/lib/utils";
  * Same parts, props and data-slot attributes as shadcn (InputGroup,
  * InputGroupAddon, InputGroupButton, InputGroupText, InputGroupInput,
  * InputGroupTextarea) plus:
- * - The whole group gets the Input's hover border, soft mint focus ring and
- *   red invalid ring, so icons and buttons read as part of one field.
- * - Addon icons light up while the control is focused.
+ * - The whole group gets the Input's hover background, focus ring and red
+ *   invalid ring, so icons and buttons read as part of one field.
+ * - Addon icons brighten while the control is focused.
  * - Addons on `inline-start` / `inline-end` sit beside the control;
  *   `block-start` / `block-end` stack above or below it (toolbars, counters).
  * - Clicking an addon (outside its buttons) focuses the control.
@@ -30,19 +30,18 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
       role="group"
       className={cn(
         "group/input-group relative flex w-full min-w-0 items-center rounded-md border border-input shadow-xs outline-none dark:bg-input/30",
-        "transition-[color,background-color,border-color,box-shadow] duration-200 ease-out motion-reduce:transition-none",
+        "transition-[color,background-color,border-color,box-shadow] duration-150 ease-out motion-reduce:transition-none",
         "h-9 has-[>textarea]:h-auto",
-        "hover:border-ring/40 dark:hover:bg-input/40",
+        "dark:hover:bg-input/40",
         // Pull the control's padding in next to inline addons.
         "has-[>[data-align=inline-start]]:[&>input]:pl-2",
         "has-[>[data-align=inline-end]]:[&>input]:pr-2",
         "has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>[data-align=block-start]]:[&>input]:pb-3",
         "has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-end]]:[&>input]:pt-3",
         // Focus ring on the group, driven by the control inside.
-        "has-[[data-slot=input-group-control]:focus-visible]:border-ring has-[[data-slot=input-group-control]:focus-visible]:ring-[3px] has-[[data-slot=input-group-control]:focus-visible]:ring-ring/30",
+        "has-[[data-slot=input-group-control]:focus-visible]:border-ring has-[[data-slot=input-group-control]:focus-visible]:ring-[3px] has-[[data-slot=input-group-control]:focus-visible]:ring-ring/50",
         // Invalid state from any control or addon button with aria-invalid.
         "has-[[data-slot][aria-invalid=true]]:border-destructive has-[[data-slot][aria-invalid=true]]:ring-destructive/20 dark:has-[[data-slot][aria-invalid=true]]:ring-destructive/40",
-        "has-[[data-slot][aria-invalid=true]]:hover:border-destructive",
         "data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50",
         "has-[[data-slot=input-group-control]:disabled]:opacity-50",
         className
@@ -55,7 +54,7 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
 const inputGroupAddonVariants = cva(
   [
     "flex h-auto cursor-text items-center justify-center gap-2 py-1.5 text-sm font-medium text-muted-foreground select-none",
-    "transition-colors duration-200 ease-out motion-reduce:transition-none",
+    "transition-colors duration-150 ease-out motion-reduce:transition-none",
     "group-has-[[data-slot=input-group-control]:focus-visible]/input-group:[&>svg]:text-foreground",
     "[&>svg:not([class*='size-'])]:size-4 [&>kbd]:rounded-[calc(var(--radius)-5px)]",
     "group-data-[disabled=true]/input-group:opacity-50",

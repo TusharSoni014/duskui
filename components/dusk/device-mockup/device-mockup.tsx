@@ -43,7 +43,7 @@ function useTilt(maxTilt: number) {
 }
 
 function tiltAmount(tilt: boolean | number | undefined) {
-  if (tilt === true) return 8;
+  if (tilt === true) return 4;
   if (typeof tilt === "number") return Math.max(0, tilt);
   return 0;
 }
@@ -57,7 +57,7 @@ interface MockupBaseProps extends Omit<React.ComponentProps<"div">, "children"> 
   src?: string;
   /** Alt text for `src`. Describe the screenshot, or pass "" if it's decorative. */
   alt?: string;
-  /** Tilt toward the cursor on hover (mouse only). `true` = 8°, or a max angle in degrees. */
+  /** Tilt toward the cursor on hover (mouse only). `true` = 4°, or a max angle in degrees. */
   tilt?: boolean | number;
   /** Classes for the screen area. */
   screenClassName?: string;
@@ -125,11 +125,11 @@ export function SafariMockup({
       {(style) => (
         <motion.div
           style={style}
-          className="overflow-hidden rounded-[clamp(8px,1.6cqw,14px)] border border-white/10 bg-[#141716] shadow-[inset_0_1px_0_rgb(255_255_255/0.06),0_30px_80px_-20px_rgb(0_0_0/0.8)] will-change-transform"
+          className="overflow-hidden rounded-[clamp(8px,1.6cqw,14px)] border border-white/10 bg-[#141414] shadow-xl will-change-transform"
         >
           <div
             aria-hidden
-            className="flex h-[clamp(28px,5.5cqw,44px)] items-center gap-[clamp(6px,1.4cqw,12px)] border-b border-white/[0.06] bg-[#1b1f1d] px-[clamp(8px,1.8cqw,16px)] text-white/40"
+            className="flex h-[clamp(28px,5.5cqw,44px)] items-center gap-[clamp(6px,1.4cqw,12px)] border-b border-white/[0.06] bg-[#1b1b1b] px-[clamp(8px,1.8cqw,16px)] text-white/40"
           >
             <span className="flex shrink-0 gap-[clamp(4px,0.8cqw,8px)]">
               {["bg-[#ff5f57]", "bg-[#febc2e]", "bg-[#28c840]"].map((color) => (
@@ -178,7 +178,7 @@ export interface PhoneMockupProps extends MockupBaseProps {
 const finishes = {
   graphite: "bg-[linear-gradient(145deg,#3a3d3c,#151716_45%,#2a2d2c)]",
   silver: "bg-[linear-gradient(145deg,#e7e9e8,#a7abaa_45%,#d9dcdb)]",
-  mint: "bg-[linear-gradient(145deg,color-mix(in_oklab,var(--color-primary)_55%,#1a2a25),#0d1c17_45%,color-mix(in_oklab,var(--color-primary)_35%,#13211c))]",
+  mint: "bg-[linear-gradient(145deg,#3a4743,#171d1b_45%,#2d3835)]",
 } as const;
 
 /**
@@ -209,7 +209,7 @@ export function PhoneMockup({
           style={style}
           className={cn(
             "relative rounded-[16cqw] p-[1.3cqw] will-change-transform",
-            "shadow-[0_30px_70px_-20px_rgb(0_0_0/0.85),inset_0_0_0_1px_rgb(255_255_255/0.12)]",
+            "shadow-xl",
             finishes[color]
           )}
         >

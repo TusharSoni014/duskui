@@ -53,9 +53,9 @@ function ValueThumb({ value, index, count, range, visible, label, format, draggi
   // Moving right makes the bubble lean left, like it's being dragged along.
   const lean = useTransform(velocity, (v) => {
     if (reduceMotion || range <= 0) return 0;
-    return Math.max(-14, Math.min(14, (-v / range) * 9));
+    return Math.max(-8, Math.min(8, (-v / range) * 6));
   });
-  const rotate = useSpring(lean, { stiffness: 300, damping: 18 });
+  const rotate = useSpring(lean, { stiffness: 300, damping: 28 });
 
   const names = count === 2 ? ["minimum", "maximum"] : undefined;
   const thumbLabel = label
@@ -82,11 +82,9 @@ function ValueThumb({ value, index, count, range, visible, label, format, draggi
       <span
         aria-hidden
         className={cn(
-          "pointer-events-none absolute inset-0 rounded-full border-2 border-primary bg-background shadow-[0_1px_3px_rgb(0_0_0/0.5)]",
-          "transition-[scale,background-color,box-shadow] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none",
-          "group-hover/thumb:scale-110",
-          dragging &&
-            "group-focus/thumb:scale-125 group-focus/thumb:bg-primary group-focus/thumb:shadow-[0_0_0_6px_color-mix(in_oklab,var(--color-primary)_18%,transparent)]"
+          "pointer-events-none absolute inset-0 rounded-full border-2 border-primary bg-background shadow-sm",
+          "transition-[scale,background-color] duration-150 ease-out motion-reduce:transition-none",
+          dragging && "group-focus/thumb:scale-110"
         )}
       />
       <AnimatePresence>
@@ -95,15 +93,15 @@ function ValueThumb({ value, index, count, range, visible, label, format, draggi
             <motion.span
               className="relative flex origin-bottom flex-col items-center"
               style={{ rotate }}
-              initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 6, scale: 0.6 }}
+              initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 4, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 4, scale: 0.7, transition: { duration: 0.12 } }}
-              transition={reduceMotion ? { duration: 0.15 } : { type: "spring", duration: 0.35, bounce: 0.35 }}
+              exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 4, scale: 0.96, transition: { duration: 0.12 } }}
+              transition={reduceMotion ? { duration: 0.15 } : { type: "spring", duration: 0.25, bounce: 0.1 }}
             >
-              <span className="min-w-9 rounded-md bg-primary px-2 py-1 text-center text-xs font-semibold whitespace-nowrap text-primary-foreground tabular-nums shadow-[0_6px_16px_-4px_color-mix(in_oklab,var(--color-primary)_60%,transparent)]">
+              <span className="min-w-9 rounded-md bg-foreground px-2 py-1 text-center text-xs font-medium whitespace-nowrap text-background tabular-nums shadow-md">
                 {format(value)}
               </span>
-              <span className="-mt-1 size-2 rotate-45 rounded-[1px] bg-primary" />
+              <span className="-mt-1 size-2 rotate-45 rounded-[1px] bg-foreground" />
             </motion.span>
           </span>
         )}
@@ -113,8 +111,8 @@ function ValueThumb({ value, index, count, range, visible, label, format, draggi
 }
 
 /**
- * A slider with a value bubble riding on each thumb. The bubble springs up on
- * hover, focus or drag, leans into the direction you're dragging (driven by
+ * A slider with a value bubble riding on each thumb. The bubble appears on
+ * hover, focus or drag, leans slightly into the direction you're dragging (driven by
  * the value's velocity, so it never re-renders per frame) and settles upright
  * when you stop. Works for single values and ranges, and announces the
  * formatted value via aria-valuetext. No lean and a plain fade under reduced motion.
@@ -191,7 +189,7 @@ export function ValueSlider({
       {...props}
     >
       <SliderPrimitive.Track className="relative h-1.5 w-full grow overflow-hidden rounded-full bg-muted">
-        <SliderPrimitive.Range className="absolute h-full rounded-full bg-[linear-gradient(90deg,color-mix(in_oklab,var(--color-primary)_65%,transparent),var(--color-primary))]" />
+        <SliderPrimitive.Range className="absolute h-full rounded-full bg-primary" />
       </SliderPrimitive.Track>
       {values.map((v, index) => (
         <ValueThumb

@@ -29,12 +29,12 @@ export interface AnimatedButtonGroupProps
   disabled?: boolean;
 }
 
-const indicatorSpring: Transition = { type: "spring", bounce: 0.18, duration: 0.42 };
+const indicatorSpring: Transition = { type: "spring", bounce: 0.1, duration: 0.3 };
 
 const iconSizes = { sm: "icon-sm", default: "icon", lg: "icon-lg" } as const;
 
 /**
- * Joined outline buttons where the selected one is lit by a mint indicator
+ * Joined outline buttons where the selected one is marked by an indicator
  * that slides between segments on a spring. It behaves like a radio group:
  * one Tab stop, arrow keys (and Home / End) move and select, and the value
  * can be submitted with a form. Under reduced motion the indicator jumps.
@@ -114,7 +114,7 @@ export function AnimatedButtonGroup({
               onKeyDown={(event) => onKeyDown(event, index)}
               className={cn(
                 buttonVariants({ variant: "outline", size: iconOnly ? iconSizes[size] : size }),
-                "text-muted-foreground hover:bg-accent/60 data-[state=on]:text-primary dark:hover:bg-input/45",
+                "text-muted-foreground hover:bg-accent/60 data-[state=on]:text-foreground dark:hover:bg-input/45",
                 "data-[state=on]:hover:bg-transparent dark:data-[state=on]:hover:bg-input/30"
               )}
             >
@@ -123,7 +123,7 @@ export function AnimatedButtonGroup({
                   aria-hidden
                   layoutId="indicator"
                   transition={reduceMotion ? { duration: 0 } : indicatorSpring}
-                  className="pointer-events-none absolute inset-0 rounded-[inherit] bg-primary/10 shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--color-primary)_55%,transparent),0_0_18px_-6px_var(--color-primary)]"
+                  className="pointer-events-none absolute inset-0 rounded-[inherit] bg-white/[0.08] shadow-[inset_0_0_0_1px_rgb(255_255_255/0.12)]"
                 />
               )}
               <span className="relative z-[1] inline-flex items-center gap-2">

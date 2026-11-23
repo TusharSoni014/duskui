@@ -8,7 +8,7 @@ import { AnimatePresence, motion, useReducedMotion, type Transition } from "moti
 import { cn } from "@/lib/utils";
 
 const RING =
-  "p-px [mask-composite:exclude] [mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)]";
+  "p-px [mask-image:linear-gradient(#000_0_0),linear-gradient(#000_0_0)] [mask-clip:content-box,border-box] [mask-composite:exclude]";
 
 const sizes = {
   sm: "max-w-sm",
@@ -17,7 +17,7 @@ const sizes = {
   xl: "max-w-2xl",
 } as const;
 
-const enter: Transition = { type: "spring", duration: 0.45, bounce: 0.18 };
+const enter: Transition = { type: "spring", duration: 0.3, bounce: 0.1 };
 const leave: Transition = { duration: 0.2, ease: [0.4, 0, 1, 1] };
 
 const ModalContext = React.createContext<{ open: boolean }>({ open: false });
@@ -101,7 +101,7 @@ function CrystalModalContent({
 
   const hidden = reduceMotion
     ? { opacity: 0 }
-    : { opacity: 0, scale: 0.9, y: 16, filter: "blur(10px)" };
+    : { opacity: 0, scale: 0.96, y: 8, filter: "blur(4px)" };
 
   return (
     <AnimatePresence>
@@ -124,12 +124,12 @@ function CrystalModalContent({
             <motion.div
               data-slot="crystal-modal-content"
               className={cn(
-                "fixed left-1/2 top-1/2 z-50 grid max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 overflow-y-auto rounded-2xl p-6 text-foreground outline-none",
+                "fixed left-1/2 top-1/2 z-50 grid max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 overflow-y-auto rounded-xl p-6 text-foreground outline-none",
                 "isolate data-[state=closed]:pointer-events-none",
                 // Fallback first: opaque pane when backdrop-filter isn't supported.
                 "bg-[color-mix(in_oklab,var(--background)_94%,white_2%)]",
                 "supports-[backdrop-filter]:bg-[color-mix(in_oklab,var(--background)_55%,transparent)] supports-[backdrop-filter]:backdrop-blur-2xl supports-[backdrop-filter]:backdrop-saturate-150",
-                "shadow-[inset_0_1px_0_rgb(255_255_255/0.14),0_32px_80px_-16px_rgb(0_0_0/0.75)]",
+                "shadow-[inset_0_1px_0_rgb(255_255_255/0.08),0_16px_40px_-12px_rgb(0_0_0/0.6)]",
                 sizes[size],
                 className
               )}
@@ -145,17 +145,10 @@ function CrystalModalContent({
               }}
               exit={{ ...hidden, transition: leave }}
             >
-              {/* Gradient hairline + a soft primary glow at the top edge. */}
+              {/* 1px hairline border. */}
               <span
                 aria-hidden
-                className={cn(
-                  "pointer-events-none absolute inset-0 -z-10 rounded-[inherit] bg-[linear-gradient(160deg,rgb(255_255_255/0.4),rgb(255_255_255/0.08)_30%,rgb(255_255_255/0.04)_70%,rgb(255_255_255/0.16))]",
-                  RING
-                )}
-              />
-              <span
-                aria-hidden
-                className="pointer-events-none absolute inset-x-8 -top-24 -z-10 h-40 rounded-full bg-primary/20 blur-3xl"
+                className={cn("pointer-events-none absolute inset-0 -z-10 rounded-[inherit] bg-white/12", RING)}
               />
               {children}
               {showCloseButton && (

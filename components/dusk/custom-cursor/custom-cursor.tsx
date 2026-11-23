@@ -229,7 +229,7 @@ export function CustomCursor({
       </style>
       <motion.div className="absolute left-0 top-0" style={{ x: ringX, y: ringY }}>
         <motion.div
-          className="absolute grid place-items-center rounded-full border border-primary/60 shadow-[0_0_18px_-6px_var(--color-primary)]"
+          className="absolute grid place-items-center rounded-full border border-white/40"
           initial={false}
           animate={{
             width: size,
@@ -237,24 +237,24 @@ export function CustomCursor({
             x: -size / 2,
             y: -size / 2,
             opacity: showLayers ? 1 : 0,
-            scale: state.pressed ? 0.82 : 1,
+            scale: state.pressed ? 0.9 : 1,
           }}
           transition={{ type: "spring", stiffness: 420, damping: 30, mass: 0.5, opacity: { duration: 0.18 } }}
         >
           <motion.span
-            className="absolute inset-0 rounded-full bg-primary"
+            className="absolute inset-0 rounded-full bg-white"
             initial={false}
-            animate={{ opacity: state.label ? 0.92 : state.mode === "hover" ? 0.14 : 0 }}
+            animate={{ opacity: state.label ? 1 : state.mode === "hover" ? 0.06 : 0 }}
             transition={{ duration: 0.2 }}
           />
           <AnimatePresence>
             {state.label && showLayers && (
               <motion.span
                 key={state.label}
-                className="relative px-2 text-center text-[11px] font-semibold uppercase leading-tight tracking-wider text-primary-foreground"
-                initial={{ opacity: 0, scale: 0.6 }}
+                className="relative px-2 text-center text-xs font-medium leading-tight text-black"
+                initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.6 }}
+                exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.18 }}
               >
                 {state.label}
@@ -265,7 +265,7 @@ export function CustomCursor({
       </motion.div>
       <motion.div className="absolute left-0 top-0" style={{ x: dotX, y: dotY }}>
         <motion.div
-          className="absolute rounded-full bg-primary"
+          className="absolute rounded-full bg-white"
           style={{ width: dotSize, height: dotSize, left: -dotSize / 2, top: -dotSize / 2 }}
           initial={false}
           animate={{ opacity: showLayers && state.mode === "idle" ? 1 : 0, scale: showLayers && state.mode === "idle" ? 1 : 0.2 }}

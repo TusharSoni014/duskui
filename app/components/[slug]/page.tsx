@@ -108,6 +108,26 @@ import { CustomCursorDocs } from "@/components/docs/pages/custom-cursor-docs";
 import { ScratchToRevealDocs } from "@/components/docs/pages/scratch-to-reveal-docs";
 import { ProgressiveBlurDocs } from "@/components/docs/pages/progressive-blur-docs";
 import { FileTreeDocs } from "@/components/docs/pages/file-tree-docs";
+import { ShineBorderDocs } from "@/components/docs/pages/shine-border-docs";
+import { RainbowButtonDocs } from "@/components/docs/pages/rainbow-button-docs";
+import { PulsatingButtonDocs } from "@/components/docs/pages/pulsating-button-docs";
+import { InteractiveHoverButtonDocs } from "@/components/docs/pages/interactive-hover-button-docs";
+import { MovingBorderDocs } from "@/components/docs/pages/moving-border-docs";
+import { RetroGridDocs } from "@/components/docs/pages/retro-grid-docs";
+import { FlickeringGridDocs } from "@/components/docs/pages/flickering-grid-docs";
+import { RippleDocs } from "@/components/docs/pages/ripple-docs";
+import { WavyBackgroundDocs } from "@/components/docs/pages/wavy-background-docs";
+import { LampDocs } from "@/components/docs/pages/lamp-docs";
+import { GlobeDocs } from "@/components/docs/pages/globe-docs";
+import { IconCloudDocs } from "@/components/docs/pages/icon-cloud-docs";
+import { CardStackDocs } from "@/components/docs/pages/card-stack-docs";
+import { CountdownDocs } from "@/components/docs/pages/countdown-docs";
+import { VanishInputDocs } from "@/components/docs/pages/vanish-input-docs";
+import { ImageCompareDocs } from "@/components/docs/pages/image-compare-docs";
+import { SortableListDocs } from "@/components/docs/pages/sortable-list-docs";
+import { KanbanDocs } from "@/components/docs/pages/kanban-docs";
+import { RatingDocs } from "@/components/docs/pages/rating-docs";
+import { StepperDocs } from "@/components/docs/pages/stepper-docs";
 import { JsonLd } from "@/components/json-ld";
 import { componentHref, components, getComponent } from "@/lib/components-data";
 import { pageMetadata } from "@/lib/seo";
@@ -117,6 +137,26 @@ type Params = { slug: string };
 
 /** slug → docs page. Add new component docs here. */
 const docs: Record<string, React.ComponentType> = {
+  stepper: StepperDocs,
+  rating: RatingDocs,
+  kanban: KanbanDocs,
+  "sortable-list": SortableListDocs,
+  "image-compare": ImageCompareDocs,
+  "vanish-input": VanishInputDocs,
+  countdown: CountdownDocs,
+  "card-stack": CardStackDocs,
+  "icon-cloud": IconCloudDocs,
+  globe: GlobeDocs,
+  lamp: LampDocs,
+  "wavy-background": WavyBackgroundDocs,
+  ripple: RippleDocs,
+  "flickering-grid": FlickeringGridDocs,
+  "retro-grid": RetroGridDocs,
+  "moving-border": MovingBorderDocs,
+  "interactive-hover-button": InteractiveHoverButtonDocs,
+  "pulsating-button": PulsatingButtonDocs,
+  "rainbow-button": RainbowButtonDocs,
+  "shine-border": ShineBorderDocs,
   "file-tree": FileTreeDocs,
   "progressive-blur": ProgressiveBlurDocs,
   "scratch-to-reveal": ScratchToRevealDocs,

@@ -10,10 +10,10 @@ import { cn } from "@/lib/utils"
  *
  * Same parts, props and data-slot attributes as shadcn (Collapsible,
  * CollapsibleTrigger, CollapsibleContent), plus:
- * - The content eases its height open on an expo-out curve, using Radix's
+ * - The content eases its height open (200ms ease-out), using Radix's
  *   measured `--radix-collapsible-content-height`, and closes quicker than it
  *   opens.
- * - Content fades and settles in while it grows, and fades out as it closes.
+ * - Content fades in while it grows, and fades out as it closes.
  * - Nothing below the panel jumps: the height animates, so the layout
  *   follows smoothly.
  * - Under `prefers-reduced-motion` the panel opens and closes instantly.
@@ -51,8 +51,8 @@ function CollapsibleContent({
         // Height (Radix CSS var) and a fade run as one animation list, so Radix
         // waits for both before unmounting the closed panel.
         "[--tw-enter-opacity:0] [--tw-enter-translate-y:-4px] [--tw-exit-opacity:0]",
-        "data-[state=open]:animate-[collapsible-down_320ms_cubic-bezier(0.16,1,0.3,1),enter_320ms_cubic-bezier(0.16,1,0.3,1)]",
-        "data-[state=closed]:animate-[collapsible-up_200ms_cubic-bezier(0.4,0,1,1),exit_160ms_ease-in]",
+        "data-[state=open]:animate-[collapsible-down_200ms_ease-out,enter_200ms_ease-out]",
+        "data-[state=closed]:animate-[collapsible-up_150ms_ease-in,exit_150ms_ease-in]",
         "motion-reduce:animate-none",
         className
       )}

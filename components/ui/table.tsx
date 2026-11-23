@@ -12,8 +12,8 @@ export interface TableProps extends React.ComponentProps<"table"> {
  *
  * Same parts and data-slot attributes as shadcn (Table, TableHeader,
  * TableBody, TableFooter, TableRow, TableHead, TableCell, TableCaption) plus:
- * - Row hover polish: the row warms up and a thin mint bar fades in on its
- *   leading edge. Selected rows (`data-state="selected"`) keep the bar lit.
+ * - A subtle row hover background; selected rows (`data-state="selected"`)
+ *   get a muted background.
  * - Quieter header text, tabular numbers and a tinted footer for dark UIs.
  * - `containerClassName` for the horizontally scrolling wrapper (e.g. a border
  *   or a max height with a sticky header).
@@ -78,11 +78,7 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
       className={cn(
         "border-b transition-colors duration-150 ease-out motion-reduce:transition-none",
         // Hover only applies to body rows, never to header or footer rows.
-        "[tbody>&]:hover:bg-white/[0.025] data-[state=selected]:bg-primary/[0.06]",
-        // Leading accent bar, drawn as an inset shadow so it never shifts layout.
-        "[&>*:first-child]:shadow-[inset_2px_0_0_transparent] [&>*:first-child]:transition-shadow [&>*:first-child]:duration-200",
-        "[tbody>&]:hover:[&>*:first-child]:shadow-[inset_2px_0_0_color-mix(in_oklab,var(--color-primary)_45%,transparent)]",
-        "data-[state=selected]:[&>*:first-child]:shadow-[inset_2px_0_0_var(--color-primary)]",
+        "[tbody>&]:hover:bg-white/[0.03] data-[state=selected]:bg-muted",
         className
       )}
       {...props}

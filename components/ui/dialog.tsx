@@ -10,12 +10,12 @@ import { cn } from "@/lib/utils"
  * DuskUI Dialog — a drop-in upgrade of the shadcn/ui Dialog.
  *
  * Same parts, props and data-slot attributes as shadcn, plus:
- * - A softer entrance: fade + scale + a short rise on an expo-out curve, and a
- *   quicker exit, so closing never feels sluggish.
- * - A blurred backdrop, layered shadow and top highlight on the surface.
+ * - A short entrance: fade + slight scale (200ms ease-out), and a quicker
+ *   exit, so closing never feels sluggish.
+ * - A dimmed backdrop and a neutral shadow on the surface.
  * - A larger close button with hover and focus-visible states.
  * - Long content scrolls inside the dialog instead of overflowing the screen.
- * - Under `prefers-reduced-motion` it only fades (no scale or slide).
+ * - Under `prefers-reduced-motion` it only fades (no scale).
  * CSS only (tw-animate-css), powered by Radix for focus trap, Escape and aria.
  */
 function Dialog({
@@ -45,7 +45,7 @@ function DialogClose({
   return <DialogPrimitive.Close data-slot="dialog-close" {...props} />
 }
 
-/** The dimmed, blurred backdrop. Clicking it closes the dialog. */
+/** The dimmed backdrop. Clicking it closes the dialog. */
 function DialogOverlay({
   className,
   ...props
@@ -54,9 +54,9 @@ function DialogOverlay({
     <DialogPrimitive.Overlay
       data-slot="dialog-overlay"
       className={cn(
-        "fixed inset-0 z-50 bg-black/60 backdrop-blur-[2px]",
-        "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:duration-300",
-        "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:duration-200",
+        "fixed inset-0 z-50 bg-black/60",
+        "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:duration-200",
+        "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:duration-150",
         className
       )}
       {...props}
@@ -81,11 +81,10 @@ function DialogContent({
         data-slot="dialog-content"
         className={cn(
           "fixed top-[50%] left-[50%] z-50 grid max-h-[calc(100dvh-2rem)] w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 overflow-y-auto rounded-xl border bg-background p-6 outline-none sm:max-w-lg",
-          "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_24px_64px_-12px_rgb(0_0_0/0.7),0_0_0_1px_rgb(0_0_0/0.3)]",
-          "ease-[cubic-bezier(0.16,1,0.3,1)]",
-          "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:slide-in-from-bottom-2 data-[state=open]:duration-300",
+          "shadow-lg ease-out",
+          "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-[0.97] data-[state=open]:duration-200",
           "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-[0.97] data-[state=closed]:duration-150",
-          "motion-reduce:data-[state=open]:zoom-in-100 motion-reduce:data-[state=open]:slide-in-from-bottom-0 motion-reduce:data-[state=closed]:zoom-out-100",
+          "motion-reduce:data-[state=open]:zoom-in-100 motion-reduce:data-[state=closed]:zoom-out-100",
           className
         )}
         {...props}

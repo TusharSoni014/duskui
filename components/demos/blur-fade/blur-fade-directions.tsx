@@ -17,12 +17,10 @@ export default function BlurFadeDirections() {
         <BlurFade
           key={direction}
           direction={direction}
-          offset={24}
-          delay={i * 0.12}
-          duration={0.6}
+          delay={i * 0.1}
           className="flex flex-col items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-5"
         >
-          <Icon className="size-5 text-primary" aria-hidden />
+          <Icon className="size-5 text-white/60" aria-hidden />
           <code className="font-mono text-xs text-white/70">&quot;{direction}&quot;</code>
         </BlurFade>
       ))}

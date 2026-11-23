@@ -71,7 +71,7 @@ export default function NotFound() {
       { name: "color", type: "string", default: '"var(--color-primary)"', description: "Glyph color. Any CSS color, including variables and oklch()." },
       { name: "fontSize", type: "number", default: "14", description: "Glyph size in px; also the column width." },
       { name: "speed", type: "number", default: "1", description: "Fall speed multiplier." },
-      { name: "density", type: "number", default: "0.6", description: "Share of columns raining at once, from 0 to 1." },
+      { name: "density", type: "number", default: "0.4", description: "Share of columns raining at once, from 0 to 1." },
       { name: "characters", type: "string", default: '"01"', description: "The glyphs to rain." },
       { name: "className", type: "string", description: "Merged onto the absolutely positioned root." },
     ],

@@ -44,7 +44,7 @@ export default function DrawerBasicDemo() {
               <div className="text-6xl font-bold tracking-tighter tabular-nums" aria-live="polite">
                 {goal}
               </div>
-              <div className="text-xs tracking-wide text-muted-foreground uppercase">kcal / day</div>
+              <div className="text-xs text-muted-foreground">kcal per day</div>
             </div>
             <Button
               variant="outline"

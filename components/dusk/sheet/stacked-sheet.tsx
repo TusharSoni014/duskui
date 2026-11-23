@@ -27,8 +27,8 @@ function useStackedSheet() {
   return context;
 }
 
-const slide: Transition = { type: "spring", duration: 0.5, bounce: 0 };
-const recede: Transition = { type: "spring", duration: 0.5, bounce: 0.1 };
+const slide: Transition = { type: "spring", duration: 0.35, bounce: 0 };
+const recede: Transition = { type: "spring", duration: 0.35, bounce: 0 };
 
 export interface StackedSheetProps {
   open?: boolean;
@@ -140,8 +140,8 @@ export function StackedSheetContent({
             >
               <motion.div
                 className={cn(
-                  "relative flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border bg-background",
-                  "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_24px_64px_-12px_rgb(0_0_0/0.75)]",
+                  "relative flex min-h-0 flex-1 flex-col overflow-hidden rounded-xl border bg-background",
+                  "shadow-lg",
                   className
                 )}
                 initial={false}

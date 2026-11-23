@@ -13,7 +13,7 @@ const block = (file: string) => `components/dusk/input-group/${file}`;
 const config: DocConfig = {
   title: "Input Group",
   intro:
-    "A React input group built on shadcn/ui: attach icons, prefixes, units, keyboard hints and buttons to an input or textarea, with one shared hover border, focus ring and invalid state — plus Motion blocks for a copy-to-clipboard field with a morphing check and a URL input whose protocol addon rolls between https and http.",
+    "A React input group built on shadcn/ui: attach icons, prefixes, units, keyboard hints and buttons to an input or textarea, with one shared hover state, focus ring and invalid state — plus Motion blocks for a copy-to-clipboard field with a morphing check and a URL input whose protocol addon rolls between https and http.",
   tags: ["Drop-in shadcn API", "Input & textarea", "Inline and block addons", "Group focus ring", "Motion blocks"],
   hero: { Demo: CopyInputDemo, file: demo("copy-input-demo.tsx"), minHeight: 220 },
   install: {
@@ -93,7 +93,7 @@ export function Search() {
       source: block("copy-input.tsx"),
       deps: "motion lucide-react",
       description:
-        "A read-only field for API keys, invite links and install commands. On copy the icon spins into a check, the label rolls to “Copied” without changing the button's width, and a mint sweep crosses the field. Focus selects the whole value.",
+        "A read-only field for API keys, invite links and install commands. On copy the icon swaps to a check and the label rolls to “Copied” without changing the button's width. Focus selects the whole value.",
       Demo: CopyInputDemo,
       file: demo("copy-input-demo.tsx"),
       minHeight: 220,
@@ -112,7 +112,7 @@ export function Search() {
       source: block("url-input.tsx"),
       deps: "motion lucide-react",
       description:
-        "Paste a full address and the protocol lifts out of the text into the addon. Click the addon to switch between https and http — the padlock unlocks and the protocol rolls over — and a check or warning pops in as you type. The value always includes the protocol.",
+        "Paste a full address and the protocol lifts out of the text into the addon. Click the addon to switch between https and http — the padlock unlocks and the protocol rolls over — and a check or warning fades in as you type. The value always includes the protocol.",
       Demo: UrlInputDemo,
       file: demo("url-input-demo.tsx"),
       minHeight: 200,
@@ -147,7 +147,7 @@ export function Search() {
     <>The group has <Code>role=&quot;group&quot;</Code>; still give the control a <Code>&lt;label&gt;</Code> or <Code>aria-label</Code>.</>,
     "Icon-only buttons need an aria-label. Clicking an addon focuses the control.",
     "Copy Input and URL Input announce their result through a polite live region; the protocol toggle says which protocol it switches to.",
-    "Icon swaps and the copy sweep respect prefers-reduced-motion.",
+    "Icon and label swaps respect prefers-reduced-motion.",
   ],
 };
 

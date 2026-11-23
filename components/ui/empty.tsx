@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils";
  *
  * Same parts and data-slot attributes as shadcn/ui's Empty (Empty,
  * EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription, EmptyContent) plus:
- * - A dashed outline with a faint mint glow at the top, for dark surfaces.
- * - `EmptyMedia variant="icon"`: a glassy tile with a mint-tinted icon and a
- *   soft halo. `variant="default"` leaves your illustration untouched.
+ * - A quiet dashed outline for dark surfaces.
+ * - `EmptyMedia variant="icon"`: a neutral tile with a muted icon.
+ *   `variant="default"` leaves your illustration untouched.
  * - `outline={false}` drops the dashed border to sit inside a card.
  * CSS only, so it works in Server Components.
  */
@@ -19,7 +19,7 @@ function Empty({
   outline = true,
   ...props
 }: React.ComponentProps<"div"> & {
-  /** Draw the dashed border and glow. Turn off when the empty state sits inside a card. */
+  /** Draw the dashed border. Turn off when the empty state sits inside a card. */
   outline?: boolean;
 }) {
   return (
@@ -27,10 +27,7 @@ function Empty({
       data-slot="empty"
       className={cn(
         "relative isolate flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-xl p-6 text-center text-balance md:p-12",
-        outline && [
-          "border border-dashed border-white/10",
-          "bg-[radial-gradient(120%_70%_at_50%_0%,color-mix(in_oklab,var(--color-primary)_6%,transparent),transparent_70%)]",
-        ],
+        outline && "border border-dashed",
         className
       )}
       {...props}
@@ -56,9 +53,8 @@ const emptyMediaVariants = cva(
       variant: {
         default: "bg-transparent",
         icon: [
-          "size-12 rounded-xl border border-white/10 bg-linear-to-b from-white/[0.08] to-white/[0.02] text-primary",
-          "shadow-[inset_0_1px_0_rgb(255_255_255/0.08),0_8px_24px_-8px_rgb(0_0_0/0.6),0_0_32px_-10px_var(--color-primary)]",
-          "[&_svg:not([class*='size-'])]:size-6",
+          "size-10 rounded-lg border bg-muted text-foreground",
+          "[&_svg:not([class*='size-'])]:size-5",
         ],
       },
     },
@@ -99,7 +95,7 @@ function EmptyDescription({ className, ...props }: React.ComponentProps<"p">) {
     <p
       data-slot="empty-description"
       className={cn(
-        "text-sm/relaxed text-muted-foreground [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary",
+        "text-sm/relaxed text-muted-foreground [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-foreground",
         className
       )}
       {...props}

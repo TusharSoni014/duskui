@@ -13,10 +13,10 @@ export default function AuroraBackgroundColors() {
           key={palette.label}
           className="relative flex h-56 items-end overflow-hidden rounded-xl border border-white/10 bg-background p-4"
         >
-          <AuroraBackground colors={palette.colors} intensity={0.7} />
+          <AuroraBackground colors={palette.colors} />
           <div className="relative">
             <p className="text-sm font-medium text-white">{palette.label}</p>
-            <p className="font-mono text-xs text-white/60">{palette.colors.length} colors</p>
+            <p className="text-xs text-white/60">{palette.colors.length} colors</p>
           </div>
         </div>
       ))}

@@ -13,7 +13,7 @@ export default function CheckboxCardDemo() {
         title="Analytics"
         description="Privacy-friendly page views and funnels."
       >
-        <span className="text-xs text-primary">+$9 / month</span>
+        <span className="text-xs text-muted-foreground">+$9 / month</span>
       </CheckboxCard>
       <CheckboxCard
         name="addons"
@@ -22,7 +22,7 @@ export default function CheckboxCardDemo() {
         title="Custom domains"
         description="Bring your own domain with automatic TLS."
       >
-        <span className="text-xs text-primary">+$5 / month</span>
+        <span className="text-xs text-muted-foreground">+$5 / month</span>
       </CheckboxCard>
       <CheckboxCard
         name="addons"

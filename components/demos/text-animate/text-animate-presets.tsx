@@ -30,7 +30,7 @@ export default function TextAnimatePresets() {
       <button
         type="button"
         onClick={() => setRun((n) => n + 1)}
-        className="inline-flex items-center gap-2 rounded-lg border border-white/10 px-3 py-1.5 text-sm text-white/70 transition-colors hover:text-white focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:outline-none"
+        className="inline-flex items-center gap-2 rounded-lg border border-white/10 px-3 py-1.5 text-sm text-white/70 transition-colors hover:text-white focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none"
       >
         <RotateCcw className="size-3.5" aria-hidden />
         Replay

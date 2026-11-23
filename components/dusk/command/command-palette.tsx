@@ -80,7 +80,7 @@ export interface CommandPaletteProps {
 
 const highlightSpring: Transition = { type: "spring", stiffness: 560, damping: 40, mass: 0.6 };
 const heightSpring: Transition = { type: "spring", bounce: 0, duration: 0.35 };
-const surfaceSpring: Transition = { type: "spring", duration: 0.35, bounce: 0.18 };
+const surfaceSpring: Transition = { type: "spring", duration: 0.25, bounce: 0 };
 
 /** Search labels, descriptions and keywords, never internal ids. */
 const filter = (_value: string, search: string, keywords?: string[]) =>
@@ -90,7 +90,7 @@ const filter = (_value: string, search: string, keywords?: string[]) =>
  * A ⌘K command palette. A highlight glides between items as you arrow or
  * hover, recently run actions surface at the top, and items can open nested
  * pages — the list slides in from the side you're travelling, a breadcrumb
- * shows where you are and the panel springs to the new height. Backspace on
+ * shows where you are and the panel eases to the new height. Backspace on
  * an empty search or Escape goes back a page. Built on cmdk and Radix Dialog:
  * filtering, keyboard navigation, focus trap and focus return all work.
  */
@@ -221,7 +221,7 @@ export function CommandPalette({
             // One highlight per page, so it glides within a page and simply appears on a new one.
             layoutId={`${layoutId}-${prefix === "recent" ? "home" : prefix}-highlight`}
             transition={reduceMotion ? { duration: 0 } : highlightSpring}
-            className="absolute inset-0 rounded-lg bg-accent shadow-[inset_0_1px_0_rgb(255_255_255/0.05),inset_0_0_0_1px_color-mix(in_oklab,var(--color-primary)_18%,transparent)]"
+            className="absolute inset-0 rounded-lg bg-accent"
           />
         )}
         {item.icon && (
@@ -229,7 +229,7 @@ export function CommandPalette({
             aria-hidden
             className={cn(
               "relative flex size-7 shrink-0 items-center justify-center rounded-md border bg-white/[0.03] transition-colors duration-150 [&_svg]:size-4",
-              isSelected ? "border-primary/30 text-primary [&_svg]:!text-primary" : "text-muted-foreground"
+              isSelected ? "border-white/15 text-foreground [&_svg]:!text-foreground" : "text-muted-foreground"
             )}
           >
             {item.icon}
@@ -320,7 +320,7 @@ export function CommandPalette({
                   filter={filter}
                   value={selected}
                   onValueChange={setSelected}
-                  className="rounded-2xl border shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_24px_64px_-12px_rgb(0_0_0/0.75),0_0_0_1px_rgb(0_0_0/0.3)]"
+                  className="rounded-xl border shadow-lg"
                   onKeyDown={(event) => {
                     if (event.key === "Backspace" && !search && stack.length) {
                       event.preventDefault();
@@ -329,7 +329,7 @@ export function CommandPalette({
                   }}
                 >
                   <div className="flex items-center gap-2 border-b px-3">
-                    <Search aria-hidden className="size-4 shrink-0 text-primary" />
+                    <Search aria-hidden className="size-4 shrink-0 text-muted-foreground" />
                     <AnimatePresence initial={false} mode="popLayout">
                       {stack.length > 0 && (
                         <motion.nav
@@ -353,7 +353,7 @@ export function CommandPalette({
                             <span
                               key={id}
                               aria-current={i === stack.length - 1 ? "page" : undefined}
-                              className="rounded-md border border-primary/25 bg-primary/10 px-1.5 py-0.5 text-xs font-medium text-primary"
+                              className="rounded-md border border-white/10 bg-white/[0.06] px-1.5 py-0.5 text-xs font-medium text-foreground"
                             >
                               {pages.find((p) => p.id === id)?.title ?? id}
                             </span>
@@ -366,7 +366,7 @@ export function CommandPalette({
                       value={search}
                       onValueChange={setSearch}
                       placeholder={page?.placeholder ?? placeholder}
-                      className="h-12 min-w-0 flex-1 bg-transparent text-sm caret-primary outline-none placeholder:text-muted-foreground"
+                      className="h-12 min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
                     />
                     <kbd className="hidden shrink-0 rounded border border-white/10 bg-white/[0.04] px-1.5 py-0.5 font-mono text-[0.65rem] text-muted-foreground sm:inline">
                       esc
@@ -382,10 +382,10 @@ export function CommandPalette({
                         initial={
                           direction === 0 || reduceMotion
                             ? false
-                            : { opacity: 0, x: direction * 24, filter: "blur(3px)" }
+                            : { opacity: 0, x: direction * 8 }
                         }
-                        animate={{ opacity: 1, x: 0, filter: "blur(0px)", transitionEnd: { filter: "none" } }}
-                        transition={{ type: "spring", bounce: 0, duration: 0.3 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ type: "spring", bounce: 0, duration: 0.25 }}
                       >
                         <CommandEmpty>{emptyMessage}</CommandEmpty>
                         {recentItems.length > 0 && (
@@ -444,7 +444,7 @@ function Kbd({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** Springs its height to its content, so the palette never jumps between pages or results. */
+/** Eases its height to its content, so the palette never jumps between pages or results. */
 function AutoHeight({ children, transition }: { children: React.ReactNode; transition: Transition }) {
   const innerRef = React.useRef<HTMLDivElement>(null);
   const [height, setHeight] = React.useState<number | "auto">("auto");

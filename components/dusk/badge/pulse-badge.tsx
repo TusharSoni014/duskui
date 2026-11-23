@@ -27,11 +27,11 @@ export interface PulseDotProps extends React.ComponentProps<"span"> {
 }
 
 /**
- * A status dot with a ring that expands and fades, like a live indicator.
+ * A status dot with a faint ring that expands and fades, like a live indicator.
  * Decorative (aria-hidden) — always pair it with text. The ring stops under
  * reduced motion and the solid dot stays.
  */
-export function PulseDot({ tone = "success", pulse = true, speed = 1.6, className, ...props }: PulseDotProps) {
+export function PulseDot({ tone = "success", pulse = true, speed = 2, className, ...props }: PulseDotProps) {
   const reduceMotion = useReducedMotion();
   return (
     <span
@@ -43,8 +43,8 @@ export function PulseDot({ tone = "success", pulse = true, speed = 1.6, classNam
       {pulse && !reduceMotion && (
         <motion.span
           className={cn("absolute inset-0 rounded-full", tones[tone])}
-          initial={{ scale: 1, opacity: 0.7 }}
-          animate={{ scale: 2.6, opacity: 0 }}
+          initial={{ scale: 1, opacity: 0.35 }}
+          animate={{ scale: 2, opacity: 0 }}
           transition={{ duration: speed, ease: "easeOut", repeat: Infinity }}
         />
       )}

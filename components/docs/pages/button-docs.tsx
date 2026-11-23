@@ -114,7 +114,7 @@ export function SaveButton() {
       deps: "motion lucide-react",
       description: (
         <>
-          Walks through idle → loading → success / error in place. The width springs between labels, the
+          Walks through idle → loading → success / error in place. The width eases between labels, the
           check mark draws itself and errors shake. Pair it with the <Code>useStatusAction</Code> hook to
           wire any async function.
         </>
@@ -149,12 +149,12 @@ export function SaveButton() {
       source: block("shimmer-button.tsx"),
       deps: "motion",
       description:
-        "A light sheen sweeps across on hover, or on a slow loop with idle. Best kept to one primary call to action per screen.",
+        "A thin, faint sheen sweeps across on hover, or on a slow loop with idle. Best kept to one primary call to action per screen.",
       Demo: ShimmerButtonDemo,
       file: demo("shimmer-button-demo.tsx"),
       props: [
         { name: "idle", type: "boolean", default: "false", description: "Sweep on a loop instead of only on hover." },
-        { name: "interval", type: "number", default: "2.5", description: "Seconds between idle sweeps." },
+        { name: "interval", type: "number", default: "4", description: "Seconds between idle sweeps." },
       ],
     },
     {
@@ -164,10 +164,10 @@ export function SaveButton() {
       source: block("magnetic-button.tsx"),
       deps: "motion",
       description:
-        "Pulled toward the cursor on spring physics, with the label moving slightly further for depth. Mouse only; static for touch and reduced motion.",
+        "Pulled slightly toward the cursor on a damped spring, with the label moving slightly further for depth. Mouse only; static for touch and reduced motion.",
       Demo: MagneticButtonDemo,
       file: demo("magnetic-button-demo.tsx"),
-      props: [{ name: "strength", type: "number", default: "0.35", description: "How far the button follows the cursor (0–1)." }],
+      props: [{ name: "strength", type: "number", default: "0.15", description: "How far the button follows the cursor (0–1)." }],
     },
     {
       id: "spotlight-button",
@@ -176,12 +176,12 @@ export function SaveButton() {
       source: block("spotlight-button.tsx"),
       deps: "motion",
       description:
-        "A soft light tracks the cursor along the border and surface. Uses motion values, so moving the mouse never re-renders React.",
+        "A faint highlight tracks the cursor along the 1px border, with a barely visible tint on the surface. Uses motion values, so moving the mouse never re-renders React.",
       Demo: SpotlightButtonDemo,
       file: demo("spotlight-button-demo.tsx"),
       props: [
-        { name: "radius", type: "number", default: "80", description: "Radius of the light in px." },
-        { name: "color", type: "string", default: '"var(--color-primary)"', description: "Any CSS color." },
+        { name: "radius", type: "number", default: "60", description: "Radius of the light in px." },
+        { name: "color", type: "string", default: '"#ffffff"', description: "Any CSS color, mixed in at low opacity." },
       ],
     },
     {

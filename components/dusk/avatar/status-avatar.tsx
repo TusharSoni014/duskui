@@ -9,9 +9,9 @@ import { cn } from "@/lib/utils";
 export type AvatarStatus = "online" | "away" | "busy" | "offline";
 
 const statuses: Record<AvatarStatus, { label: string; dot: string; ring: string; pulse: boolean }> = {
-  online: { label: "Online", dot: "bg-emerald-400", ring: "ring-emerald-400/70", pulse: true },
-  away: { label: "Away", dot: "bg-amber-400", ring: "ring-amber-400/60", pulse: false },
-  busy: { label: "Busy", dot: "bg-rose-500", ring: "ring-rose-500/70", pulse: true },
+  online: { label: "Online", dot: "bg-emerald-400", ring: "ring-emerald-400/50", pulse: true },
+  away: { label: "Away", dot: "bg-amber-400", ring: "ring-amber-400/50", pulse: false },
+  busy: { label: "Busy", dot: "bg-rose-500", ring: "ring-rose-500/50", pulse: true },
   offline: { label: "Offline", dot: "bg-zinc-500", ring: "ring-zinc-500/40", pulse: false },
 };
 
@@ -31,7 +31,7 @@ export interface StatusAvatarProps extends Omit<React.ComponentProps<"span">, "c
   size?: keyof typeof sizes;
   /** Draw a colored ring around the avatar in the status color. */
   showRing?: boolean;
-  /** Pulse the dot for live statuses (online, busy). */
+  /** Pulse the dot for live statuses (online, busy). Off by default. */
   pulse?: boolean;
 }
 
@@ -41,9 +41,9 @@ function initials(name: string) {
 }
 
 /**
- * Avatar with a presence indicator. The status dot sends out a soft pulse for
- * live statuses, pops when the status changes, and the optional ring
- * crossfades to the new color. Labelled as “Name (Status)” for screen readers;
+ * Avatar with a presence indicator. The status dot scales in when the status
+ * changes, the optional ring crossfades to the new color, and `pulse` adds a
+ * faint ring to live statuses. Labelled as “Name (Status)” for screen readers;
  * the pulse stops under reduced motion.
  */
 export function StatusAvatar({
@@ -53,7 +53,7 @@ export function StatusAvatar({
   status = "online",
   size = "default",
   showRing = true,
-  pulse = true,
+  pulse = false,
   className,
   ...props
 }: StatusAvatarProps) {
@@ -83,19 +83,19 @@ export function StatusAvatar({
           <motion.span
             key={`pulse-${status}`}
             className={cn("absolute inset-0 rounded-full", config.dot)}
-            initial={{ scale: 1, opacity: 0.55 }}
-            animate={{ scale: 2.4, opacity: 0 }}
-            transition={{ duration: 1.6, ease: "easeOut", repeat: Infinity, repeatDelay: 0.4 }}
+            initial={{ scale: 1, opacity: 0.3 }}
+            animate={{ scale: 1.8, opacity: 0 }}
+            transition={{ duration: 2, ease: "easeOut", repeat: Infinity, repeatDelay: 1 }}
           />
         )}
         <AnimatePresence initial={false}>
           <motion.span
             key={status}
             className={cn("relative col-start-1 row-start-1 size-full rounded-full ring-2 ring-background", config.dot)}
-            initial={reduceMotion ? { opacity: 0 } : { scale: 0.3, opacity: 0 }}
+            initial={reduceMotion ? { opacity: 0 } : { scale: 0.6, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            exit={reduceMotion ? { opacity: 0 } : { scale: 0.3, opacity: 0 }}
-            transition={reduceMotion ? { duration: 0.15 } : { type: "spring", duration: 0.4, bounce: 0.5 }}
+            exit={reduceMotion ? { opacity: 0 } : { scale: 0.6, opacity: 0 }}
+            transition={reduceMotion ? { duration: 0.15 } : { type: "spring", duration: 0.25, bounce: 0.15 }}
           />
         </AnimatePresence>
       </span>

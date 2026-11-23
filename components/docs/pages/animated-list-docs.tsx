@@ -10,7 +10,7 @@ const demo = (file: string) => `components/demos/animated-list/${file}`;
 const config: DocConfig = {
   title: "Animated List",
   intro:
-    "An animated notification list for React and Tailwind CSS: new items spring in at the top while older ones glide down with Motion layout animations, and anything past the limit fades out. Great for notification feeds, activity logs and live landing-page demos, with polite screen reader announcements built in.",
+    "An animated notification list for React and Tailwind CSS: new items fade in at the top while older ones glide down with Motion layout animations, and anything past the limit fades out. Great for notification feeds, activity logs and live landing-page demos, with polite screen reader announcements built in.",
   tags: ["Layout animations", "AnimatePresence popLayout", "Max visible items", "Auto stream hook", "Live region", "prefers-reduced-motion"],
   hero: { Demo: AnimatedListDemo, file: demo("animated-list-demo.tsx"), minHeight: 420 },
   install: {

@@ -16,15 +16,15 @@ export interface MagneticButtonProps extends MotionButtonProps {
   strength?: number;
 }
 
-const spring = { stiffness: 220, damping: 16, mass: 0.4 };
+const spring = { stiffness: 220, damping: 24, mass: 0.5 };
 
 /**
- * The button is pulled toward the cursor and springs back on leave.
- * The label moves a little further than the surface for a parallax feel.
+ * The button is pulled slightly toward the cursor and eases back on leave.
+ * The label moves a touch further than the surface for a parallax feel.
  * Only reacts to a mouse, never to touch, and is static with reduced motion.
  */
 export function MagneticButton({
-  strength = 0.35,
+  strength = 0.15,
   children,
   onPointerMove,
   onPointerLeave,
@@ -35,8 +35,8 @@ export function MagneticButton({
   const y = useMotionValue(0);
   const springX = useSpring(x, spring);
   const springY = useSpring(y, spring);
-  const labelX = useTransform(springX, (v) => v * 0.4);
-  const labelY = useTransform(springY, (v) => v * 0.4);
+  const labelX = useTransform(springX, (v) => v * 0.3);
+  const labelY = useTransform(springY, (v) => v * 0.3);
 
   const handleMove = (event: React.PointerEvent<HTMLButtonElement>) => {
     onPointerMove?.(event);

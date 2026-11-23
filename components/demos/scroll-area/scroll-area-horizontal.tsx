@@ -11,15 +11,13 @@ const works = [
 
 export default function ScrollAreaHorizontalDemo() {
   return (
-    <ScrollArea className="w-full max-w-md rounded-xl border bg-card/40 whitespace-nowrap">
+    <ScrollArea className="w-full max-w-md rounded-xl border bg-card whitespace-nowrap">
       <div className="flex w-max gap-3 p-4">
         {works.map((work) => (
           <figure key={work.title} className="shrink-0">
             <div
               className="h-36 w-28 rounded-lg border"
-              style={{
-                background: `radial-gradient(120% 90% at 20% 0%, oklch(0.7 0.15 ${work.hue} / 0.6), transparent 60%), linear-gradient(160deg, oklch(0.25 0.05 ${work.hue}), oklch(0.12 0.03 ${work.hue}))`,
-              }}
+              style={{ background: `oklch(0.24 0.03 ${work.hue})` }}
             />
             <figcaption className="pt-2 text-xs text-muted-foreground">{work.title}</figcaption>
           </figure>

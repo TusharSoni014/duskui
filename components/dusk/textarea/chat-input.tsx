@@ -96,10 +96,9 @@ export function ChatInput({
         }
       }}
       className={cn(
-        "group/chat relative w-full cursor-text rounded-2xl border border-input bg-input/30 p-2 shadow-xs",
+        "group/chat relative w-full cursor-text rounded-xl border border-input bg-input/30 p-2 shadow-xs",
         "transition-[border-color,box-shadow,background-color] duration-200 ease-out motion-reduce:transition-none",
-        "hover:border-ring/40 focus-within:border-ring/70 focus-within:ring-[3px] focus-within:ring-ring/20",
-        "focus-within:shadow-[0_0_32px_-12px_var(--color-primary)]",
+        "focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50",
         "data-disabled:cursor-not-allowed data-disabled:opacity-50",
         containerClassName
       )}
@@ -149,8 +148,8 @@ export function ChatInput({
         <motion.div
           className="ml-auto sm:ml-1.5"
           initial={false}
-          animate={canSend || loading ? { scale: 1, opacity: 1 } : { scale: reduceMotion ? 1 : 0.9, opacity: 0.6 }}
-          transition={{ type: "spring", bounce: 0.45, duration: 0.35 }}
+          animate={canSend || loading ? { scale: 1, opacity: 1 } : { scale: reduceMotion ? 1 : 0.96, opacity: 0.6 }}
+          transition={{ duration: 0.15, ease: "easeOut" }}
         >
           <Button
             type="button"

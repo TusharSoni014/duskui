@@ -13,7 +13,7 @@ const block = (file: string) => `components/dusk/dialog/${file}`;
 const config: DocConfig = {
   title: "Dialog",
   intro:
-    "The shadcn/ui Dialog (modal) with a smoother open and close animation, blurred backdrop and scrollable content — plus three accessible React dialog blocks built with Motion and Radix: a card that morphs into a dialog, an async confirm dialog and a drag-to-dismiss bottom sheet drawer.",
+    "The shadcn/ui Dialog (modal) with a short, calm open and close animation, dimmed backdrop and scrollable content — plus three accessible React dialog blocks built with Motion and Radix: a card that morphs into a dialog, an async confirm dialog and a drag-to-dismiss bottom sheet drawer.",
   tags: ["Drop-in shadcn API", "Radix focus trap", "Motion blocks", "prefers-reduced-motion"],
   hero: { Demo: MorphingDialogDemo, file: demo("morphing-dialog-demo.tsx"), minHeight: 320 },
   install: {
@@ -62,7 +62,7 @@ export function EditProfile() {
       id: "default",
       title: "Default",
       description:
-        "Fades, scales and rises in on an expo-out curve, then exits faster than it entered so closing feels instant. Focus moves into the dialog and returns to the trigger.",
+        "Fades and scales in slightly with a short ease-out, then exits faster than it entered so closing feels instant. Focus moves into the dialog and returns to the trigger.",
       Demo: DialogBasicDemo,
       file: demo("dialog-basic.tsx"),
       minHeight: 200,

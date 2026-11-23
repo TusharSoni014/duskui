@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 export interface CardProps extends React.ComponentProps<"div"> {
   /** Render the child element instead of a `<div>` (Radix Slot), e.g. a link. */
   asChild?: boolean;
-  /** Lift, brighten the border and show a focus ring on hover / focus. Use for clickable cards. */
+  /** Brighten the border and background on hover and show a focus ring. Use for clickable cards. */
   interactive?: boolean;
 }
 
@@ -15,9 +15,9 @@ export interface CardProps extends React.ComponentProps<"div"> {
  *
  * Same parts and data-slot attributes as shadcn (Card, CardHeader, CardTitle,
  * CardDescription, CardAction, CardContent, CardFooter) plus:
- * - A subtle top highlight and smooth border / shadow transitions.
- * - `interactive`: hover lift, mint-tinted border and a focus-visible ring for
- *   cards that are links or buttons (combine with `asChild`).
+ * - A quiet neutral shadow and smooth border / background transitions.
+ * - `interactive`: a subtle hover border and background and a focus-visible
+ *   ring for cards that are links or buttons (combine with `asChild`).
  * - `isolate`, so decorative layers placed at `-z-10` sit above the surface
  *   but below the content.
  * CSS only, so it works in Server Components.
@@ -31,12 +31,11 @@ function Card({ className, asChild = false, interactive = false, ...props }: Car
       data-interactive={interactive || undefined}
       className={cn(
         "relative isolate flex flex-col gap-6 rounded-xl border bg-card py-6 text-card-foreground",
-        "shadow-[inset_0_1px_0_rgb(255_255_255/0.04),0_1px_2px_rgb(0_0_0/0.3)]",
-        "transition-[border-color,box-shadow,background-color,translate] duration-200 ease-out motion-reduce:transition-none",
+        "shadow-sm",
+        "transition-[border-color,box-shadow,background-color] duration-150 ease-out motion-reduce:transition-none",
         interactive && [
-          "outline-none hover:-translate-y-0.5 hover:border-primary/25 motion-reduce:hover:translate-y-0",
-          "hover:shadow-[inset_0_1px_0_rgb(255_255_255/0.06),0_16px_40px_-16px_rgb(0_0_0/0.7),0_0_24px_-12px_var(--color-primary)]",
-          "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40",
+          "outline-none hover:border-white/20 hover:bg-accent/40",
+          "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
         ],
         className
       )}

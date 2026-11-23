@@ -56,7 +56,7 @@ export interface AnimatedCountBadgeProps extends Omit<BadgeProps, "children" | "
   value: number;
   /** Above this, show `max+` (e.g. 99+). */
   max?: number;
-  /** Give the badge a small bounce whenever the count goes up. */
+  /** Give the badge a small bump whenever the count goes up. */
   bump?: boolean;
   /** Screen-reader text for the count, e.g. `(n) => \`${n} unread messages\``. */
   label?: (value: number) => string;
@@ -86,7 +86,7 @@ export function AnimatedCountBadge({
   const previous = React.useRef(safe);
   React.useEffect(() => {
     if (bump && !reduceMotion && safe > previous.current && scope.current) {
-      animate(scope.current, { scale: [1, 1.18, 1] }, { duration: 0.35, ease: "easeOut" });
+      animate(scope.current, { scale: [1, 1.08, 1] }, { duration: 0.25, ease: "easeOut" });
     }
     previous.current = safe;
   }, [safe, bump, reduceMotion, animate, scope]);

@@ -45,10 +45,10 @@ function hostnameOf(href: string) {
 }
 
 /**
- * An inline link that previews its destination on hover. The card tips up
- * out of the link with a little perspective, then drifts along with the
+ * An inline link that previews its destination on hover. The card rises
+ * out of the link, then drifts along with the
  * cursor as it moves across the text. The image shimmers (DuskUI Skeleton)
- * until it has loaded, then fades in; a broken image falls back to a tinted
+ * until it has loaded, then fades in; a broken image falls back to a plain
  * panel with the site name. The link stays a normal link: keyboard focus
  * opens the preview too, and the card is extra, never the only way to see
  * where the link goes. Static positioning and fades only under reduced motion.
@@ -123,26 +123,25 @@ export function LinkPreview({
                   className={cn(
                     "block w-72 overflow-hidden rounded-xl border bg-popover p-2 text-popover-foreground outline-none",
                     "origin-(--radix-hover-card-content-transform-origin)",
-                    "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_20px_48px_-12px_rgb(0_0_0/0.75),0_0_0_1px_rgb(0_0_0/0.2)]",
-                    "transition-[border-color] duration-200 hover:border-primary/30",
+                    "shadow-lg",
                     contentClassName
                   )}
                   initial={
                     reduceMotion
                       ? { opacity: 0 }
-                      : { opacity: 0, scale: 0.92, rotateX: side === "top" ? 14 : -14, y: side === "top" ? 8 : -8, filter: "blur(4px)" }
+                      : { opacity: 0, scale: 0.96, y: side === "top" ? 4 : -4 }
                   }
-                  animate={{ opacity: 1, scale: 1, rotateX: 0, y: 0, filter: "blur(0px)", transitionEnd: { filter: "none" } }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={
                     reduceMotion
                       ? { opacity: 0, transition: { duration: 0.1 } }
                       : { opacity: 0, scale: 0.95, y: side === "top" ? 4 : -4, transition: { duration: 0.12, ease: "easeIn" } }
                   }
-                  transition={{ type: "spring", duration: 0.45, bounce: 0.25 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
                 >
                   <PreviewImage src={preview.image} site={site} />
                   <div className="px-1.5 pt-2.5 pb-1">
-                    <p className="flex items-center gap-1 text-[0.6875rem] font-medium tracking-wide text-muted-foreground uppercase">
+                    <p className="flex items-center gap-1 text-xs text-muted-foreground">
                       {site}
                       <ArrowUpRight className="size-3" />
                     </p>
@@ -161,7 +160,7 @@ export function LinkPreview({
   );
 }
 
-/** The preview image: a shimmer until it loads, then a fade-in. Falls back to a tinted panel. */
+/** The preview image: a shimmer until it loads, then a fade-in. Falls back to a plain panel. */
 function PreviewImage({ src, site }: { src?: string; site: string }) {
   const [status, setStatus] = React.useState<"loading" | "loaded" | "error">(src ? "loading" : "error");
 
@@ -169,8 +168,8 @@ function PreviewImage({ src, site }: { src?: string; site: string }) {
     <div className="relative aspect-[1.91/1] overflow-hidden rounded-lg bg-muted">
       {status === "loading" && <Skeleton className="absolute inset-0 rounded-none" />}
       {status === "error" ? (
-        <div className="absolute inset-0 grid place-items-center bg-[radial-gradient(100%_120%_at_0%_0%,color-mix(in_oklab,var(--primary)_25%,transparent),transparent_70%)]">
-          <span className="text-2xl font-semibold tracking-tight text-primary/80">{site.charAt(0).toUpperCase()}</span>
+        <div className="absolute inset-0 grid place-items-center">
+          <span className="text-2xl font-semibold tracking-tight text-muted-foreground">{site.charAt(0).toUpperCase()}</span>
         </div>
       ) : (
         // eslint-disable-next-line @next/next/no-img-element -- plain <img> keeps the block framework-agnostic.

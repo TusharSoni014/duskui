@@ -21,7 +21,6 @@ export default function ScrollRevealTextQuoteDemo() {
           container={scroller}
           baseOpacity={0.08}
           offset={["start 0.9", "end 0.6"]}
-          wordClassName="text-primary"
           className="font-serif text-3xl leading-tight italic"
         >
           “We shipped the redesign on a Friday night. By Monday, nobody remembered the old one.”

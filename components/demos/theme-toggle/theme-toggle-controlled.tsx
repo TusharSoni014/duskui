@@ -15,7 +15,7 @@ export default function ThemeToggleControlledDemo() {
     <div className="flex w-full max-w-md flex-col items-center gap-4">
       <article
         ref={article}
-        className={`dark ${palette} w-full rounded-2xl border border-(--pv-border) bg-(--pv-bg) p-6 text-(--pv-fg)`}
+        className={`dark ${palette} w-full rounded-xl border border-(--pv-border) bg-(--pv-bg) p-6 text-(--pv-fg)`}
       >
         <div className="mb-3 flex items-start justify-between gap-4">
           <h3 className="font-serif text-xl font-semibold">Reading mode</h3>

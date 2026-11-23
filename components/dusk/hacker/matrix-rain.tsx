@@ -46,7 +46,7 @@ export function MatrixRain({
   fontSize = 16,
   speed = 1,
   fade = 0.08,
-  density = 0.6,
+  density = 0.4,
   characters = KATAKANA + DIGITS,
   paused = false,
   className,

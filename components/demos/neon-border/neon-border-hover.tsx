@@ -9,7 +9,7 @@ export default function NeonBorderHoverDemo() {
   return (
     <div className="grid w-full max-w-lg gap-4 sm:grid-cols-2">
       {links.map((link) => (
-        <NeonBorder key={link.title} trigger="hover" color="#22d3ee" radius={12} speed={2.5}>
+        <NeonBorder key={link.title} trigger="hover" color="#22d3ee" speed={3}>
           <a
             href="#"
             className="block rounded-[inherit] bg-card p-5 outline-none focus-visible:ring-2 focus-visible:ring-[#22d3ee]/50"

@@ -31,7 +31,7 @@ export default function AnimatedPopoverDemo() {
       </AnimatedPopoverTrigger>
       <AnimatedPopoverContent showArrow className="w-80">
         <div className="flex items-start gap-3">
-          <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
+          <span className="grid size-9 shrink-0 place-items-center rounded-md border bg-muted text-muted-foreground">
             <Link2 className="size-4" aria-hidden />
           </span>
           <div>

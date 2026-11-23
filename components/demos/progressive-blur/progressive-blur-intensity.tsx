@@ -15,7 +15,7 @@ export default function ProgressiveBlurIntensity() {
       {levels.map((level) => (
         <div
           key={level.blurIntensity}
-          className="relative h-56 overflow-hidden rounded-xl border border-white/10 bg-[radial-gradient(circle_at_30%_70%,color-mix(in_oklab,var(--color-primary)_45%,transparent),transparent_55%),radial-gradient(circle_at_80%_90%,#a855f7,transparent_50%)] p-4"
+          className="relative h-56 overflow-hidden rounded-xl border border-white/10 bg-card p-4"
         >
           <p className="text-sm leading-relaxed text-white/85">
             {text} {text}

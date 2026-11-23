@@ -8,11 +8,11 @@ export default function HighlighterDemo() {
         free to copy
       </Highlighter>
       , built on{" "}
-      <Highlighter action="underline" color="#22d3ee">
+      <Highlighter action="underline" color="rgb(255 255 255 / 0.5)">
         shadcn/ui
       </Highlighter>{" "}
       and animated with{" "}
-      <Highlighter action="circle" color="#f472b6">
+      <Highlighter action="circle" color="rgb(255 255 255 / 0.5)">
         Motion
       </Highlighter>
       .

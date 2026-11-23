@@ -10,7 +10,7 @@ const demo = (file: string) => `components/demos/animated-beam/${file}`;
 const config: DocConfig = {
   title: "Animated Beam",
   intro:
-    "An animated SVG beam for React that connects two elements with a curved path and sends a glowing gradient pulse along it. Ideal for integration diagrams, data-flow illustrations and \"how it works\" sections; it measures the elements itself and redraws whenever the layout changes.",
+    "An animated SVG beam for React that connects two elements with a curved path and sends a thin gradient pulse along it. Ideal for integration diagrams, data-flow illustrations and \"how it works\" sections; it measures the elements itself and redraws whenever the layout changes.",
   tags: ["Connects any two refs", "Curved paths", "ResizeObserver", "No re-renders while animating", "prefers-reduced-motion"],
   hero: { Demo: AnimatedBeamDemo, file: demo("animated-beam-demo.tsx"), minHeight: 360 },
   install: {
@@ -85,10 +85,10 @@ export function Integration() {
       { name: "delay", type: "number", default: "0", description: "Seconds before the first pulse." },
       { name: "repeatDelay", type: "number", default: "0.6", description: "Seconds of rest between pulses." },
       { name: "pathColor", type: "string", default: '"#ffffff"', description: "Color of the resting track." },
-      { name: "pathWidth", type: "number", default: "2", description: "Stroke width of the track and pulse." },
-      { name: "pathOpacity", type: "number", default: "0.12", description: "Opacity of the resting track." },
+      { name: "pathWidth", type: "number", default: "1.5", description: "Stroke width of the track and pulse." },
+      { name: "pathOpacity", type: "number", default: "0.1", description: "Opacity of the resting track." },
       { name: "gradientStartColor", type: "string", default: "var(--color-primary)", description: "Pulse color at the from end." },
-      { name: "gradientStopColor", type: "string", default: '"#22d3ee"', description: "Pulse color at the to end." },
+      { name: "gradientStopColor", type: "string", default: '"#e4e4e7"', description: "Pulse color at the to end." },
       { name: "pulseLength", type: "number", default: "0.25", description: "Pulse length as a fraction of the beam (0.05–0.6)." },
       { name: "fromOffset", type: "{ x?: number; y?: number }", description: "Nudge the start point in px." },
       { name: "toOffset", type: "{ x?: number; y?: number }", description: "Nudge the end point in px." },

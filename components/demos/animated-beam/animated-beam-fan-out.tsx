@@ -20,9 +20,6 @@ function Service({ ref, label, children }: { ref: React.Ref<HTMLDivElement>; lab
 const beam = {
   duration: 2,
   repeatDelay: 1.2,
-  pathWidth: 1.5,
-  gradientStartColor: "#38bdf8",
-  gradientStopColor: "var(--color-primary)",
   pulseLength: 0.35,
 };
 

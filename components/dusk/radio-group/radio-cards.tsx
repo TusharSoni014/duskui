@@ -7,7 +7,7 @@ import { LayoutGroup, motion, useReducedMotion, type Transition } from "motion/r
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cn } from "@/lib/utils";
 
-const outlineSpring: Transition = { type: "spring", bounce: 0.2, duration: 0.5 };
+const outlineSpring: Transition = { type: "spring", bounce: 0.1, duration: 0.3 };
 
 type RadioCardsContextValue = { value: string; layoutId: string; reduceMotion: boolean };
 
@@ -28,8 +28,8 @@ export interface RadioCardsProps
 
 /**
  * Selectable cards for plans, shipping speeds or any one-of-many choice. A
- * glowing mint outline glides from card to card (a shared Motion `layoutId`)
- * and the selected card's icon lifts. It is a Radix radio group underneath,
+ * 1px primary outline glides from card to card (a shared Motion `layoutId`).
+ * It is a Radix radio group underneath,
  * so arrow keys move the selection, the value submits with forms via `name`
  * and each card is announced as a radio named by its title. Lay the cards out
  * with `className` (it is a CSS grid). Under reduced motion the outline jumps.
@@ -106,18 +106,16 @@ export function RadioCard({
   const checked = selected === value;
 
   return (
-    <motion.label
+    <label
       htmlFor={radioId}
       data-slot="radio-card"
       data-state={checked ? "checked" : "unchecked"}
       data-disabled={disabled || undefined}
-      whileTap={disabled || reduceMotion ? undefined : { scale: 0.985 }}
-      transition={{ type: "spring", bounce: 0.3, duration: 0.3 }}
       className={cn(
         "group/card relative isolate flex cursor-pointer items-start gap-3 rounded-xl border bg-card p-4 select-none",
-        "shadow-[inset_0_1px_0_rgb(255_255_255/0.04),0_1px_2px_rgb(0_0_0/0.3)]",
-        "transition-[background-color,border-color] duration-300 ease-out motion-reduce:transition-none",
-        "hover:border-white/20 data-[state=checked]:border-transparent data-[state=checked]:bg-primary/[0.04]",
+        "shadow-xs",
+        "transition-[background-color,border-color] duration-150 ease-out motion-reduce:transition-none",
+        "hover:bg-accent/50 data-[state=checked]:border-transparent",
         "has-focus-visible:ring-[3px] has-focus-visible:ring-ring/40",
         "data-disabled:cursor-not-allowed data-disabled:opacity-50 data-disabled:hover:border-border",
         containerClassName
@@ -128,7 +126,7 @@ export function RadioCard({
           aria-hidden
           layoutId={layoutId}
           transition={reduceMotion ? { duration: 0 } : outlineSpring}
-          className="pointer-events-none absolute -inset-px -z-10 rounded-xl border-[1.5px] border-primary shadow-[0_0_0_3px_color-mix(in_oklab,var(--color-primary)_12%,transparent),0_0_28px_-10px_var(--color-primary)]"
+          className="pointer-events-none absolute -inset-px -z-10 rounded-xl border border-primary"
         />
       )}
 
@@ -136,12 +134,9 @@ export function RadioCard({
         <span
           aria-hidden
           className={cn(
-            "grid size-9 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-muted-foreground",
-            "transition-[color,background-color,border-color,translate,box-shadow] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] motion-reduce:transition-none",
-            "group-data-[state=checked]/card:-translate-y-0.5 group-data-[state=checked]/card:border-primary/30",
-            "group-data-[state=checked]/card:bg-primary/10 group-data-[state=checked]/card:text-primary",
-            "group-data-[state=checked]/card:shadow-[0_6px_16px_-8px_var(--color-primary)]",
-            "motion-reduce:group-data-[state=checked]/card:translate-y-0",
+            "grid size-9 shrink-0 place-items-center rounded-md border border-white/10 bg-white/[0.03] text-muted-foreground",
+            "transition-colors duration-150 motion-reduce:transition-none",
+            "group-data-[state=checked]/card:text-foreground",
             "[&_svg:not([class*='size-'])]:size-4"
           )}
         >
@@ -155,7 +150,7 @@ export function RadioCard({
             {title}
           </span>
           {aside && (
-            <span className="shrink-0 text-sm font-medium tabular-nums transition-colors duration-300 group-data-[state=checked]/card:text-primary">
+            <span className="shrink-0 text-sm font-medium tabular-nums">
               {aside}
             </span>
           )}
@@ -177,6 +172,6 @@ export function RadioCard({
         className={cn("mt-0.5 size-[1.125rem] [&_[data-slot=radio-group-indicator]>span]:size-2.5", className)}
         {...props}
       />
-    </motion.label>
+    </label>
   );
 }

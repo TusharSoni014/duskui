@@ -6,7 +6,7 @@ export default function SplitTextEffectsDemo() {
       <SplitText as="p" effect="rise">
         Rise up
       </SplitText>
-      <SplitText as="p" effect="drop" className="text-primary">
+      <SplitText as="p" effect="drop">
         Drop in
       </SplitText>
       <SplitText as="p" effect="blur" stagger={0.05}>

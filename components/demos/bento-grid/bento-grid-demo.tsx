@@ -2,17 +2,17 @@
 
 // Client module so `linkAs={Link}` (a component) can be passed as a prop.
 import Link from "next/link";
-import { BarChart3, Globe, Lock, Rocket, Sparkles } from "lucide-react";
+import { BarChart3, GitPullRequest, Globe, Lock, Rocket } from "lucide-react";
 
 import { BentoCard, BentoGrid } from "@/components/dusk/bento-grid/bento-grid";
 
 function TerminalVisual() {
   const lines = ["$ dusk deploy --prod", "✓ Built in 2.1s", "✓ Uploaded 48 files", "✓ Live on 32 regions"];
   return (
-    <div className="absolute inset-0 bg-[radial-gradient(80%_60%_at_80%_0%,color-mix(in_oklab,var(--color-primary)_25%,transparent),transparent)]">
+    <div className="absolute inset-0">
       <div className="absolute top-6 right-6 left-6 rounded-lg border border-white/10 bg-black/50 p-4 font-mono text-xs leading-6 text-white/60 sm:left-auto sm:w-72">
         {lines.map((line, i) => (
-          <p key={line} className={i === 0 ? "text-white/80" : "text-primary/80"}>
+          <p key={line} className={i === 0 ? "text-white/80" : "text-white/50"}>
             {line}
           </p>
         ))}
@@ -24,7 +24,7 @@ function TerminalVisual() {
 function GlobeVisual() {
   return (
     <div className="absolute inset-0 flex items-start justify-center pt-10">
-      <div className="relative size-56 rounded-full border border-white/10 bg-[radial-gradient(circle_at_35%_30%,color-mix(in_oklab,var(--color-primary)_30%,transparent),transparent_60%)]">
+      <div className="relative size-56 rounded-full border border-white/10">
         <div className="absolute inset-6 rounded-full border border-white/10" />
         <div className="absolute inset-y-0 left-1/2 w-px bg-white/10" />
         <div className="absolute inset-x-0 top-1/2 h-px bg-white/10" />
@@ -37,7 +37,7 @@ function GlobeVisual() {
         ].map(([left, top]) => (
           <span
             key={`${left}-${top}`}
-            className="absolute size-2 rounded-full bg-primary shadow-[0_0_12px_var(--color-primary)]"
+            className="absolute size-1.5 rounded-full bg-white/60"
             style={{ left: `${left}%`, top: `${top}%` }}
           />
         ))}
@@ -53,7 +53,7 @@ function ChartVisual() {
       {bars.map((h, i) => (
         <div
           key={i}
-          className="flex-1 rounded-t bg-linear-to-t from-primary/10 to-primary/60"
+          className="flex-1 rounded-t bg-white/10"
           style={{ height: `${h}%` }}
         />
       ))}
@@ -61,12 +61,23 @@ function ChartVisual() {
   );
 }
 
-function GradientVisual({ from, to }: { from: string; to: string }) {
+function PreviewVisual() {
+  const previews = [
+    { branch: "fix/checkout-tax", url: "checkout-tax.preview.app" },
+    { branch: "feat/saved-carts", url: "saved-carts.preview.app" },
+  ];
   return (
-    <div
-      className="absolute inset-0"
-      style={{ background: `radial-gradient(70% 70% at 100% 0%, ${from}, transparent), radial-gradient(60% 60% at 0% 0%, ${to}, transparent)` }}
-    />
+    <div className="absolute top-6 right-6 left-6 grid gap-2 sm:left-auto sm:w-80">
+      {previews.map((preview) => (
+        <div
+          key={preview.branch}
+          className="flex items-center justify-between gap-3 rounded-md border border-white/10 bg-black/40 px-3 py-2 text-xs"
+        >
+          <span className="font-mono text-white/70">{preview.branch}</span>
+          <span className="truncate text-white/40">{preview.url}</span>
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -106,18 +117,16 @@ export default function BentoGridDemo() {
         icon={<Lock />}
         title="Secure by default"
         description="TLS, DDoS shielding and secrets vault."
-        glowColor="#a78bfa"
-        background={<GradientVisual from="rgb(167 139 250 / 0.35)" to="rgb(56 189 248 / 0.2)" />}
       />
       <BentoCard
         colSpan={3}
         href="#examples"
         linkAs={Link}
-        icon={<Sparkles />}
+        icon={<GitPullRequest />}
         title="Previews for every pull request"
         description="Each branch gets its own URL, so reviewers can click through changes before they merge."
         cta="See preview deployments"
-        background={<GradientVisual from="color-mix(in oklab, var(--color-primary) 30%, transparent)" to="rgb(56 189 248 / 0.15)" />}
+        background={<PreviewVisual />}
       />
     </BentoGrid>
   );

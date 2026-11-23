@@ -10,7 +10,7 @@ const block = (file: string) => `components/dusk/context-menu/${file}`;
 const config: DocConfig = {
   title: "Context Menu",
   intro:
-    "The shadcn/ui Context Menu with menus that grow out of the cursor, smooth highlights and popping check marks — plus an animated React right-click menu block built with Motion and Radix that springs open from the click point, staggers its items and glides a highlight between them.",
+    "The shadcn/ui Context Menu with menus that grow out of the cursor and smooth highlights — plus an animated React right-click menu block built with Motion and Radix that opens from the click point, staggers its items and glides a highlight between them.",
   tags: ["Drop-in shadcn API", "Right-click & long-press", "Sub-menus", "Checkbox & radio items", "Motion block"],
   hero: { Demo: AnimatedContextMenuDemo, file: demo("animated-context-menu-demo.tsx"), minHeight: 320 },
   install: {
@@ -61,8 +61,8 @@ export function FileMenu() {
         <>
           Right-click (or long-press on touch) the area. The menu scales out of the exact point you
           clicked (Radix&apos;s transform origin) and closes faster than it opened. Includes shortcuts, a
-          disabled item, a sub-menu whose chevron nudges open, checkbox and radio items whose
-          indicators pop in, and a destructive item.
+          disabled item, a sub-menu, checkbox and radio items whose
+          indicators fade in, and a destructive item.
         </>
       ),
       Demo: ContextMenuBasicDemo,
@@ -79,9 +79,9 @@ export function FileMenu() {
       deps: "motion @radix-ui/react-context-menu lucide-react",
       description: (
         <>
-          Springs open from the cursor point while items cascade in. A highlight pill glides between
+          Opens from the cursor point while items fade in one after another. A highlight pill glides between
           items as you hover or arrow through them (a shared Motion <Code>layoutId</Code> per menu
-          level), check marks draw themselves, radio dots spring in, separators draw across and
+          level), check marks draw themselves, radio dots scale in, separators draw across and
           sub-menus slide out the same way. Call <Code>event.preventDefault()</Code> in{" "}
           <Code>onSelect</Code> to keep the menu open while toggling.
         </>
@@ -95,7 +95,7 @@ export function FileMenu() {
         { name: "AnimatedContextMenuContent", type: "Radix Content props & { stagger?: number }", description: "stagger is the delay between items in seconds (default 0.03)." },
         { name: "AnimatedContextMenuItem", type: "Radix Item props & { icon?, shortcut?, variant? }", description: 'An action. variant="destructive" tints it red.' },
         { name: "AnimatedContextMenuCheckboxItem", type: "Radix CheckboxItem props & { checked?, shortcut? }", description: "A toggle with a self-drawing check mark." },
-        { name: "AnimatedContextMenuRadioGroup / RadioItem", type: "Radix props", description: "Single choice with a springy dot." },
+        { name: "AnimatedContextMenuRadioGroup / RadioItem", type: "Radix props", description: "Single choice with a dot that scales in." },
         { name: "AnimatedContextMenuSub / SubTrigger / SubContent", type: "Radix props & { icon? } / { stagger? }", description: "A nested menu with its own gliding highlight." },
         { name: "AnimatedContextMenuLabel / Separator / Group", type: "Radix props", description: "Headings, dividers and groups that animate with the items." },
       ],

@@ -240,12 +240,12 @@ export interface ShortcutKbdProps
 }
 
 /**
- * Keycaps for a shortcut that light up as you press it. Each cap sinks while
- * its key is held, and when the whole combination lands the caps flash mint
- * with a quick bounce and `onTrigger` runs. `mod` renders ⌘ on Apple
+ * Keycaps for a shortcut that respond as you press it. Each cap sinks and
+ * brightens slightly while its key is held, and when the whole combination
+ * lands the caps dip once together and `onTrigger` runs. `mod` renders ⌘ on Apple
  * platforms and Ctrl elsewhere; until the platform is known (server render
  * and hydration) that cap is reserved but blank, so there is no mismatch.
- * Under reduced motion the flash is a color change only.
+ * Under reduced motion the dip is a surface change only.
  */
 export function ShortcutKbd({
   keys,
@@ -289,18 +289,15 @@ export function ShortcutKbd({
             className="inline-flex"
             animate={
               flashing && !reduceMotion
-                ? { y: [0, 2, 0], scale: [1, 0.94, 1] }
-                : { y: 0, scale: 1 }
+                ? { y: [0, 1, 0] }
+                : { y: 0 }
             }
-            transition={{ duration: 0.35, delay: index * 0.04, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.25, delay: index * 0.03, ease: "easeOut" }}
           >
             <Kbd
               size={size}
               pressed={pressed[index] || flashing}
-              className={cn(
-                flashing && "border-primary/70 shadow-[0_0_18px_-2px_var(--color-primary)]",
-                keyClassName
-              )}
+              className={keyClassName}
             >
               <span aria-hidden className={cn(isPlatformKey && !platform && "invisible")}>
                 {label}

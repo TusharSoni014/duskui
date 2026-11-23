@@ -10,9 +10,9 @@ import { cn } from "@/lib/utils"
  * DuskUI Sheet — a drop-in upgrade of the shadcn/ui Sheet.
  *
  * Same parts, props and data-slot attributes as shadcn (including `side`), plus:
- * - Slides in on an expo-out curve with a slight fade, and closes faster than
+ * - Slides in with a short ease-out and a slight fade, and closes faster than
  *   it opens so dismissing never feels sluggish.
- * - A blurred backdrop, layered shadow and an inner-edge highlight.
+ * - A dimmed backdrop and a neutral shadow.
  * - Long content scrolls inside the sheet instead of overflowing the screen.
  * - A larger close button with hover and focus-visible states, and an
  *   optional `showCloseButton={false}`.
@@ -45,7 +45,7 @@ function SheetPortal({
   return <SheetPrimitive.Portal data-slot="sheet-portal" {...props} />
 }
 
-/** The dimmed, blurred backdrop. Clicking it closes the sheet. */
+/** The dimmed backdrop. Clicking it closes the sheet. */
 function SheetOverlay({
   className,
   ...props
@@ -54,8 +54,8 @@ function SheetOverlay({
     <SheetPrimitive.Overlay
       data-slot="sheet-overlay"
       className={cn(
-        "fixed inset-0 z-50 bg-black/60 backdrop-blur-[2px]",
-        "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:duration-300",
+        "fixed inset-0 z-50 bg-black/60",
+        "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:duration-250",
         "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:duration-200",
         className
       )}
@@ -68,25 +68,21 @@ const sideClasses = {
   right: [
     "inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm",
     "pr-[env(safe-area-inset-right)]",
-    "shadow-[inset_1px_0_0_rgb(255_255_255/0.04),-24px_0_64px_-16px_rgb(0_0_0/0.7)]",
     "data-[state=open]:slide-in-from-right data-[state=closed]:slide-out-to-right",
   ],
   left: [
     "inset-y-0 left-0 h-full w-3/4 border-r sm:max-w-sm",
     "pl-[env(safe-area-inset-left)]",
-    "shadow-[inset_-1px_0_0_rgb(255_255_255/0.04),24px_0_64px_-16px_rgb(0_0_0/0.7)]",
     "data-[state=open]:slide-in-from-left data-[state=closed]:slide-out-to-left",
   ],
   top: [
     "inset-x-0 top-0 h-auto max-h-[calc(100dvh-2rem)] border-b",
     "pt-[env(safe-area-inset-top)]",
-    "shadow-[inset_0_-1px_0_rgb(255_255_255/0.04),0_24px_64px_-16px_rgb(0_0_0/0.7)]",
     "data-[state=open]:slide-in-from-top data-[state=closed]:slide-out-to-top",
   ],
   bottom: [
     "inset-x-0 bottom-0 h-auto max-h-[calc(100dvh-2rem)] border-t",
     "pb-[env(safe-area-inset-bottom)]",
-    "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_-24px_64px_-16px_rgb(0_0_0/0.7)]",
     "data-[state=open]:slide-in-from-bottom data-[state=closed]:slide-out-to-bottom",
   ],
 } as const
@@ -111,10 +107,10 @@ function SheetContent({
         data-slot="sheet-content"
         data-side={side}
         className={cn(
-          "bg-background fixed z-50 flex flex-col gap-4 overflow-y-auto overscroll-contain outline-none",
-          "ease-[cubic-bezier(0.32,0.72,0,1)]",
-          "data-[state=open]:animate-in data-[state=open]:fade-in-50 data-[state=open]:duration-500",
-          "data-[state=closed]:animate-out data-[state=closed]:fade-out-50 data-[state=closed]:duration-250",
+          "bg-background fixed z-50 flex flex-col gap-4 overflow-y-auto overscroll-contain shadow-lg outline-none",
+          "ease-out",
+          "data-[state=open]:animate-in data-[state=open]:fade-in-50 data-[state=open]:duration-250",
+          "data-[state=closed]:animate-out data-[state=closed]:fade-out-50 data-[state=closed]:duration-200",
           sideClasses[side],
           // Reduced motion: fade only, no slide.
           "motion-reduce:data-[state=open]:fade-in-0 motion-reduce:data-[state=closed]:fade-out-0",

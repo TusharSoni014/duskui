@@ -11,8 +11,8 @@ const block = (file: string) => `components/dusk/resizable/${file}`;
 const config: DocConfig = {
   title: "Resizable",
   intro:
-    "Resizable React panels built on shadcn/ui and react-resizable-panels v4: drag or keyboard-resize split views with a handle that glows mint while you drag it, plus an IDE-style layout block with a collapsible sidebar that tweens into an icon rail.",
-  tags: ["Drop-in shadcn API", "react-resizable-panels v4", "Keyboard resizing", "Collapsible panels", "Glowing handle"],
+    "Resizable React panels built on shadcn/ui and react-resizable-panels v4: drag or keyboard-resize split views with a handle that turns mint while you drag it, plus an IDE-style layout block with a collapsible sidebar that tweens into an icon rail.",
+  tags: ["Drop-in shadcn API", "react-resizable-panels v4", "Keyboard resizing", "Collapsible panels", "Clear drag state"],
   hero: { Demo: ResizableLayoutDemo, file: demo("resizable-layout-demo.tsx"), minHeight: 460 },
   install: {
     registry: "resizable",
@@ -51,8 +51,8 @@ export function SplitView() {
       title: "Default",
       description: (
         <>
-          A horizontal group with a nested vertical group. The line warms up on hover; while you drag (or
-          while the handle has keyboard focus) it glows mint and the grip pill lights up.
+          A horizontal group with a nested vertical group. The line brightens on hover; while you drag (or
+          while the handle has keyboard focus) it turns mint and the grip pill gets a mint border.
         </>
       ),
       Demo: ResizableBasicDemo,
@@ -127,7 +127,7 @@ export function SplitView() {
   },
   accessibility: [
     "Each ResizableHandle is a focusable role=\"separator\" with aria-valuenow / min / max and aria-controls, maintained by react-resizable-panels.",
-    "Arrow keys resize from the focused handle; Home and End jump to the limits. Focus shows the same mint glow as dragging.",
+    "Arrow keys resize from the focused handle; Home and End jump to the limits. Focus shows the same mint line as dragging.",
     "Give handles an aria-label (\"Resize sidebar\") when there are several; the layout block labels its sidebar region and handle for you.",
     "The sidebar toggle exposes aria-expanded and aria-controls; under prefers-reduced-motion it snaps instead of tweening.",
   ],

@@ -10,7 +10,7 @@ const demo = (file: string) => `components/demos/neon-border/${file}`;
 const config: DocConfig = {
   title: "Neon Border",
   intro:
-    "An animated neon border for any React element: a beam of light travels around the edge with a soft glow. Built with Motion and Tailwind CSS using a masked conic gradient, so it fits cards, pricing tables, pills and inputs at any size or aspect ratio.",
+    "An animated neon border for any React element: a beam of light travels around a thin edge with a faint glow. Built with Motion and Tailwind CSS using a masked conic gradient, so it fits cards, pricing tables, pills and inputs at any size or aspect ratio.",
   tags: ["Wraps any content", "Travelling light beam", "Hover trigger", "Pauses off-screen", "prefers-reduced-motion"],
   hero: { Demo: NeonBorderDemo, file: demo("neon-border-demo.tsx"), minHeight: 320 },
   install: {
@@ -71,10 +71,10 @@ export function FeaturedPlan() {
     props: [
       { name: "color", type: "string", default: "var(--color-primary)", description: "Any CSS color for the beam and the dim resting tube." },
       { name: "secondaryColor", type: "string", description: "Color the beam's tail fades into." },
-      { name: "speed", type: "number", default: "4", description: "Seconds per lap around the border." },
-      { name: "thickness", type: "number", default: "2", description: "Border width in px." },
-      { name: "radius", type: "number | string", default: "16", description: "Corner radius in px or any CSS length." },
-      { name: "glow", type: "number", default: "1", description: "Bloom strength around the beam. 0 turns it off." },
+      { name: "speed", type: "number", default: "6", description: "Seconds per lap around the border." },
+      { name: "thickness", type: "number", default: "1", description: "Border width in px." },
+      { name: "radius", type: "number | string", default: "12", description: "Corner radius in px or any CSS length." },
+      { name: "glow", type: "number", default: "0.5", description: "Soft glow around the beam, from 0 (off) to 1." },
       { name: "trigger", type: '"always" | "hover"', default: '"always"', description: "Run continuously, or only on hover / focus-within." },
       { name: "contentClassName", type: "string", description: "Classes for the inner content wrapper." },
     ],

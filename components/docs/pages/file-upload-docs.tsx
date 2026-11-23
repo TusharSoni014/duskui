@@ -101,7 +101,7 @@ export function AvatarUpload() {
     "Validation errors appear as role=\"alert\" messages that can be dismissed; added, finished, failed and removed files are announced through a polite live region.",
     "Each upload has a labelled progressbar; Cancel, Remove and Retry buttons name the file they act on. After removing a file, focus returns to the input.",
     "Status changes swap inside a fixed-height slot, so rows never shift.",
-    "With prefers-reduced-motion the dropzone doesn't scale or bounce and list items only fade.",
+    "With prefers-reduced-motion the dropzone icon stays still and list items only fade.",
   ],
 };
 

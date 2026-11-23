@@ -10,7 +10,7 @@ const demo = (file: string) => `components/demos/plasma-loader/${file}`;
 const config: DocConfig = {
   title: "Plasma Loader",
   intro:
-    "An animated React loading spinner with a plasma effect: glowing blobs orbit a ring and fuse together through an SVG gooey filter. Built with Motion and Tailwind CSS, sized with one prop, and accessible out of the box with a status role and screen-reader label.",
+    "An animated React loading spinner with a plasma effect: soft blobs orbit a ring and fuse together through an SVG gooey filter. Built with Motion and Tailwind CSS, sized with one prop, and accessible out of the box with a status role and screen-reader label.",
   tags: ["Gooey SVG filter", "Any size & color", 'role="status"', "Screen-reader label", "prefers-reduced-motion"],
   hero: { Demo: PlasmaLoaderDemo, file: demo("plasma-loader-demo.tsx") },
   install: {

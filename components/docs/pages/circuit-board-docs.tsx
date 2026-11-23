@@ -10,7 +10,7 @@ const demo = (file: string) => `components/demos/circuit-board/${file}`;
 const config: DocConfig = {
   title: "Circuit Board",
   intro:
-    "An animated circuit board background for React: 45°-routed PCB traces with solder pads and pulses of light racing along them. Built with SVG and Tailwind CSS, seeded so it renders the same every time, and paused off-screen.",
+    "An animated circuit board background for React: 45°-routed PCB traces with solder pads and small pulses travelling along them. Built with SVG and Tailwind CSS, seeded so it renders the same every time, and paused off-screen.",
   tags: ["Background", "SVG", "Seeded layout", "Pauses off-screen", "Reduced-motion safe"],
   hero: { Demo: CircuitBoardDemo, file: demo("circuit-board-demo.tsx"), minHeight: 360 },
   install: {
@@ -75,8 +75,8 @@ export function Hero() {
     ),
     props: [
       { name: "color", type: "string", default: '"var(--color-primary)"', description: "Trace and pulse color. Any CSS color." },
-      { name: "density", type: "number", default: "0.5", description: "How many traces to route, from 0 to 1." },
-      { name: "speed", type: "number", default: "120", description: "Pulse speed in px per second." },
+      { name: "density", type: "number", default: "0.4", description: "How many traces to route, from 0 to 1." },
+      { name: "speed", type: "number", default: "90", description: "Pulse speed in px per second." },
       { name: "cellSize", type: "number", default: "20", description: "Grid spacing between traces in px." },
       { name: "seed", type: "number", default: "1", description: "Layout seed; the same seed always draws the same board." },
       { name: "fade", type: "boolean", default: "true", description: "Fade the board out toward the edges." },

@@ -8,7 +8,7 @@ import { ThemeToggle } from "@/components/dusk/theme-toggle/theme-toggle";
 // palette as CSS variables and only this panel is switched.
 const palette = [
   "[--pv-bg:#ffffff] [--pv-fg:#0a0a0a] [--pv-muted:#71717a] [--pv-card:#f4f4f5] [--pv-border:#e4e4e7] [--pv-accent:#059669]",
-  "[&.dark]:[--pv-bg:#08100d] [&.dark]:[--pv-fg:#f4f4f5] [&.dark]:[--pv-muted:#8b9a94] [&.dark]:[--pv-card:#101b17] [&.dark]:[--pv-border:#1c2a25] [&.dark]:[--pv-accent:var(--color-primary)]",
+  "[&.dark]:[--pv-bg:#0a0a0a] [&.dark]:[--pv-fg:#f4f4f5] [&.dark]:[--pv-muted:#a1a1aa] [&.dark]:[--pv-card:#18181b] [&.dark]:[--pv-border:#27272a] [&.dark]:[--pv-accent:var(--color-primary)]",
 ].join(" ");
 
 const stats = [
@@ -23,7 +23,7 @@ export default function ThemeToggleDemo() {
     <div
       ref={preview}
       // Starts dark to match the toggle's default theme, so there is no flash on load.
-      className={`dark ${palette} w-full max-w-sm overflow-hidden rounded-2xl border border-(--pv-border) bg-(--pv-bg) text-(--pv-fg) shadow-xl`}
+      className={`dark ${palette} w-full max-w-sm overflow-hidden rounded-xl border border-(--pv-border) bg-(--pv-bg) text-(--pv-fg) shadow-lg`}
     >
       <header className="flex items-center justify-between border-b border-(--pv-border) px-5 py-3">
         <span className="font-semibold tracking-tight">Acme Analytics</span>
@@ -50,7 +50,7 @@ export default function ThemeToggleDemo() {
         </div>
         <div className="flex h-20 items-end gap-1.5 rounded-xl bg-(--pv-card) p-3" aria-hidden>
           {[40, 65, 50, 80, 60, 95, 75].map((h, i) => (
-            <span key={i} className="flex-1 rounded-sm bg-(--pv-accent)" style={{ height: `${h}%`, opacity: 0.35 + i * 0.09 }} />
+            <span key={i} className="flex-1 rounded-sm bg-(--pv-muted)" style={{ height: `${h}%`, opacity: 0.5 }} />
           ))}
         </div>
       </div>

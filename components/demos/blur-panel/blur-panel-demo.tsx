@@ -5,9 +5,9 @@ import * as React from "react";
 import { BlurPanel } from "@/components/dusk/glass/blur-panel";
 
 const posts = [
-  { title: "Designing with light", tone: "from-fuchsia-500 via-rose-400 to-amber-300" },
-  { title: "Motion that respects users", tone: "from-sky-400 via-violet-500 to-fuchsia-500" },
-  { title: "The case for glass", tone: "from-primary via-emerald-400 to-sky-500" },
+  { title: "Designing with light", tone: "from-amber-300 to-rose-400" },
+  { title: "Motion that respects users", tone: "from-sky-400 to-indigo-500" },
+  { title: "The case for glass", tone: "from-teal-400 to-sky-500" },
 ];
 
 export default function BlurPanelDemo() {
@@ -27,7 +27,7 @@ export default function BlurPanelDemo() {
         className="sticky top-0 z-10 flex h-14 items-center justify-between px-4"
       >
         <span className="font-semibold tracking-tight">
-          dusk<span className="text-primary">.</span>blog
+          dusk.blog
         </span>
         <nav aria-label="Demo" className="flex gap-4 text-sm text-white/75">
           <a href="#" onClick={(e) => e.preventDefault()} className="rounded-sm hover:text-white focus-visible:outline-2">
@@ -41,9 +41,9 @@ export default function BlurPanelDemo() {
 
       {/* Pulled up under the header so it starts transparent over the hero. */}
       <div className="-mt-14">
-        <div className="h-44 bg-[radial-gradient(circle_at_20%_30%,var(--color-primary),transparent_45%),radial-gradient(circle_at_80%_20%,#a855f7,transparent_45%),radial-gradient(circle_at_60%_90%,#f43f5e,transparent_50%)] px-5 pt-20">
-          <p className="text-xs font-medium uppercase tracking-widest text-white/80">Journal</p>
-          <h3 className="mt-1 text-2xl font-bold tracking-tight">Scroll me ↓</h3>
+        <div className="h-44 bg-slate-700 px-5 pt-20">
+          <p className="text-xs font-medium text-white/70">Journal</p>
+          <h3 className="mt-1 text-2xl font-semibold tracking-tight">Notes on interface design</h3>
         </div>
         <div className="space-y-4 p-4">
           {posts.map((post) => (

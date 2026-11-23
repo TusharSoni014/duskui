@@ -92,7 +92,7 @@ export function Newsletter() {
       deps: "motion",
       description: (
         <>
-          A one-time-code field where the active ring glides between slots, digits pop in and a wrong
+          A one-time-code field where the active ring glides between slots, digits fade in and a wrong
           code shakes. It&apos;s one real input under the hood, so paste, SMS autofill (
           <Code>autocomplete=&quot;one-time-code&quot;</Code>) and backspace just work.
         </>
@@ -115,7 +115,7 @@ export function Newsletter() {
       source: block("floating-label-input.tsx"),
       deps: "motion",
       description:
-        "The label rests inside the field and springs up on focus or once filled — including browser autofill. It's a real <label>, so it stays accessible.",
+        "The label rests inside the field and moves up on focus or once filled — including browser autofill. It's a real <label>, so it stays accessible.",
       Demo: FloatingLabelDemo,
       file: demo("floating-label-demo.tsx"),
       props: [{ name: "label", type: "string", description: "Label text. Required." }],
@@ -143,7 +143,7 @@ export function Newsletter() {
       source: block("search-input.tsx"),
       deps: "motion lucide-react",
       description:
-        "The search icon turns into a spinner while results load, a clear button pops in once you type, Escape clears, and an optional ⌘ shortcut focuses the field from anywhere.",
+        "The search icon turns into a spinner while results load, a clear button fades in once you type, Escape clears, and an optional ⌘ shortcut focuses the field from anywhere.",
       Demo: SearchInputDemo,
       file: demo("search-input-demo.tsx"),
       props: [
@@ -159,7 +159,7 @@ export function Newsletter() {
       source: block("shimmer-input.tsx"),
       deps: "motion",
       description:
-        "A beam of light travels around the border while loading — perfect for AI prompt fields while a response streams. Submit the demo to see it.",
+        "A faint beam travels around the border while loading, for AI prompt fields while a response streams. Submit the demo to see it.",
       Demo: ShimmerInputDemo,
       file: demo("shimmer-input-demo.tsx"),
       props: [

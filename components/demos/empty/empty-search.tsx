@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/empty";
 
 export default function EmptySearchDemo() {
-  const [query, setQuery] = React.useState("quantum toaster");
+  const [query, setQuery] = React.useState("date range picker");
 
   return (
     <div className="w-full max-w-md rounded-xl border bg-card/40">

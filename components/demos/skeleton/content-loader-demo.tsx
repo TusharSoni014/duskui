@@ -36,7 +36,7 @@ export default function ContentLoaderDemo() {
     <div className="flex w-full max-w-md flex-col items-center gap-4">
       <section className="w-full rounded-xl border bg-card p-4" aria-labelledby="comments-heading">
         <h3 id="comments-heading" className="mb-4 flex items-center gap-2 text-sm font-medium">
-          <MessageSquare className="size-4 text-primary" aria-hidden />
+          <MessageSquare className="size-4 text-muted-foreground" aria-hidden />
           Comments
         </h3>
         <ContentLoader
@@ -61,7 +61,7 @@ export default function ContentLoaderDemo() {
             <article key={comment.name} className="flex gap-3">
               <span
                 aria-hidden
-                className="grid size-8 shrink-0 place-items-center rounded-full bg-primary/15 text-xs font-semibold text-primary"
+                className="grid size-8 shrink-0 place-items-center rounded-full bg-muted text-xs font-medium text-muted-foreground"
               >
                 {comment.initials}
               </span>

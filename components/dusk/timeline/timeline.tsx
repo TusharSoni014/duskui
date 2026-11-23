@@ -101,7 +101,7 @@ export function Timeline({
           >
             <motion.span
               className={cn(
-                "absolute inset-0 origin-top bg-linear-to-b from-primary/20 via-primary to-primary shadow-[0_0_12px_var(--color-primary)]",
+                "absolute inset-0 origin-top bg-primary",
                 lineClassName
               )}
               style={{ scaleY }}
@@ -182,15 +182,15 @@ export function TimelineItem({
     if (el.getBoundingClientRect().top > fold) {
       hidden.current = true;
       opacity.set(0);
-      y.set(24);
+      y.set(8);
     }
   }, [container, reduceMotion, opacity, y]);
 
   React.useEffect(() => {
     if (!entered || !hidden.current) return;
     hidden.current = false;
-    const a = animate(opacity, 1, { duration: 0.5, ease: "easeOut" });
-    const b = animate(y, 0, { type: "spring", stiffness: 220, damping: 26 });
+    const a = animate(opacity, 1, { duration: 0.3, ease: "easeOut" });
+    const b = animate(y, 0, { duration: 0.3, ease: "easeOut" });
     return () => {
       a.stop();
       b.stop();
@@ -214,7 +214,7 @@ export function TimelineItem({
         <motion.time
           dateTime={dateTime}
           style={{ opacity }}
-          className="mb-1 block text-xs font-medium tracking-wide text-white/50 uppercase transition-colors duration-300 group-data-reached/tl:text-primary @xl:sticky @xl:top-(--tl-sticky) @xl:mb-0 @xl:pt-1 @xl:text-sm @xl:normal-case @xl:tracking-normal"
+          className="mb-1 block text-xs font-medium text-white/50 transition-colors duration-300 group-data-reached/tl:text-white/80 @xl:sticky @xl:top-(--tl-sticky) @xl:mb-0 @xl:pt-1 @xl:text-sm"
         >
           {date}
         </motion.time>
@@ -227,12 +227,12 @@ export function TimelineItem({
           aria-hidden
           className={cn(
             "relative z-10 flex size-(--tl-dot) items-center justify-center rounded-full border border-white/15 bg-background text-white/40",
-            "transition-[color,border-color,box-shadow] duration-300 [&_svg]:size-3.5",
-            "group-data-reached/tl:border-primary/70 group-data-reached/tl:text-primary group-data-reached/tl:shadow-[0_0_0_4px_color-mix(in_oklab,var(--color-primary)_15%,transparent),0_0_16px_color-mix(in_oklab,var(--color-primary)_50%,transparent)]"
+            "transition-[color,border-color] duration-300 [&_svg]:size-3.5",
+            "group-data-reached/tl:border-primary group-data-reached/tl:text-primary"
           )}
         >
           {icon ?? (
-            <span className="size-2 rounded-full bg-current transition-transform duration-300 group-data-reached/tl:scale-125 motion-reduce:transition-none" />
+            <span className="size-2 rounded-full bg-current" />
           )}
         </span>
       </div>

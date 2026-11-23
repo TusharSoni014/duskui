@@ -9,7 +9,7 @@ export default function AnimatedEmptyDemo() {
     <AnimatedEmpty
       className="w-full max-w-md"
       title="Your inbox is empty"
-      description="New messages from your team and integrations will land here. Enjoy the quiet."
+      description="New messages from your team and integrations will land here."
     >
       <Button>
         <Plus />

@@ -15,9 +15,9 @@ export default function GlassCardBlur() {
         {levels.map((level) => (
           <GlassCard key={level.blur} blur={level.blur} tint={level.tint} className="p-5">
             <p className="text-sm font-semibold">{level.label}</p>
-            <p className="mt-1 font-mono text-xs text-white/70">blur={level.blur}</p>
+            <p className="mt-1 text-xs text-white/70">blur={level.blur}</p>
             <p className="mt-6 text-sm leading-relaxed text-white/80">
-              Move your pointer over the glass to catch the light.
+              Higher blur hides more of what sits behind the card.
             </p>
           </GlassCard>
         ))}

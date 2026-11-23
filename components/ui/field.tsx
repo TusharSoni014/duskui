@@ -17,8 +17,8 @@ import { cn } from "@/lib/utils";
  * - `data-disabled` dims the label and description together.
  * - FieldError fades and slides in when it mounts, and accepts the
  *   `errors` array from any validation library (deduplicated by message).
- * - Choice cards (a FieldLabel wrapping a horizontal Field) get a hover
- *   border and a mint glow when their checkbox, radio or switch is on.
+ * - Choice cards (a FieldLabel wrapping a horizontal Field) get a subtle
+ *   hover background and a mint border when their checkbox, radio or switch is on.
  * - `orientation`: vertical, horizontal or responsive (switches to a row
  *   once the FieldGroup is wider than 28rem, via a container query).
  * CSS only — no animation library. Pair it with the Animated Field Error
@@ -132,9 +132,9 @@ function FieldLabel({ className, ...props }: React.ComponentProps<typeof Label>)
         "group-data-[disabled=true]/field:opacity-50 group-data-[invalid=true]/field:text-destructive",
         // Choice card: a label that wraps a Field.
         "has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-lg has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4",
-        "has-[>[data-slot=field]]:cursor-pointer has-[>[data-slot=field]]:transition-[border-color,background-color,box-shadow] has-[>[data-slot=field]]:duration-200 has-[>[data-slot=field]]:hover:border-ring/40",
-        "has-data-[state=checked]:border-primary/70 has-data-[state=checked]:bg-primary/[0.06] has-data-[state=checked]:shadow-[0_0_24px_-12px_var(--color-primary)]",
-        "has-focus-visible:has-[>[data-slot=field]]:ring-[3px] has-focus-visible:has-[>[data-slot=field]]:ring-ring/30",
+        "has-[>[data-slot=field]]:cursor-pointer has-[>[data-slot=field]]:transition-[border-color,background-color,box-shadow] has-[>[data-slot=field]]:duration-150 has-[>[data-slot=field]]:hover:bg-accent/40",
+        "has-data-[state=checked]:border-primary has-data-[state=checked]:bg-primary/5",
+        "has-focus-visible:has-[>[data-slot=field]]:ring-[3px] has-focus-visible:has-[>[data-slot=field]]:ring-ring/50",
         className
       )}
       {...props}
@@ -165,7 +165,7 @@ function FieldDescription({ className, ...props }: React.ComponentProps<"p">) {
         "text-sm leading-normal font-normal text-muted-foreground group-has-[[data-orientation=horizontal]]/field:text-balance",
         "transition-opacity duration-200 group-data-[disabled=true]/field:opacity-50",
         "last:mt-0 nth-last-2:-mt-1 [[data-variant=legend]+&]:-mt-1.5",
-        "[&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary",
+        "[&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-foreground",
         className
       )}
       {...props}

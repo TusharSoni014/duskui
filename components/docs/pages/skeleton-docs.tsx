@@ -105,7 +105,7 @@ export function ProfileSkeleton() {
       deps: "motion",
       description: (
         <>
-          Swaps a skeleton for the real content. The two crossfade with a soft blur while the wrapper&apos;s
+          Swaps a skeleton for the real content. The two crossfade while the wrapper&apos;s
           height springs from one to the other, so whatever sits below glides instead of jumping. With{" "}
           <Code>stagger</Code>, the content&apos;s children rise in one after another. The region is{" "}
           <Code>aria-busy</Code> while loading and announces <Code>loadingLabel</Code>. Press Reload.

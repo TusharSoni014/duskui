@@ -10,8 +10,7 @@ import { cn } from "@/lib/utils";
  * Same parts, props and data-slot attributes as shadcn (Breadcrumb,
  * BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage,
  * BreadcrumbSeparator, BreadcrumbEllipsis) plus:
- * - Links get an underline that grows in from the left on hover and a
- *   focus-visible ring.
+ * - Links brighten on hover and get a focus-visible ring.
  * - The current page is bright and carries aria-current="page" without the
  *   misleading role="link".
  * - The ellipsis is announced as "More pages" instead of being hidden.
@@ -57,12 +56,8 @@ function BreadcrumbLink({
     <Comp
       data-slot="breadcrumb-link"
       className={cn(
-        "relative inline-flex items-center gap-1.5 rounded-sm outline-none transition-colors duration-200 hover:text-foreground",
+        "inline-flex items-center gap-1.5 rounded-sm outline-none transition-colors duration-150 ease-out hover:text-foreground motion-reduce:transition-none",
         "focus-visible:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50",
-        // Underline that grows in from the left.
-        "after:pointer-events-none after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-primary/70",
-        "after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.16,1,0.3,1)] hover:after:scale-x-100",
-        "motion-reduce:after:transition-none",
         "[&_svg]:size-3.5 [&_svg]:shrink-0",
         className
       )}

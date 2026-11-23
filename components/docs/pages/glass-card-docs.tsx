@@ -10,8 +10,8 @@ const demo = (file: string) => `components/demos/glass-card/${file}`;
 const config: DocConfig = {
   title: "Glass Card",
   intro:
-    "A glassmorphism card for React built with Tailwind CSS and Motion: real backdrop blur and saturation, a gradient hairline border, film grain and a specular highlight that follows the pointer — with optional 3D tilt and a readable fallback where backdrop-filter isn't supported.",
-  tags: ["Backdrop blur", "Pointer highlight", "3D tilt", "No re-renders", "prefers-reduced-motion"],
+    "A glassmorphism card for React built with Tailwind CSS and Motion: real backdrop blur and saturation, a 1px hairline border and faint film grain, with optional 3D tilt and a readable fallback where backdrop-filter isn't supported.",
+  tags: ["Backdrop blur", "Hairline border", "3D tilt", "No re-renders", "prefers-reduced-motion"],
   hero: { Demo: GlassCardDemo, file: demo("glass-card-demo.tsx"), minHeight: 360 },
   install: {
     registry: "glass-card",
@@ -44,7 +44,7 @@ export function PlanCard() {
       description: (
         <>
           Interactive content works as usual. When something inside the card receives keyboard focus,
-          the hairline border switches to the primary color so the card&apos;s edge stays visible.
+          the hairline border switches to the focus color so the card&apos;s edge stays visible.
         </>
       ),
       Demo: GlassCardProfile,
@@ -75,18 +75,17 @@ export function PlanCard() {
     ),
     props: [
       { name: "blur", type: "number", default: "16", description: "Backdrop blur in px." },
-      { name: "saturation", type: "number", default: "160", description: "Backdrop saturation in percent. Above 100 makes colors behind the glass glow." },
+      { name: "saturation", type: "number", default: "140", description: "Backdrop saturation in percent. Above 100 makes colors behind the glass richer." },
       { name: "tint", type: "string", default: '"color-mix(in oklab, var(--background) 35%, transparent)"', description: "Glass fill. Any translucent CSS color." },
-      { name: "highlight", type: "boolean", default: "true", description: "Specular light that follows the pointer across the surface and border." },
       { name: "tilt", type: "boolean | number", default: "false", description: "3D tilt towards the pointer. true = 8°, or pass the max angle." },
       { name: "noise", type: "boolean", default: "true", description: "Subtle film-grain texture on the glass." },
     ],
   },
   accessibility: [
-    "Decorative layers (grain, border, highlight) are aria-hidden and ignore the pointer, so the card's content is exactly what assistive tech reads.",
+    "Decorative layers (grain, border) are aria-hidden and ignore the pointer, so the card's content is exactly what assistive tech reads.",
     "Where backdrop-filter isn't supported the card falls back to an almost opaque fill, so text contrast never depends on the blur.",
-    "A visible primary edge appears when anything inside the card has keyboard focus.",
-    "Tilt is disabled for touch input and when the user prefers reduced motion; the highlight runs on motion values and never re-renders.",
+    "A visible focus-colored edge appears when anything inside the card has keyboard focus.",
+    "Tilt is disabled for touch input and when the user prefers reduced motion; it runs on motion values and never re-renders.",
   ],
 };
 

@@ -27,8 +27,7 @@ export function Tagline() {
     <h1 className="text-5xl font-bold">
       Made for{" "}
       <WordRotate
-        words={["builders", "dreamers", "night owls"]}
-        className="text-primary"
+        words={["builders", "designers", "teams"]}
       />
     </h1>
   )
@@ -41,8 +40,7 @@ export function Tagline() {
       description: (
         <>
           <Code>distance</Code> sets the slide (0 for a pure blur swap), <Code>blur</Code> the blur radius and{" "}
-          <Code>interval</Code> how long each word stays. Style the words with <Code>wordClassName</Code>, gradients
-          included.
+          <Code>interval</Code> how long each word stays. Style the words with <Code>wordClassName</Code>.
         </>
       ),
       Demo: WordRotateStylesDemo,
@@ -70,10 +68,10 @@ export function Tagline() {
       { name: "interval", type: "number", default: "2400", description: "Milliseconds each word stays on screen (minimum 1000)." },
       { name: "as", type: '"span" | "strong" | "em" | "p" | "div" | "h1" … "h6"', default: '"span"', description: "Element to render." },
       { name: "distance", type: "number", default: "0.6", description: "Slide distance as a fraction of the word height. 0 for blur/fade only." },
-      { name: "blur", type: "number", default: "6", description: "Blur of incoming and outgoing words, in px." },
+      { name: "blur", type: "number", default: "4", description: "Blur of incoming and outgoing words, in px." },
       { name: "pauseOnHover", type: "boolean", default: "true", description: "Pause the rotation while the pointer is over it." },
       { name: "announce", type: '"all" | "polite"', default: '"all"', description: "all exposes every word once as hidden text; polite announces each change." },
-      { name: "wordClassName", type: "string", description: "Classes for each word, e.g. a color or gradient." },
+      { name: "wordClassName", type: "string", description: "Classes for each word, e.g. a color." },
     ],
   },
   accessibility: [

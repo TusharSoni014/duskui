@@ -37,9 +37,9 @@ export interface MotionAccordionProps
 }
 
 /**
- * An accordion with spring physics: panels spring open, their content fades
- * and un-blurs in, a soft highlight glides between items under the cursor and
- * the open item gets a mint outline. Answers stay in the DOM while closed
+ * An accordion with gentle spring physics: panels ease open, their content
+ * fades in, a soft highlight glides between items under the cursor and the
+ * open item gets a quiet outline. Answers stay in the DOM while closed
  * (inert), so search engines still index them.
  * Built on the DuskUI Accordion (Radix) for keyboard support and aria.
  */
@@ -93,7 +93,7 @@ export function MotionAccordion({
   );
 }
 
-/** One item. Shows the gliding hover highlight and a mint outline while open. */
+/** One item. Shows the gliding hover highlight and a quiet outline while open. */
 export function MotionAccordionItem({
   value,
   className,
@@ -114,9 +114,8 @@ export function MotionAccordionItem({
         }}
         className={cn(
           "relative isolate rounded-xl border border-transparent px-4 last:border",
-          "transition-[border-color,background-color,box-shadow] duration-300 ease-out motion-reduce:transition-none",
-          "data-[state=open]:border-primary/25 data-[state=open]:bg-primary/[0.03]",
-          "data-[state=open]:shadow-[inset_0_1px_0_rgb(255_255_255/0.04),0_0_24px_-14px_var(--color-primary)]",
+          "transition-[border-color,background-color] duration-200 ease-out motion-reduce:transition-none",
+          "data-[state=open]:border-white/10 data-[state=open]:bg-white/[0.02]",
           className
         )}
         {...props}
@@ -141,22 +140,16 @@ export function MotionAccordionTrigger({ className, ...props }: React.ComponentP
 }
 
 const panel = (instant: boolean): Variants => ({
-  open: { height: "auto", transition: instant ? { duration: 0 } : { type: "spring", bounce: 0.12, duration: 0.5 } },
-  closed: { height: 0, transition: instant ? { duration: 0 } : { type: "spring", bounce: 0, duration: 0.35 } },
+  open: { height: "auto", transition: instant ? { duration: 0 } : { type: "spring", bounce: 0, duration: 0.3 } },
+  closed: { height: 0, transition: instant ? { duration: 0 } : { type: "spring", bounce: 0, duration: 0.25 } },
 });
 
 const inner: Variants = {
-  open: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.35, delay: 0.06, ease: [0.16, 1, 0.3, 1] },
-    transitionEnd: { filter: "none" },
-  },
-  closed: { opacity: 0, y: -6, filter: "blur(4px)", transition: { duration: 0.15 } },
+  open: { opacity: 1, y: 0, transition: { duration: 0.2, delay: 0.05, ease: "easeOut" } },
+  closed: { opacity: 0, y: -4, transition: { duration: 0.15 } },
 };
 
-/** The panel. Springs its height and fades / un-blurs its content. `className` styles the inner wrapper. */
+/** The panel. Animates its height and fades its content. `className` styles the inner wrapper. */
 export function MotionAccordionContent({
   className,
   children,

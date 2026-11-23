@@ -9,11 +9,11 @@ import { cn } from "@/lib/utils"
  * DuskUI Avatar — a drop-in upgrade of the shadcn/ui Avatar.
  *
  * Same parts, props and data-slot attributes as shadcn, plus:
- * - The image fades in (with a slight settle and de-blur) once it has loaded,
- *   instead of popping in over the fallback.
+ * - The image fades in once it has loaded, instead of popping in over the
+ *   fallback.
  * - A hairline inner border so photos don't bleed into dark backgrounds.
- * - A tinted, on-theme fallback for initials and icons.
- * - Under `prefers-reduced-motion` the image only fades.
+ * - A neutral fallback for initials and icons.
+ * - Under `prefers-reduced-motion` the image appears instantly.
  * CSS only (tw-animate-css). Radix renders the image only after it loads and
  * shows the fallback while it loads or if it fails.
  */
@@ -45,8 +45,7 @@ function AvatarImage({
       data-slot="avatar-image"
       className={cn(
         "aspect-square size-full object-cover",
-        "animate-in fade-in-0 zoom-in-110 blur-in-[2px] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
-        "motion-reduce:zoom-in-100 motion-reduce:blur-in-0",
+        "animate-in fade-in-0 duration-200 ease-out motion-reduce:animate-none",
         className
       )}
       {...props}
@@ -64,7 +63,7 @@ function AvatarFallback({
       data-slot="avatar-fallback"
       className={cn(
         "flex size-full items-center justify-center rounded-full text-xs font-medium uppercase",
-        "bg-[linear-gradient(140deg,color-mix(in_oklab,var(--color-primary)_22%,var(--color-muted)),var(--color-muted))] text-foreground/85",
+        "bg-muted text-muted-foreground",
         className
       )}
       {...props}

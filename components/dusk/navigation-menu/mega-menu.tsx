@@ -41,7 +41,7 @@ export interface MegaMenuProps extends Omit<React.ComponentProps<typeof Navigati
 }
 
 const pillSpring: Transition = { type: "spring", stiffness: 480, damping: 38, mass: 0.7 };
-const surfaceSpring: Transition = { type: "spring", duration: 0.35, bounce: 0.12 };
+const surfaceSpring: Transition = { type: "spring", duration: 0.25, bounce: 0 };
 
 /**
  * A mega menu for site headers. A highlight glides between bar items as you
@@ -83,7 +83,7 @@ export function MegaMenu({
     >
       <LayoutGroup id={id}>
         <NavigationMenuPrimitive.List
-          className="flex list-none items-center gap-0.5 rounded-full border bg-background/80 p-1 shadow-[inset_0_1px_0_rgb(255_255_255/0.05)] backdrop-blur-md"
+          className="flex list-none items-center gap-0.5 rounded-full border bg-background p-1"
           onPointerLeave={() => setHovered(null)}
           onBlur={(event) => {
             if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setHovered(null);
@@ -96,7 +96,7 @@ export function MegaMenu({
                 aria-hidden
                 layoutId="mega-menu-pill"
                 transition={reduceMotion ? { duration: 0 } : pillSpring}
-                className="absolute inset-0 -z-10 rounded-full bg-accent shadow-[inset_0_1px_0_rgb(255_255_255/0.05)]"
+                className="absolute inset-0 -z-10 rounded-full bg-accent"
               />
             );
             const barItem = cn(
@@ -117,14 +117,14 @@ export function MegaMenu({
                       {item.label}
                       <ChevronDown
                         aria-hidden
-                        className="size-3.5 text-muted-foreground transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-data-[state=open]:rotate-180 group-data-[state=open]:text-primary motion-reduce:transition-none"
+                        className="size-3.5 text-muted-foreground transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-data-[state=open]:rotate-180 group-data-[state=open]:text-foreground motion-reduce:transition-none"
                       />
                     </NavigationMenuPrimitive.Trigger>
                     <NavigationMenuPrimitive.Content
                       className={cn(
                         "absolute top-0 left-0 ease-[cubic-bezier(0.16,1,0.3,1)]",
-                        "data-[motion^=from-]:animate-in data-[motion^=from-]:fade-in-0 data-[motion^=to-]:animate-out data-[motion^=to-]:fade-out-0 data-[motion]:duration-300",
-                        "data-[motion=from-end]:slide-in-from-right-16 data-[motion=from-start]:slide-in-from-left-16 data-[motion=to-end]:slide-out-to-right-16 data-[motion=to-start]:slide-out-to-left-16",
+                        "data-[motion^=from-]:animate-in data-[motion^=from-]:fade-in-0 data-[motion^=to-]:animate-out data-[motion^=to-]:fade-out-0 data-[motion]:duration-200",
+                        "data-[motion=from-end]:slide-in-from-right-2 data-[motion=from-start]:slide-in-from-left-2 data-[motion=to-end]:slide-out-to-right-2 data-[motion=to-start]:slide-out-to-left-2",
                         "motion-reduce:data-[motion=from-end]:slide-in-from-right-0 motion-reduce:data-[motion=from-start]:slide-in-from-left-0 motion-reduce:data-[motion=to-end]:slide-out-to-right-0 motion-reduce:data-[motion=to-start]:slide-out-to-left-0"
                       )}
                     >
@@ -162,17 +162,17 @@ export function MegaMenu({
             <NavigationMenuPrimitive.Viewport forceMount asChild>
               <motion.div
                 className={cn(
-                  "relative h-(--radix-navigation-menu-viewport-height) w-(--radix-navigation-menu-viewport-width) origin-top overflow-hidden rounded-2xl border bg-popover text-popover-foreground",
-                  "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_28px_64px_-16px_rgb(0_0_0/0.8),0_0_0_1px_rgb(0_0_0/0.25)]",
+                  "relative h-(--radix-navigation-menu-viewport-height) w-(--radix-navigation-menu-viewport-width) origin-top overflow-hidden rounded-xl border bg-popover text-popover-foreground",
+                  "shadow-lg",
                   // The morph between panels: Radix updates the size variables, CSS eases them.
-                  "transition-[width,height] duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
+                  "transition-[width,height] duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
                 )}
-                initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96, rotateX: -12, y: -6 }}
-                animate={reduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1, rotateX: 0, y: 0 }}
+                initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.98, y: -4 }}
+                animate={reduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0 }}
                 exit={
                   reduceMotion
                     ? { opacity: 0, transition: { duration: 0.1 } }
-                    : { opacity: 0, scale: 0.98, rotateX: -6, y: -4, transition: { duration: 0.15, ease: "easeIn" } }
+                    : { opacity: 0, scale: 0.98, y: -4, transition: { duration: 0.12, ease: "easeIn" } }
                 }
                 transition={surfaceSpring}
               />
@@ -198,11 +198,11 @@ function Panel({
   let index = 0;
   // Each link fades up a beat after the previous one.
   const enter = () => {
-    const delay = 0.05 + index++ * 0.025;
+    const delay = index++ * 0.015;
     return {
-      initial: reduceMotion ? { opacity: 0 } : { opacity: 0, y: 6 },
+      initial: reduceMotion ? { opacity: 0 } : { opacity: 0, y: 4 },
       animate: { opacity: 1, y: 0 },
-      transition: { type: "spring", duration: 0.4, bounce: 0, delay },
+      transition: { duration: 0.2, ease: "easeOut", delay },
     } as const;
   };
 
@@ -219,17 +219,16 @@ function Panel({
             <LinkAs
               href={item.featured.href}
               className={cn(
-                "group/featured relative flex h-full min-h-40 flex-col justify-end overflow-hidden rounded-xl border p-4 outline-none",
-                "bg-[radial-gradient(120%_90%_at_0%_0%,color-mix(in_oklab,var(--color-primary)_28%,transparent),transparent_60%),linear-gradient(160deg,color-mix(in_oklab,var(--color-primary)_8%,var(--color-card)),var(--color-card))]",
-                "transition-[border-color,box-shadow] duration-200 hover:border-primary/40 hover:shadow-[0_0_32px_-12px_var(--color-primary)] focus-visible:ring-[3px] focus-visible:ring-ring/50"
+                "group/featured relative flex h-full min-h-40 flex-col justify-end overflow-hidden rounded-lg border bg-muted/50 p-4 outline-none",
+                "transition-colors duration-150 hover:bg-accent focus-visible:ring-[3px] focus-visible:ring-ring/50"
               )}
             >
               <ArrowUpRight
                 aria-hidden
-                className="absolute top-3 right-3 size-4 text-muted-foreground transition-[color,translate] duration-200 group-hover/featured:translate-x-0.5 group-hover/featured:-translate-y-0.5 group-hover/featured:text-primary"
+                className="absolute top-3 right-3 size-4 text-muted-foreground transition-colors duration-150 group-hover/featured:text-foreground"
               />
               {item.featured.eyebrow && (
-                <span className="mb-2 text-[0.7rem] font-medium tracking-wider text-primary uppercase">
+                <span className="mb-2 w-fit rounded-full border px-2 py-px text-xs text-muted-foreground">
                   {item.featured.eyebrow}
                 </span>
               )}
@@ -255,14 +254,14 @@ function Panel({
                   <LinkAs
                     href={link.href}
                     className={cn(
-                      "group/link flex items-start gap-3 rounded-lg p-2.5 outline-none",
+                      "group/link flex items-start gap-3 rounded-md p-2.5 outline-none",
                       "transition-colors duration-150 hover:bg-accent focus-visible:bg-accent focus-visible:ring-[3px] focus-visible:ring-ring/50"
                     )}
                   >
                     {link.icon && (
                       <span
                         aria-hidden
-                        className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-md border bg-white/[0.03] text-muted-foreground transition-colors duration-150 group-hover/link:border-primary/30 group-hover/link:text-primary group-focus-visible/link:text-primary [&_svg]:size-4"
+                        className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-md border bg-white/[0.03] text-muted-foreground transition-colors duration-150 group-hover/link:text-foreground group-focus-visible/link:text-foreground [&_svg]:size-4"
                       >
                         {link.icon}
                       </span>
@@ -271,7 +270,7 @@ function Panel({
                       <span className="flex items-center gap-2 text-sm font-medium text-foreground">
                         {link.title}
                         {link.badge && (
-                          <span className="rounded-full border border-primary/30 bg-primary/10 px-1.5 py-px text-[0.65rem] font-medium text-primary">
+                          <span className="rounded-full border px-1.5 py-px text-[0.65rem] font-medium text-muted-foreground">
                             {link.badge}
                           </span>
                         )}

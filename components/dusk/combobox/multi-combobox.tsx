@@ -42,7 +42,7 @@ export interface MultiComboboxProps {
 }
 
 const pillSpring: Transition = { type: "spring", stiffness: 520, damping: 38, mass: 0.6 };
-const layoutSpring: Transition = { type: "spring", bounce: 0.15, duration: 0.35 };
+const layoutSpring: Transition = { type: "spring", bounce: 0.1, duration: 0.3 };
 
 function filterOptions(options: MultiComboboxOption[], query: string) {
   const q = query.trim().toLowerCase();
@@ -64,7 +64,7 @@ function Highlight({ label, query }: { label: string; query: string }) {
   return (
     <>
       {label.slice(0, index)}
-      <mark className="rounded-[3px] bg-primary/15 text-primary">{label.slice(index, index + q.length)}</mark>
+      <mark className="bg-transparent font-semibold text-foreground">{label.slice(index, index + q.length)}</mark>
       {label.slice(index + q.length)}
     </>
   );
@@ -72,7 +72,7 @@ function Highlight({ label, query }: { label: string; query: string }) {
 
 /**
  * A multi-select combobox: type to filter, pick as many options as you like
- * and each one becomes a chip that pops into the field. Chips slide over to
+ * and each one becomes a chip that scales into the field. Chips slide over to
  * make room and shrink away when removed (with their ✕, or Backspace in the
  * empty input). The list keeps its layout animations, a gliding highlight and
  * checkboxes that draw themselves. cmdk handles Up/Down/Home/End/Enter and
@@ -133,16 +133,16 @@ export function MultiCombobox({
   const surface: Variants = reduceMotion
     ? { closed: { opacity: 0, transition: { duration: 0.1 } }, open: { opacity: 1, transition: { duration: 0.15 } } }
     : {
-        closed: { opacity: 0, scale: 0.95, y: -6, transition: { duration: 0.12, ease: "easeIn" } },
-        open: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", duration: 0.4, bounce: 0.2 } },
+        closed: { opacity: 0, scale: 0.96, y: -4, transition: { duration: 0.12, ease: "easeIn" } },
+        open: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", duration: 0.25, bounce: 0 } },
       };
 
   const chip = reduceMotion
     ? { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } }
     : {
-        initial: { opacity: 0, scale: 0.6, filter: "blur(3px)" },
-        animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
-        exit: { opacity: 0, scale: 0.6, filter: "blur(3px)", transition: { duration: 0.15 } },
+        initial: { opacity: 0, scale: 0.9 },
+        animate: { opacity: 1, scale: 1 },
+        exit: { opacity: 0, scale: 0.9, transition: { duration: 0.15 } },
       };
 
   return (
@@ -185,8 +185,8 @@ export function MultiCombobox({
                     key={value}
                     layout={reduceMotion ? false : "position"}
                     {...chip}
-                    transition={{ type: "spring", bounce: 0.3, duration: 0.35 }}
-                    className="inline-flex h-6 max-w-full items-center gap-1 rounded-md border border-primary/25 bg-primary/10 pr-0.5 pl-1.5 text-xs font-medium text-primary shadow-[0_0_12px_-6px_var(--color-primary)] [&_svg:not([class*='size-'])]:size-3.5"
+                    transition={{ type: "spring", bounce: 0.1, duration: 0.25 }}
+                    className="inline-flex h-6 max-w-full items-center gap-1 rounded-md border border-white/10 bg-white/[0.06] pr-0.5 pl-1.5 text-xs font-medium text-foreground [&_svg:not([class*='size-'])]:size-3.5"
                   >
                     {option?.icon && (
                       <span aria-hidden className="flex">
@@ -199,7 +199,7 @@ export function MultiCombobox({
                       aria-label={`Remove ${label}`}
                       disabled={disabled}
                       onClick={() => remove(value)}
-                      className="grid size-4.5 place-items-center rounded-sm text-primary/70 outline-none transition-colors hover:bg-primary/20 hover:text-primary focus-visible:ring-2 focus-visible:ring-ring/60"
+                      className="grid size-4.5 place-items-center rounded-sm text-muted-foreground outline-none transition-colors hover:bg-white/10 hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/60"
                     >
                       <XIcon className="size-3" />
                     </button>
@@ -234,7 +234,7 @@ export function MultiCombobox({
             <ChevronDownIcon
               aria-hidden
               className={cn(
-                "pointer-events-none absolute top-2.5 right-2.5 size-4 text-muted-foreground transition-[rotate,color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none",
+                "pointer-events-none absolute top-2.5 right-2.5 size-4 text-muted-foreground transition-[rotate,color] duration-200 ease-out motion-reduce:transition-none",
                 open && "rotate-180 text-foreground"
               )}
             />
@@ -271,7 +271,7 @@ export function MultiCombobox({
                   className={cn(
                     "z-50 w-(--radix-popover-trigger-width) min-w-56 overflow-hidden rounded-xl border bg-popover text-popover-foreground outline-none",
                     "origin-(--radix-popover-content-transform-origin)",
-                    "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_16px_40px_-12px_rgb(0_0_0/0.7),0_0_0_1px_rgb(0_0_0/0.2)]",
+                    "shadow-lg",
                     contentClassName
                   )}
                 >
@@ -318,7 +318,7 @@ export function MultiCombobox({
                                   aria-hidden
                                   layoutId={`${autoId}-pill`}
                                   transition={reduceMotion ? { duration: 0 } : pillSpring}
-                                  className="absolute inset-0 rounded-lg bg-accent shadow-[inset_0_1px_0_rgb(255_255_255/0.04)]"
+                                  className="absolute inset-0 rounded-lg bg-accent"
                                 />
                               )}
                               <span
@@ -342,7 +342,7 @@ export function MultiCombobox({
                                   aria-hidden
                                   className={cn(
                                     "relative flex transition-colors duration-150",
-                                    isHighlighted || isSelected ? "text-primary" : "text-muted-foreground"
+                                    isHighlighted || isSelected ? "text-foreground" : "text-muted-foreground"
                                   )}
                                 >
                                   {option.icon}
@@ -361,9 +361,9 @@ export function MultiCombobox({
                   {filtered.length === 0 && (
                     <motion.div
                       role="status"
-                      initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 4 }}
+                      initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.98, y: 4 }}
                       animate={{ opacity: 1, scale: 1, y: 0 }}
-                      transition={{ type: "spring", duration: 0.35, bounce: 0.2 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
                       className="flex flex-col items-center gap-2 px-4 py-6 text-center text-sm text-muted-foreground"
                     >
                       <span
@@ -379,7 +379,7 @@ export function MultiCombobox({
                   {max !== undefined && (
                     <div className="flex items-center justify-between border-t px-3 py-2 text-xs text-muted-foreground">
                       <span>
-                        <span className={cn("tabular-nums", full && "text-primary")}>{selected.length}</span> of {max} selected
+                        <span className={cn("tabular-nums", full && "text-foreground")}>{selected.length}</span> of {max} selected
                       </span>
                       {selected.length > 0 && (
                         <button

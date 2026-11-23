@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils"
  * Same parts, props and data-slot attributes as shadcn, plus:
  * - Scrollbars fade in when you hover (or scroll, with `type="scroll"`) and
  *   fade out after `scrollHideDelay`, instead of popping.
- * - A slim thumb that brightens on hover and turns mint while dragged.
+ * - A slim thumb that brightens on hover and while dragged.
  * - `viewportRef` and `viewportClassName` to reach the scrolling element
  *   (for scroll listeners, `useScroll` or masks).
  * - A visible focus ring on the viewport for keyboard scrolling.
@@ -67,7 +67,7 @@ function ScrollBar({
         "group/scrollbar flex touch-none p-px select-none",
         // Radix unmounts hidden bars after the exit animation, so they fade both ways.
         "data-[state=visible]:animate-in data-[state=visible]:fade-in-0 data-[state=visible]:duration-200",
-        "data-[state=hidden]:animate-out data-[state=hidden]:fade-out-0 data-[state=hidden]:duration-300",
+        "data-[state=hidden]:animate-out data-[state=hidden]:fade-out-0 data-[state=hidden]:duration-200",
         "motion-reduce:animate-none",
         orientation === "vertical" &&
           "h-full w-2.5 border-l border-l-transparent",
@@ -81,7 +81,7 @@ function ScrollBar({
         data-slot="scroll-area-thumb"
         className={cn(
           "relative flex-1 rounded-full bg-white/15 transition-colors duration-150 motion-reduce:transition-none",
-          "group-hover/scrollbar:bg-white/30 active:bg-primary/70",
+          "group-hover/scrollbar:bg-white/30 active:bg-white/40",
           // A larger hit area than the visible thumb.
           "before:absolute before:top-1/2 before:left-1/2 before:size-full before:min-h-11 before:min-w-11 before:-translate-x-1/2 before:-translate-y-1/2"
         )}

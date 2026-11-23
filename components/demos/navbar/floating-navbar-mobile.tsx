@@ -28,14 +28,14 @@ export default function FloatingNavbarMobileDemo() {
         onNavigate={(_, event) => event.preventDefault()}
         logo={
           <span className="font-semibold tracking-tight">
-            dusk<span className="text-primary">.</span>ui
+            dusk.ui
           </span>
         }
       />
       <div className="space-y-3 px-4 pt-4 pb-[40vh]">
         <p className="text-sm text-muted-foreground">Open the menu, then scroll.</p>
         {Array.from({ length: 6 }, (_, i) => (
-          <div key={i} className="h-24 rounded-2xl border border-white/10 bg-white/[0.03]" />
+          <div key={i} className="h-24 rounded-xl border border-white/10 bg-white/[0.03]" />
         ))}
       </div>
     </div>

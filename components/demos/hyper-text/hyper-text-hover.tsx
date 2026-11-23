@@ -9,7 +9,7 @@ export default function HyperTextHover() {
         <a
           key={label}
           href="#"
-          className="rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2 font-mono text-sm text-white/80 transition-colors outline-none hover:border-primary/40 hover:text-primary focus-visible:ring-2 focus-visible:ring-primary/60"
+          className="rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2 font-mono text-sm text-white/80 transition-colors outline-none hover:border-white/20 hover:text-white focus-visible:ring-[3px] focus-visible:ring-ring/50"
         >
           <HyperText trigger="hover" duration={500}>
             {label}

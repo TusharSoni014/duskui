@@ -6,7 +6,7 @@ export default function FileUploadSingleDemo() {
   return (
     <div className="w-full max-w-sm space-y-2">
       <p className="flex items-center gap-2 text-sm font-medium text-white">
-        <FileText aria-hidden className="size-4 text-primary" /> Résumé
+        <FileText aria-hidden className="size-4 text-muted-foreground" /> Résumé
       </p>
       <FileUpload
         multiple={false}

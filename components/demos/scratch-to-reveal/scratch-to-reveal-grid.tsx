@@ -17,7 +17,6 @@ export default function ScratchToRevealGrid() {
             className="size-24 rounded-lg border border-white/10"
             brushSize={12}
             minScratchPercentage={30}
-            gradientColors={["#3f3f46", "#a1a1aa", "#e4e4e7", "#71717a"]}
             hint={null}
             revealLabel={`Reveal tile ${i + 1}`}
           >
@@ -30,7 +29,7 @@ export default function ScratchToRevealGrid() {
           </ScratchToReveal>
         ))}
       </div>
-      <p className="text-xs text-white/45">Small brush, 30% threshold, silver foil</p>
+      <p className="text-xs text-white/45">Small brush, 30% threshold</p>
     </div>
   );
 }

@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 export interface ParticlesProps extends Omit<React.ComponentProps<"div">, "children"> {
   /** Number of particles. */
   quantity?: number;
-  /** Any CSS color, including theme variables. Defaults to the theme primary. */
+  /** Any CSS color, including theme variables. Defaults to a soft white. */
   color?: string;
   /** Average particle radius in px. */
   size?: number;
@@ -83,9 +83,9 @@ function resolveColor(host: HTMLElement, color: string): string {
  * off-screen and in hidden tabs, and draws a single still frame under reduced motion.
  */
 export function Particles({
-  quantity = 80,
-  color = "var(--color-primary)",
-  size = 1.4,
+  quantity = 50,
+  color = "rgb(255 255 255)",
+  size = 1.1,
   ease = 0.08,
   interaction = "repel",
   radius = 120,
@@ -126,7 +126,7 @@ export function Particles({
         ox: 0,
         oy: 0,
         r: Math.max(0.3, size * (0.5 + rand())),
-        alpha: 0.35 + rand() * 0.65,
+        alpha: 0.15 + rand() * 0.4,
         twinkle: 0.6 + rand() * 1.6,
         phase: rand() * Math.PI * 2,
       };
@@ -156,7 +156,7 @@ export function Particles({
             const dy = py[i] - py[j];
             const d2 = dx * dx + dy * dy;
             if (d2 > max2) continue;
-            ctx.globalAlpha = (1 - Math.sqrt(d2) / linkMax) * 0.3;
+            ctx.globalAlpha = (1 - Math.sqrt(d2) / linkMax) * 0.12;
             ctx.beginPath();
             ctx.moveTo(px[i], py[i]);
             ctx.lineTo(px[j], py[j]);
@@ -168,7 +168,7 @@ export function Particles({
       ctx.fillStyle = `rgb(${rgb})`;
       for (let i = 0; i < count; i++) {
         const p = particles[i];
-        const shimmer = still ? 1 : 0.7 + 0.3 * Math.sin(time * p.twinkle + p.phase);
+        const shimmer = still ? 1 : 0.85 + 0.15 * Math.sin(time * p.twinkle + p.phase);
         ctx.globalAlpha = p.alpha * shimmer;
         ctx.beginPath();
         ctx.arc(px[i], py[i], p.r, 0, Math.PI * 2);

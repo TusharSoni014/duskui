@@ -90,7 +90,7 @@ function makeBeams(count: number, seed: number): Beam[] {
 /**
  * Thin beams of light travelling along a fan of curved SVG paths. Each beam is
  * a bright slice of a gradient whose stops sweep along its path, so it fades
- * in from a soft tail to a hot head. Fills its nearest positioned parent.
+ * in from a soft tail to a brighter head. Fills its nearest positioned parent.
  *
  * The layout is seeded, so it renders identically on the server and client.
  * The SVG timeline pauses off-screen and in hidden tabs; reduced motion
@@ -98,9 +98,9 @@ function makeBeams(count: number, seed: number): Beam[] {
  */
 export function BackgroundBeams({
   color = "var(--color-primary)",
-  count = 14,
+  count = 10,
   speed = 1,
-  pathOpacity = 0.08,
+  pathOpacity = 0.05,
   seed = 1,
   fade = true,
   className,
@@ -113,7 +113,7 @@ export function BackgroundBeams({
   const uid = React.useId().replace(/[^a-zA-Z0-9_-]/g, "");
   const beams = React.useMemo(() => makeBeams(count, seed), [count, seed]);
   const rate = Math.max(speed, 0.05);
-  const head = `color-mix(in oklab, ${color} 55%, white)`;
+  const head = `color-mix(in oklab, ${color} 80%, white)`;
 
   React.useEffect(() => {
     const root = rootRef.current;
@@ -180,8 +180,8 @@ export function BackgroundBeams({
                 y2={b.still[3]}
               >
                 <stop offset="0" stopOpacity={0} style={{ stopColor: color }} />
-                <stop offset="0.65" stopOpacity={0.55} style={{ stopColor: color }} />
-                <stop offset="0.94" stopOpacity={1} style={{ stopColor: head }} />
+                <stop offset="0.65" stopOpacity={0.3} style={{ stopColor: color }} />
+                <stop offset="0.94" stopOpacity={0.7} style={{ stopColor: head }} />
                 <stop offset="1" stopOpacity={0} style={{ stopColor: head }} />
                 {(["x1", "y1", "x2", "y2"] as const).map((name, k) => (
                   <animate
@@ -208,10 +208,7 @@ export function BackgroundBeams({
         )}
         <g strokeLinecap="round">
           {beams.map((b, i) => (
-            <g key={i} stroke={`url(#${uid}-beam-${i})`}>
-              <path d={b.d} strokeWidth={5} strokeOpacity={0.25} vectorEffect="non-scaling-stroke" />
-              <path d={b.d} strokeWidth={1.5} vectorEffect="non-scaling-stroke" />
-            </g>
+            <path key={i} d={b.d} stroke={`url(#${uid}-beam-${i})`} strokeWidth={1} vectorEffect="non-scaling-stroke" />
           ))}
         </g>
       </svg>

@@ -75,9 +75,9 @@ export function Hero() {
       </>
     ),
     props: [
-      { name: "quantity", type: "number", default: "80", description: "Number of particles." },
-      { name: "color", type: "string", default: '"var(--color-primary)"', description: "Particle and line color. Any CSS color." },
-      { name: "size", type: "number", default: "1.4", description: "Average particle radius in px." },
+      { name: "quantity", type: "number", default: "50", description: "Number of particles." },
+      { name: "color", type: "string", default: '"rgb(255 255 255)"', description: "Particle and line color. Any CSS color." },
+      { name: "size", type: "number", default: "1.1", description: "Average particle radius in px." },
       { name: "ease", type: "number", default: "0.08", description: "How quickly particles react and settle, from 0 to 1." },
       { name: "interaction", type: '"repel" | "attract" | "none"', default: '"repel"', description: "What the cursor does to nearby particles." },
       { name: "radius", type: "number", default: "120", description: "Reach of the cursor in px." },

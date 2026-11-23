@@ -2,42 +2,37 @@
 
 import * as React from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { CircleAlert, CircleCheck, Info, Sparkles, TriangleAlert, X } from "lucide-react";
+import { CircleAlert, CircleCheck, Info, Megaphone, TriangleAlert, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
 type BannerVariant = "default" | "info" | "success" | "warning" | "destructive";
 
-const variantStyles: Record<BannerVariant, { surface: string; icon: string; glow: string }> = {
+const variantStyles: Record<BannerVariant, { surface: string; icon: string }> = {
   default: {
-    surface: "border-primary/20 bg-[linear-gradient(90deg,color-mix(in_oklab,var(--primary)_14%,var(--background)),color-mix(in_oklab,var(--primary)_6%,var(--background)))]",
-    icon: "bg-primary/15 text-primary",
-    glow: "via-primary/70",
+    surface: "border-white/10 bg-card",
+    icon: "bg-white/10 text-foreground",
   },
   info: {
     surface: "border-sky-400/20 bg-sky-950/60",
     icon: "bg-sky-400/15 text-sky-300",
-    glow: "via-sky-400/70",
   },
   success: {
     surface: "border-emerald-400/20 bg-emerald-950/60",
     icon: "bg-emerald-400/15 text-emerald-300",
-    glow: "via-emerald-400/70",
   },
   warning: {
     surface: "border-amber-400/20 bg-amber-950/60",
     icon: "bg-amber-400/15 text-amber-300",
-    glow: "via-amber-400/70",
   },
   destructive: {
     surface: "border-destructive/30 bg-red-950/60",
     icon: "bg-destructive/20 text-red-300",
-    glow: "via-destructive/80",
   },
 };
 
 const defaultIcons: Record<BannerVariant, React.ReactNode> = {
-  default: <Sparkles />,
+  default: <Megaphone />,
   info: <Info />,
   success: <CircleCheck />,
   warning: <TriangleAlert />,
@@ -72,12 +67,12 @@ export interface BannerAlertProps
   label?: string;
 }
 
-const slide = { type: "spring", duration: 0.55, bounce: 0.15 } as const;
+const slide = { type: "spring", duration: 0.4, bounce: 0 } as const;
 
 /**
  * A full-width announcement bar for the top of a page or app shell. It slides
  * down from above while its height grows, so the page eases down instead of
- * jumping, and a light sweeps once along its bottom edge. Dismissing slides it
+ * jumping. Dismissing slides it
  * back up. Pass `storageKey` to remember the dismissal across visits; the
  * stored value is read after hydration, so server and client HTML always match.
  * Renders a labelled <section> (not role="alert"), so it never interrupts
@@ -165,17 +160,6 @@ export function BannerAlert({
                 <X className="size-4" aria-hidden />
               </button>
             )}
-            {/* One light sweep along the bottom edge after it lands. */}
-            <motion.span
-              aria-hidden
-              className={cn(
-                "pointer-events-none absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent to-transparent motion-reduce:hidden",
-                styles.glow
-              )}
-              initial={{ x: "-100%" }}
-              animate={{ x: "100%" }}
-              transition={{ duration: 1.4, ease: "easeInOut", delay: delay + 0.35 }}
-            />
           </motion.section>
         </motion.div>
       )}

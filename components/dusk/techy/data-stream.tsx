@@ -40,8 +40,8 @@ function resolveColor(host: HTMLElement, color: string): [number, number, number
 }
 
 /**
- * Packets of light streaming along horizontal lanes at different speeds —
- * long glowing tails, short data blocks and faint lane rails. Drawn on a
+ * Packets streaming along horizontal lanes at different speeds: thin fading
+ * tails, short data blocks and faint lane rails. Drawn on a
  * <canvas> that fills its nearest positioned parent; a good hero accent.
  *
  * The loop pauses while off-screen or in a hidden tab, and reduced motion
@@ -49,9 +49,9 @@ function resolveColor(host: HTMLElement, color: string): [number, number, number
  */
 export function DataStream({
   color = "var(--color-primary)",
-  lanes = 12,
+  lanes = 10,
   speed = 1,
-  density = 0.5,
+  density = 0.35,
   direction = "right",
   fade = true,
   className,
@@ -73,7 +73,7 @@ export function DataStream({
     const laneCount = Math.max(1, Math.round(lanes));
     const mul = Math.max(speed, 0.05);
 
-    // Pre-rendered sprites, stretched per packet: a tail that brightens toward its head, and a glow dot.
+    // Pre-rendered sprite, stretched per packet: a tail that brightens toward its head.
     const tail = document.createElement("canvas");
     tail.width = 256;
     tail.height = 4;
@@ -81,22 +81,10 @@ export function DataStream({
     if (tctx) {
       const grad = tctx.createLinearGradient(0, 0, 256, 0);
       grad.addColorStop(0, `rgba(${rgb}, 0)`);
-      grad.addColorStop(0.75, `rgba(${rgb}, 0.55)`);
-      grad.addColorStop(0.97, `rgba(${rgb}, 1)`);
-      grad.addColorStop(1, "rgb(255, 255, 255)");
+      grad.addColorStop(0.75, `rgba(${rgb}, 0.4)`);
+      grad.addColorStop(1, `rgba(${rgb}, 0.9)`);
       tctx.fillStyle = grad;
       tctx.fillRect(0, 0, 256, 4);
-    }
-    const dot = document.createElement("canvas");
-    dot.width = dot.height = 32;
-    const dctx = dot.getContext("2d");
-    if (dctx) {
-      const grad = dctx.createRadialGradient(16, 16, 0, 16, 16, 16);
-      grad.addColorStop(0, "rgba(255, 255, 255, 0.95)");
-      grad.addColorStop(0.25, `rgba(${rgb}, 0.6)`);
-      grad.addColorStop(1, `rgba(${rgb}, 0)`);
-      dctx.fillStyle = grad;
-      dctx.fillRect(0, 0, 32, 32);
     }
 
     let width = 0;
@@ -111,7 +99,7 @@ export function DataStream({
         x: x ?? 0,
         w,
         h: block ? 2 + Math.random() * 2 : 1 + Math.random() * 1.5,
-        alpha: 0.35 + Math.random() * 0.65,
+        alpha: 0.2 + Math.random() * 0.4,
         speed: lane.speed * (block ? 0.7 : 0.85 + Math.random() * 0.4),
         kind: block ? "block" : "stream",
       };
@@ -149,7 +137,7 @@ export function DataStream({
       ctx.clearRect(0, 0, width, height);
       if (direction === "left") ctx.setTransform(-dpr, 0, 0, dpr, width * dpr, 0);
 
-      ctx.fillStyle = `rgba(${rgb}, 0.07)`;
+      ctx.fillStyle = `rgba(${rgb}, 0.05)`;
       for (const lane of laneList) ctx.fillRect(0, lane.y - 0.5, width, 1);
 
       for (const lane of laneList) {
@@ -160,8 +148,6 @@ export function DataStream({
             ctx.fillRect(p.x - p.w, lane.y - p.h / 2, p.w, p.h);
           } else {
             ctx.drawImage(tail, p.x - p.w, lane.y - p.h / 2, p.w, p.h);
-            const glow = 6 + p.h * 3;
-            ctx.drawImage(dot, p.x - glow / 2, lane.y - glow / 2, glow, glow);
           }
         }
       }

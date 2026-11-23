@@ -10,7 +10,7 @@ export interface NeonButtonProps
   extends Omit<MotionButtonProps, "color" | "variant" | "asChild"> {
   /** Any CSS color. Defaults to the theme primary. */
   color?: string;
-  /** Glow strength multiplier. 0 turns the glow off, 1 is the default, 2 is very bright. */
+  /** Glow strength multiplier. 0 turns the glow off, 1 is the default. */
   intensity?: number;
   /** Flicker on like a neon tube the first time the button scrolls into view. Skipped for reduced motion. */
   flicker?: boolean;
@@ -28,18 +28,10 @@ const IGNITE: TargetAndTransition = {
   transition: { duration: 1.4, times: [0, 0.15, 0.3, 0.55, 0.75, 1], ease: "easeOut" },
 };
 
-function shadow(layers: [blur: number, alpha: number, inset?: boolean][], intensity: number) {
-  return layers
-    .map(
-      ([blur, alpha, inset]) =>
-        `${inset ? "inset " : ""}0 0 ${blur * intensity}px color-mix(in oklab, var(--neon) ${alpha}%, transparent)`
-    )
-    .join(", ");
-}
-
 /**
- * A button that glows like a neon tube. The glow intensifies on hover and on
- * keyboard focus, and can optionally flicker on when it first appears.
+ * A button with a soft neon-tube glow. The single glow layer brightens a
+ * little on hover and keyboard focus, and can optionally flicker on when it
+ * first appears.
  *
  * Built on the DuskUI `MotionButton`, so `loading`, `loadingText`, `size` and
  * every Motion prop keep working. Glow layers are absolutely positioned and
@@ -64,12 +56,11 @@ export function NeonButton({
     "--neon-fg": solid
       ? "oklch(0.16 0.02 260)"
       : "color-mix(in oklab, var(--neon) 72%, white)",
-    "--neon-bg": solid ? "var(--neon)" : "color-mix(in oklab, var(--neon) 7%, transparent)",
+    "--neon-bg": solid ? "var(--neon)" : "color-mix(in oklab, var(--neon) 6%, transparent)",
     "--neon-bg-hover": solid
-      ? "color-mix(in oklab, var(--neon) 85%, white)"
-      : "color-mix(in oklab, var(--neon) 14%, transparent)",
+      ? "color-mix(in oklab, var(--neon) 90%, white)"
+      : "color-mix(in oklab, var(--neon) 12%, transparent)",
     "--neon-ring": "color-mix(in oklab, var(--neon) 45%, transparent)",
-    textShadow: solid || i === 0 ? undefined : `0 0 ${6 * i}px color-mix(in oklab, var(--neon) 80%, transparent)`,
   } as React.CSSProperties;
 
   return (
@@ -92,33 +83,11 @@ export function NeonButton({
           whileInView={ignite ? IGNITE : undefined}
           viewport={{ once: true }}
         >
-          {/* Resting glow */}
+          {/* One soft glow layer; hover and focus only raise its opacity. */}
           <span
-            className="absolute inset-0 rounded-[inherit]"
+            className="absolute inset-0 rounded-[inherit] opacity-60 transition-opacity duration-200 group-hover/neon:opacity-100 group-focus-visible/neon:opacity-100 motion-reduce:transition-none"
             style={{
-              boxShadow: shadow(
-                [
-                  [4, 70],
-                  [14, 38],
-                  [6, 30, true],
-                ],
-                i
-              ),
-            }}
-          />
-          {/* Hover / focus glow: only opacity animates, so it stays cheap. */}
-          <span
-            className="absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover/neon:opacity-100 group-focus-visible/neon:opacity-100 motion-reduce:transition-none"
-            style={{
-              boxShadow: shadow(
-                [
-                  [6, 90],
-                  [22, 60],
-                  [48, 32],
-                  [12, 40, true],
-                ],
-                i
-              ),
+              boxShadow: `0 0 ${12 * i}px color-mix(in oklab, var(--neon) 30%, transparent)`,
             }}
           />
         </motion.span>

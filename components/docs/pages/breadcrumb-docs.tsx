@@ -61,7 +61,7 @@ export function PageBreadcrumb() {
       id: "default",
       title: "Default",
       description:
-        "Links brighten and an underline grows in from the left on hover; the current page is bright and marked with aria-current.",
+        "Links brighten on hover; the current page is bright and marked with aria-current.",
       Demo: BreadcrumbBasicDemo,
       file: demo("breadcrumb-basic.tsx"),
       minHeight: 140,

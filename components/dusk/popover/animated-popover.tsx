@@ -25,10 +25,10 @@ export interface AnimatedPopoverProps
 }
 
 /**
- * A popover that springs out of its trigger. The scale origin comes from
+ * A popover that scales out of its trigger. The scale origin comes from
  * Radix's `--radix-popover-content-transform-origin`, so it always grows from
  * the edge nearest the trigger, even after flipping to avoid the viewport
- * edge; the content then fades up a beat later and the exit is quick. Radix
+ * edge; the content then fades in a beat later and the exit is quick. Radix
  * handles focus, Escape, outside clicks and aria. Fades only under reduced motion.
  */
 export function AnimatedPopover({ open: openProp, defaultOpen = false, onOpenChange, ...props }: AnimatedPopoverProps) {
@@ -81,21 +81,19 @@ export function AnimatedPopoverContent({
   const surface: Variants = reduceMotion
     ? { closed: { opacity: 0, transition: { duration: 0.1 } }, open: { opacity: 1, transition: { duration: 0.15 } } }
     : {
-        closed: { opacity: 0, scale: 0.85, filter: "blur(4px)", transition: { duration: 0.14, ease: "easeIn" } },
+        closed: { opacity: 0, scale: 0.96, transition: { duration: 0.12, ease: "easeIn" } },
         open: {
           opacity: 1,
           scale: 1,
-          filter: "blur(0px)",
-          transitionEnd: { filter: "none" },
-          transition: { type: "spring", duration: 0.45, bounce: 0.25 },
+          transition: { type: "spring", duration: 0.25, bounce: 0.1 },
         },
       };
 
   const inner: Variants = reduceMotion
     ? { closed: { opacity: 1 }, open: { opacity: 1 } }
     : {
-        closed: { opacity: 0, y: 4, transition: { duration: 0.08 } },
-        open: { opacity: 1, y: 0, transition: { duration: 0.25, ease: "easeOut", delay: 0.08 } },
+        closed: { opacity: 0, transition: { duration: 0.08 } },
+        open: { opacity: 1, transition: { duration: 0.2, ease: "easeOut", delay: 0.05 } },
       };
 
   return (
@@ -108,7 +106,7 @@ export function AnimatedPopoverContent({
               className={cn(
                 "z-50 w-72 rounded-xl border bg-popover p-4 text-popover-foreground outline-none",
                 "origin-(--radix-popover-content-transform-origin)",
-                "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_16px_40px_-12px_rgb(0_0_0/0.7),0_0_0_1px_rgb(0_0_0/0.2)]",
+                "shadow-md",
                 className
               )}
               variants={surface}

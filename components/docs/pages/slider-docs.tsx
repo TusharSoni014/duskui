@@ -12,7 +12,7 @@ const block = (file: string) => `components/dusk/slider/${file}`;
 const config: DocConfig = {
   title: "Slider",
   intro:
-    "The shadcn/ui Slider with a thumb that grows while you drag it, a gradient range and range-slider labels for screen readers — plus two animated React slider blocks built with Motion and Radix: a slider with a floating value tooltip that leans as you drag, and a stepped slider with tick marks that light up.",
+    "The shadcn/ui Slider with a thumb that grows slightly while you drag it and range-slider labels for screen readers — plus two animated React slider blocks built with Motion and Radix: a slider with a floating value tooltip that leans slightly as you drag, and a stepped slider with tick marks that light up.",
   tags: ["Drop-in shadcn API", "Range & vertical", "Keyboard accessible", "Motion blocks"],
   hero: { Demo: ValueSliderDemo, file: demo("value-slider-demo.tsx"), minHeight: 260 },
   install: {
@@ -40,7 +40,7 @@ export function Volume() {
       id: "default",
       title: "Default",
       description:
-        "Hover a thumb and it grows a little to make it easier to grab; press and drag and it fills in with a soft halo. Arrow keys, Page Up/Down and Home/End work once it's focused.",
+        "Press and drag a thumb and it grows a little to show it's held. Arrow keys, Page Up/Down and Home/End work once it's focused.",
       Demo: SliderBasicDemo,
       file: demo("slider-basic.tsx"),
       minHeight: 180,
@@ -96,7 +96,7 @@ export function Volume() {
       description: (
         <>
           A slider that snaps between named steps — plans, sizes, levels. Tick marks light up as the
-          range passes them, the selected tick stretches and glows, and clicking a label jumps to it.
+          range passes them, the selected tick stretches, and clicking a label jumps to it.
           Values are strings, and <Code>name</Code> submits the selected step with a form.
         </>
       ),
@@ -133,7 +133,7 @@ export function Volume() {
     <>Built on Radix Slider: each thumb is a <Code>role=&quot;slider&quot;</Code> with <Code>aria-valuemin</Code>, <Code>-max</Code> and <Code>-now</Code>, operable with arrows, Page Up/Down and Home/End.</>,
     <>Label sliders with <Code>aria-label</Code> or <Code>aria-labelledby</Code>; the base and blocks move the label onto the thumbs, where screen readers look for it.</>,
     <>Value Slider and Stepped Slider set <Code>aria-valuetext</Code> to the formatted value or step label, so “$240” or “50,000 requests” is read instead of a raw number.</>,
-    "Under prefers-reduced-motion thumbs resize instantly, the value bubble fades without leaning and ticks change without bouncing.",
+    "Under prefers-reduced-motion thumbs resize instantly, the value bubble fades without leaning and ticks change without animating.",
   ],
 };
 

@@ -1,8 +1,8 @@
 import { DotSpotlight } from "@/components/dusk/backgrounds/dot-spotlight";
 
 const variants = [
-  { label: "gap={14} dotSize={1}", props: { gap: 14, dotSize: 1, color: "#a78bfa", radius: 160 } },
-  { label: "gap={28} glow={false}", props: { gap: 28, dotSize: 2, color: "#fbbf24", glow: false } },
+  { label: "gap={14} dotSize={1}", props: { gap: 14, dotSize: 1, radius: 120 } },
+  { label: "gap={28} dotSize={1.5}", props: { gap: 28, dotSize: 1.5, color: "rgb(196 181 253 / 0.45)" } },
 ];
 
 export default function DotSpotlightCustom() {

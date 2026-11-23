@@ -740,8 +740,8 @@ export function CarouselDots({ className, ...props }: React.ComponentProps<"div"
                   <motion.span
                     layoutId="carousel-dot"
                     aria-hidden
-                    transition={{ type: "spring", bounce: 0.25, duration: 0.45 }}
-                    className="absolute h-1.5 w-3.5 rounded-full bg-primary shadow-[0_0_10px_var(--color-primary)]"
+                    transition={{ type: "spring", bounce: 0.1, duration: 0.3 }}
+                    className="absolute h-1.5 w-3.5 rounded-full bg-primary"
                   />
                 )}
               </button>

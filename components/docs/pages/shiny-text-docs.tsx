@@ -80,7 +80,7 @@ export function Announcement() {
       { name: "color", type: "string", default: "foreground at 55%", description: "Base text color (any CSS color)." },
       { name: "shineColor", type: "string", default: "var(--color-foreground)", description: "Color of the light band." },
       { name: "duration", type: "number", default: "1.8", description: "Seconds for one sweep." },
-      { name: "repeatDelay", type: "number", default: "1.6", description: "Seconds between sweeps in loop mode." },
+      { name: "repeatDelay", type: "number", default: "2.5", description: "Seconds between sweeps in loop mode." },
       { name: "spread", type: "number", default: "0.35", description: "Band width as a fraction of the text width (0.1–1)." },
       { name: "angle", type: "number", default: "110", description: "Band angle in degrees." },
       { name: "direction", type: '"ltr" | "rtl"', default: '"ltr"', description: "Sweep direction." },

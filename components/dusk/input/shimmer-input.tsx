@@ -14,8 +14,8 @@ export interface ShimmerInputProps extends React.ComponentProps<"input"> {
 }
 
 /**
- * An input whose border lights up with a travelling beam while `loading`.
- * The beam is a rotating conic gradient clipped to a 1px frame.
+ * An input with a faint beam travelling around its border while `loading`.
+ * The beam is a narrow rotating conic gradient clipped to a 1px frame.
  */
 export function ShimmerInput({
   loading = false,
@@ -29,7 +29,7 @@ export function ShimmerInput({
     <div
       className={cn(
         "relative w-full overflow-hidden rounded-[calc(var(--radius)-1px)] bg-input p-px transition-shadow duration-200",
-        "has-[input:focus-visible]:ring-[3px] has-[input:focus-visible]:ring-ring/30",
+        "has-[input:focus-visible]:ring-[3px] has-[input:focus-visible]:ring-ring/50",
         wrapperClassName
       )}
     >
@@ -37,13 +37,13 @@ export function ShimmerInput({
         {loading && (
           <motion.span
             aria-hidden
-            className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[max(200%,24rem)] -translate-x-1/2 -translate-y-1/2 bg-[conic-gradient(from_0deg,transparent_0%,transparent_65%,var(--color-primary)_85%,white_90%,transparent_100%)]"
+            className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[max(200%,24rem)] -translate-x-1/2 -translate-y-1/2 bg-[conic-gradient(from_0deg,transparent_0%,transparent_82%,color-mix(in_oklab,var(--color-primary)_55%,transparent)_94%,transparent_100%)]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, rotate: reduceMotion ? 0 : 360 }}
             exit={{ opacity: 0 }}
             transition={{
               opacity: { duration: 0.3 },
-              rotate: { duration: 2.2, ease: "linear", repeat: Infinity },
+              rotate: { duration: 3, ease: "linear", repeat: Infinity },
             }}
           />
         )}

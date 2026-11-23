@@ -48,8 +48,7 @@ export function BuildWarning() {
       title: "Default and destructive",
       description: (
         <>
-          The shadcn/ui variants with a soft glow on the icon. The default variant tints the icon mint.
-          Alerts use <Code>role=&quot;alert&quot;</Code> like shadcn; pass{" "}
+          The shadcn/ui default and destructive variants. Alerts use <Code>role=&quot;alert&quot;</Code> like shadcn; pass{" "}
           <Code>role=&quot;status&quot;</Code> for messages that shouldn&apos;t interrupt a screen reader.
         </>
       ),
@@ -76,7 +75,7 @@ export function BuildWarning() {
       deps: "motion lucide-react",
       description: (
         <>
-          An Alert with a close button. On dismiss it fades and blurs out while its height collapses, so
+          An Alert with a close button. On dismiss it fades out while its height collapses, so
           the content below slides up instead of jumping. Set <Code>autoDismiss</Code> (ms) and it closes
           itself, drawing a shrinking line along the bottom; the countdown pauses while the alert is
           hovered or focused and while the tab is hidden. Escape inside the alert dismisses it too.
@@ -107,8 +106,7 @@ export function BuildWarning() {
       description: (
         <>
           A full-width announcement bar for the top of a page. It slides down from above while its height
-          grows, so the page eases down rather than jumping, then a light sweeps once along its bottom
-          edge. Pass <Code>storageKey</Code> to remember the dismissal in localStorage; the stored value
+          grows, so the page eases down rather than jumping. Pass <Code>storageKey</Code> to remember the dismissal in localStorage; the stored value
           is read after hydration with <Code>useSyncExternalStore</Code>, so server and client HTML always
           match. For zero layout shift, render it inside a fixed or sticky header.
         </>
@@ -118,7 +116,7 @@ export function BuildWarning() {
       minHeight: 320,
       props: [
         { name: "children", type: "ReactNode", description: "The announcement text." },
-        { name: "variant", type: '"default" | "info" | "success" | "warning" | "destructive"', default: '"default"', description: "Color scheme. default is a mint gradient." },
+        { name: "variant", type: '"default" | "info" | "success" | "warning" | "destructive"', default: '"default"', description: "Color scheme. default is a neutral card surface." },
         { name: "action", type: "ReactNode", description: "A call to action after the text, e.g. a link." },
         { name: "icon", type: "ReactNode | null", description: "Leading icon. Defaults to one per variant; null hides it." },
         { name: "open / defaultOpen / onOpenChange", type: "boolean / boolean / (open: boolean) => void", default: "— / true / —", description: "Controlled or uncontrolled visibility." },
@@ -150,7 +148,7 @@ export function BuildWarning() {
     "Put a leading icon inside the Alert; it is decorative, so the title must carry the meaning (don't rely on color alone).",
     "The Dismissible Alert close button is a real button with an accessible label, and Escape anywhere inside the alert dismisses it. Its auto-dismiss pauses on focus, so keyboard users get time to read and act.",
     "The Banner Alert is a labelled region, not an alert, so it never interrupts; its close button has an accessible label.",
-    "Under prefers-reduced-motion the blocks skip scale, blur and slide, and only fade and collapse.",
+    "Under prefers-reduced-motion the blocks skip scale and slide, and only fade and collapse.",
   ],
 };
 

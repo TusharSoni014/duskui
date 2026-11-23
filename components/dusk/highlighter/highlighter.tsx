@@ -194,7 +194,7 @@ export function Highlighter({
 
   const passes = Math.max(1, Math.round(iterations ?? (action === "highlight" ? 1 : 2)));
   const stroke =
-    color ?? (action === "highlight" ? "color-mix(in oklab, var(--color-primary) 38%, transparent)" : "var(--color-primary)");
+    color ?? (action === "highlight" ? "color-mix(in oklab, var(--color-primary) 28%, transparent)" : "var(--color-primary)");
 
   /** Rebuilds the paths from the current layout. Returns them in drawing order. */
   const draw = React.useCallback(

@@ -40,13 +40,13 @@ const BLOBS: Blob[] = [
 ];
 
 const TONES: Record<Blob["tone"], string> = {
-  main: "radial-gradient(circle at 35% 35%, color-mix(in oklab, var(--plasma) 55%, white), var(--plasma))",
+  main: "radial-gradient(circle at 35% 35%, color-mix(in oklab, var(--plasma) 80%, white), var(--plasma))",
   second: "radial-gradient(circle at 35% 35%, var(--plasma-2), color-mix(in oklab, var(--plasma-2) 70%, var(--plasma)))",
-  core: "radial-gradient(circle, white, color-mix(in oklab, var(--plasma) 60%, white))",
+  core: "radial-gradient(circle, color-mix(in oklab, var(--plasma) 60%, white), color-mix(in oklab, var(--plasma) 80%, white))",
 };
 
 /**
- * A loading spinner made of glowing plasma blobs orbiting a ring. An SVG
+ * A loading spinner made of plasma blobs orbiting a ring. An SVG
  * "gooey" filter fuses the blobs as they pass each other.
  *
  * Accessible as a `role="status"` region with a screen-reader label. With
@@ -96,7 +96,7 @@ export function PlasmaLoader({
         <span
           className="absolute inset-0"
           style={{
-            filter: `drop-shadow(0 0 ${Math.max(2, size * 0.08)}px color-mix(in oklab, var(--plasma) 80%, transparent))`,
+            filter: `drop-shadow(0 0 ${Math.max(2, size * 0.05)}px color-mix(in oklab, var(--plasma) 35%, transparent))`,
           }}
         >
           <motion.span

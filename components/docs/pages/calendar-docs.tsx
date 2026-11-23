@@ -50,7 +50,7 @@ export function Booking() {
       title: "Single date",
       description: (
         <>
-          Pick a day and the mint pill glides over from the previous one. Today keeps a mint ring so you
+          Pick a day and the mint pill glides over from the previous one. Today keeps a neutral background so you
           can always find it. Use the arrows (or PageUp / PageDown) to change month: the weeks slide in
           from the side you moved toward.
         </>
@@ -110,7 +110,7 @@ export function Booking() {
       deps: "@radix-ui/react-popover react-day-picker date-fns motion lucide-react",
       description: (
         <>
-          A button that opens the Calendar in a popover. The panel springs out of the trigger, focus moves
+          A button that opens the Calendar in a popover. The panel scales out of the trigger, focus moves
           into the grid, and picking a day closes it and rolls the formatted date into the trigger. Pass{" "}
           <Code>name</Code> to submit the date in a form as <Code>yyyy-MM-dd</Code>.
         </>

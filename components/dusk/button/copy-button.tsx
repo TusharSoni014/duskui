@@ -16,10 +16,10 @@ export interface CopyButtonProps extends Omit<ButtonProps, "value"> {
 }
 
 const iconMotion = {
-  initial: { opacity: 0, scale: 0.4, filter: "blur(4px)" },
-  animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
-  exit: { opacity: 0, scale: 0.4, filter: "blur(4px)" },
-  transition: { type: "spring", duration: 0.3, bounce: 0.2 },
+  initial: { opacity: 0, scale: 0.6 },
+  animate: { opacity: 1, scale: 1 },
+  exit: { opacity: 0, scale: 0.6 },
+  transition: { type: "spring", duration: 0.2, bounce: 0 },
 } as const;
 
 /** Icon button that copies text and morphs its icon into a check mark. */

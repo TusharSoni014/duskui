@@ -72,7 +72,7 @@ export function Pitch() {
       { name: "children", type: "ReactNode", description: "Inline content to annotate. It can wrap across lines." },
       { name: "as", type: '"span" | "mark" | "strong" | "em" | "b" | "i"', default: '"span"', description: "Element to render. mark suits highlights." },
       { name: "action", type: '"highlight" | "underline" | "circle" | "strike-through" | "box"', default: '"highlight"', description: "How the annotation is drawn." },
-      { name: "color", type: "string", default: "primary (38% for highlight)", description: "Stroke color, any CSS color." },
+      { name: "color", type: "string", default: "primary (28% for highlight)", description: "Stroke color, any CSS color." },
       { name: "strokeWidth", type: "number", default: "2", description: "Line thickness in px. Ignored by highlight, which follows the text height." },
       { name: "iterations", type: "number", default: "1 (highlight) / 2", description: "How many hand-drawn passes." },
       { name: "duration", type: "number", default: "0.9", description: "Seconds to draw the whole annotation, every line and pass." },

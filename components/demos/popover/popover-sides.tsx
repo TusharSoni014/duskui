@@ -14,7 +14,7 @@ export default function PopoverSidesDemo() {
             </Button>
           </PopoverTrigger>
           <PopoverContent side={side} className="w-48 text-sm">
-            Grows out of the trigger from the <span className="font-medium text-primary">{side}</span>.
+            Grows out of the trigger from the <span className="font-medium text-foreground">{side}</span>.
           </PopoverContent>
         </Popover>
       ))}

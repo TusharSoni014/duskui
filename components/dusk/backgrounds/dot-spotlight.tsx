@@ -12,7 +12,7 @@ import {
 import { cn } from "@/lib/utils";
 
 export interface DotSpotlightProps extends React.ComponentProps<"div"> {
-  /** Color of the spotlight and the dots it lights up. Defaults to the theme primary. */
+  /** Color of the dots the spotlight lights up. Defaults to a soft white. */
   color?: string;
   /** Color of the resting dots. */
   dotColor?: string;
@@ -22,34 +22,30 @@ export interface DotSpotlightProps extends React.ComponentProps<"div"> {
   dotSize?: number;
   /** Radius of the spotlight in px. */
   radius?: number;
-  /** Paint a soft color wash under the spotlight as well as lighting the dots. */
-  glow?: boolean;
   /** Fade the pattern out toward the edges. */
   fade?: boolean;
 }
 
 /** Brightness of the spotlight while it rests in the center (touch, reduced motion, cursor away). */
-const IDLE = 0.55;
-
-const mix = (color: string, amount: number) => `color-mix(in oklab, ${color} ${amount}%, transparent)`;
+const IDLE = 0.4;
 const dots = (color: string, r: number) =>
   `radial-gradient(circle at center, ${color} ${r}px, transparent ${r + 0.75}px)`;
 
 /**
- * A dot-grid background with a soft spotlight that follows the cursor and
- * brightens the dots beneath it. Fills its nearest positioned parent.
+ * A dot-grid background where a small, soft spotlight follows the cursor and
+ * brightens only the dots beneath it. No color wash: the light lives in the
+ * dots. Fills its nearest positioned parent.
  *
  * The light is a CSS mask driven by spring-smoothed motion values, so moving
  * the cursor never re-renders React. On touch screens, under reduced motion,
- * or when the cursor leaves, the light rests as a static glow in the center.
+ * or when the cursor leaves, the light rests dimly in the center.
  */
 export function DotSpotlight({
-  color = "var(--color-primary)",
-  dotColor = "rgb(255 255 255 / 0.14)",
+  color = "rgb(255 255 255 / 0.4)",
+  dotColor = "rgb(255 255 255 / 0.1)",
   gap = 20,
   dotSize = 1.25,
-  radius = 220,
-  glow = true,
+  radius = 160,
   fade = true,
   className,
   style,
@@ -66,7 +62,6 @@ export function DotSpotlight({
   const sy = useSpring(my, { stiffness: 220, damping: 30 });
   const sLit = useSpring(lit, { stiffness: 160, damping: 26 });
   const mask = useMotionTemplate`radial-gradient(${radius}px circle at ${sx}% ${sy}%, #000, transparent)`;
-  const wash = useMotionTemplate`radial-gradient(${radius * 1.4}px circle at ${sx}% ${sy}%, ${mix(color, 16)}, transparent 70%)`;
 
   React.useEffect(() => {
     const root = rootRef.current;
@@ -123,7 +118,6 @@ export function DotSpotlight({
       style={style}
       {...props}
     >
-      {glow && <motion.div className="absolute inset-0" style={{ background: wash, opacity: sLit }} />}
       <div
         className="absolute inset-0"
         style={{ backgroundImage: dots(dotColor, dotSize), backgroundSize: tile, backgroundPosition: "center" }}
@@ -131,7 +125,7 @@ export function DotSpotlight({
       <motion.div
         className="absolute inset-0"
         style={{
-          backgroundImage: dots(color, dotSize * 1.3),
+          backgroundImage: dots(color, dotSize),
           backgroundSize: tile,
           backgroundPosition: "center",
           maskImage: mask,

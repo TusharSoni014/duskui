@@ -14,7 +14,7 @@ const items = [
   {
     value: "motion",
     title: "Which animation library is used?",
-    body: "Motion (formerly Framer Motion). Heights use springs, and content fades and un-blurs in once the panel starts opening.",
+    body: "Motion (formerly Framer Motion). Heights use springs, and content fades in once the panel starts opening.",
   },
   {
     value: "reduced",

@@ -16,8 +16,8 @@ import { cn } from "@/lib/utils";
 
 export type NavbarLink = { label: string; href: string };
 
-const pillSpring: Transition = { type: "spring", bounce: 0.18, duration: 0.5 };
-const barSpring: Transition = { type: "spring", bounce: 0, duration: 0.45 };
+const pillSpring: Transition = { type: "spring", bounce: 0.1, duration: 0.35 };
+const barSpring: Transition = { type: "spring", bounce: 0, duration: 0.3 };
 
 export interface FloatingNavbarProps extends Omit<React.ComponentProps<"div">, "children"> {
   links: NavbarLink[];
@@ -47,8 +47,8 @@ export interface FloatingNavbarProps extends Omit<React.ComponentProps<"div">, "
 
 /**
  * A floating, glassy navbar that slides out of the way when you scroll down
- * and drops back in as soon as you scroll up. A mint pill glides to the active
- * link and a soft highlight follows the cursor (shared Motion `layoutId`s).
+ * and drops back in as soon as you scroll up. A pill glides to the active
+ * link and a hover highlight slides between links (shared Motion `layoutId`s).
  * Below 42rem of width it collapses into a menu button with an animated panel.
  *
  * Scroll is read through `useScroll` + `useMotionValueEvent`, so it only
@@ -112,17 +112,17 @@ export function FloatingNavbar({
   const menuVariants: Variants = reduceMotion
     ? { closed: { opacity: 0 }, open: { opacity: 1 } }
     : {
-        closed: { opacity: 0, y: -8, scale: 0.97, transition: { duration: 0.15, ease: "easeIn" } },
+        closed: { opacity: 0, y: -4, scale: 0.98, transition: { duration: 0.12, ease: "easeIn" } },
         open: {
           opacity: 1,
           y: 0,
           scale: 1,
-          transition: { type: "spring", duration: 0.4, bounce: 0.15, staggerChildren: 0.04, delayChildren: 0.04 },
+          transition: { type: "spring", duration: 0.25, bounce: 0, staggerChildren: 0.02 },
         },
       };
   const menuItemVariants: Variants = reduceMotion
     ? {}
-    : { closed: { opacity: 0, y: -6 }, open: { opacity: 1, y: 0 } };
+    : { closed: { opacity: 0, y: -4 }, open: { opacity: 1, y: 0 } };
 
   return (
     <AutoHide
@@ -137,9 +137,9 @@ export function FloatingNavbar({
       <header ref={headerRef} className="pointer-events-auto relative w-full max-w-3xl">
         <div
           className={cn(
-            "flex h-14 items-center gap-2 rounded-2xl border border-white/10 px-2 pl-4",
-            "bg-background/80 supports-[backdrop-filter]:bg-background/55 supports-[backdrop-filter]:backdrop-blur-xl supports-[backdrop-filter]:backdrop-saturate-150",
-            "shadow-[inset_0_1px_0_rgb(255_255_255/0.06),0_12px_32px_-12px_rgb(0_0_0/0.7)]"
+            "flex h-14 items-center gap-2 rounded-xl border border-white/10 px-2 pl-4",
+            "bg-background/90 supports-[backdrop-filter]:bg-background/70 supports-[backdrop-filter]:backdrop-blur-md",
+            "shadow-lg"
           )}
         >
           {logo && <div className="flex shrink-0 items-center">{logo}</div>}
@@ -161,7 +161,7 @@ export function FloatingNavbar({
                         className={cn(
                           "relative isolate block rounded-full px-3.5 py-1.5 text-sm font-medium outline-none transition-colors duration-200",
                           "focus-visible:ring-[3px] focus-visible:ring-ring/50",
-                          isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                          isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                         )}
                       >
                         {hovered === link.href && (
@@ -169,7 +169,7 @@ export function FloatingNavbar({
                             layoutId="navbar-hover"
                             aria-hidden
                             transition={pillSpring}
-                            className="absolute inset-0 -z-20 rounded-full bg-white/6"
+                            className="absolute inset-0 -z-20 rounded-full bg-white/5"
                           />
                         )}
                         {isActive && (
@@ -177,7 +177,7 @@ export function FloatingNavbar({
                             layoutId="navbar-active"
                             aria-hidden
                             transition={pillSpring}
-                            className="absolute inset-0 -z-10 rounded-full bg-primary/12 shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--color-primary)_35%,transparent),0_0_16px_-6px_var(--color-primary)]"
+                            className="absolute inset-0 -z-10 rounded-full bg-white/10"
                           />
                         )}
                         {link.label}
@@ -198,7 +198,7 @@ export function FloatingNavbar({
               aria-controls={menuId}
               aria-label={open ? "Close menu" : "Open menu"}
               onClick={() => setOpen((o) => !o)}
-              className="grid size-9 place-items-center rounded-xl text-foreground outline-none transition-colors hover:bg-white/6 focus-visible:ring-[3px] focus-visible:ring-ring/50 @2xl:hidden"
+              className="grid size-9 place-items-center rounded-md text-foreground outline-none transition-colors hover:bg-white/6 focus-visible:ring-[3px] focus-visible:ring-ring/50 @2xl:hidden"
             >
               <span aria-hidden className="relative block h-3 w-4">
                 <motion.span
@@ -228,9 +228,8 @@ export function FloatingNavbar({
               animate="open"
               exit="closed"
               className={cn(
-                "absolute inset-x-0 top-full mt-2 origin-top rounded-2xl border border-white/10 p-2 @2xl:hidden",
-                "bg-background/90 supports-[backdrop-filter]:bg-background/70 supports-[backdrop-filter]:backdrop-blur-xl",
-                "shadow-[inset_0_1px_0_rgb(255_255_255/0.06),0_16px_40px_-12px_rgb(0_0_0/0.8)]"
+                "absolute inset-x-0 top-full mt-2 origin-top rounded-xl border border-white/10 bg-popover p-2 @2xl:hidden",
+                "shadow-lg"
               )}
             >
               <nav aria-label={ariaLabel}>
@@ -244,13 +243,12 @@ export function FloatingNavbar({
                           aria-current={isActive ? "page" : undefined}
                           onClick={(event: React.MouseEvent<HTMLElement>) => handleNavigate(link.href, event)}
                           className={cn(
-                            "flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium outline-none transition-colors",
+                            "flex items-center justify-between rounded-md px-3 py-2.5 text-sm font-medium outline-none transition-colors",
                             "focus-visible:ring-[3px] focus-visible:ring-ring/50",
-                            isActive ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
+                            isActive ? "bg-accent text-foreground" : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
                           )}
                         >
                           {link.label}
-                          {isActive && <span aria-hidden className="size-1.5 rounded-full bg-primary shadow-[0_0_8px_var(--color-primary)]" />}
                         </Link>
                       </motion.li>
                     );

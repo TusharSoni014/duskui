@@ -9,7 +9,7 @@ const demo = (file: string) => `components/demos/timeline/${file}`;
 const config: DocConfig = {
   title: "Timeline",
   intro:
-    "A scroll-animated vertical timeline for React and Tailwind CSS, perfect for changelogs, roadmaps and company history. A glowing progress line traces down the rail as you scroll, each dot lights up as the line reaches it, entries fade and slide in, and on wide layouts the dates stick beside their entry. Works on the page or inside any scroll container.",
+    "A scroll-animated vertical timeline for React and Tailwind CSS, perfect for changelogs, roadmaps and company history. A progress line traces down the rail as you scroll, each dot lights up as the line reaches it, entries fade and slide in, and on wide layouts the dates stick beside their entry. Works on the page or inside any scroll container.",
   tags: ["Scroll-linked progress", "Sticky dates", "Scroll containers", "Container queries", "SEO-friendly", "prefers-reduced-motion"],
   hero: { Demo: TimelineDemo, file: demo("timeline-demo.tsx"), minHeight: 460 },
   install: {
@@ -40,7 +40,7 @@ export function Changelog() {
       title: "Roadmap with icons",
       description: (
         <>
-          Pass an <Code>icon</Code> for each dot and recolor the line with <Code>lineClassName</Code>.{" "}
+          Pass an <Code>icon</Code> for each dot (<Code>lineClassName</Code> restyles the line if you need to).{" "}
           <Code>anchor</Code> moves the line&apos;s tip (here 70% down the scroll area). In a narrow container the
           dates stack above each title; the layout switches with container queries, not the viewport.
         </>

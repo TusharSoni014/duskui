@@ -29,7 +29,7 @@ export interface TypewriterProps extends Omit<React.HTMLAttributes<HTMLElement>,
   typeFirst?: boolean;
   /** Caret style. */
   cursor?: "bar" | "block" | "underscore" | "none";
-  /** Extra classes for the caret, e.g. a color. Defaults to the theme primary. */
+  /** Extra classes for the caret, e.g. a color. Defaults to the text color. */
   cursorClassName?: string;
   /** Wait until the text scrolls into view before typing. */
   startOnView?: boolean;
@@ -156,7 +156,7 @@ export function Typewriter({
       <span
         data-blink={blink || undefined}
         className={cn(
-          "dusk-typewriter-caret inline-block rounded-[1px] bg-primary align-baseline",
+          "dusk-typewriter-caret inline-block rounded-[1px] bg-current align-baseline opacity-80",
           caretShape[cursor],
           cursorClassName
         )}

@@ -13,8 +13,8 @@ const block = (file: string) => `components/dusk/radio-group/${file}`;
 const config: DocConfig = {
   title: "Radio Group",
   intro:
-    "An animated React radio group built on shadcn/ui and Radix: the drop-in RadioGroup springs its dot in and glows mint when checked — plus Radio Cards, selectable plan and pricing cards whose outline glides to the chosen card with Motion.",
-  tags: ["Drop-in shadcn API", "Radix Radio Group", "CSS spring", "Motion layoutId", "prefers-reduced-motion"],
+    "An animated React radio group built on shadcn/ui and Radix: the drop-in RadioGroup scales its dot in and turns mint when checked — plus Radio Cards, selectable plan and pricing cards whose outline glides to the chosen card with Motion.",
+  tags: ["Drop-in shadcn API", "Radix Radio Group", "CSS transitions", "Motion layoutId", "prefers-reduced-motion"],
   hero: { Demo: RadioCardsDemo, file: demo("radio-cards-demo.tsx"), minHeight: 360 },
   install: {
     registry: "radio-group",
@@ -23,7 +23,7 @@ const config: DocConfig = {
     note: (
       <>
         Replaces <Code>components/ui/radio-group.tsx</Code> with the same parts and <Code>data-slot</Code>{" "}
-        attributes. The spring is a CSS <Code>linear()</Code> curve, so there is no JavaScript per frame.
+        attributes. The dot animates with a CSS transition, so there is no JavaScript per frame.
       </>
     ),
   },
@@ -50,7 +50,7 @@ export function Density() {
     {
       id: "default",
       title: "Default",
-      description: "Pick an option to watch the dot spring in while the previous one shrinks away. Arrow keys move the selection.",
+      description: "Pick an option to watch the dot scale in while the previous one shrinks away. Arrow keys move the selection.",
       Demo: RadioGroupBasicDemo,
       file: demo("radio-group-basic.tsx"),
       minHeight: 200,
@@ -91,9 +91,8 @@ export function Density() {
       deps: "motion @radix-ui/react-radio-group",
       description: (
         <>
-          Selectable cards for plans, pricing tiers or shipping speeds. A glowing mint outline glides from
-          card to card via a shared Motion <Code>layoutId</Code>, the chosen card&apos;s icon lifts and its
-          price lights up. The whole card is the click target, and it is still a Radix radio group, so
+          Selectable cards for plans, pricing tiers or shipping speeds. A 1px primary outline glides from
+          card to card via a shared Motion <Code>layoutId</Code>. The whole card is the click target, and it is still a Radix radio group, so
           arrow keys and forms work.
         </>
       ),

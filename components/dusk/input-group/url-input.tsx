@@ -21,7 +21,7 @@ export interface UrlInputProps
   groupClassName?: string;
 }
 
-const spring: Transition = { type: "spring", duration: 0.35, bounce: 0.25 };
+const spring: Transition = { type: "spring", duration: 0.25, bounce: 0 };
 
 function split(url: string): { protocol: Protocol; rest: string } {
   const match = /^(https?):\/\//i.exec(url.trim());
@@ -99,16 +99,16 @@ export function UrlInput({
   const pop = reduceMotion
     ? { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } }
     : {
-        initial: { opacity: 0, scale: 0.4, filter: "blur(2px)" },
-        animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
-        exit: { opacity: 0, scale: 0.4, filter: "blur(2px)" },
+        initial: { opacity: 0, scale: 0.8 },
+        animate: { opacity: 1, scale: 1 },
+        exit: { opacity: 0, scale: 0.8 },
       };
   const roll = reduceMotion
     ? { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } }
     : {
-        initial: { opacity: 0, y: secure ? 10 : -10 },
+        initial: { opacity: 0, y: secure ? 6 : -6 },
         animate: { opacity: 1, y: 0 },
-        exit: { opacity: 0, y: secure ? -10 : 10 },
+        exit: { opacity: 0, y: secure ? -6 : 6 },
       };
 
   return (

@@ -6,18 +6,18 @@ import { motion, useReducedMotion, type Transition } from "motion/react"
 
 import { cn } from "@/lib/utils"
 
-const fill: Transition = { type: "spring", stiffness: 140, damping: 22, mass: 0.6 }
+const fill: Transition = { type: "spring", duration: 0.4, bounce: 0 }
 
 /**
  * DuskUI Progress — a drop-in upgrade of the shadcn/ui Progress.
  *
  * Same API as shadcn (`value`, `max` and the Radix props) plus:
- * - The indicator springs to each new value instead of easing linearly, and
- *   fills in from empty when it mounts.
+ * - The indicator eases to each new value (no overshoot), and fills in from
+ *   empty when it mounts.
  * - An indeterminate state: pass `value={null}` (or leave it out) and a
- *   highlight sweeps across the track. Under reduced motion it gently pulses
+ *   short bar slides across the track. Under reduced motion it gently pulses
  *   instead.
- * - A soft gradient and a bright leading edge on the indicator.
+ * - A solid indicator in the primary color.
  * - `indicatorClassName` to recolor the bar without touching the track.
  * Powered by Radix Progress, so role="progressbar" and the aria-value* attributes are set.
  */
@@ -48,7 +48,7 @@ function Progress({
           <motion.div
             key="indeterminate"
             className={cn(
-              "h-full w-2/5 rounded-full bg-[linear-gradient(90deg,transparent,var(--color-primary),transparent)]",
+              "h-full w-2/5 rounded-full bg-primary",
               indicatorClassName
             )}
             initial={reduceMotion ? { opacity: 0.4 } : { x: "-100%" }}
@@ -63,15 +63,12 @@ function Progress({
           <motion.div
             key="determinate"
             className={cn(
-              "relative h-full w-full rounded-full",
-              "bg-[linear-gradient(90deg,color-mix(in_oklab,var(--color-primary)_55%,transparent),var(--color-primary))]",
-              // Bright leading edge.
-              "after:absolute after:inset-y-0 after:right-0 after:w-3 after:rounded-full after:bg-white/40 after:blur-[3px]",
+              "h-full w-full rounded-full bg-primary",
               indicatorClassName
             )}
             initial={{ x: "-100%" }}
             animate={{ x: `${percent - 100}%` }}
-            transition={fill}
+            transition={reduceMotion ? { duration: 0 } : fill}
           />
         )}
       </ProgressPrimitive.Indicator>

@@ -34,7 +34,7 @@ function LoaderRoot({
     <span
       role="status"
       data-slot={slot}
-      className={cn("relative inline-flex shrink-0 items-center justify-center text-primary", className)}
+      className={cn("relative inline-flex shrink-0 items-center justify-center", className)}
       style={{ width: size, height: size, ...style }}
       {...props}
     >
@@ -60,9 +60,9 @@ export function DotsLoader({ size = 32, speed = 1.1, ...props }: LoaderProps) {
         {[0, 1, 2].map((i) => (
           <motion.span
             key={i}
-            className="block aspect-square w-[22%] rounded-full bg-current shadow-[0_0_8px_-1px_currentColor]"
+            className="block aspect-square w-[22%] rounded-full bg-current"
             initial={{ y: "0%", opacity: 0.5 }}
-            animate={reduceMotion ? { opacity: [0.3, 1, 0.3] } : { y: ["0%", "-80%", "0%"], opacity: [0.5, 1, 0.5] }}
+            animate={reduceMotion ? { opacity: [0.3, 1, 0.3] } : { y: ["0%", "-50%", "0%"], opacity: [0.5, 1, 0.5] }}
             transition={
               reduceMotion
                 ? fade(i, 3, speed)
@@ -99,7 +99,7 @@ export function BarsLoader({ size = 32, speed = 1, bars = 5, ...props }: LoaderP
   );
 }
 
-/** A ring whose arc fades out along a conic gradient, with a glowing head. */
+/** A ring whose arc fades out along a conic gradient, with a rounded head. */
 export function RingLoader({ size = 32, speed = 0.9, thickness = 3, ...props }: LoaderProps & { thickness?: number }) {
   const reduceMotion = useReducedMotion() ?? false;
   const mask = `radial-gradient(farthest-side, transparent calc(100% - ${thickness}px), #000 calc(100% - ${thickness}px + 0.5px))`;
@@ -124,9 +124,9 @@ export function RingLoader({ size = 32, speed = 0.9, thickness = 3, ...props }: 
           className="absolute inset-0 rounded-full bg-[conic-gradient(from_0deg,transparent_0deg,currentColor_300deg,transparent_301deg)]"
           style={{ mask, WebkitMask: mask }}
         />
-        {/* Glowing head at the end of the arc (300deg), half the ring thickness from the edge. */}
+        {/* Rounded head at the end of the arc (300deg), half the ring thickness from the edge. */}
         <span
-          className="absolute top-1/2 left-1/2 rounded-full bg-current shadow-[0_0_8px_1px_currentColor]"
+          className="absolute top-1/2 left-1/2 rounded-full bg-current"
           style={{
             width: thickness,
             height: thickness,
@@ -138,7 +138,7 @@ export function RingLoader({ size = 32, speed = 0.9, thickness = 3, ...props }: 
   );
 }
 
-/** Two dots orbiting a glowing core at different distances and speeds. */
+/** Two dots orbiting a core at different distances and speeds. */
 export function OrbitLoader({ size = 32, speed = 1.4, ...props }: LoaderProps) {
   const reduceMotion = useReducedMotion() ?? false;
   const orbits = [
@@ -148,7 +148,7 @@ export function OrbitLoader({ size = 32, speed = 1.4, ...props }: LoaderProps) {
   return (
     <LoaderRoot slot="orbit-loader" size={size} {...props}>
       <motion.span
-        className="absolute top-1/2 left-1/2 block size-[22%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-current shadow-[0_0_10px_currentColor]"
+        className="absolute top-1/2 left-1/2 block size-[22%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-current"
         initial={{ opacity: 0.6 }}
         animate={{ opacity: [0.6, 1, 0.6] }}
         transition={{ duration: speed, repeat: Infinity, ease: "easeInOut" }}
@@ -167,7 +167,7 @@ export function OrbitLoader({ size = 32, speed = 1.4, ...props }: LoaderProps) {
           }
         >
           <span
-            className="absolute top-0 left-1/2 block aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full bg-current shadow-[0_0_6px_currentColor]"
+            className="absolute top-0 left-1/2 block aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full bg-current"
             style={{ width: orbit.dot }}
           />
         </motion.span>
@@ -197,7 +197,7 @@ export function PulseLoader({ size = 32, speed = 1.6, rings = 2, ...props }: Loa
         />
       ))}
       <motion.span
-        className="absolute inset-[34%] rounded-full bg-current shadow-[0_0_12px_currentColor]"
+        className="absolute inset-[34%] rounded-full bg-current"
         initial={{ scale: 0.85, opacity: 0.6 }}
         animate={reduceMotion ? { opacity: [0.6, 1, 0.6] } : { scale: [0.85, 1, 0.85] }}
         transition={{ duration: speed / 2, repeat: Infinity, ease: "easeInOut" }}

@@ -70,10 +70,10 @@ export function Screen() {
     props: [
       { name: "lines", type: "boolean", default: "true", description: "Draw horizontal scanlines." },
       { name: "lineSpacing", type: "number", default: "3", description: "Distance between scanlines, in px (min 2)." },
-      { name: "lineOpacity", type: "number", default: "0.35", description: "Darkness of each scanline, 0–1." },
+      { name: "lineOpacity", type: "number", default: "0.25", description: "Darkness of each scanline, 0–1." },
       { name: "bar", type: "boolean", default: "true", description: "Show the rolling scan bar." },
       { name: "barDuration", type: "number", default: "7", description: "Seconds for the bar to travel top to bottom." },
-      { name: "barColor", type: "string", default: '"var(--color-primary)"', description: "Bar color; any CSS color." },
+      { name: "barColor", type: "string", default: '"rgb(255 255 255)"', description: "Bar color; any CSS color." },
       { name: "vignette", type: "boolean", default: "true", description: "Darken the edges like a CRT tube." },
       { name: "flicker", type: "boolean", default: "false", description: "Subtle brightness flicker, under one blip per second." },
       { name: "curvature", type: "boolean", default: "false", description: "Rounded tube corners, inner shadow and glass glare." },

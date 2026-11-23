@@ -10,7 +10,7 @@ export interface MeteorsProps extends React.ComponentProps<"div"> {
   count?: number;
   /** Direction of travel in degrees: 0 is right, 90 is straight down. */
   angle?: number;
-  /** Any CSS color for the tails and glow. Defaults to the theme primary. */
+  /** Any CSS color for the tails. Defaults to a soft white. */
   color?: string;
   /** Speed multiplier. */
   speed?: number;
@@ -72,14 +72,14 @@ function makeSky(count: number, stars: number, tailLength: number, seed: number)
     left: `${(rand() * 100).toFixed(2)}%`,
     top: `${(rand() * 100).toFixed(2)}%`,
     size: rand() < 0.85 ? 1 : 2,
-    opacity: Math.round((0.15 + rand() * 0.45) * 100) / 100,
+    opacity: Math.round((0.1 + rand() * 0.3) * 100) / 100,
   }));
   return { meteors, field };
 }
 
 /**
  * Shooting stars that streak diagonally across the container at staggered
- * intervals, each with a glowing head and a fading tail. Fills its nearest
+ * intervals, each with a small bright head and a fading tail. Fills its nearest
  * positioned parent.
  *
  * Every meteor and star is derived from a seed, so the server and client
@@ -89,12 +89,12 @@ function makeSky(count: number, stars: number, tailLength: number, seed: number)
  * still frame instead.
  */
 export function Meteors({
-  count = 12,
+  count = 6,
   angle = 135,
-  color = "var(--color-primary)",
+  color = "rgb(255 255 255 / 0.7)",
   speed = 1,
-  tailLength = 120,
-  stars = 30,
+  tailLength = 100,
+  stars = 20,
   seed = 1,
   className,
   style,
@@ -161,7 +161,7 @@ export function Meteors({
         if (reduceMotion) {
           // A still frame: a third of the meteors frozen mid-flight.
           el.style.transform = at(0.3 + m.phase * 0.4);
-          el.style.opacity = i % 3 === 0 ? "0.8" : "0";
+          el.style.opacity = i % 3 === 0 ? "0.6" : "0";
           animations.push(null);
           return;
         }
@@ -172,8 +172,8 @@ export function Meteors({
         const animation = el.animate(
           [
             { offset: 0, transform: at(0), opacity: 0 },
-            { offset: p * 0.08, transform: at(0.08), opacity: 1 },
-            { offset: p * 0.7, transform: at(0.7), opacity: 1 },
+            { offset: p * 0.08, transform: at(0.08), opacity: 0.8 },
+            { offset: p * 0.7, transform: at(0.7), opacity: 0.8 },
             { offset: p, transform: at(1), opacity: 0 },
             { offset: 1, transform: at(1), opacity: 0 },
           ],
@@ -250,12 +250,12 @@ export function Meteors({
             // The head sits at the transform origin, so rotating swings the tail behind it.
             transformOrigin: "100% 50%",
             opacity: 0,
-            background: `linear-gradient(to right, transparent, color-mix(in oklab, ${color} 55%, transparent) 65%, ${color})`,
+            background: `linear-gradient(to right, transparent, color-mix(in oklab, ${color} 40%, transparent) 65%, ${color})`,
           }}
         >
           <span
-            className="absolute right-0 top-1/2 block size-[3px] -translate-y-1/2 translate-x-1/2 rounded-full"
-            style={{ background: head, boxShadow: `0 0 6px 2px ${color}` }}
+            className="absolute right-0 top-1/2 block size-[2px] -translate-y-1/2 translate-x-1/2 rounded-full"
+            style={{ background: head }}
           />
         </span>
       ))}

@@ -2,9 +2,9 @@ import { PhoneMockup, SafariMockup } from "@/components/dusk/device-mockup/devic
 
 function Dashboard() {
   return (
-    <div className="flex size-full bg-[#07100d] text-white">
+    <div className="flex size-full bg-background text-foreground">
       <aside className="hidden w-[18%] flex-col gap-2 border-r border-white/5 p-[2%] sm:flex">
-        <span className="mb-2 h-3 w-2/3 rounded bg-primary/80" />
+        <span className="mb-2 h-3 w-2/3 rounded bg-white/25" />
         {[0, 1, 2, 3, 4].map((i) => (
           <span key={i} className="h-2 rounded bg-white/10" style={{ width: `${85 - i * 9}%` }} />
         ))}
@@ -20,7 +20,7 @@ function Dashboard() {
         </div>
         <div className="flex flex-1 items-end gap-[1.5%] rounded-lg border border-white/5 bg-white/[0.03] p-[3%]">
           {[35, 55, 42, 70, 52, 88, 64, 78, 58, 95, 72, 84].map((h, i) => (
-            <span key={i} className="flex-1 rounded-t bg-primary" style={{ height: `${h}%`, opacity: 0.3 + i * 0.06 }} />
+            <span key={i} className="flex-1 rounded-t bg-white/20" style={{ height: `${h}%` }} />
           ))}
         </div>
       </div>
@@ -30,10 +30,10 @@ function Dashboard() {
 
 function MobileApp() {
   return (
-    <div className="flex size-full flex-col gap-3 bg-[#07100d] px-[8%] pt-[22%] text-white">
+    <div className="flex size-full flex-col gap-3 bg-background px-[8%] pt-[22%] text-foreground">
       <span className="text-[clamp(10px,7cqw,22px)] font-semibold">Overview</span>
-      <div className="rounded-2xl bg-primary p-4 text-primary-foreground">
-        <span className="block text-[clamp(8px,4cqw,13px)] opacity-70">Revenue</span>
+      <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+        <span className="block text-[clamp(8px,4cqw,13px)] text-muted-foreground">Revenue</span>
         <span className="block text-[clamp(12px,9cqw,28px)] font-bold tabular-nums">$12,480</span>
       </div>
       {[0, 1, 2].map((i) => (
@@ -52,7 +52,7 @@ export default function DeviceMockupDemo() {
       <SafariMockup url="app.acme.dev/overview">
         <Dashboard />
       </SafariMockup>
-      <PhoneMockup className="absolute right-0 -bottom-2 hidden w-[26%] sm:block" color="mint">
+      <PhoneMockup className="absolute right-0 -bottom-2 hidden w-[26%] sm:block">
         <MobileApp />
       </PhoneMockup>
     </div>

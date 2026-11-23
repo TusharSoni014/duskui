@@ -31,10 +31,10 @@ const numberFormat = new Intl.NumberFormat("en-US");
 const defaultValueFormatter = (value: number) => numberFormat.format(value);
 
 /**
- * A bar chart card where hovering a bar dims the others, lifts the hovered
- * one with a soft glow and swaps the headline to its value. Bars grow in
- * on mount (off under reduced motion). Keyboard users can focus the chart
- * and arrow through bars; the active bar glows the same way. A visually
+ * A bar chart card where hovering a bar dims the others and swaps the
+ * headline to its value. Bars grow in on mount (off under reduced motion).
+ * Keyboard users can focus the chart and arrow through bars; the active bar
+ * gets the same crisp 1px outline as a hovered one. A visually
  * hidden table carries the numbers for screen readers.
  */
 export function BarChartCard({
@@ -81,9 +81,10 @@ export function BarChartCard({
           radius={[6, 6, 2, 2]}
           fill={`var(--color-${dataKey})`}
           fillOpacity={dimmed ? 0.28 : 1}
+          stroke={lit ? "rgb(255 255 255 / 0.4)" : "none"}
+          strokeWidth={1}
           style={{
-            transition: reduceMotion ? undefined : "fill-opacity 200ms ease-out, filter 200ms ease-out",
-            filter: lit ? `drop-shadow(0 0 10px var(--color-${dataKey}))` : "none",
+            transition: reduceMotion ? undefined : "fill-opacity 200ms ease-out",
           }}
         />
       );
@@ -94,8 +95,7 @@ export function BarChartCard({
   return (
     <section
       className={cn(
-        "w-full rounded-2xl border bg-card/60 p-5 text-card-foreground",
-        "shadow-[inset_0_1px_0_rgb(255_255_255/0.04),0_16px_48px_-24px_rgb(0_0_0/0.8)]",
+        "w-full rounded-xl border bg-card p-5 text-card-foreground",
         className
       )}
       {...props}

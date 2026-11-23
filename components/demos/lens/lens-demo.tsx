@@ -22,15 +22,15 @@ function Skyline() {
       <defs>
         <linearGradient id="lens-demo-sky" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#020617" />
-          <stop offset="0.7" stopColor="#0f2a2a" />
-          <stop offset="1" stopColor="#134e4a" />
+          <stop offset="0.7" stopColor="#0f172a" />
+          <stop offset="1" stopColor="#1e293b" />
         </linearGradient>
       </defs>
       <rect width="640" height="320" fill="url(#lens-demo-sky)" />
       {stars.map((s, i) => (
         <circle key={i} cx={s.x.toFixed(1)} cy={s.y.toFixed(1)} r={s.r.toFixed(2)} fill="#e2e8f0" opacity="0.8" />
       ))}
-      <circle cx="520" cy="62" r="26" fill="#ecfdf5" />
+      <circle cx="520" cy="62" r="26" fill="#f1f5f9" />
       <circle cx="510" cy="56" r="26" fill="#020617" opacity="0.9" />
       {buildings.map((b, i) => (
         <g key={i}>
@@ -44,7 +44,7 @@ function Skyline() {
                   y={320 - b.h + 8 + row * 10}
                   width="3"
                   height="4"
-                  fill={(row + col + i) % 4 ? "#fde68a" : "#6ee7b7"}
+                  fill={(row + col + i) % 4 ? "#fde68a" : "#fef3c7"}
                 />
               ) : null
             )

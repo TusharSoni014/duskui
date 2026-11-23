@@ -37,7 +37,7 @@ export interface AnimatedDropdownProps
 }
 
 /**
- * A dropdown menu with personality. It springs open out of its trigger, items
+ * An animated dropdown menu. It opens out of its trigger, items
  * cascade in, and a highlight pill glides between items as you hover or arrow
  * through them (a shared Motion `layoutId`). Built on Radix Dropdown Menu, so
  * focus management, typeahead, arrow keys, Escape and aria all work. Under
@@ -88,13 +88,13 @@ export interface AnimatedDropdownContentProps
 }
 
 const offsets: Record<Side, { x?: number; y?: number }> = {
-  bottom: { y: -8 },
-  top: { y: 8 },
-  left: { x: 8 },
-  right: { x: -8 },
+  bottom: { y: -4 },
+  top: { y: 4 },
+  left: { x: 4 },
+  right: { x: -4 },
 };
 
-/** The menu surface. Springs open from the trigger's side and staggers its items in. */
+/** The menu surface. Opens from the trigger's side and staggers its items in. */
 export function AnimatedDropdownContent({
   className,
   side = "bottom",
@@ -112,13 +112,13 @@ export function AnimatedDropdownContent({
         open: { opacity: 1, transition: { duration: 0.15 } },
       }
     : {
-        closed: { opacity: 0, scale: 0.9, ...offsets[side], transition: { duration: 0.12, ease: "easeIn" } },
+        closed: { opacity: 0, scale: 0.96, ...offsets[side], transition: { duration: 0.1, ease: "easeIn" } },
         open: {
           opacity: 1,
           scale: 1,
           x: 0,
           y: 0,
-          transition: { type: "spring", duration: 0.4, bounce: 0.22, staggerChildren: stagger, delayChildren: 0.03 },
+          transition: { duration: 0.18, ease: "easeOut", staggerChildren: stagger, delayChildren: 0.03 },
         },
       };
 
@@ -142,7 +142,7 @@ export function AnimatedDropdownContent({
               className={cn(
                 "z-50 min-w-48 overflow-x-hidden overflow-y-auto rounded-xl border bg-popover p-1.5 text-popover-foreground outline-none",
                 "max-h-(--radix-dropdown-menu-content-available-height) origin-(--radix-dropdown-menu-content-transform-origin)",
-                "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_16px_40px_-12px_rgb(0_0_0/0.7),0_0_0_1px_rgb(0_0_0/0.2)]",
+                "shadow-lg",
                 className
               )}
               variants={variants}
@@ -164,8 +164,8 @@ function useItemVariants(): Variants {
   return reduceMotion
     ? { closed: { opacity: 0, transition: { duration: 0.1 } }, open: { opacity: 1 } }
     : {
-        closed: { opacity: 0, y: -4, filter: "blur(2px)", transition: { duration: 0.1 } },
-        open: { opacity: 1, y: 0, filter: "blur(0px)", transition: { type: "spring", duration: 0.35, bounce: 0.15 } },
+        closed: { opacity: 0, y: -4, transition: { duration: 0.1 } },
+        open: { opacity: 1, y: 0, transition: { duration: 0.18, ease: "easeOut" } },
       };
 }
 
@@ -223,7 +223,7 @@ export function AnimatedDropdownItem({
               "absolute inset-0 rounded-lg",
               variant === "destructive"
                 ? "bg-destructive/15"
-                : "bg-accent shadow-[inset_0_1px_0_rgb(255_255_255/0.04)]"
+                : "bg-accent"
             )}
             transition={reduceMotion ? { duration: 0 } : pillSpring}
           />
@@ -233,7 +233,7 @@ export function AnimatedDropdownItem({
             aria-hidden
             className={cn(
               "relative flex transition-colors duration-150",
-              variant === "destructive" ? "text-destructive" : isActive ? "text-primary" : "text-muted-foreground"
+              variant === "destructive" ? "text-destructive" : isActive ? "text-foreground" : "text-muted-foreground"
             )}
           >
             {icon}
@@ -275,7 +275,7 @@ export function AnimatedDropdownSeparator({
         variants={
           reduceMotion
             ? { closed: { opacity: 0, transition: { duration: 0.1 } }, open: { opacity: 1 } }
-            : { closed: { scaleX: 0, opacity: 0, transition: { duration: 0.1 } }, open: { scaleX: 1, opacity: 1, transition: { duration: 0.3, ease: "easeOut" } } }
+            : { closed: { scaleX: 0, opacity: 0, transition: { duration: 0.1 } }, open: { scaleX: 1, opacity: 1, transition: { duration: 0.2, ease: "easeOut" } } }
         }
         className={cn("-mx-1.5 my-1.5 h-px origin-left bg-border", className)}
         {...props}

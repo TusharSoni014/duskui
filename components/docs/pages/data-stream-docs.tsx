@@ -10,7 +10,7 @@ const demo = (file: string) => `components/demos/data-stream/${file}`;
 const config: DocConfig = {
   title: "Data Stream",
   intro:
-    "A flowing data visualization effect for React: packets of light stream along horizontal lanes at different speeds, with glowing tails and short data blocks. Drawn on a high-DPI canvas — a lightweight hero accent for real-time, networking and AI products.",
+    "A flowing data visualization effect for React: packets stream along horizontal lanes at different speeds, with thin fading tails and short data blocks. Drawn on a high-DPI canvas, a lightweight hero accent for real-time, networking and AI products.",
   tags: ["Background", "Canvas", "High-DPI", "Pauses off-screen", "Reduced-motion safe"],
   hero: { Demo: DataStreamDemo, file: demo("data-stream-demo.tsx"), minHeight: 360 },
   install: {
@@ -69,9 +69,9 @@ export function Hero() {
     intro: <>Any other <Code>div</Code> prop is passed to the root.</>,
     props: [
       { name: "color", type: "string", default: '"var(--color-primary)"', description: "Packet color. Any CSS color, including variables and oklch()." },
-      { name: "lanes", type: "number", default: "12", description: "Number of horizontal lanes." },
+      { name: "lanes", type: "number", default: "10", description: "Number of horizontal lanes." },
       { name: "speed", type: "number", default: "1", description: "Speed multiplier; each lane also gets its own random speed." },
-      { name: "density", type: "number", default: "0.5", description: "How busy each lane is, from 0 to 1." },
+      { name: "density", type: "number", default: "0.35", description: "How busy each lane is, from 0 to 1." },
       { name: "direction", type: '"left" | "right"', default: '"right"', description: "Which way the data flows." },
       { name: "fade", type: "boolean", default: "true", description: "Fade the stream out at both ends." },
       { name: "className", type: "string", description: "Merged onto the absolutely positioned root." },

@@ -9,9 +9,9 @@ export default function FrostButtonEffects() {
       <GlassBackdrop />
       <div className="relative flex flex-col items-center gap-5">
         <div className="flex flex-wrap justify-center gap-3">
-          <FrostButton effect="sweep">Sweep only</FrostButton>
-          <FrostButton effect="ripple">Ripple only</FrostButton>
-          <FrostButton effect="none">No effects</FrostButton>
+          <FrostButton effect="sweep">Sweep</FrostButton>
+          <FrostButton>Ripple</FrostButton>
+          <FrostButton effect="none">None</FrostButton>
         </div>
         <div className="flex gap-3">
           <FrostButton size="icon-lg" className="rounded-full" aria-label="Play">

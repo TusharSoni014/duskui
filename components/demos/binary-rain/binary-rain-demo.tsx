@@ -6,8 +6,8 @@ export default function BinaryRainDemo() {
       <BinaryRain />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--color-background)_20%,transparent_70%)]" />
       <div className="relative text-center">
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary">Access granted</p>
-        <h3 className="mt-2 text-3xl font-semibold tracking-tight text-white">Welcome back, operator</h3>
+        <h3 className="text-3xl font-semibold tracking-tight text-white">Welcome back</h3>
+        <p className="mt-2 text-sm text-white/60">Your last build finished 4 minutes ago.</p>
       </div>
     </div>
   );

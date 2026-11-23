@@ -97,7 +97,7 @@ export function LoadingSwitch({
       setFailed(true);
       errorTimer.current = setTimeout(() => setFailed(false), 2400);
       if (!reduceMotion && scope.current) {
-        animate(scope.current, { x: [0, -5, 5, -3, 3, 0] }, { duration: 0.4, delay: 0.15 });
+        animate(scope.current, { x: [0, -3, 3, -2, 0] }, { duration: 0.3, delay: 0.15 });
       }
     } finally {
       if (mounted.current) setPending(null);
@@ -112,7 +112,7 @@ export function LoadingSwitch({
         aria-busy={busy || undefined}
         data-error={failed || undefined}
         className={cn("data-error:ring-[3px] data-error:ring-destructive/50", className)}
-        thumbClassName={cn("text-muted-foreground data-[state=checked]:text-primary", thumbClassName)}
+        thumbClassName={cn("text-background data-[state=checked]:text-foreground", thumbClassName)}
         thumbContent={
           <AnimatePresence initial={false}>
             {busy && (

@@ -55,7 +55,7 @@ function seriesColor(config: ChartConfig, key: string) {
 const defaultValueFormatter = (value: number) => numberFormat.format(value);
 
 /**
- * An area chart card with gradient fills that draw in from the left, a
+ * An area chart card with soft fills that draw in from the left, a
  * readout that follows the pointer (or the keyboard: focus the chart and use
  * the arrow keys), and range buttons with a gliding pill. Series colors come
  * from the chart config. A visually hidden table carries the same numbers
@@ -90,8 +90,7 @@ export function AreaChartCard({
   return (
     <section
       className={cn(
-        "w-full rounded-2xl border bg-card/60 p-5 text-card-foreground",
-        "shadow-[inset_0_1px_0_rgb(255_255_255/0.04),0_16px_48px_-24px_rgb(0_0_0/0.8)]",
+        "w-full rounded-xl border bg-card p-5 text-card-foreground",
         className
       )}
       {...props}
@@ -124,7 +123,7 @@ export function AreaChartCard({
                     {selected && (
                       <motion.span
                         layoutId="range-pill"
-                        className="absolute inset-0 rounded-md bg-white/[0.08] shadow-[inset_0_1px_0_rgb(255_255_255/0.06)]"
+                        className="absolute inset-0 rounded-md bg-white/[0.08]"
                         transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 500, damping: 36 }}
                       />
                     )}
@@ -172,8 +171,8 @@ export function AreaChartCard({
           <defs>
             {keys.map((key) => (
               <linearGradient key={key} id={`${uid}-fill-${key}`} x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor={`var(--color-${key})`} stopOpacity={0.45} />
-                <stop offset="70%" stopColor={`var(--color-${key})`} stopOpacity={0.06} />
+                <stop offset="0%" stopColor={`var(--color-${key})`} stopOpacity={0.25} />
+                <stop offset="70%" stopColor={`var(--color-${key})`} stopOpacity={0.04} />
                 <stop offset="100%" stopColor={`var(--color-${key})`} stopOpacity={0} />
               </linearGradient>
             ))}

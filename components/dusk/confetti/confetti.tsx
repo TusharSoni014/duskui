@@ -62,13 +62,14 @@ type Piece = {
 
 type Burst = { alive: number; resolve: () => void };
 
+// Muted, desaturated tones so a burst reads as celebration, not neon.
 const DEFAULT_COLORS = [
   "var(--color-primary)",
-  "#22d3ee",
-  "#a78bfa",
-  "#f472b6",
-  "#facc15",
-  "#ffffff",
+  "#e4e4e7",
+  "#a1a1aa",
+  "#9db4cf",
+  "#e3c58f",
+  "#c4b5d9",
 ];
 
 const DEFAULT_SHAPES: ConfettiShape[] = ["square", "circle", "ribbon"];

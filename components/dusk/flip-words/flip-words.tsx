@@ -28,7 +28,7 @@ export interface FlipWordsProps extends Omit<React.HTMLAttributes<HTMLElement>, 
   letterStagger?: number;
   /** Pause while the pointer is over the word or focus is inside it. */
   pauseOnHover?: boolean;
-  /** Classes for each word, e.g. a color or gradient. */
+  /** Classes for each word, e.g. a color. */
   wordClassName?: string;
 }
 
@@ -49,7 +49,7 @@ const letterVariants: Variants = {
     rotateX: 0,
     y: "0em",
     filter: "blur(0px)",
-    transition: { type: "spring", duration: 0.6, bounce: 0.25 },
+    transition: { type: "spring", duration: 0.5, bounce: 0.1 },
   },
 };
 
@@ -111,7 +111,7 @@ export function FlipWords({
       measured.current = true;
       width.jump(target);
     } else {
-      controls = animate(width, target, { type: "spring", duration: 0.6, bounce: 0.2 });
+      controls = animate(width, target, { type: "spring", duration: 0.45, bounce: 0.1 });
     }
 
     let first = true;

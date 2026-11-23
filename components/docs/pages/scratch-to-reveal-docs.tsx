@@ -78,7 +78,7 @@ export function Coupon() {
       { name: "brushSize", type: "number", default: "22", description: "Brush radius in CSS px." },
       { name: "minScratchPercentage", type: "number", default: "50", description: "Percentage of the foil (0–100) to scratch before the rest dissolves." },
       { name: "onComplete", type: "() => void", description: "Called once when fully revealed, by scratching or by the button." },
-      { name: "gradientColors", type: "string[]", default: "mint foil", description: "Two or more CSS colors for the diagonal foil gradient." },
+      { name: "gradientColors", type: "string[]", default: "silver foil", description: "Two or more CSS colors for the diagonal foil gradient." },
       { name: "pattern", type: "boolean", default: "true", description: "Overlay a fine hatch and glints on the foil." },
       { name: "hint", type: "ReactNode | null", default: '"Scratch to reveal"', description: "Label over the foil until scratching starts. null hides it." },
       { name: "revealLabel", type: "string", default: '"Reveal"', description: "Text of the reveal button." },

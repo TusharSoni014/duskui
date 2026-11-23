@@ -27,20 +27,20 @@ export interface AnimatedTooltipProps
   showArrow?: boolean;
 }
 
-const spring: Transition = { type: "spring", bounce: 0.35, duration: 0.4 };
+const spring: Transition = { type: "spring", bounce: 0.1, duration: 0.2 };
 
 // Where the tooltip starts, relative to its final spot: pulled back toward the trigger.
 const fromSide: Record<Side, { x?: number; y?: number }> = {
-  top: { y: 6 },
-  bottom: { y: -6 },
-  left: { x: 6 },
-  right: { x: -6 },
+  top: { y: 4 },
+  bottom: { y: -4 },
+  left: { x: 4 },
+  right: { x: -4 },
 };
 
 /**
- * A tooltip that springs out of its trigger: it scales up from the Radix
- * transform origin, travels a few pixels away from the side it opens on and
- * un-blurs, then shrinks back on exit. One-line API: wrap any trigger.
+ * A tooltip that scales out of its trigger: it scales up slightly from the Radix
+ * transform origin and travels a few pixels away from the side it opens on,
+ * then fades back on exit. One-line API: wrap any trigger.
  * Built on the DuskUI Tooltip (Radix), so it opens on hover and keyboard focus,
  * closes on Escape and is linked to the trigger with aria-describedby.
  */
@@ -77,20 +77,19 @@ export function AnimatedTooltip({
             <TooltipPrimitive.Content forceMount asChild side={side} sideOffset={sideOffset ?? (showArrow ? 2 : 8)} {...props}>
               <motion.div
                 data-slot="tooltip-content"
-                initial={{ opacity: 0, scale: 0.5, filter: "blur(6px)", ...offset }}
-                animate={{ opacity: 1, scale: 1, x: 0, y: 0, filter: "blur(0px)" }}
+                initial={{ opacity: 0, scale: 0.96, ...offset }}
+                animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
                 exit={{
                   opacity: 0,
-                  scale: 0.75,
-                  filter: "blur(4px)",
+                  scale: 0.96,
                   ...offset,
-                  transition: { duration: 0.12, ease: "easeIn" },
+                  transition: { duration: 0.1, ease: "easeIn" },
                 }}
                 transition={spring}
                 style={{ transformOrigin: "var(--radix-tooltip-content-transform-origin)" }}
                 className={cn(
-                  "z-50 w-fit max-w-xs rounded-lg border border-white/10 bg-popover px-3 py-1.5 text-xs text-balance text-popover-foreground",
-                  "shadow-[inset_0_1px_0_rgb(255_255_255/0.06),0_10px_30px_-8px_rgb(0_0_0/0.7),0_0_20px_-12px_var(--color-primary)]",
+                  "z-50 w-fit max-w-xs rounded-md border border-white/10 bg-popover px-3 py-1.5 text-xs text-balance text-popover-foreground",
+                  "shadow-md",
                   className
                 )}
               >

@@ -23,8 +23,6 @@ export interface CircularProgressProps
   formatValue?: (value: number, max: number) => string;
   /** Small caption under the number, e.g. "Uploaded". */
   caption?: React.ReactNode;
-  /** Draw a soft glow under the ring. */
-  glow?: boolean;
   /** Classes for the progress arc (use `text-*` to recolor it). */
   indicatorClassName?: string;
   /** Classes for the background track (use `text-*` to recolor it). */
@@ -46,7 +44,6 @@ export function CircularProgress({
   showValue = true,
   formatValue,
   caption,
-  glow = true,
   indicatorClassName,
   trackClassName,
   className,
@@ -55,7 +52,6 @@ export function CircularProgress({
   ...props
 }: CircularProgressProps) {
   const reduceMotion = useReducedMotion() ?? false;
-  const filterId = `cp-glow-${React.useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
   const clamped = Math.min(max, Math.max(0, value));
   const progress = useSpring(0, ringSpring);
 
@@ -67,7 +63,6 @@ export function CircularProgress({
 
   // A round line cap draws a dot even at 0, so hide the arc until there's something to show.
   const arcOpacity = useTransform(progress, (p) => (p > 0.002 ? 1 : 0));
-  const glowOpacity = useTransform(progress, (p) => (p > 0.002 ? 0.55 : 0));
   const label = useTransform(progress, (p) =>
     formatValue ? formatValue(p * max, max) : `${Math.round(p * 100)}%`
   );
@@ -97,28 +92,8 @@ export function CircularProgress({
           r={radius}
           fill="none"
           strokeWidth={strokeWidth}
-          className={cn("stroke-current text-primary/15", trackClassName)}
+          className={cn("stroke-current text-muted", trackClassName)}
         />
-        {glow && (
-          <>
-            <defs>
-              <filter id={filterId} x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation={strokeWidth * 0.6} />
-              </filter>
-            </defs>
-            <motion.circle
-              cx={center}
-              cy={center}
-              r={radius}
-              fill="none"
-              strokeWidth={strokeWidth}
-              strokeLinecap="round"
-              filter={`url(#${filterId})`}
-              className={cn("stroke-current text-primary", indicatorClassName)}
-              style={{ pathLength: progress, opacity: glowOpacity }}
-            />
-          </>
-        )}
         <motion.circle
           cx={center}
           cy={center}

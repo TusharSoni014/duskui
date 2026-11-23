@@ -15,8 +15,7 @@ import { cn } from "@/lib/utils";
  * PaginationNext, PaginationEllipsis) plus:
  * - `asChild` on PaginationLink (and Previous / Next) to render your router's
  *   Link or a `<button>`.
- * - The current page is a soft mint surface with a faint glow.
- * - Previous / Next chevrons nudge in their direction on hover.
+ * - The current page gets a neutral outlined surface.
  * - `aria-disabled` links are dimmed and unclickable but stay focusable.
  * - The ellipsis is announced as "More pages" instead of being hidden.
  * CSS only (no Motion). Respects reduced motion.
@@ -65,8 +64,7 @@ function PaginationLink({ className, isActive, size = "icon", asChild = false, .
         buttonVariants({ variant: "ghost", size }),
         "tabular-nums text-muted-foreground hover:text-foreground",
         "border border-transparent",
-        "data-[active=true]:border-primary/35 data-[active=true]:bg-primary/10 data-[active=true]:text-primary",
-        "data-[active=true]:shadow-[0_0_18px_-6px_var(--color-primary)] data-[active=true]:hover:bg-primary/15",
+        "data-[active=true]:border-border data-[active=true]:bg-accent/50 data-[active=true]:text-foreground data-[active=true]:hover:bg-accent",
         "aria-disabled:pointer-events-none aria-disabled:opacity-50",
         className
       )}
@@ -88,9 +86,6 @@ function withDefaultContent(asChild: boolean | undefined, children: React.ReactN
   return children;
 }
 
-const chevronMotion =
-  "transition-transform duration-200 ease-out motion-reduce:transition-none";
-
 function PaginationPrevious({ className, children, asChild, ...props }: React.ComponentProps<typeof PaginationLink>) {
   return (
     <PaginationLink
@@ -104,7 +99,7 @@ function PaginationPrevious({ className, children, asChild, ...props }: React.Co
         asChild,
         children,
         <>
-          <ChevronLeftIcon className={cn(chevronMotion, "group-hover/pagination:-translate-x-0.5 motion-reduce:group-hover/pagination:translate-x-0")} />
+          <ChevronLeftIcon />
           <span className="hidden sm:block">Previous</span>
         </>
       )}
@@ -126,7 +121,7 @@ function PaginationNext({ className, children, asChild, ...props }: React.Compon
         children,
         <>
           <span className="hidden sm:block">Next</span>
-          <ChevronRightIcon className={cn(chevronMotion, "group-hover/pagination:translate-x-0.5 motion-reduce:group-hover/pagination:translate-x-0")} />
+          <ChevronRightIcon />
         </>
       )}
     </PaginationLink>

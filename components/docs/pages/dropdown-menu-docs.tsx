@@ -11,7 +11,7 @@ const block = (file: string) => `components/dusk/dropdown-menu/${file}`;
 const config: DocConfig = {
   title: "Dropdown Menu",
   intro:
-    "The shadcn/ui Dropdown Menu with menus that grow out of their trigger, smooth item highlights and indicators that pop in — plus an animated React dropdown menu block built with Motion and Radix, with staggered items and a highlight pill that glides between them.",
+    "The shadcn/ui Dropdown Menu with menus that grow out of their trigger, smooth item highlights and indicators that fade in — plus an animated React dropdown menu block built with Motion and Radix, with staggered items and a highlight pill that glides between them.",
   tags: ["Drop-in shadcn API", "Radix keyboard & typeahead", "Sub-menus", "Motion block"],
   hero: { Demo: AnimatedDropdownDemo, file: demo("animated-dropdown-demo.tsx"), minHeight: 360 },
   install: {
@@ -63,7 +63,7 @@ export function AccountMenu() {
         <>
           The menu scales out of the trigger (using Radix&apos;s transform origin) and slides in from
           the side it opens on, then closes faster than it opened. Includes groups, shortcuts, a
-          disabled item, a sub-menu whose chevron nudges open, and a destructive item.
+          disabled item, a sub-menu, and a destructive item.
         </>
       ),
       Demo: DropdownMenuBasicDemo,
@@ -75,7 +75,7 @@ export function AccountMenu() {
       title: "Checkboxes & radio group",
       description: (
         <>
-          Check marks and radio dots pop in with a little overshoot when selected. Call{" "}
+          Check marks and radio dots fade in when selected. Call{" "}
           <Code>event.preventDefault()</Code> in <Code>onSelect</Code> to keep the menu open while
           toggling several options.
         </>
@@ -94,9 +94,9 @@ export function AccountMenu() {
       deps: "motion @radix-ui/react-dropdown-menu",
       description: (
         <>
-          A dropdown that springs open from its trigger&apos;s side while items cascade in. A
+          A dropdown that opens from its trigger&apos;s side while items cascade in. A
           highlight pill glides between items as you hover or arrow through them (a shared Motion{" "}
-          <Code>layoutId</Code>), the hovered item&apos;s icon lights up, and separators draw in. It&apos;s
+          <Code>layoutId</Code>), the hovered item&apos;s icon brightens, and separators draw in. It&apos;s
           still Radix underneath: focus, typeahead, arrow keys, Escape and aria all work.
         </>
       ),

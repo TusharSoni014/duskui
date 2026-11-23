@@ -11,7 +11,7 @@ const block = (file: string) => `components/dusk/menubar/${file}`;
 const config: DocConfig = {
   title: "Menubar",
   intro:
-    "An animated React menubar built on shadcn/ui and Radix: the drop-in Menubar gives you desktop-app menus with sub-menus, checkbox and radio items and keyboard shortcuts, plus a Motion menubar block whose highlight glides between File, Edit and View while menus spring open.",
+    "An animated React menubar built on shadcn/ui and Radix: the drop-in Menubar gives you desktop-app menus with sub-menus, checkbox and radio items and keyboard shortcuts, plus a Motion menubar block whose highlight glides between File, Edit and View while menus fade open.",
   tags: ["Drop-in shadcn API", "Radix Menubar", "Sub-menus", "Checkbox & radio items", "Motion block"],
   hero: { Demo: AnimatedMenubarDemo, file: demo("animated-menubar-demo.tsx"), minHeight: 380 },
   install: {
@@ -75,7 +75,7 @@ export function AppMenubar() {
       description: (
         <>
           <Code>MenubarCheckboxItem</Code> toggles view options and <Code>MenubarRadioGroup</Code> picks one
-          value. Indicators pop in with a small overshoot when an item turns on.
+          value. Indicators fade in when an item turns on.
         </>
       ),
       Demo: MenubarCheckboxesDemo,
@@ -94,8 +94,8 @@ export function AppMenubar() {
         <>
           A desktop-app style menubar. A highlight glides between top-level triggers as you hover or arrow
           across them and follows the open menu as you sweep from menu to menu (a shared{" "}
-          <Code>layoutId</Code>). Menus spring open from their trigger, items cascade in and a pill glides
-          between items. Check marks spring in, and sub-menus use the DuskUI <Code>MenubarSubContent</Code>.
+          <Code>layoutId</Code>). Menus open from their trigger, items cascade in and a pill glides
+          between items. Check marks scale in, and sub-menus use the DuskUI <Code>MenubarSubContent</Code>.
         </>
       ),
       Demo: AnimatedMenubarDemo,

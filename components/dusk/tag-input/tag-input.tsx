@@ -40,7 +40,7 @@ export interface TagInputProps {
   className?: string;
 }
 
-const chipSpring: Transition = { type: "spring", bounce: 0.35, duration: 0.4 };
+const chipSpring: Transition = { type: "spring", bounce: 0.1, duration: 0.25 };
 const pillSpring: Transition = { type: "spring", stiffness: 520, damping: 38, mass: 0.6 };
 
 function escapeRegExp(value: string) {
@@ -70,7 +70,7 @@ function ChipBody({
     if (lastShake.current === shake) return;
     lastShake.current = shake;
     if (reduceMotion || !scope.current) return;
-    animate(scope.current, { x: [0, -6, 5, -4, 3, 0], scale: [1, 1.06, 1] }, { duration: 0.42, ease: "easeOut" });
+    animate(scope.current, { x: [0, -4, 3, -2, 0] }, { duration: 0.3, ease: "easeOut" });
   }, [shake, reduceMotion, animate, scope]);
 
   return (
@@ -79,9 +79,9 @@ function ChipBody({
       data-pending={pending || undefined}
       className={cn(
         "inline-flex h-6 max-w-full items-center gap-1 rounded-md border pr-0.5 pl-2 text-xs font-medium",
-        "transition-[background-color,border-color,color,box-shadow] duration-200 ease-out motion-reduce:transition-none",
-        "border-primary/25 bg-primary/10 text-primary shadow-[0_0_12px_-6px_var(--color-primary)]",
-        "data-pending:border-destructive/60 data-pending:bg-destructive/15 data-pending:text-destructive data-pending:shadow-[0_0_14px_-6px_var(--color-destructive)]"
+        "transition-[background-color,border-color,color] duration-200 ease-out motion-reduce:transition-none",
+        "border-border bg-secondary text-secondary-foreground",
+        "data-pending:border-destructive/60 data-pending:bg-destructive/15 data-pending:text-destructive"
       )}
     >
       <span className="truncate">{tag}</span>
@@ -171,7 +171,7 @@ export function TagInput({
 
   const shakeField = () => {
     if (reduceMotion || !fieldScope.current) return;
-    animateField(fieldScope.current, { x: [0, -7, 6, -4, 2, 0] }, { duration: 0.42, ease: "easeOut" });
+    animateField(fieldScope.current, { x: [0, -4, 3, -2, 0] }, { duration: 0.3, ease: "easeOut" });
   };
 
   /** Adds tags; returns true when the typed text was fully handled (so it can be cleared). */
@@ -310,9 +310,9 @@ export function TagInput({
   const chipMotion = reduceMotion
     ? { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } }
     : {
-        initial: { opacity: 0, scale: 0.5, filter: "blur(3px)" },
-        animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
-        exit: { opacity: 0, scale: 0.5, filter: "blur(3px)", transition: { duration: 0.16 } },
+        initial: { opacity: 0, scale: 0.96 },
+        animate: { opacity: 1, scale: 1 },
+        exit: { opacity: 0, scale: 0.96, transition: { duration: 0.12 } },
       };
 
   const describedBy = [hintId, ariaDescribedBy].filter(Boolean).join(" ");
@@ -405,7 +405,7 @@ export function TagInput({
             aria-hidden
             className={cn(
               "ml-auto shrink-0 pl-1 text-xs tabular-nums text-muted-foreground transition-colors duration-200",
-              full && "text-primary"
+              full && "text-foreground"
             )}
           >
             {tags.length}/{max}
@@ -437,7 +437,7 @@ export function TagInput({
               transition={{ type: "spring", duration: 0.3, bounce: 0.15 }}
               // Clicking an option must not blur the input.
               onMouseDown={(event) => event.preventDefault()}
-              className="absolute inset-x-0 top-full z-50 mt-1.5 max-h-60 origin-top overflow-y-auto overscroll-contain rounded-lg border bg-popover p-1 text-sm text-popover-foreground shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_16px_40px_-12px_rgb(0_0_0/0.7)]"
+              className="absolute inset-x-0 top-full z-50 mt-1.5 max-h-60 origin-top overflow-y-auto overscroll-contain rounded-md border bg-popover p-1 text-sm text-popover-foreground shadow-md"
             >
               {filtered.map((suggestion, index) => {
                 const highlighted = index === activeIndex;

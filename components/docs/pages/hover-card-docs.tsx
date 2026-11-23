@@ -11,7 +11,7 @@ const block = (file: string) => `components/dusk/hover-card/${file}`;
 const config: DocConfig = {
   title: "Hover Card",
   intro:
-    "The shadcn/ui Hover Card that grows out of its trigger with snappier delays and an optional arrow — plus two animated React hover card blocks built with Motion and Radix: a user profile preview that springs from the trigger, and a link preview that tilts up and follows the cursor.",
+    "The shadcn/ui Hover Card that grows out of its trigger with snappier delays and an optional arrow — plus two animated React hover card blocks built with Motion and Radix: a user profile preview that opens from the trigger, and a link preview that rises and follows the cursor.",
   tags: ["Drop-in shadcn API", "Radix positioning", "Motion blocks", "prefers-reduced-motion"],
   hero: { Demo: ProfileHoverCardDemo, file: demo("profile-hover-card-demo.tsx"), minHeight: 420 },
   install: {
@@ -69,8 +69,8 @@ export function Mention() {
       deps: "motion @radix-ui/react-hover-card lucide-react",
       description: (
         <>
-          A user preview for @mentions and avatars. It springs out of the trigger, then the avatar pops and
-          the name, bio, meta and stats rise in sequence. The avatar is a plain <Code>&lt;img&gt;</Code>{" "}
+          A user preview for @mentions and avatars. It opens out of the trigger, then the avatar,
+          name, bio, meta and stats fade up in sequence. The avatar is a plain <Code>&lt;img&gt;</Code>{" "}
           layered over the user&apos;s initials, so a missing or broken image still looks intentional (hover
           @leopark). Put a Follow button in <Code>action</Code>.
         </>
@@ -95,9 +95,8 @@ export function Mention() {
       deps: "motion @radix-ui/react-hover-card lucide-react",
       description: (
         <>
-          An inline link that previews its destination. The card tips up out of the link with a little
-          perspective, then leans toward the cursor as it moves along the text. The image shimmers with the
-          DuskUI Skeleton until it loads, then fades in; with no image (or a broken one) it shows a tinted
+          An inline link that previews its destination. The card rises out of the link, then leans toward the cursor as it moves along the text. The image shimmers with the
+          DuskUI Skeleton until it loads, then fades in; with no image (or a broken one) it shows a plain
           panel with the site&apos;s initial. Pass Open Graph data you fetched on the server as{" "}
           <Code>preview</Code>.
         </>
@@ -135,7 +134,7 @@ export function Mention() {
     "A hover card is a visual extra: screen readers don't announce it, so the trigger itself must make sense on its own (a real link with clear text).",
     "It also opens when the trigger gets keyboard focus and closes on Escape or blur, so keyboard users get the same preview.",
     "Don't put actions that exist only inside the card; the Follow button in the demo is a convenience, not the only way to follow.",
-    "Under prefers-reduced-motion the cards only fade: no scale, tilt, stagger or cursor following.",
+    "Under prefers-reduced-motion the cards only fade: no scale, stagger or cursor following.",
   ],
 };
 

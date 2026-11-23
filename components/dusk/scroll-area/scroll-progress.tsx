@@ -27,7 +27,7 @@ function assignRef<T>(ref: React.Ref<T> | undefined, value: T | null) {
 }
 
 /**
- * A Scroll Area with a reading-progress bar. A mint bar along the top fills
+ * A Scroll Area with a reading-progress bar. A thin bar along the top fills
  * as you scroll (spring-smoothed so it never stutters), and once you're past
  * `backToTop` a button rises in whose ring traces the same progress; it
  * scrolls back to the top. Driven by Motion's `useScroll` on the viewport, so
@@ -69,7 +69,7 @@ export function ScrollProgress({
 
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-white/5">
         <motion.div
-          className={cn("h-full origin-left bg-primary shadow-[0_0_12px_var(--color-primary)]", barClassName)}
+          className={cn("h-full origin-left bg-primary", barClassName)}
           style={{ scaleX: progress }}
         />
       </div>
@@ -81,12 +81,11 @@ export function ScrollProgress({
             type="button"
             aria-label="Back to top"
             onClick={() => localRef.current?.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" })}
-            className="absolute right-4 bottom-4 inline-flex size-10 items-center justify-center rounded-full border bg-background/80 text-foreground shadow-[0_8px_24px_-8px_rgb(0_0_0/0.7)] outline-none backdrop-blur-md transition-colors hover:text-primary focus-visible:ring-[3px] focus-visible:ring-ring/50"
-            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 12, scale: 0.8 }}
+            className="absolute right-4 bottom-4 inline-flex size-10 items-center justify-center rounded-full border bg-background text-foreground shadow-md outline-none transition-colors hover:bg-accent focus-visible:ring-[3px] focus-visible:ring-ring/50"
+            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.96 }}
             animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
-            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 12, scale: 0.8 }}
-            whileTap={reduceMotion ? undefined : { scale: 0.92 }}
-            transition={{ type: "spring", duration: 0.35, bounce: 0.3 }}
+            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.96 }}
+            transition={{ type: "spring", duration: 0.25, bounce: 0.1 }}
           >
             <svg aria-hidden viewBox="0 0 40 40" className="absolute inset-0 size-full -rotate-90">
               <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" strokeWidth="2" className="text-white/10" />

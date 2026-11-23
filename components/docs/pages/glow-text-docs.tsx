@@ -11,7 +11,7 @@ const demo = (file: string) => `components/demos/glow-text/${file}`;
 const config: DocConfig = {
   title: "Glow Text",
   intro:
-    "A neon text effect for React and Tailwind CSS: layered text-shadow glow with optional breathing or flickering animation, any color and any heading level. It stays real, selectable text, so headings remain readable by search engines and screen readers.",
+    "A neon text effect for React and Tailwind CSS: a single soft text-shadow glow, static by default with optional breathing or flickering, in any color and at any heading level. It stays real, selectable text, so headings remain readable by search engines and screen readers.",
   tags: ["SEO-friendly real text", "Heading levels via as", "Breathe & flicker", "No re-renders", "prefers-reduced-motion"],
   hero: { Demo: GlowTextDemo, file: demo("glow-text-demo.tsx") },
   install: {
@@ -37,8 +37,8 @@ export function PageTitle() {
       title: "Animations",
       description: (
         <>
-          <Code>breathe</Code> (default) slowly swells the glow; <Code>flicker</Code> holds steady and
-          occasionally stutters like an old sign; <Code>none</Code> keeps it static. Tune the cycle with{" "}
+          <Code>none</Code> (default) keeps the glow static; <Code>breathe</Code> slowly swells it;{" "}
+          <Code>flicker</Code> holds steady and occasionally stutters like an old sign. Tune the cycle with{" "}
           <Code>speed</Code>.
         </>
       ),
@@ -51,7 +51,7 @@ export function PageTitle() {
       title: "Colors & intensity",
       description: (
         <>
-          Any CSS color works. <Code>intensity</Code> scales all five shadow layers, and the font is
+          Any CSS color works. <Code>intensity</Code> scales the glow, and the font is
           entirely yours.
         </>
       ),
@@ -76,9 +76,9 @@ export function PageTitle() {
     intro: <>Also accepts any HTML attribute for the rendered element.</>,
     props: [
       { name: "as", type: '"h1" … "h6" | "p" | "span" | "div" | "strong"', default: '"span"', description: "Element to render. Use a heading level for titles." },
-      { name: "color", type: "string", default: "var(--color-primary)", description: "Any CSS color for the glow; the letters use a hot, whiter tint of it." },
+      { name: "color", type: "string", default: "var(--color-primary)", description: "Any CSS color for the glow; the letters use a light tint of it." },
       { name: "intensity", type: "number", default: "1", description: "Glow strength multiplier. 0 removes the glow." },
-      { name: "animation", type: '"none" | "breathe" | "flicker"', default: '"breathe"', description: "Glow animation. Always none with reduced motion." },
+      { name: "animation", type: '"none" | "breathe" | "flicker"', default: '"none"', description: "Glow animation. Always none with reduced motion." },
       { name: "speed", type: "number", default: "3.2 (breathe) / 4 (flicker)", description: "Seconds per cycle. Flicker is clamped to at least 2s." },
       { name: "className", type: "string", description: "Font size, weight and other text styles." },
     ],

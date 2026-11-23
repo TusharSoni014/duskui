@@ -13,13 +13,32 @@ export const readSource = cache(async (relativePath: string) => {
 
 let highlighter: Promise<Highlighter> | undefined;
 
-export async function highlight(code: string, lang: string = "tsx") {
-  highlighter ??= createHighlighter({
+const getHighlighter = () =>
+  (highlighter ??= createHighlighter({
     themes: ["github-dark-default"],
     langs: ["tsx", "ts", "bash", "json", "css"],
-  });
-  return (await highlighter).codeToHtml(code, {
-    lang,
-    theme: "github-dark-default",
-  });
+  }));
+
+const escapeHtml = (s: string) =>
+  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+/**
+ * Highlights code with Shiki. If the cached highlighter breaks (seen after
+ * dev-server hot reloads), it is recreated once; if that also fails, the code
+ * is returned as plain escaped text so the page still renders.
+ */
+export async function highlight(code: string, lang: string = "tsx") {
+  const render = async () =>
+    (await getHighlighter()).codeToHtml(code, { lang, theme: "github-dark-default" });
+  try {
+    return await render();
+  } catch {
+    highlighter = undefined;
+    try {
+      return await render();
+    } catch (error) {
+      console.error("[highlight] falling back to plain text:", error);
+      return `<pre class="shiki"><code>${escapeHtml(code)}</code></pre>`;
+    }
+  }
 }

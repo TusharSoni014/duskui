@@ -32,23 +32,22 @@ export interface FaqAccordionProps extends Omit<React.ComponentProps<"div">, "de
   jsonLd?: boolean;
 }
 
-/** The + that folds into a − : the vertical bar rotates flat while the badge spins and fills. */
+/** The + that folds into a − : the vertical bar rotates flat when the item opens. */
 function PlusMinus() {
   return (
     <span
       className={cn(
         "relative grid size-7 place-items-center rounded-full border border-white/10 text-muted-foreground",
-        "transition-[rotate,background-color,border-color,color] duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] motion-reduce:transition-none",
+        "transition-[border-color,color] duration-200 ease-out motion-reduce:transition-none",
         "group-hover/accordion-trigger:border-white/20 group-hover/accordion-trigger:text-foreground",
-        "group-data-[state=open]/accordion-trigger:rotate-180 group-data-[state=open]/accordion-trigger:border-primary",
-        "group-data-[state=open]/accordion-trigger:bg-primary group-data-[state=open]/accordion-trigger:text-primary-foreground"
+        "group-data-[state=open]/accordion-trigger:border-white/20 group-data-[state=open]/accordion-trigger:text-foreground"
       )}
     >
       <span className="absolute h-[1.5px] w-3 rounded-full bg-current" />
       <span
         className={cn(
           "absolute h-3 w-[1.5px] rounded-full bg-current",
-          "transition-[rotate] duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] motion-reduce:transition-none",
+          "transition-[rotate] duration-200 ease-out motion-reduce:transition-none",
           "group-data-[state=open]/accordion-trigger:rotate-90"
         )}
       />
@@ -103,7 +102,7 @@ export function FaqAccordion({
             {numbered && (
               <span
                 aria-hidden
-                className="font-mono text-xs text-muted-foreground tabular-nums transition-colors duration-300 group-data-[state=open]/accordion-trigger:text-primary"
+                className="font-mono text-xs text-muted-foreground tabular-nums transition-colors duration-200 group-data-[state=open]/accordion-trigger:text-foreground"
               >
                 {String(index + 1).padStart(2, "0")}
               </span>

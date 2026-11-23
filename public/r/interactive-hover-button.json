@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "interactive-hover-button",
+  "title": "Interactive Hover Button",
+  "description": "Pill button whose dot expands to fill it on hover while the label swaps for an arrow.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "https://duskui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "components/dusk/interactive-hover-button/interactive-hover-button.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { ArrowRight } from \"lucide-react\";\n\nimport { Button, type ButtonProps } from \"@/components/ui/button\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface InteractiveHoverButtonProps extends Omit<ButtonProps, \"variant\" | \"asChild\"> {\n  /** Any CSS color for the dot and the fill. Defaults to the theme primary. */\n  color?: string;\n  /** Text color on top of the fill. Defaults to the primary foreground. */\n  fillForeground?: string;\n  /** Label shown in the hover state. Defaults to `children`. */\n  hoverLabel?: React.ReactNode;\n  /** Icon that slides in with the hover label. */\n  icon?: React.ReactNode;\n}\n\nconst DOT = 8;\n\n/** Pill button whose dot grows to fill it on hover while an arrow and label slide in. */\nexport function InteractiveHoverButton({\n  color = \"var(--color-primary)\",\n  fillForeground = \"var(--color-primary-foreground)\",\n  hoverLabel,\n  icon = <ArrowRight />,\n  className,\n  style,\n  children,\n  ...props\n}: InteractiveHoverButtonProps) {\n  const dot = React.useRef<HTMLSpanElement>(null);\n\n  // Scale the dot just enough for its circle to cover the whole button.\n  React.useEffect(() => {\n    const el = dot.current;\n    const button = el?.closest<HTMLElement>(\"[data-slot=button]\");\n    if (!el || !button) return;\n    const fit = () => {\n      const cx = el.offsetLeft + DOT / 2;\n      const reach = Math.hypot(Math.max(cx, button.offsetWidth - cx), button.offsetHeight / 2);\n      button.style.setProperty(\"--ihb-scale\", String(Math.ceil((reach * 2) / DOT) + 1));\n    };\n    fit();\n    const observer = new ResizeObserver(fit);\n    observer.observe(button);\n    return () => observer.disconnect();\n  }, []);\n\n  const motionSafe = \"transition-[translate,opacity] duration-250 ease-out motion-reduce:transition-opacity\";\n\n  return (\n    <Button\n      variant=\"outline\"\n      className={cn(\n        \"group/ihb isolate overflow-hidden rounded-full pr-5 pl-4 [--ihb-scale:48]\",\n        \"dark:bg-transparent dark:hover:bg-transparent hover:bg-transparent\",\n        className\n      )}\n      style={{ \"--ihb\": color, \"--ihb-fg\": fillForeground, ...style } as React.CSSProperties}\n      {...props}\n    >\n      <span\n        ref={dot}\n        aria-hidden\n        data-slot=\"ihb-dot\"\n        className={cn(\n          \"pointer-events-none absolute top-1/2 left-4 -z-10 -translate-y-1/2 rounded-full bg-(--ihb)\",\n          \"transition-[scale] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none\",\n          \"group-hover/ihb:scale-(--ihb-scale) group-focus-visible/ihb:scale-(--ihb-scale)\"\n        )}\n        style={{ width: DOT, height: DOT }}\n      />\n      {/* Both labels share one grid cell, so the width fits the wider one and never shifts. */}\n      <span className=\"relative grid items-center\">\n        <span\n          className={cn(\n            \"col-start-1 row-start-1 inline-flex items-center gap-2 pl-4\",\n            \"group-hover/ihb:opacity-0 group-focus-visible/ihb:opacity-0\",\n            \"motion-safe:group-hover/ihb:translate-x-10 motion-safe:group-focus-visible/ihb:translate-x-10\",\n            motionSafe\n          )}\n        >\n          {children}\n        </span>\n        <span\n          aria-hidden\n          className={cn(\n            \"col-start-1 row-start-1 inline-flex items-center justify-center gap-2 text-(--ihb-fg) opacity-0\",\n            \"group-hover/ihb:opacity-100 group-focus-visible/ihb:opacity-100\",\n            \"motion-safe:-translate-x-10 motion-safe:group-hover/ihb:translate-x-0 motion-safe:group-focus-visible/ihb:translate-x-0\",\n            motionSafe\n          )}\n        >\n          {hoverLabel ?? children}\n          {icon}\n        </span>\n      </span>\n    </Button>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "interactive-hover-button"
+  ],
+  "type": "registry:component"
+}

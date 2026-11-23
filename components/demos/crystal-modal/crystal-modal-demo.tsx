@@ -1,4 +1,4 @@
-import { Check, Sparkles } from "lucide-react";
+import { Check } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { FrostButton } from "@/components/dusk/glass/frost-button";
@@ -22,8 +22,7 @@ export default function CrystalModalDemo() {
       <GlassBackdrop />
       <CrystalModal>
         <CrystalModalTrigger asChild>
-          <FrostButton size="lg" tone="primary" className="rounded-full">
-            <Sparkles />
+          <FrostButton size="lg" tone="primary">
             Upgrade to Pro
           </FrostButton>
         </CrystalModalTrigger>
@@ -34,10 +33,10 @@ export default function CrystalModalDemo() {
               Everything in Free, plus the tools teams use to ship polished interfaces faster.
             </CrystalModalDescription>
           </CrystalModalHeader>
-          <ul className="space-y-2.5 rounded-xl bg-white/5 p-4 text-sm">
+          <ul className="space-y-2.5 rounded-lg bg-white/5 p-4 text-sm">
             {perks.map((perk) => (
               <li key={perk} className="flex items-center gap-2.5">
-                <Check className="size-4 text-primary" aria-hidden />
+                <Check className="size-4 text-white/60" aria-hidden />
                 {perk}
               </li>
             ))}

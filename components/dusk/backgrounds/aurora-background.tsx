@@ -18,19 +18,19 @@ export interface AuroraBackgroundProps extends React.ComponentProps<"div"> {
   fade?: boolean;
 }
 
-const DEFAULT_COLORS = ["var(--color-primary)", "#22d3ee", "#818cf8", "#2dd4bf"];
+const DEFAULT_COLORS = ["var(--color-primary)", "#38bdf8", "#6366f1"];
 
 /**
  * Hand-placed band layouts, in percent of the container. Bands sit near the
  * top and overlap, so any palette blends into a single sky.
  */
 const LAYOUTS = [
-  { left: -15, top: -30, width: 75, height: 70, rotate: -14, drift: [14, 8, -6] },
-  { left: 35, top: -35, width: 80, height: 65, rotate: 10, drift: [-12, 10, 6] },
-  { left: 5, top: -5, width: 65, height: 50, rotate: -6, drift: [10, -8, 4] },
-  { left: 45, top: -10, width: 70, height: 55, rotate: 16, drift: [-8, 12, -5] },
-  { left: 15, top: -40, width: 85, height: 60, rotate: -20, drift: [6, 14, -8] },
-  { left: -5, top: 5, width: 60, height: 45, rotate: 4, drift: [-10, -6, 7] },
+  { left: -15, top: -30, width: 75, height: 70, rotate: -14, drift: [8, 5, -4] },
+  { left: 35, top: -35, width: 80, height: 65, rotate: 10, drift: [-7, 6, 4] },
+  { left: 5, top: -5, width: 65, height: 50, rotate: -6, drift: [6, -5, 3] },
+  { left: 45, top: -10, width: 70, height: 55, rotate: 16, drift: [-5, 7, -3] },
+  { left: 15, top: -40, width: 85, height: 60, rotate: -20, drift: [4, 8, -5] },
+  { left: -5, top: 5, width: 60, height: 45, rotate: 4, drift: [-6, -4, 4] },
 ];
 
 /**
@@ -43,9 +43,9 @@ const LAYOUTS = [
  */
 export function AuroraBackground({
   colors = DEFAULT_COLORS,
-  intensity = 0.6,
+  intensity = 0.35,
   speed = 1,
-  blur = 48,
+  blur = 64,
   fade = true,
   className,
   style,
@@ -75,10 +75,10 @@ export function AuroraBackground({
             x: ["0%", `${dx}%`, `${-dx * 0.6}%`, "0%"],
             y: ["0%", `${dy}%`, `${-dy * 0.5}%`, "0%"],
             rotate: [rotate, rotate + dr, rotate - dr * 0.5, rotate],
-            scaleX: [1, 1.25, 0.9, 1],
-            scaleY: [1, 0.85, 1.12, 1],
+            scaleX: [1, 1.12, 0.95, 1],
+            scaleY: [1, 0.92, 1.06, 1],
           },
-          { duration: (18 + i * 5) / rate, ease: "easeInOut", repeat: Infinity }
+          { duration: (24 + i * 6) / rate, ease: "easeInOut", repeat: Infinity }
         )
       );
     }
@@ -133,20 +133,12 @@ export function AuroraBackground({
                 width: `${width}%`,
                 height: `${height}%`,
                 transform: `rotate(${rotate}deg)`,
-                background: `radial-gradient(50% 50% at 50% 50%, ${color} 0%, color-mix(in oklab, ${color} 45%, transparent) 45%, transparent 100%)`,
+                background: `radial-gradient(50% 50% at 50% 50%, ${color} 0%, color-mix(in oklab, ${color} 35%, transparent) 40%, transparent 100%)`,
                 filter: blur > 0 ? `blur(${blur}px)` : undefined,
               }}
             />
           );
         })}
-        {/* Faint vertical curtains give the bands the rayed texture of a real aurora. */}
-        <div
-          className="absolute inset-0 opacity-40 mix-blend-overlay"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(95deg, transparent 0 18px, rgb(255 255 255 / 0.18) 26px, transparent 38px)",
-          }}
-        />
       </div>
     </div>
   );

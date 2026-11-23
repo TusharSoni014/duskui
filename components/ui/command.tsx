@@ -19,9 +19,7 @@ import {
  * Same parts, props and data-slot attributes as shadcn, plus:
  * - The result list eases its height as results filter in and out (cmdk's
  *   `--cmdk-list-height`), so the palette never jumps.
- * - The selected item eases its background in, gets a mint edge marker and
- *   its icon lights up.
- * - The search icon turns mint while the input is focused.
+ * - The selected item eases its background in and its icon brightens.
  * - `CommandDialog` sits near the top of the screen like a real palette, and
  *   its accessible title lives inside the dialog.
  * - Shortcuts render as small keycaps.
@@ -91,11 +89,11 @@ function CommandInput({
       data-slot="command-input-wrapper"
       className="group/command-input flex h-10 items-center gap-2 border-b px-3"
     >
-      <SearchIcon className="size-4 shrink-0 text-muted-foreground transition-colors duration-200 group-focus-within/command-input:text-primary motion-reduce:transition-none" />
+      <SearchIcon className="size-4 shrink-0 text-muted-foreground" />
       <CommandPrimitive.Input
         data-slot="command-input"
         className={cn(
-          "placeholder:text-muted-foreground flex h-10 w-full rounded-md bg-transparent py-3 text-sm caret-primary outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
+          "placeholder:text-muted-foreground flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
           className
         )}
         {...props}
@@ -114,7 +112,7 @@ function CommandList({
       data-slot="command-list"
       className={cn(
         "h-(--cmdk-list-height) max-h-[300px] scroll-py-1 overflow-x-hidden overflow-y-auto overscroll-contain",
-        "transition-[height] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none",
+        "transition-[height] duration-200 ease-out motion-reduce:transition-none",
         className
       )}
       {...props}
@@ -131,7 +129,7 @@ function CommandEmpty({
     <CommandPrimitive.Empty
       data-slot="command-empty"
       className={cn(
-        "text-muted-foreground animate-in fade-in-0 py-6 text-center text-sm duration-300",
+        "text-muted-foreground animate-in fade-in-0 py-6 text-center text-sm duration-200",
         className
       )}
       {...props}
@@ -182,10 +180,8 @@ function CommandItem({
         "relative flex cursor-default items-center gap-2 rounded-md px-2 py-1.5 text-sm outline-hidden select-none",
         "transition-[color,background-color] duration-150 ease-out motion-reduce:transition-none",
         "data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground",
-        // Mint edge marker on the selected row.
-        "before:absolute before:inset-y-2 before:left-0 before:w-0.5 before:scale-y-0 before:rounded-full before:bg-primary before:transition-transform before:duration-200 data-[selected=true]:before:scale-y-100 motion-reduce:before:transition-none",
         "data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50",
-        "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground [&_svg:not([class*='text-'])]:transition-colors data-[selected=true]:[&_svg:not([class*='text-'])]:text-primary",
+        "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground [&_svg:not([class*='text-'])]:transition-colors data-[selected=true]:[&_svg:not([class*='text-'])]:text-foreground",
         className
       )}
       {...props}

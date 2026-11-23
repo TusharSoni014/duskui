@@ -11,7 +11,7 @@ const block = (file: string) => `components/dusk/combobox/${file}`;
 const config: DocConfig = {
   title: "Combobox",
   intro:
-    "An animated React combobox — a searchable select and an autocomplete multi-select built on shadcn/ui's Popover + Command recipe (Radix and cmdk) with Motion: the panel springs open, results filter with layout animations and highlighted matches, and selections become removable animated chips.",
+    "An animated React combobox — a searchable select and an autocomplete multi-select built on shadcn/ui's Popover + Command recipe (Radix and cmdk) with Motion: the panel eases open, results filter with layout animations and highlighted matches, and selections become removable animated chips.",
   tags: ["shadcn Popover + Command", "cmdk", "Motion layout", "Multi-select chips", "Keyboard accessible"],
   hero: { Demo: ComboboxDemo, file: demo("combobox-demo.tsx"), minHeight: 420 },
   install: {
@@ -59,10 +59,10 @@ export function FrameworkPicker() {
       title: "Default",
       description: (
         <>
-          The panel springs out of the trigger and options cascade in. As you type, matches that start with
+          The panel scales out of the trigger and options cascade in. As you type, matches that start with
           the query move to the top and every option slides to its new place, the list height eases to fit,
-          matched text lights up and a highlight pill glides with the arrow keys. When nothing matches, an
-          empty state pops in. The trigger crossfades to the new label.
+          matched text is bolded and a highlight pill glides with the arrow keys. When nothing matches, an
+          empty state fades in. The trigger crossfades to the new label.
         </>
       ),
       Demo: ComboboxDemo,
@@ -93,7 +93,7 @@ export function FrameworkPicker() {
       deps: "motion cmdk @radix-ui/react-popover lucide-react",
       description: (
         <>
-          Type right in the field to filter, pick as many as you like and each becomes a chip that pops in.
+          Type right in the field to filter, pick as many as you like and each becomes a chip that scales in.
           Chips slide over to make room and shrink away when removed with their ✕ or Backspace. Options
           show checkboxes that draw themselves, <Code>max</Code> caps the selection with a counter, and
           every change is announced to screen readers.

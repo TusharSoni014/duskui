@@ -241,13 +241,13 @@ export function Lens({
         data-slot="lens-ring"
         className={cn(
           "pointer-events-none absolute left-0 top-0 z-20 rounded-full border border-white/30",
-          "shadow-[0_0_0_1px_rgb(0_0_0/0.4),0_12px_40px_rgb(0_0_0/0.45),inset_0_0_24px_rgb(255_255_255/0.08)]",
+          "shadow-lg",
           lensClassName
         )}
         style={{ width: size, height: size, x: ringX, y: ringY }}
         initial={false}
-        animate={{ opacity: active ? 1 : 0, scale: active || reduceMotion ? 1 : 0.85 }}
-        transition={reduceMotion ? { duration: 0 } : { type: "spring", duration: 0.3, bounce: 0.2 }}
+        animate={{ opacity: active ? 1 : 0, scale: active || reduceMotion ? 1 : 0.96 }}
+        transition={reduceMotion ? { duration: 0 } : { duration: 0.18, ease: "easeOut" }}
       />
     </div>
   );

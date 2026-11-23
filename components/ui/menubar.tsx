@@ -11,12 +11,11 @@ import { cn } from "@/lib/utils"
  *
  * Same parts, props and data-slot attributes as shadcn, plus:
  * - Menus grow out of their trigger: the scale origin follows Radix's
- *   transform origin and they slide in from the side they open on, on an
- *   expo-out curve, then close quicker than they opened.
- * - The open trigger keeps a mint-tinted highlight so you can see which menu
+ *   transform origin and they shift in slightly from the side they open on
+ *   (150ms ease-out), then close quicker than they opened.
+ * - The open trigger keeps a neutral highlight so you can see which menu
  *   you are in; triggers ease their background on hover.
- * - Check and radio indicators pop in when an item is selected.
- * - Sub-menu chevrons nudge toward the sub-menu while it's open.
+ * - Check and radio indicators fade in when an item is selected.
  * - Under `prefers-reduced-motion` menus only fade.
  * CSS only (tw-animate-css). Radix handles roving focus between menus, arrow
  * keys, typeahead, sub-menus and aria.
@@ -30,7 +29,7 @@ function Menubar({
       data-slot="menubar"
       className={cn(
         "flex h-10 items-center gap-1 rounded-lg border bg-background p-1",
-        "shadow-[inset_0_1px_0_rgb(255_255_255/0.04),0_1px_2px_rgb(0_0_0/0.3)]",
+        "shadow-xs",
         className
       )}
       {...props}
@@ -81,7 +80,7 @@ function MenubarTrigger({
         "transition-[color,background-color,box-shadow] duration-150 ease-out motion-reduce:transition-none",
         "text-foreground/80 hover:bg-accent hover:text-foreground",
         "focus-visible:ring-[3px] focus-visible:ring-ring/50",
-        "data-[state=open]:bg-primary/10 data-[state=open]:text-primary",
+        "data-[state=open]:bg-accent data-[state=open]:text-foreground",
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         className
       )}
@@ -92,9 +91,8 @@ function MenubarTrigger({
 
 const surface = [
   "z-50 min-w-[12rem] overflow-x-hidden overflow-y-auto rounded-lg border bg-popover p-1 text-popover-foreground",
-  "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_16px_40px_-12px_rgb(0_0_0/0.7),0_0_0_1px_rgb(0_0_0/0.2)]",
-  "ease-[cubic-bezier(0.16,1,0.3,1)]",
-  "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-90 data-[state=open]:duration-200",
+  "shadow-md ease-out",
+  "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:duration-150",
   "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:duration-100",
   "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
   "motion-reduce:data-[state=open]:zoom-in-100 motion-reduce:data-[state=closed]:zoom-out-100",
@@ -165,9 +163,9 @@ function MenubarItem({
 
 const indicatorSlot =
   "pointer-events-none absolute left-2 flex size-3.5 items-center justify-center"
-/** The indicator mounts when the item becomes checked, so it pops in with a little overshoot. */
+/** The indicator mounts when the item becomes checked, so it fades in. */
 const indicatorPop =
-  "flex items-center justify-center animate-in zoom-in-50 fade-in-0 duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] motion-reduce:zoom-in-100"
+  "flex items-center justify-center animate-in fade-in-0 duration-150 ease-out motion-reduce:animate-none"
 
 /** A toggleable item with a check mark. Use `checked` / `onCheckedChange`. */
 function MenubarCheckboxItem({
@@ -185,7 +183,7 @@ function MenubarCheckboxItem({
     >
       <span className={indicatorSlot}>
         <MenubarPrimitive.ItemIndicator className={indicatorPop}>
-          <CheckIcon className="size-4 !text-primary" />
+          <CheckIcon className="size-4 !text-foreground" />
         </MenubarPrimitive.ItemIndicator>
       </span>
       {children}
@@ -207,7 +205,7 @@ function MenubarRadioItem({
     >
       <span className={indicatorSlot}>
         <MenubarPrimitive.ItemIndicator className={indicatorPop}>
-          <CircleIcon className="size-2 fill-primary !text-primary" />
+          <CircleIcon className="size-2 fill-current !text-foreground" />
         </MenubarPrimitive.ItemIndicator>
       </span>
       {children}
@@ -295,7 +293,7 @@ function MenubarSubTrigger({
       {...props}
     >
       {children}
-      <ChevronRightIcon className="ml-auto size-4 transition-transform duration-200 ease-out group-data-[state=open]/sub:translate-x-0.5 motion-reduce:transition-none" />
+      <ChevronRightIcon className="ml-auto size-4" />
     </MenubarPrimitive.SubTrigger>
   )
 }

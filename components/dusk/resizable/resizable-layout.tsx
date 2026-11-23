@@ -115,7 +115,7 @@ export function ResizableLayout({
       <div
         className={cn(
           "h-full w-full overflow-hidden rounded-xl border bg-background",
-          "shadow-[inset_0_1px_0_rgb(255_255_255/0.04),0_16px_48px_-24px_rgb(0_0_0/0.8)]",
+          "shadow-sm",
           className
         )}
         {...props}

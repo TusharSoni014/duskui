@@ -22,7 +22,7 @@ function Node({
       ref={ref}
       title={label}
       className={cn(
-        "relative z-10 flex size-12 items-center justify-center rounded-full border border-white/10 bg-card text-white/80 shadow-[0_0_24px_rgb(0_0_0/0.5)] [&_svg]:size-5",
+        "relative z-10 flex size-12 items-center justify-center rounded-full border border-white/10 bg-card text-white/80 [&_svg]:size-5",
         className
       )}
     >
@@ -56,7 +56,7 @@ export default function AnimatedBeamDemo() {
       <Node
         ref={hubRef}
         label="Automation hub"
-        className="size-16 border-primary/40 text-primary shadow-[0_0_40px_color-mix(in_oklab,var(--color-primary)_35%,transparent)] [&_svg]:size-7"
+        className="size-16 border-white/20 text-foreground [&_svg]:size-7"
       >
         <Zap />
       </Node>

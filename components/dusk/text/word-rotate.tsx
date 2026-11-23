@@ -35,7 +35,7 @@ export interface WordRotateProps extends Omit<React.HTMLAttributes<HTMLElement>,
    * - `"polite"`: the visible word is a polite live region, announced each time it changes.
    */
   announce?: "all" | "polite";
-  /** Classes for each word, e.g. a color or gradient. */
+  /** Classes for each word, e.g. a color. */
   wordClassName?: string;
 }
 
@@ -54,7 +54,7 @@ export function WordRotate({
   interval = 2400,
   as = "span",
   distance = 0.6,
-  blur = 6,
+  blur = 4,
   pauseOnHover = true,
   announce = "all",
   wordClassName,
@@ -95,7 +95,7 @@ export function WordRotate({
       measured.current = true;
       width.jump(target);
     } else {
-      controls = animate(width, target, { type: "spring", duration: 0.55, bounce: 0.2 });
+      controls = animate(width, target, { type: "spring", duration: 0.45, bounce: 0.1 });
     }
 
     let first = true;
@@ -149,7 +149,7 @@ export function WordRotate({
             initial={still ? { opacity: 0 } : { opacity: 0, y, filter: `blur(${blur}px)` }}
             animate={{ opacity: 1, y: "0%", filter: "blur(0px)" }}
             exit={still ? { opacity: 0 } : { opacity: 0, y: `-${y}`, filter: `blur(${blur}px)` }}
-            transition={{ type: "spring", duration: 0.55, bounce: 0.15 }}
+            transition={{ type: "spring", duration: 0.45, bounce: 0.1 }}
           >
             {words[safeIndex]}
           </motion.span>

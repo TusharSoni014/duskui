@@ -12,7 +12,7 @@ const block = (file: string) => `components/dusk/tooltip/${file}`;
 const config: DocConfig = {
   title: "Tooltip",
   intro:
-    "An animated React tooltip built on shadcn/ui and Radix: the drop-in Tooltip opens from its trigger with a scale, slide and blur on an elevated dark surface — plus Motion blocks for a spring tooltip with a one-line API and an overlapping avatar group whose name cards tilt toward the cursor.",
+    "An animated React tooltip built on shadcn/ui and Radix: the drop-in Tooltip opens from its trigger with a short fade and scale on an elevated dark surface — plus Motion blocks for a spring tooltip with a one-line API and an overlapping avatar group whose name cards tilt toward the cursor.",
   tags: ["Drop-in shadcn API", "Radix Tooltip", "Spring animation", "Motion values", "prefers-reduced-motion"],
   hero: { Demo: AvatarTooltipGroupDemo, file: demo("avatar-tooltip-group-demo.tsx"), minHeight: 220 },
   install: {
@@ -79,8 +79,8 @@ export function CopyButton() {
       description: (
         <>
           A spring tooltip with a one-line API: wrap any trigger and pass <Code>content</Code>. It scales up
-          from the Radix transform origin, travels a few pixels away from the side it opens on and
-          un-blurs, then shrinks back on exit thanks to <Code>AnimatePresence</Code> and{" "}
+          from the Radix transform origin, travels a few pixels away from the side it opens on, then
+          fades back on exit thanks to <Code>AnimatePresence</Code> and{" "}
           <Code>forceMount</Code>.
         </>
       ),
@@ -107,7 +107,7 @@ export function CopyButton() {
       description: (
         <>
           Overlapping avatars for teams and collaborators. Hovering one lifts it above its neighbours and
-          springs open a name card that tilts and leans toward the cursor as you move across the face —
+          opens a name card that tilts slightly toward the cursor as you move across the face —
           driven by motion values, so it never re-renders React. Extra members collapse into a “+N” chip
           whose tooltip lists them. Uses plain <Code>&lt;img&gt;</Code> or generated initials.
         </>
@@ -116,7 +116,7 @@ export function CopyButton() {
       file: demo("avatar-tooltip-group-demo.tsx"),
       minHeight: 220,
       props: [
-        { name: "items", type: "{ name, role?, src?, initials? }[]", description: "The people. Without src, initials sit on a gradient derived from the name." },
+        { name: "items", type: "{ name, role?, src?, initials? }[]", description: "The people. Without src, initials sit on a muted color derived from the name." },
         { name: "max", type: "number", default: "5", description: "Avatars shown before the +N chip." },
         { name: "size", type: "number", default: "40", description: "Avatar diameter in px." },
         { name: "onAvatarClick", type: "(item) => void", description: "Called when an avatar is clicked." },

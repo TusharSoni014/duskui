@@ -11,7 +11,7 @@ const block = (file: string) => `components/dusk/command/${file}`;
 const config: DocConfig = {
   title: "Command",
   intro:
-    "The shadcn/ui Command menu (cmdk) with a result list that eases its height as you type, a mint selection marker and keycap shortcuts — plus an animated React ⌘K command palette block built with Motion, with a gliding highlight, recent items and nested pages.",
+    "The shadcn/ui Command menu (cmdk) with a result list that eases its height as you type, a clear selected row and keycap shortcuts — plus an animated React ⌘K command palette block built with Motion, with a gliding highlight, recent items and nested pages.",
   tags: ["Drop-in shadcn API", "cmdk filtering", "⌘K palette", "Nested pages", "Motion block"],
   hero: { Demo: CommandPaletteDemo, file: demo("command-palette-demo.tsx"), minHeight: 300 },
   install: {
@@ -64,7 +64,7 @@ export function SearchMenu() {
       description: (
         <>
           An inline menu. Type to filter: the list eases to its new height instead of jumping, the
-          selected row gets a mint edge marker and its icon lights up, and shortcuts render as small
+          selected row gets a neutral highlight and its icon brightens, and shortcuts render as small
           keycaps. Disabled items are skipped by the arrow keys.
         </>
       ),
@@ -96,10 +96,10 @@ export function SearchMenu() {
       deps: "motion cmdk @radix-ui/react-dialog lucide-react",
       description: (
         <>
-          A data-driven ⌘K palette. It springs in from the top, a highlight glides between items as you
+          A data-driven ⌘K palette. It fades in from the top, a highlight glides between items as you
           arrow or hover (a shared Motion <Code>layoutId</Code>), and actions you run surface under
           Recent. Items with a <Code>page</Code> open a nested page: the list slides in from the side
-          you&apos;re travelling, a breadcrumb shows where you are and the panel springs to the new
+          you&apos;re travelling, a breadcrumb shows where you are and the panel eases to the new
           height. Backspace on an empty search or Escape steps back. This demo uses ⌘J so it
           doesn&apos;t clash with the site search.
         </>

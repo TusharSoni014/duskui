@@ -17,7 +17,7 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 80,
-          backgroundColor: "#020604",
+          backgroundColor: "#121212",
           backgroundImage:
             "radial-gradient(circle at 80% 20%, rgba(52,230,160,0.25), transparent 50%)",
           color: "white",
@@ -25,7 +25,7 @@ export default function OpengraphImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
+          { }
           <img src={logoDataUri} width={72} height={72} alt="" />
           <div style={{ fontSize: 40, fontWeight: 700 }}>DuskUI</div>
         </div>

@@ -8,8 +8,8 @@ export default function SpotlightButtonDemo() {
         <Github />
         Star on GitHub
       </SpotlightButton>
-      <SpotlightButton size="lg" color="#a78bfa" radius={60}>
-        Custom color
+      <SpotlightButton size="lg" radius={48}>
+        Read the docs
       </SpotlightButton>
     </>
   );

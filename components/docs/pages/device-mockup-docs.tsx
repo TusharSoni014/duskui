@@ -10,7 +10,7 @@ const demo = (file: string) => `components/demos/device-mockup/${file}`;
 const config: DocConfig = {
   title: "Device Mockup",
   intro:
-    "Browser and iPhone mockups for React and Tailwind CSS, drawn entirely in CSS and inline SVG with no images. Wrap a screenshot or live components in a Safari window or a phone with a dynamic island; frames scale with container queries and can tilt in 3D toward the cursor.",
+    "Browser and iPhone mockups for React and Tailwind CSS, drawn entirely in CSS and inline SVG with no images. Wrap a screenshot or live components in a Safari window or a phone with a dynamic island; frames scale with container queries and can tilt slightly toward the cursor.",
   tags: ["Pure CSS & SVG", "Safari + iPhone frames", "Container-query scaling", "Optional 3D tilt", "prefers-reduced-motion"],
   hero: { Demo: DeviceMockupDemo, file: demo("device-mockup-demo.tsx"), minHeight: 440 },
   install: {
@@ -39,7 +39,7 @@ export function ProductShot() {
       title: "Safari window with tilt",
       description: (
         <>
-          <Code>tilt</Code> rotates the window toward a mouse cursor on springs (pass a number for the max
+          <Code>tilt</Code> rotates the window a few degrees toward a mouse cursor (pass a number for the max
           angle). The toolbar drops its navigation buttons when the window is narrow.
         </>
       ),
@@ -52,7 +52,7 @@ export function ProductShot() {
       title: "Phone finishes",
       description: (
         <>
-          <Code>graphite</Code>, <Code>silver</Code> and <Code>mint</Code> frames. Every dimension is a share
+          <Code>graphite</Code>, <Code>silver</Code> and <Code>mint</Code> (a muted sage) frames. Every dimension is a share
           of the frame&apos;s width, so the island, bezel and status bar stay in proportion at any size. Use{" "}
           <Code>statusBarClassName</Code> to darken the status bar over light screens.
         </>
@@ -67,7 +67,7 @@ export function ProductShot() {
     props: [
       { name: "children", type: "ReactNode", description: "What appears on the screen: components, a video or an image." },
       { name: "src / alt", type: "string", description: "Shortcut for a screenshot. Ignored when children are passed." },
-      { name: "tilt", type: "boolean | number", default: "false", description: "Tilt toward the cursor on hover (mouse only). true = 8°, or a max angle in degrees." },
+      { name: "tilt", type: "boolean | number", default: "false", description: "Tilt toward the cursor on hover (mouse only). true = 4°, or a max angle in degrees." },
       { name: "screenClassName", type: "string", description: "Classes for the screen area." },
       { name: "url", type: "string", default: '"duskui.com"', description: "SafariMockup: text in the address bar." },
       { name: "ratio", type: "number", default: "16 / 10", description: "SafariMockup: screen aspect ratio." },

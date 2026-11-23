@@ -25,7 +25,7 @@ export default function LoadingCardDemo() {
     <div className="flex w-full max-w-sm flex-col items-center gap-4">
       <LoadingCard loading={loading} loadingLabel="Loading profile" className="w-full">
         <CardHeader className="flex items-center gap-3">
-          <div className="grid size-10 shrink-0 place-items-center rounded-full bg-primary/15 font-semibold text-primary">
+          <div className="grid size-10 shrink-0 place-items-center rounded-full bg-white/10 font-semibold text-foreground">
             AK
           </div>
           <div className="grid gap-1">

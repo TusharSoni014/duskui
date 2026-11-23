@@ -13,7 +13,7 @@ const block = (file: string) => `components/dusk/toggle-group/${file}`;
 const config: DocConfig = {
   title: "Toggle Group",
   intro:
-    "An animated React toggle group built on shadcn/ui and Radix: the drop-in Toggle and ToggleGroup add a tactile press and a mint active state — plus a Motion block where the active pill glides between options, for single and multiple selection.",
+    "An animated React toggle group built on shadcn/ui and Radix: the drop-in Toggle and ToggleGroup add smooth transitions and a clear active state — plus a Motion block where the active pill glides between options, for single and multiple selection.",
   tags: ["Drop-in shadcn API", "Radix Toggle Group", "Motion layoutId", "Single & multiple", "prefers-reduced-motion"],
   hero: { Demo: AnimatedToggleGroupDemo, file: demo("animated-toggle-group-demo.tsx"), minHeight: 240 },
   install: {
@@ -48,7 +48,7 @@ export function Formatting() {
       title: "Default",
       description: (
         <>
-          <Code>type=&quot;multiple&quot;</Code> lets several items be on at once. Pressed icons light up mint.
+          <Code>type=&quot;multiple&quot;</Code> lets several items be on at once. Pressed items get a neutral surface.
           Arrow keys move between items; Space or Enter toggles.
         </>
       ),
@@ -93,9 +93,9 @@ export function Formatting() {
       deps: "motion @radix-ui/react-toggle-group",
       description: (
         <>
-          Options sit on a recessed track. With <Code>type=&quot;single&quot;</Code> one glowing pill glides
+          Options sit on a recessed track. With <Code>type=&quot;single&quot;</Code> one pill glides
           to the pressed item (a shared Motion <Code>layoutId</Code>); with <Code>type=&quot;multiple&quot;</Code>{" "}
-          each pressed item gets its own pill that springs in and shrinks away. Typed like Radix:{" "}
+          each pressed item gets its own pill that fades in and out. Typed like Radix:{" "}
           <Code>value</Code> is a string for single and a string array for multiple.
         </>
       ),

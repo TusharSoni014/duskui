@@ -24,7 +24,7 @@ export interface NeonBorderProps extends Omit<React.ComponentProps<"div">, "colo
   thickness?: number;
   /** Corner radius: a number in px or any CSS length. */
   radius?: number | string;
-  /** Soft bloom around the beam. 0 turns it off. */
+  /** Soft glow around the beam, from 0 (off) to 1. */
   glow?: number;
   /** `always` runs continuously; `hover` lights up only on hover or keyboard focus inside. */
   trigger?: "always" | "hover";
@@ -34,7 +34,7 @@ export interface NeonBorderProps extends Omit<React.ComponentProps<"div">, "colo
 
 /** Masks a layer down to its padding box, leaving only a ring the width of its padding. */
 const RING =
-  "pointer-events-none absolute inset-0 rounded-[inherit] [mask-composite:exclude] [mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)]";
+  "pointer-events-none absolute inset-0 rounded-[inherit] [mask-image:linear-gradient(#000_0_0),linear-gradient(#000_0_0)] [mask-clip:content-box,border-box] [mask-composite:exclude]";
 
 /**
  * Wraps any content in a neon border with a beam of light travelling around it.
@@ -46,10 +46,10 @@ const RING =
 export function NeonBorder({
   color = "var(--color-primary)",
   secondaryColor,
-  speed = 4,
-  thickness = 2,
-  radius = 16,
-  glow = 1,
+  speed = 6,
+  thickness = 1,
+  radius = 12,
+  glow = 0.5,
   trigger = "always",
   className,
   contentClassName,
@@ -69,7 +69,7 @@ export function NeonBorder({
 
   const angle = useMotionValue(0);
   const tail = secondaryColor ?? "var(--neon)";
-  const beam = useMotionTemplate`conic-gradient(from ${angle}deg, transparent 0%, transparent 55%, color-mix(in oklab, ${tail} 60%, transparent) 75%, var(--neon) 92%, color-mix(in oklab, var(--neon) 40%, white) 96%, transparent 100%)`;
+  const beam = useMotionTemplate`conic-gradient(from ${angle}deg, transparent 0%, transparent 60%, color-mix(in oklab, ${tail} 45%, transparent) 80%, var(--neon) 95%, transparent 100%)`;
 
   const start = React.useCallback(() => {
     if (controls.current || reduceMotion) return;
@@ -140,7 +140,7 @@ export function NeonBorder({
         className={RING}
         style={{
           padding: thickness,
-          background: "color-mix(in oklab, var(--neon) 22%, transparent)",
+          background: "color-mix(in oklab, var(--neon) 15%, transparent)",
         }}
       />
       {glow > 0 && (
@@ -148,11 +148,11 @@ export function NeonBorder({
         <span
           aria-hidden
           className={cn("pointer-events-none absolute inset-0 rounded-[inherit]", beamVisibility)}
-          style={{ filter: `blur(${4 + 4 * glow}px)` }}
+          style={{ filter: "blur(6px)" }}
         >
           <motion.span
             className={RING}
-            style={{ padding: thickness * 3, background: lit, opacity: Math.min(1, 0.55 * glow) }}
+            style={{ padding: thickness * 2, background: lit, opacity: Math.min(0.5, 0.4 * glow) }}
           />
         </span>
       )}

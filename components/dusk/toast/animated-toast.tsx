@@ -17,12 +17,12 @@ import { cn } from "@/lib/utils";
 export type ToastStatus = "default" | "loading" | "success" | "error" | "info" | "warning";
 
 const tone: Record<ToastStatus, { icon: string; border: string; bar: string }> = {
-  default: { icon: "bg-white/10 text-foreground", border: "border-border", bar: "bg-foreground/40" },
-  loading: { icon: "bg-primary/10 text-primary", border: "border-border", bar: "bg-primary" },
-  success: { icon: "bg-primary/15 text-primary", border: "border-primary/25", bar: "bg-primary" },
-  error: { icon: "bg-destructive/15 text-destructive", border: "border-destructive/30", bar: "bg-destructive" },
-  info: { icon: "bg-sky-400/15 text-sky-300", border: "border-sky-400/20", bar: "bg-sky-400" },
-  warning: { icon: "bg-amber-400/15 text-amber-300", border: "border-amber-400/20", bar: "bg-amber-400" },
+  default: { icon: "text-muted-foreground", border: "border-border", bar: "bg-foreground/30" },
+  loading: { icon: "text-muted-foreground", border: "border-border", bar: "bg-foreground/30" },
+  success: { icon: "text-primary", border: "border-border", bar: "bg-foreground/30" },
+  error: { icon: "text-destructive", border: "border-border", bar: "bg-foreground/30" },
+  info: { icon: "text-foreground", border: "border-border", bar: "bg-foreground/30" },
+  warning: { icon: "text-amber-300", border: "border-border", bar: "bg-foreground/30" },
 };
 
 // ---------------------------------------------------------------------------
@@ -114,8 +114,7 @@ export function ToastSurface({ className, ...props }: React.ComponentProps<"div"
       data-slot="toast-surface"
       className={cn(
         "relative flex w-(--width) items-start gap-3 overflow-hidden rounded-xl border bg-popover p-3.5 pr-10 font-sans text-sm text-popover-foreground max-[600px]:w-full",
-        "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_16px_40px_-12px_rgb(0_0_0/0.7),0_0_0_1px_rgb(0_0_0/0.25)]",
-        "transition-[border-color] duration-300",
+        "shadow-lg",
         // Collapsed stack: hide the content of toasts behind the front one, like Sonner's styled toasts.
         // (Height is left alone so Sonner can still measure the toast.)
         "[[data-sonner-toast][data-expanded=false][data-front=false]_&>*]:opacity-0",
@@ -149,7 +148,7 @@ export function ToastClose({ className, label = "Close notification", ...props }
 // Status icon that morphs between states
 // ---------------------------------------------------------------------------
 
-const draw = { type: "spring", duration: 0.5, bounce: 0 } as const;
+const draw = { type: "spring", duration: 0.35, bounce: 0 } as const;
 
 function StatusGlyph({ status }: { status: ToastStatus }) {
   switch (status) {
@@ -201,10 +200,9 @@ function StatusGlyph({ status }: { status: ToastStatus }) {
   }
 }
 
-/** A tinted circle whose glyph morphs (scale + rotate + path draw) when `status` changes. */
+/** A status glyph that crossfades (scale + path draw) when `status` changes. */
 export function ToastStatusIcon({ status, className }: { status: ToastStatus; className?: string }) {
   const reduceMotion = useReducedMotion();
-  const settled = status === "success" || status === "error";
 
   return (
     <span
@@ -219,24 +217,14 @@ export function ToastStatusIcon({ status, className }: { status: ToastStatus; cl
         <motion.span
           key={status}
           className="grid place-items-center"
-          initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.4, rotate: -60 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.4, rotate: 60 }}
-          transition={{ type: "spring", duration: 0.45, bounce: 0.35 }}
+          initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
+          transition={{ type: "spring", duration: 0.25, bounce: 0.1 }}
         >
           <StatusGlyph status={status} />
         </motion.span>
       </AnimatePresence>
-      {/* A one-off ripple when the toast lands on success or error. */}
-      {settled && !reduceMotion && (
-        <motion.span
-          key={`ring-${status}`}
-          className="absolute inset-0 rounded-full border border-current"
-          initial={{ scale: 1, opacity: 0.6 }}
-          animate={{ scale: 1.9, opacity: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-        />
-      )}
     </span>
   );
 }
@@ -267,8 +255,8 @@ export interface AnimatedToastProps {
 }
 
 /**
- * A custom Sonner toast. Its icon morphs between loading, success and error
- * (the spinner spins out, the check or cross draws itself in), a thin line
+ * A custom Sonner toast. Its icon changes between loading, success and error
+ * (the spinner fades out, the check or cross draws itself in), a thin line
  * along the bottom shows the time left, and the title crossfades on change.
  * Render it with `toast.custom`, or use the `animatedToast` helpers below.
  */
@@ -313,8 +301,8 @@ export function AnimatedToast({
             <button
               type="button"
               className={cn(
-                "inline-flex h-7 items-center rounded-md bg-primary/10 px-2.5 text-xs font-medium text-primary outline-none",
-                "transition-[background-color,box-shadow] duration-150 hover:bg-primary/20 focus-visible:ring-[3px] focus-visible:ring-ring/50"
+                "inline-flex h-7 items-center rounded-md border bg-secondary px-2.5 text-xs font-medium text-secondary-foreground outline-none",
+                "transition-[background-color,box-shadow] duration-150 hover:bg-accent focus-visible:ring-[3px] focus-visible:ring-ring/50"
               )}
               onClick={(event) => {
                 action.onClick(event);

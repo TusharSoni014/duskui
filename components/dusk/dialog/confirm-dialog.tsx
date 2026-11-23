@@ -129,11 +129,11 @@ export function ConfirmDialog({
                 aria-hidden
                 className={cn(
                   "mx-auto mb-2 grid size-11 place-items-center rounded-full sm:mx-0 [&_svg]:size-5",
-                  destructive ? "bg-destructive/15 text-destructive" : "bg-primary/10 text-primary"
+                  destructive ? "bg-destructive/15 text-destructive" : "border bg-muted text-foreground"
                 )}
-                initial={reduceMotion ? false : { scale: 0.5, opacity: 0 }}
+                initial={reduceMotion ? false : { scale: 0.96, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                transition={{ type: "spring", duration: 0.45, bounce: 0.45, delay: 0.05 }}
+                transition={{ duration: 0.2, ease: "easeOut", delay: 0.05 }}
               >
                 {shownIcon}
               </motion.div>

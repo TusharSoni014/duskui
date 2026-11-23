@@ -12,7 +12,7 @@ const block = (file: string) => `components/dusk/kbd/${file}`;
 const config: DocConfig = {
   title: "Kbd",
   intro:
-    "Keyboard keys for React styled as real keycaps, with a pressed state that sinks and glows — plus an animated shortcut block that lights up each key as you press the combo, knows ⌘ from Ctrl without hydration mismatches, and ships a useShortcut hook.",
+    "Keyboard keys for React styled as real keycaps, with a pressed state that sinks and brightens — plus an animated shortcut block whose keys sink as you press the combo, knows ⌘ from Ctrl without hydration mismatches, and ships a useShortcut hook.",
   tags: ["shadcn API", "Server Component friendly", "Mac / Windows aware", "No hydration mismatch"],
   hero: { Demo: ShortcutKbdDemo, file: demo("shortcut-kbd-demo.tsx"), minHeight: 240 },
   install: {
@@ -76,7 +76,7 @@ export function SearchHint() {
       description: (
         <>
           Keycaps that listen. Each cap sinks while its key is held; when the full combination lands they
-          flash mint with a quick bounce and <Code>onTrigger</Code> runs. <Code>mod</Code> shows ⌘ on Apple
+          dip once together and <Code>onTrigger</Code> runs. <Code>mod</Code> shows ⌘ on Apple
           devices and Ctrl elsewhere — the platform is read with <Code>useSyncExternalStore</Code>, so the
           server HTML and first client render always match. Letters match by physical key, so ⌥ and ⇧
           can&apos;t change them. The file also exports <Code>useShortcut</Code> and{" "}
@@ -123,7 +123,7 @@ export function SearchHint() {
     ),
     props: [
       { name: "size", type: '"sm" | "default" | "lg"', default: '"default"', description: "Kbd. Keycap size." },
-      { name: "pressed", type: "boolean", default: "false", description: "Kbd. Shows the key held down: it sinks a pixel and lights up mint." },
+      { name: "pressed", type: "boolean", default: "false", description: "Kbd. Shows the key held down: it sinks a pixel and brightens." },
     ],
   },
   accessibility: [
@@ -131,7 +131,7 @@ export function SearchHint() {
     <>Give symbol keys a spoken name: pair <Code>⌘</Code> or an icon with <Code>&lt;span className=&quot;sr-only&quot;&gt;Command&lt;/span&gt;</Code>. Shortcut Kbd does this for you (Command, Control, Shift, Option…).</>,
     "Shortcut Kbd only listens; announce the result of a shortcut yourself, e.g. with a polite live region as in the demos.",
     "Avoid single-key shortcuts for destructive actions; they are paused inside text fields by default, but can still be pressed by accident.",
-    "Under prefers-reduced-motion the trigger flash is a color change only, without the bounce.",
+    "Under prefers-reduced-motion the trigger dip is a surface change only, without movement.",
   ],
 };
 

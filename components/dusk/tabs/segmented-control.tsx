@@ -27,7 +27,7 @@ export interface SegmentedControlProps
   fullWidth?: boolean;
 }
 
-const thumbSpring: Transition = { type: "spring", bounce: 0.22, duration: 0.45 };
+const thumbSpring: Transition = { type: "spring", bounce: 0.1, duration: 0.3 };
 
 const sizes = {
   sm: "h-7 px-2.5 text-xs gap-1 [&_svg:not([class*='size-'])]:size-3.5",
@@ -69,7 +69,7 @@ export function SegmentedControl({
         aria-disabled={disabled || undefined}
         data-slot="segmented-control"
         className={cn(
-          "relative isolate inline-flex w-fit items-center rounded-lg bg-muted p-1 shadow-[inset_0_1px_2px_rgb(0_0_0/0.35)]",
+          "relative isolate inline-flex w-fit items-center rounded-lg bg-muted p-1",
           fullWidth && "flex w-full",
           disabled && "opacity-50",
           className
@@ -108,7 +108,7 @@ export function SegmentedControl({
                   layoutId="segmented-thumb"
                   aria-hidden
                   transition={thumbSpring}
-                  className="pointer-events-none absolute inset-0 -z-10 rounded-md border border-white/10 bg-background shadow-[inset_0_1px_0_rgb(255_255_255/0.06),0_2px_6px_-1px_rgb(0_0_0/0.5)]"
+                  className="pointer-events-none absolute inset-0 -z-10 rounded-md border border-white/10 bg-background shadow-sm"
                 />
               )}
               {option.icon}

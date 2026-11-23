@@ -88,7 +88,6 @@ export function RadialStat({
               isAnimationActive={!reduceMotion}
               animationDuration={1100}
               animationEasing="ease-out"
-              style={{ filter: `drop-shadow(0 0 6px color-mix(in oklab, ${color} 45%, transparent))` }}
             />
           </RadialBarChart>
         </ChartContainer>

@@ -74,7 +74,7 @@ export function Hero() {
       { name: "fontSize", type: "number", default: "16", description: "Glyph size in px; also the column width." },
       { name: "speed", type: "number", default: "1", description: "Speed multiplier." },
       { name: "fade", type: "number", default: "0.08", description: "Trail fade per tick, 0–1. Lower means longer trails." },
-      { name: "density", type: "number", default: "0.6", description: "How busy the rain is, 0–1." },
+      { name: "density", type: "number", default: "0.4", description: "How busy the rain is, 0–1." },
       { name: "characters", type: "string", default: "katakana + 0–9", description: "Characters to rain." },
       { name: "paused", type: "boolean", default: "false", description: "Freeze the current frame." },
     ],

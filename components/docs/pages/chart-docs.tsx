@@ -13,7 +13,7 @@ const block = (file: string) => `components/dusk/chart/${file}`;
 const config: DocConfig = {
   title: "Chart",
   intro:
-    "Animated React charts built on shadcn/ui and Recharts v3: themed ChartContainer, tooltip and legend helpers for dark dashboards, plus an area chart with gradient fills that draw in, a bar chart with hover highlights and a radial progress stat that counts up.",
+    "Animated React charts built on shadcn/ui and Recharts v3: themed ChartContainer, tooltip and legend helpers for dark dashboards, plus an area chart with soft fills that draw in, a bar chart with hover highlights and a radial progress stat that counts up.",
   tags: ["Drop-in shadcn API", "Recharts v3", "Themed tooltips", "Accessible data tables", "prefers-reduced-motion"],
   hero: { Demo: AreaChartDemo, file: demo("area-chart-demo.tsx"), minHeight: 460 },
   install: {
@@ -102,7 +102,7 @@ export function VisitorsChart() {
       deps: "motion recharts",
       description: (
         <>
-          A dashboard card with gradient-filled areas that draw in from the left, a readout that follows the
+          A dashboard card with softly filled areas that draw in from the left, a readout that follows the
           pointer or keyboard, and range buttons with a gliding pill. The readout has a fixed height, so
           hovering never shifts the layout. A visually hidden table carries the numbers for screen readers.
         </>
@@ -129,8 +129,8 @@ export function VisitorsChart() {
       deps: "motion recharts",
       description: (
         <>
-          Hovering a bar dims the others, lifts the hovered one with a glow and swaps the headline to its
-          value. Bars grow in on mount, and the keyboard-active bar glows the same way.
+          Hovering a bar dims the others, outlines the hovered one and swaps the headline to its value.
+          Bars grow in on mount, and the keyboard-active bar is outlined the same way.
         </>
       ),
       Demo: BarChartDemo,

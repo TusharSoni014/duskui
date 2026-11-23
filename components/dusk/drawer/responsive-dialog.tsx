@@ -131,7 +131,7 @@ const rise = (reduceMotion: boolean): Variants => ({
   hidden: reduceMotion ? { opacity: 0 } : { opacity: 0, y: 8 },
   shown: reduceMotion
     ? { opacity: 1, transition: { duration: 0.2 } }
-    : { opacity: 1, y: 0, transition: { type: "spring", duration: 0.45, bounce: 0.15 } },
+    : { opacity: 1, y: 0, transition: { duration: 0.2, ease: "easeOut" } },
 });
 
 export interface ResponsiveDialogContentProps {

@@ -10,9 +10,8 @@ import { cn } from "@/lib/utils"
  *
  * Same API as shadcn: pass one value for a single thumb or several for a
  * range (`defaultValue={[20, 80]}`), horizontal or vertical. Plus:
- * - The thumb you're dragging grows and gets a soft halo; hovering a thumb
- *   enlarges it a little so it's easier to grab.
- * - The range fill has a gentle gradient and the track lightens on hover.
+ * - The thumb you're dragging grows a little and fills in, so it's clear which one moves.
+ * - A solid range fill; the track lightens slightly on hover.
  * - A clear focus-visible ring for keyboard users (arrows, Page Up/Down, Home/End).
  * - Under `prefers-reduced-motion` sizes change instantly.
  * - `aria-label` / `aria-labelledby` on the Slider are forwarded to the thumbs
@@ -80,7 +79,7 @@ function Slider({
       <SliderPrimitive.Track
         data-slot="slider-track"
         className={cn(
-          "relative grow overflow-hidden rounded-full bg-muted transition-colors duration-200 group-hover/slider:bg-secondary",
+          "relative grow overflow-hidden rounded-full bg-muted transition-colors duration-150 group-hover/slider:bg-secondary",
           "data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5"
         )}
       >
@@ -88,8 +87,7 @@ function Slider({
           data-slot="slider-range"
           className={cn(
             "absolute rounded-full bg-primary",
-            "data-[orientation=horizontal]:h-full data-[orientation=horizontal]:bg-[linear-gradient(90deg,color-mix(in_oklab,var(--color-primary)_65%,transparent),var(--color-primary))]",
-            "data-[orientation=vertical]:w-full data-[orientation=vertical]:bg-[linear-gradient(0deg,color-mix(in_oklab,var(--color-primary)_65%,transparent),var(--color-primary))]"
+            "data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full"
           )}
         />
       </SliderPrimitive.Track>
@@ -101,10 +99,9 @@ function Slider({
           aria-labelledby={thumbCount === 1 ? ariaLabelledBy : undefined}
           className={cn(
             "block size-4 shrink-0 rounded-full border-2 border-primary bg-background outline-none",
-            "shadow-[0_1px_3px_rgb(0_0_0/0.5)] transition-[scale,box-shadow,background-color] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]",
-            "hover:scale-115 hover:shadow-[0_0_0_5px_color-mix(in_oklab,var(--color-primary)_15%,transparent)]",
+            "shadow-sm transition-[scale,box-shadow,background-color] duration-150 ease-out",
             // The thumb being dragged is the focused one: Radix focuses it on pointer down.
-            "group-data-[dragging]/slider:focus:scale-135 group-data-[dragging]/slider:focus:bg-primary group-data-[dragging]/slider:focus:shadow-[0_0_0_7px_color-mix(in_oklab,var(--color-primary)_20%,transparent),0_0_18px_color-mix(in_oklab,var(--color-primary)_45%,transparent)]",
+            "group-data-[dragging]/slider:focus:scale-110 group-data-[dragging]/slider:focus:bg-primary",
             "focus-visible:ring-[3px] focus-visible:ring-ring/50",
             "data-[disabled]:pointer-events-none",
             "motion-reduce:transition-none"

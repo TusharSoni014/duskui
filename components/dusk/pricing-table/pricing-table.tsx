@@ -4,11 +4,7 @@ import * as React from "react";
 import {
   AnimatePresence,
   LayoutGroup,
-  animate,
   motion,
-  useInView,
-  useMotionTemplate,
-  useMotionValue,
   useReducedMotion,
   type Transition,
 } from "motion/react";
@@ -38,7 +34,7 @@ export interface PricingPlan {
     href?: string;
     onClick?: () => void;
   };
-  /** Highlight this plan with an animated border and badge. */
+  /** Highlight this plan with a primary border and a small label. */
   popular?: boolean;
   /** Badge text for a popular plan. */
   badge?: string;
@@ -88,7 +84,7 @@ const defaultLabels: PricingLabels = {
   notIncluded: "Not included:",
 };
 
-const pill: Transition = { type: "spring", bounce: 0.2, duration: 0.45 };
+const pill: Transition = { type: "spring", bounce: 0.1, duration: 0.3 };
 const roll: Transition = { type: "spring", bounce: 0.15, duration: 0.6 };
 const DIGITS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
@@ -167,38 +163,10 @@ function RollingPrice({
   );
 }
 
-/** Animated gradient ring for the popular plan; a steady ring under reduced motion. */
-function PopularRing({ reduceMotion }: { reduceMotion: boolean }) {
-  const ref = React.useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref);
-  const angle = useMotionValue(0);
-  const background = useMotionTemplate`conic-gradient(from ${angle}deg, transparent 0%, color-mix(in oklab, var(--color-primary) 25%, transparent) 30%, var(--color-primary) 50%, color-mix(in oklab, var(--color-primary) 25%, transparent) 70%, transparent 100%)`;
-
-  React.useEffect(() => {
-    if (!inView || reduceMotion) return;
-    const controls = animate(angle, angle.get() + 360, { duration: 5, ease: "linear", repeat: Infinity });
-    return () => controls.stop();
-  }, [inView, reduceMotion, angle]);
-
-  const ring =
-    "pointer-events-none absolute inset-0 rounded-[inherit] p-px [mask-composite:exclude] [mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)]";
-
-  return (
-    <>
-      <span ref={ref} aria-hidden className={cn(ring, "bg-primary/25")} />
-      <motion.span
-        aria-hidden
-        className={cn(ring, "p-[1.5px]")}
-        style={{ background: reduceMotion ? "var(--color-primary)" : background }}
-      />
-    </>
-  );
-}
-
 /**
  * Pricing cards with a monthly / yearly switch. A pill glides between the
  * periods, prices roll digit by digit without changing width, and the popular
- * plan gets a travelling gradient border. The switch is a native radio group,
+ * plan gets a 1px primary border and a small label. The switch is a native radio group,
  * every price has a plain-text copy for screen readers, and the CTA is the
  * DuskUI Button (a link when `href` is set). Fully data-driven.
  */
@@ -250,7 +218,7 @@ export function PricingTable({
                   data-state={checked ? "checked" : "unchecked"}
                   className={cn(
                     "relative inline-flex h-9 cursor-pointer items-center gap-2 rounded-full px-4 text-sm font-medium text-muted-foreground select-none",
-                    "transition-colors duration-200 hover:text-foreground data-[state=checked]:text-primary-foreground motion-reduce:transition-none",
+                    "transition-colors duration-200 hover:text-foreground data-[state=checked]:text-foreground motion-reduce:transition-none",
                     "has-focus-visible:ring-[3px] has-focus-visible:ring-ring/50"
                   )}
                 >
@@ -267,7 +235,7 @@ export function PricingTable({
                       layoutId="billing-pill"
                       aria-hidden
                       transition={reduceMotion ? { duration: 0 } : pill}
-                      className="absolute inset-0 -z-10 rounded-full bg-primary shadow-[0_0_20px_-4px_var(--color-primary)]"
+                      className="absolute inset-0 -z-10 rounded-full border bg-background shadow-sm"
                     />
                   )}
                   {labels[period]}
@@ -275,7 +243,7 @@ export function PricingTable({
                     <span
                       className={cn(
                         "rounded-full px-1.5 py-0.5 text-[10px] font-semibold leading-none transition-colors duration-200",
-                        checked ? "bg-primary-foreground/15 text-primary-foreground" : "bg-primary/15 text-primary"
+                        checked ? "bg-primary/15 text-primary" : "bg-muted text-muted-foreground"
                       )}
                     >
                       {labels.yearlyBadge}
@@ -313,18 +281,16 @@ export function PricingTable({
               key={plan.id}
               aria-labelledby={`${id}-${plan.id}-name`}
               className={cn(
-                "relative flex flex-col rounded-2xl border bg-card p-6 text-card-foreground",
-                plan.popular &&
-                  "border-transparent bg-[radial-gradient(120%_60%_at_50%_0%,color-mix(in_oklab,var(--color-primary)_10%,transparent),transparent_70%)] shadow-[0_20px_60px_-25px_color-mix(in_oklab,var(--color-primary)_45%,transparent)]"
+                "relative flex flex-col rounded-xl border bg-card p-6 text-card-foreground",
+                plan.popular && "border-primary"
               )}
             >
-              {plan.popular && <PopularRing reduceMotion={reduceMotion} />}
               <div className="flex items-center justify-between gap-2">
                 <h3 id={`${id}-${plan.id}-name`} className="font-semibold tracking-tight">
                   {plan.name}
                 </h3>
                 {plan.popular && (
-                  <span className="rounded-full bg-primary/15 px-2 py-0.5 text-xs font-medium text-primary">
+                  <span className="rounded-full border border-primary/40 px-2 py-0.5 text-xs font-medium text-primary">
                     {plan.badge ?? "Most popular"}
                   </span>
                 )}
@@ -368,8 +334,8 @@ export function PricingTable({
                       <span
                         aria-hidden
                         className={cn(
-                          "mt-0.5 grid size-4 shrink-0 place-items-center rounded-full",
-                          included ? "bg-primary/15 text-primary" : "bg-muted text-muted-foreground"
+                          "mt-0.5 grid size-4 shrink-0 place-items-center",
+                          included ? "text-foreground" : "text-muted-foreground"
                         )}
                       >
                         {included ? <Check className="size-3" strokeWidth={3} /> : <Minus className="size-3" strokeWidth={3} />}

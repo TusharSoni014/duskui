@@ -5,10 +5,10 @@ export default function MorphingTextHeadlineDemo() {
     <h2 className="max-w-lg text-center text-3xl font-semibold tracking-tight sm:text-4xl">
       Interfaces that feel{" "}
       <MorphingText
-        words={["alive", "fluid", "effortless", "yours"]}
+        words={["fast", "fluid", "effortless", "yours"]}
         align="start"
         interval={2600}
-        className="text-primary"
+        className="text-white/60"
       />
     </h2>
   );

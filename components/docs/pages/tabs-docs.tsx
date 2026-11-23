@@ -92,8 +92,8 @@ export function SettingsTabs() {
       deps: "motion @radix-ui/react-tabs",
       description: (
         <>
-          The active indicator (a glowing pill or an underline) glides between triggers via a shared
-          Motion <Code>layoutId</Code>, and panels slide and un-blur in from the direction you&apos;re
+          The active indicator (a pill or an underline) glides between triggers via a shared
+          Motion <Code>layoutId</Code>, and panels slide in slightly from the direction you&apos;re
           travelling while the old panel leaves the other way. <Code>AnimatedTabsPanels</Code> springs to
           the new panel&apos;s height so nothing below jumps. Same composition as shadcn Tabs.
         </>
@@ -119,7 +119,7 @@ export function SettingsTabs() {
       deps: "motion @radix-ui/react-tabs",
       description: (
         <>
-          The same block with <Code>indicator=&quot;underline&quot;</Code>: a glowing mint line slides
+          The same block with <Code>indicator=&quot;underline&quot;</Code>: a thin primary line slides
           under the active trigger. Panels of different heights resize smoothly.
         </>
       ),

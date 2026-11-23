@@ -18,7 +18,7 @@ export interface AvatarTooltipItem {
   name: string;
   /** Second line in the tooltip, e.g. a role or status. */
   role?: string;
-  /** Image URL. Falls back to initials on a generated gradient. */
+  /** Image URL. Falls back to initials on a color derived from the name. */
   src?: string;
   /** Override the generated initials. */
   initials?: string;
@@ -34,7 +34,7 @@ export interface AvatarTooltipGroupProps extends React.ComponentProps<"div"> {
   onAvatarClick?: (item: AvatarTooltipItem) => void;
 }
 
-const tiltSpring = { stiffness: 220, damping: 14, mass: 0.5 };
+const tiltSpring = { stiffness: 220, damping: 26, mass: 0.5 };
 
 function initialsOf(name: string) {
   return name
@@ -73,8 +73,8 @@ function GroupMember({
   const [open, setOpen] = React.useState(false);
   // Pointer position across the avatar: -1 (left edge) … 1 (right edge).
   const pointer = useMotionValue(0);
-  const rotate = useSpring(useTransform(pointer, [-1, 1], [-14, 14]), tiltSpring);
-  const x = useSpring(useTransform(pointer, [-1, 1], [-10, 10]), tiltSpring);
+  const rotate = useSpring(useTransform(pointer, [-1, 1], [-6, 6]), tiltSpring);
+  const x = useSpring(useTransform(pointer, [-1, 1], [-4, 4]), tiltSpring);
 
   const handleMove = (event: React.PointerEvent<HTMLButtonElement>) => {
     if (reduceMotion || event.pointerType !== "mouse") return;
@@ -93,10 +93,10 @@ function GroupMember({
           onPointerLeave={() => pointer.set(0)}
           className={cn(
             "relative -ms-3 grid shrink-0 place-items-center overflow-hidden rounded-full font-semibold text-white outline-none first:ms-0",
-            "ring-2 ring-background transition-[translate,scale,box-shadow] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
-            "hover:z-10 hover:-translate-y-1 hover:scale-110 focus-visible:z-10 focus-visible:-translate-y-1 focus-visible:scale-110",
-            "focus-visible:ring-primary motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100",
-            "motion-reduce:focus-visible:translate-y-0 motion-reduce:focus-visible:scale-100",
+            "ring-2 ring-background transition-[translate,box-shadow] duration-150 ease-out",
+            "hover:z-10 hover:-translate-y-0.5 focus-visible:z-10 focus-visible:-translate-y-0.5",
+            "focus-visible:ring-ring motion-reduce:transition-none motion-reduce:hover:translate-y-0",
+            "motion-reduce:focus-visible:translate-y-0",
             className
           )}
           style={{ width: size, height: size, fontSize: size * 0.36, ...style }}
@@ -117,14 +117,14 @@ function GroupMember({
             >
               <motion.div
                 data-slot="tooltip-content"
-                initial={{ opacity: 0, y: 8, scale: 0.6 }}
+                initial={{ opacity: 0, y: 4, scale: 0.96 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 6, scale: 0.7, transition: { duration: 0.12 } }}
-                transition={{ type: "spring", bounce: 0.4, duration: 0.45 }}
+                exit={{ opacity: 0, y: 4, scale: 0.96, transition: { duration: 0.1 } }}
+                transition={{ type: "spring", bounce: 0.1, duration: 0.25 }}
                 style={{ rotate, x, transformOrigin: "var(--radix-tooltip-content-transform-origin)" }}
                 className={cn(
-                  "z-50 rounded-lg border border-white/10 bg-popover px-3 py-1.5 text-center text-popover-foreground",
-                  "shadow-[inset_0_1px_0_rgb(255_255_255/0.06),0_12px_30px_-10px_rgb(0_0_0/0.75),0_0_22px_-12px_var(--color-primary)]"
+                  "z-50 rounded-md border border-white/10 bg-popover px-3 py-1.5 text-center text-popover-foreground",
+                  "shadow-md"
                 )}
               >
                 {tooltip}
@@ -139,8 +139,8 @@ function GroupMember({
 
 /**
  * Overlapping avatars for teams, collaborators or "who's here". Hovering one
- * lifts it above its neighbours and springs open a name card that tilts and
- * leans toward the cursor as you move across the face. Extra members collapse
+ * lifts it above its neighbours and opens a name card that tilts slightly
+ * toward the cursor as you move across the face. Extra members collapse
  * into a "+N" chip whose tooltip lists them. Every avatar is a real button,
  * so tooltips also open on keyboard focus. Tilt uses motion values (no React
  * re-renders), ignores touch and turns off under reduced motion.
@@ -170,7 +170,7 @@ export function AvatarTooltipGroup({
               item.src
                 ? undefined
                 : {
-                    background: `linear-gradient(135deg, oklch(0.72 0.16 ${hue}), oklch(0.5 0.17 ${(hue + 50) % 360}))`,
+                    background: `oklch(0.42 0.06 ${hue})`,
                   }
             }
             tooltip={
@@ -185,7 +185,7 @@ export function AvatarTooltipGroup({
               // eslint-disable-next-line @next/next/no-img-element
               <img src={item.src} alt="" className="size-full object-cover" draggable={false} />
             ) : (
-              <span aria-hidden className="drop-shadow-sm">
+              <span aria-hidden>
                 {item.initials ?? initialsOf(item.name)}
               </span>
             )}

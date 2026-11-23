@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils"
  * ChartLegend, ChartLegendContent, ChartStyle, ChartConfig), plus:
  * - Axis ticks, grid lines, cursors and active dots use the DuskUI tokens, so
  *   charts sit on the dark surface without extra styling.
- * - A frosted tooltip with a hairline border, tabular numbers and an
+ * - A solid tooltip with a hairline border, tabular numbers and an
  *   indicator that matches each series color.
  * - `ChartContainer` is a labelled `figure` when you pass `title`, and keeps
  *   Recharts' keyboard accessibility layer (arrow keys move the tooltip).
@@ -250,8 +250,7 @@ function ChartTooltipContent({
     <div
       data-slot="chart-tooltip"
       className={cn(
-        "grid min-w-32 items-start gap-1.5 rounded-lg border border-white/10 bg-popover/85 px-2.5 py-1.5 text-xs backdrop-blur-md",
-        "shadow-[inset_0_1px_0_rgb(255_255_255/0.06),0_12px_32px_-8px_rgb(0_0_0/0.7)]",
+        "grid min-w-32 items-start gap-1.5 rounded-lg border bg-popover px-2.5 py-1.5 text-xs shadow-md",
         className
       )}
     >
@@ -286,7 +285,7 @@ function ChartTooltipContent({
                           className={cn(
                             "shrink-0 rounded-[2px] border-(--color-border) bg-(--color-bg)",
                             {
-                              "size-2.5 rounded-full shadow-[0_0_8px_var(--color-bg)]": indicator === "dot",
+                              "size-2.5 rounded-full": indicator === "dot",
                               "w-1": indicator === "line",
                               "w-0 border-[1.5px] border-dashed bg-transparent": indicator === "dashed",
                               "my-0.5": nestLabel && indicator === "dashed",

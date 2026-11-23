@@ -56,7 +56,7 @@ export interface AnimatedMenubarProps
 /**
  * A desktop-app style menubar. A highlight glides between the top-level
  * triggers as you hover or arrow across them, and stays under the open menu
- * while you sweep from menu to menu. Menus spring open from their trigger,
+ * while you sweep from menu to menu. Menus open from their trigger,
  * items cascade in, and a pill glides between items as you hover or arrow
  * through them. Built on Radix Menubar for roving focus, arrow keys,
  * typeahead, sub-menus and aria. Under reduced motion menus fade and the
@@ -99,8 +99,7 @@ export function AnimatedMenubar({
             setHovered(null);
           }}
           className={cn(
-            "relative flex h-10 items-center gap-0.5 rounded-xl border bg-background/80 p-1 backdrop-blur",
-            "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_8px_24px_-12px_rgb(0_0_0/0.6)]",
+            "relative flex h-10 items-center gap-0.5 rounded-xl border bg-background p-1 shadow-xs",
             className
           )}
           {...props}
@@ -172,7 +171,7 @@ export function AnimatedMenubarTrigger({
       className={cn(
         "relative flex items-center rounded-lg px-3 py-1 text-sm font-medium outline-none select-none",
         "text-foreground/75 transition-colors duration-150 motion-reduce:transition-none",
-        "hover:text-foreground data-[state=open]:text-primary",
+        "hover:text-foreground data-[state=open]:text-foreground",
         "focus-visible:ring-[3px] focus-visible:ring-ring/50",
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         className
@@ -184,10 +183,8 @@ export function AnimatedMenubarTrigger({
           aria-hidden
           layoutId={`${id}-trigger`}
           className={cn(
-            "absolute inset-0 rounded-lg transition-[background-color,box-shadow] duration-200",
-            open
-              ? "bg-primary/12 shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--color-primary)_25%,transparent)]"
-              : "bg-white/[0.06]"
+            "absolute inset-0 rounded-lg transition-colors duration-150",
+            open ? "bg-accent" : "bg-white/[0.06]"
           )}
           transition={reduceMotion ? { duration: 0 } : glide}
         />
@@ -204,7 +201,7 @@ export interface AnimatedMenubarContentProps
   stagger?: number;
 }
 
-/** The menu surface. Springs open under its trigger and cascades its items in. */
+/** The menu surface. Fades open under its trigger and cascades its items in. */
 export function AnimatedMenubarContent({
   className,
   align = "start",
@@ -224,12 +221,12 @@ export function AnimatedMenubarContent({
         open: { opacity: 1, transition: { duration: 0.15 } },
       }
     : {
-        closed: { opacity: 0, scale: 0.94, y: -6, transition: { duration: 0.1, ease: "easeIn" } },
+        closed: { opacity: 0, scale: 0.96, y: -4, transition: { duration: 0.1, ease: "easeIn" } },
         open: {
           opacity: 1,
           scale: 1,
           y: 0,
-          transition: { type: "spring", duration: 0.35, bounce: 0.2, staggerChildren: stagger, delayChildren: 0.02 },
+          transition: { duration: 0.18, ease: "easeOut", staggerChildren: stagger, delayChildren: 0.02 },
         },
       };
 
@@ -255,7 +252,7 @@ export function AnimatedMenubarContent({
               className={cn(
                 "z-50 min-w-56 overflow-x-hidden overflow-y-auto rounded-xl border bg-popover p-1.5 text-popover-foreground outline-none",
                 "max-h-(--radix-menubar-content-available-height) origin-(--radix-menubar-content-transform-origin)",
-                "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_16px_40px_-12px_rgb(0_0_0/0.7),0_0_0_1px_rgb(0_0_0/0.2)]",
+                "shadow-lg",
                 className
               )}
               variants={variants}
@@ -278,7 +275,7 @@ function useItemVariants(): Variants {
     ? { closed: { opacity: 0, transition: { duration: 0.1 } }, open: { opacity: 1 } }
     : {
         closed: { opacity: 0, x: -4, transition: { duration: 0.08 } },
-        open: { opacity: 1, x: 0, transition: { type: "spring", duration: 0.3, bounce: 0.1 } },
+        open: { opacity: 1, x: 0, transition: { duration: 0.18, ease: "easeOut" } },
       };
 }
 
@@ -300,7 +297,7 @@ function ItemPill({ active, destructive }: { active: boolean; destructive?: bool
       layoutId={`${id}-${value}-item`}
       className={cn(
         "absolute inset-0 rounded-lg",
-        destructive ? "bg-destructive/15" : "bg-accent shadow-[inset_0_1px_0_rgb(255_255_255/0.04)]"
+        destructive ? "bg-destructive/15" : "bg-accent"
       )}
       transition={reduceMotion ? { duration: 0 } : glide}
     />
@@ -356,7 +353,7 @@ export function AnimatedMenubarItem({
             aria-hidden
             className={cn(
               "relative flex transition-colors duration-150",
-              destructive ? "text-destructive" : pill.active ? "text-primary" : "text-muted-foreground"
+              destructive ? "text-destructive" : pill.active ? "text-foreground" : "text-muted-foreground"
             )}
           >
             {icon}
@@ -374,7 +371,7 @@ export interface AnimatedMenubarCheckboxItemProps
   shortcut?: React.ReactNode;
 }
 
-/** A toggleable item. The check springs in when it turns on. Use `checked` / `onCheckedChange`. */
+/** A toggleable item. The check scales in when it turns on. Use `checked` / `onCheckedChange`. */
 export function AnimatedMenubarCheckboxItem({
   className,
   children,
@@ -393,9 +390,9 @@ export function AnimatedMenubarCheckboxItem({
         <span className="pointer-events-none absolute left-2.5 flex size-4 items-center justify-center">
           <MenubarPrimitive.ItemIndicator asChild>
             <motion.span
-              initial={reduceMotion ? { opacity: 0 } : { scale: 0.4, opacity: 0 }}
+              initial={reduceMotion ? { opacity: 0 } : { scale: 0.6, opacity: 0 }}
               animate={reduceMotion ? { opacity: 1 } : { scale: 1, opacity: 1 }}
-              transition={{ type: "spring", duration: 0.3, bounce: 0.45 }}
+              transition={reduceMotion ? { duration: 0 } : { type: "spring", duration: 0.2, bounce: 0.1 }}
               className="flex"
             >
               <CheckIcon className="size-4 text-primary" />
@@ -440,7 +437,7 @@ export function AnimatedMenubarSeparator({
             ? { closed: { opacity: 0, transition: { duration: 0.1 } }, open: { opacity: 1 } }
             : {
                 closed: { scaleX: 0, opacity: 0, transition: { duration: 0.08 } },
-                open: { scaleX: 1, opacity: 1, transition: { duration: 0.3, ease: "easeOut" } },
+                open: { scaleX: 1, opacity: 1, transition: { duration: 0.2, ease: "easeOut" } },
               }
         }
         className={cn("-mx-1.5 my-1.5 h-px origin-left bg-border", className)}
@@ -485,7 +482,7 @@ export function AnimatedMenubarSubTrigger({
         {icon && (
           <span
             aria-hidden
-            className={cn("relative flex transition-colors duration-150", pill.active ? "text-primary" : "text-muted-foreground")}
+            className={cn("relative flex transition-colors duration-150", pill.active ? "text-foreground" : "text-muted-foreground")}
           >
             {icon}
           </span>

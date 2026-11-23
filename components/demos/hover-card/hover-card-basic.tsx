@@ -13,7 +13,7 @@ export default function HoverCardBasicDemo() {
         <div className="flex gap-4">
           <span
             aria-hidden
-            className="grid size-11 shrink-0 place-items-center rounded-full bg-primary/15 font-semibold text-primary"
+            className="grid size-11 shrink-0 place-items-center rounded-full bg-muted font-semibold text-foreground"
           >
             D
           </span>

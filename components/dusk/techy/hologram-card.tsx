@@ -3,7 +3,6 @@
 import * as React from "react";
 import {
   motion,
-  useInView,
   useMotionTemplate,
   useMotionValue,
   useReducedMotion,
@@ -18,12 +17,8 @@ export interface HologramCardProps extends Omit<HTMLMotionProps<"div">, "childre
   children?: React.ReactNode;
   /** Maximum tilt in degrees. 0 disables the tilt. */
   maxTilt?: number;
-  /** Show the light glare that follows the pointer. */
-  glare?: boolean;
-  /** Show CRT scanlines and the sweeping scan beam. */
+  /** Show faint, static scanlines over the foil. */
   scanlines?: boolean;
-  /** Accent color for the scan beam and the rim glow. Any CSS color. */
-  color?: string;
 }
 
 const spring = { stiffness: 180, damping: 20, mass: 0.6 };
@@ -33,8 +28,8 @@ const rim =
   "#ff6ad5, #8b5cf6, #5ef2ff, #7dffb3, #fff27a, #ff9a6a, #ff6ad5";
 
 /**
- * A card with a holographic foil: an iridescent gradient that shifts as it
- * tilts toward the pointer, a rainbow rim, scanlines and a moving glare.
+ * A card with a subtle holographic foil: a faint iridescent sheen that shifts
+ * as the card tilts toward the pointer, and a soft iridescent 1px rim.
  *
  * Pointer tracking uses motion values and springs, so it never re-renders.
  * It reacts to a mouse only (touch scrolls normally) and is fully static
@@ -42,10 +37,8 @@ const rim =
  */
 export function HologramCard({
   children,
-  maxTilt = 10,
-  glare = true,
-  scanlines = true,
-  color = "var(--color-primary)",
+  maxTilt = 6,
+  scanlines = false,
   className,
   style,
   onPointerMove,
@@ -53,8 +46,6 @@ export function HologramCard({
   ...props
 }: HologramCardProps) {
   const reduceMotion = useReducedMotion();
-  const ref = React.useRef<HTMLDivElement>(null);
-  const inView = useInView(ref);
 
   // Pointer position over the card, 0–1 on both axes; 0.5 is the center.
   const px = useMotionValue(0.5);
@@ -69,13 +60,10 @@ export function HologramCard({
   const foilX = useTransform(sx, (v) => 15 + v * 70);
   const foilY = useTransform(sy, (v) => 15 + v * 70);
   const foilPosition = useMotionTemplate`0 0, ${foilX}% ${foilY}%`;
-  const foilOpacity = useTransform(sHover, [0, 1], [0.14, 0.32]);
+  const foilOpacity = useTransform(sHover, [0, 1], [0.06, 0.12]);
   const rimAngle = useTransform(sx, (v) => v * 240 + 60);
   const rimBackground = useMotionTemplate`conic-gradient(from ${rimAngle}deg, ${rim})`;
-  const rimOpacity = useTransform(sHover, [0, 1], [0.35, 0.9]);
-  const glareX = useTransform(sx, (v) => v * 100);
-  const glareY = useTransform(sy, (v) => v * 100);
-  const glareBackground = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgb(255 255 255 / 0.2), transparent 55%)`;
+  const rimOpacity = useTransform(sHover, [0, 1], [0.2, 0.4]);
 
   const handleMove = (event: React.PointerEvent<HTMLDivElement>) => {
     onPointerMove?.(event);
@@ -102,9 +90,8 @@ export function HologramCard({
 
   return (
     <motion.div
-      ref={ref}
       className={cn(
-        "relative isolate rounded-2xl border border-white/10 bg-card p-6 text-card-foreground shadow-2xl shadow-black/40",
+        "relative isolate rounded-xl border border-white/10 bg-card p-6 text-card-foreground shadow-lg",
         className
       )}
       style={{
@@ -125,51 +112,31 @@ export function HologramCard({
           backgroundImage: `repeating-linear-gradient(115deg, transparent 0 6px, rgb(255 255 255 / 0.05) 6px 7px), ${foil}`,
           backgroundSize: "100% 100%, 300% 300%",
           backgroundPosition: reduceMotion ? "0 0, 50% 50%" : foilPosition,
-          opacity: reduceMotion ? 0.18 : foilOpacity,
+          opacity: reduceMotion ? 0.08 : foilOpacity,
         }}
       />
 
-      {/* Rainbow rim: the conic gradient is masked down to a 1px ring. */}
+      {/* Iridescent rim: the conic gradient is masked down to a 1px ring. */}
       <motion.div
         aria-hidden
         className={cn(
           layer,
-          "-m-px p-px [mask-composite:exclude] [mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)]"
+          "-m-px p-px [mask-image:linear-gradient(#000_0_0),linear-gradient(#000_0_0)] [mask-clip:content-box,border-box] [mask-composite:exclude]"
         )}
         style={{
           background: rimBackground,
-          opacity: reduceMotion ? 0.5 : rimOpacity,
+          opacity: reduceMotion ? 0.25 : rimOpacity,
         }}
       />
 
       {scanlines && (
         <div
           aria-hidden
-          className={cn(layer, "-z-10 overflow-hidden")}
+          className={cn(layer, "-z-10")}
           style={{
             backgroundImage:
-              "repeating-linear-gradient(to bottom, rgb(255 255 255 / 0.045) 0 1px, transparent 1px 3px)",
+              "repeating-linear-gradient(to bottom, rgb(255 255 255 / 0.03) 0 1px, transparent 1px 3px)",
           }}
-        >
-          {!reduceMotion && inView && (
-            <motion.div
-              className="absolute inset-x-0 top-0 h-1/3"
-              style={{
-                background: `linear-gradient(to bottom, transparent, color-mix(in oklab, ${color} 14%, transparent) 85%, color-mix(in oklab, ${color} 45%, transparent))`,
-              }}
-              initial={{ y: "-100%" }}
-              animate={{ y: "300%" }}
-              transition={{ duration: 3.2, ease: "linear", repeat: Infinity, repeatDelay: 1.6 }}
-            />
-          )}
-        </div>
-      )}
-
-      {glare && !reduceMotion && (
-        <motion.div
-          aria-hidden
-          className={cn(layer, "z-10 mix-blend-overlay")}
-          style={{ background: glareBackground, opacity: sHover }}
         />
       )}
 

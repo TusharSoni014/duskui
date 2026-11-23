@@ -31,10 +31,10 @@ export default function AnimatedTabsDemo() {
         </AnimatedTabsContent>
         <AnimatedTabsContent value="activity" className="rounded-xl border bg-card p-4">
           <ul className="space-y-3 text-sm">
-            <li><span className="text-primary">Mia</span> deployed <span className="font-mono text-xs">v2.4.0</span></li>
-            <li><span className="text-primary">Leo</span> merged “Animated tabs”</li>
-            <li><span className="text-primary">Ava</span> invited 3 teammates</li>
-            <li><span className="text-primary">Kai</span> rotated the API key</li>
+            <li><span className="font-medium text-foreground">Mia</span> deployed <span className="font-mono text-xs">v2.4.0</span></li>
+            <li><span className="font-medium text-foreground">Leo</span> merged “Animated tabs”</li>
+            <li><span className="font-medium text-foreground">Ava</span> invited 3 teammates</li>
+            <li><span className="font-medium text-foreground">Kai</span> rotated the API key</li>
           </ul>
         </AnimatedTabsContent>
         <AnimatedTabsContent value="settings" className="rounded-xl border bg-card p-4 text-sm text-muted-foreground">

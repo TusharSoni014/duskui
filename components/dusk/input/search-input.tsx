@@ -19,9 +19,9 @@ export interface SearchInputProps
 }
 
 const pop = {
-  initial: { opacity: 0, scale: 0.6, filter: "blur(3px)" },
-  animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
-  exit: { opacity: 0, scale: 0.6, filter: "blur(3px)" },
+  initial: { opacity: 0, scale: 0.8 },
+  animate: { opacity: 1, scale: 1 },
+  exit: { opacity: 0, scale: 0.8 },
   transition: { type: "spring", duration: 0.25, bounce: 0 },
 } as const;
 

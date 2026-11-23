@@ -22,7 +22,7 @@ export default function LoadersDemo() {
       {loaders.map(({ name, Loader }) => (
         <li
           key={name}
-          className="flex flex-col items-center gap-4 rounded-xl border bg-card/40 px-4 py-6 last:col-span-2 sm:last:col-span-1"
+          className="flex flex-col items-center gap-4 rounded-xl border bg-card px-4 py-6 last:col-span-2 sm:last:col-span-1"
         >
           <Loader size={36} label={`${name} loader`} />
           <span className="text-xs text-muted-foreground">{name}</span>

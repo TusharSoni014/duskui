@@ -3,7 +3,7 @@ import { MagneticButton } from "@/components/dusk/button/magnetic-button";
 
 export default function MagneticButtonDemo() {
   return (
-    <MagneticButton size="lg" className="rounded-full px-8">
+    <MagneticButton size="lg">
       Get started
       <ArrowRight />
     </MagneticButton>

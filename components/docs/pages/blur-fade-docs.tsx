@@ -93,8 +93,8 @@ export function Features() {
     props: [
       { name: "as", type: '"div" | "span" | "section" | "article" | "li" | "p" | …', default: '"div"', description: "Element to render. Group: \"div\" | \"ul\" | \"ol\" | \"section\"." },
       { name: "direction", type: '"up" | "down" | "left" | "right" | "none"', default: '"up"', description: "Where the content travels to as it appears." },
-      { name: "offset", type: "number", default: "12", description: "Travel distance in px." },
-      { name: "blur", type: "number", default: "8", description: "Starting blur in px." },
+      { name: "offset", type: "number", default: "8", description: "Travel distance in px." },
+      { name: "blur", type: "number", default: "6", description: "Starting blur in px." },
       { name: "delay", type: "number", default: "0", description: "Seconds before the entrance (group: before the first child)." },
       { name: "duration", type: "number", default: "0.5", description: "Seconds the entrance takes." },
       { name: "trigger", type: '"inView" | "mount"', default: '"inView"', description: "Play when scrolled into view, or as soon as it mounts." },

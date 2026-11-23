@@ -22,8 +22,8 @@ export default function ShortcutListDemo() {
           <li
             key={shortcut.label}
             className={cn(
-              "flex items-center justify-between px-4 py-2.5 text-sm transition-colors duration-300",
-              last === shortcut.label && "text-primary"
+              "flex items-center justify-between px-4 py-2.5 text-sm transition-colors duration-200",
+              last === shortcut.label && "bg-white/[0.03] text-foreground"
             )}
           >
             {shortcut.label}

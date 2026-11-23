@@ -16,9 +16,9 @@ export default function WordRotateStylesDemo() {
       <p>
         Make it{" "}
         <WordRotate
-          words={["glow", "shimmer", "flicker", "pulse"]}
+          words={["clear", "quiet", "fast", "yours"]}
           interval={1800}
-          wordClassName="bg-linear-to-r from-primary to-[#22d3ee] bg-clip-text text-transparent"
+          wordClassName="text-white/60"
         />
       </p>
       <p className="font-serif text-4xl italic">

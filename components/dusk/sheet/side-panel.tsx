@@ -39,7 +39,7 @@ export interface SidePanelProps {
   className?: string;
 }
 
-const slide = { type: "spring", duration: 0.45, bounce: 0 } as const;
+const slide = { type: "spring", duration: 0.35, bounce: 0 } as const;
 
 /**
  * A side sheet you can drag closed. Grab the edge handle or the header and
@@ -84,7 +84,7 @@ export function SidePanel({
     if (info.offset.x * sign > width * closeThreshold || info.velocity.x * sign > 600) {
       setOpen(false);
     } else {
-      animate(dragX, 0, { type: "spring", duration: 0.35, bounce: 0.15 });
+      animate(dragX, 0, { type: "spring", duration: 0.3, bounce: 0.1 });
     }
   };
 
@@ -132,8 +132,8 @@ export function SidePanel({
                   className={cn(
                     "relative flex min-h-0 flex-1 flex-col bg-background",
                     side === "right"
-                      ? "border-l shadow-[inset_1px_0_0_rgb(255_255_255/0.04),-24px_0_64px_-16px_rgb(0_0_0/0.7)]"
-                      : "border-r shadow-[inset_-1px_0_0_rgb(255_255_255/0.04),24px_0_64px_-16px_rgb(0_0_0/0.7)]",
+                      ? "border-l shadow-lg"
+                      : "border-r shadow-lg",
                     className
                   )}
                   style={{ x: dragX }}
@@ -154,7 +154,7 @@ export function SidePanel({
                       side === "right" ? "-left-5" : "-right-5"
                     )}
                   >
-                    <span className="h-12 w-1.5 rounded-full bg-white/20 transition-[height,background-color] duration-200 group-hover/handle:h-16 group-hover/handle:bg-primary/70 group-active/handle:bg-primary" />
+                    <span className="h-12 w-1.5 rounded-full bg-white/20 transition-[height,background-color] duration-200 group-hover/handle:h-16 group-hover/handle:bg-white/40 group-active/handle:bg-white/60" />
                   </div>
                   {/* The header is a drag zone too. */}
                   <div

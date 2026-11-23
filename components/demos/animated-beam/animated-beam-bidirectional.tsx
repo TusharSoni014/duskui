@@ -45,8 +45,8 @@ export default function AnimatedBeamBidirectional() {
         duration={2.4}
         delay={1.2}
         reverse
-        gradientStartColor="#f472b6"
-        gradientStopColor="#a78bfa"
+        gradientStartColor="#a1a1aa"
+        gradientStopColor="#e4e4e7"
       />
     </div>
   );

@@ -31,8 +31,8 @@ function useAnimatedTabs() {
   return context;
 }
 
-const indicatorSpring: Transition = { type: "spring", bounce: 0.2, duration: 0.5 };
-const panelSpring: Transition = { type: "spring", bounce: 0, duration: 0.4 };
+const indicatorSpring: Transition = { type: "spring", bounce: 0.1, duration: 0.3 };
+const panelSpring: Transition = { type: "spring", bounce: 0, duration: 0.3 };
 
 export interface AnimatedTabsProps
   extends Omit<React.ComponentProps<typeof Tabs>, "value" | "defaultValue" | "onValueChange"> {
@@ -44,7 +44,7 @@ export interface AnimatedTabsProps
 }
 
 /**
- * Tabs with a mint indicator (pill or underline) that glides between triggers
+ * Tabs with an indicator (pill or underline) that glides between triggers
  * and panels that slide in from the direction you're travelling. The panel
  * area springs to the new height, so content below never jumps.
  *
@@ -117,7 +117,7 @@ export function AnimatedTabsTrigger({
       className={cn(
         // Replace the base active surface / underline with the moving indicator.
         "isolate data-[state=active]:border-transparent data-[state=active]:bg-transparent data-[state=active]:shadow-none after:hidden",
-        indicator === "pill" ? "px-3 data-[state=active]:text-primary" : "px-3 data-[state=active]:text-foreground",
+        "px-3 data-[state=active]:text-foreground",
         className
       )}
       {...props}
@@ -130,8 +130,8 @@ export function AnimatedTabsTrigger({
           className={cn(
             "pointer-events-none absolute -z-10",
             indicator === "pill"
-              ? "inset-0 rounded-md bg-primary/12 shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--color-primary)_35%,transparent),0_0_18px_-6px_var(--color-primary)]"
-              : "inset-x-1.5 -bottom-px h-0.5 rounded-full bg-primary shadow-[0_0_10px_var(--color-primary)]"
+              ? "inset-0 rounded-md border border-white/10 bg-background shadow-sm"
+              : "inset-x-1.5 -bottom-px h-0.5 rounded-full bg-primary"
           )}
         />
       )}
@@ -175,7 +175,7 @@ export function AnimatedTabsPanels({ className, children, ...props }: React.Comp
   );
 }
 
-/** A panel. Slides and un-blurs in from the side of travel; the old panel leaves the other way. */
+/** A panel. Slides in slightly from the side of travel; the old panel leaves the other way. */
 export function AnimatedTabsContent({
   value,
   className,
@@ -184,12 +184,12 @@ export function AnimatedTabsContent({
 }: Omit<React.ComponentProps<typeof TabsPrimitive.Content>, "forceMount" | "asChild">) {
   const { value: active, direction } = useAnimatedTabs();
   const reduceMotion = useReducedMotion();
-  const offset = reduceMotion ? 0 : 28;
+  const offset = reduceMotion ? 0 : 8;
 
   const variants: Variants = {
-    enter: (dir: number) => ({ opacity: 0, x: dir * offset, filter: "blur(4px)" }),
-    center: { opacity: 1, x: 0, filter: "blur(0px)", transitionEnd: { filter: "none" } },
-    exit: (dir: number) => ({ opacity: 0, x: dir * -offset, filter: "blur(4px)" }),
+    enter: (dir: number) => ({ opacity: 0, x: dir * offset }),
+    center: { opacity: 1, x: 0 },
+    exit: (dir: number) => ({ opacity: 0, x: dir * -offset }),
   };
 
   return (

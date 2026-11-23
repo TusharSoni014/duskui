@@ -111,7 +111,7 @@ export function DrawerDialog({
                 <motion.div
                   className={cn(
                     "flex min-h-0 flex-1 flex-col rounded-t-2xl border border-b-0 bg-background",
-                    "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_-16px_48px_-12px_rgb(0_0_0/0.6)]",
+                    "shadow-lg",
                     className
                   )}
                   style={{ y: dragY }}

@@ -88,8 +88,8 @@ export function UserAvatar() {
       deps: "motion @radix-ui/react-avatar",
       description: (
         <>
-          An avatar with a presence dot and a matching ring. Live statuses (online, busy) send out a
-          soft pulse, and changing the status pops the dot and crossfades the ring. Click the button to
+          An avatar with a presence dot and a matching ring. Changing the status scales the new dot in
+          and crossfades the ring; set <Code>pulse</Code> for a faint ring on live statuses (online, busy). Click the button to
           cycle through the statuses.
         </>
       ),
@@ -102,7 +102,7 @@ export function UserAvatar() {
         { name: "status", type: '"online" | "away" | "busy" | "offline"', default: '"online"', description: "Presence state; sets the dot and ring color." },
         { name: "size", type: '"sm" | "default" | "lg"', default: '"default"', description: "Avatar and dot size." },
         { name: "showRing", type: "boolean", default: "true", description: "Draw a ring in the status color." },
-        { name: "pulse", type: "boolean", default: "true", description: "Pulse the dot for online and busy." },
+        { name: "pulse", type: "boolean", default: "false", description: "Add a faint pulse ring to the dot for online and busy." },
         { name: "fallback", type: "ReactNode", description: "Replaces the initials." },
       ],
     },

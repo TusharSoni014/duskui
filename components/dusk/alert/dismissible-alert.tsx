@@ -26,7 +26,7 @@ const defaultIcons: Record<Variant, React.ReactNode> = {
 
 // The auto-dismiss line takes the alert's text color.
 const barColor: Record<Variant, string> = {
-  default: "bg-primary",
+  default: "bg-foreground",
   info: "bg-sky-400",
   success: "bg-emerald-400",
   warning: "bg-amber-400",
@@ -60,7 +60,7 @@ export interface DismissibleAlertProps
 const collapse = { type: "spring", duration: 0.4, bounce: 0 } as const;
 
 /**
- * An Alert that can be closed. On dismiss it fades and blurs out while its
+ * An Alert that can be closed. On dismiss it fades out while its
  * height (and margin) collapses, so the content below slides up instead of
  * jumping. With `autoDismiss` it closes itself after a delay and draws a
  * shrinking progress line; the countdown pauses while the alert is hovered or
@@ -96,9 +96,9 @@ export function DismissibleAlert({
           transition={reduceMotion ? { duration: 0.15 } : collapse}
         >
           <motion.div
-            initial={reduceMotion ? false : { scale: 0.98, filter: "blur(4px)" }}
-            animate={{ scale: 1, filter: "blur(0px)", transitionEnd: { filter: "none" } }}
-            exit={reduceMotion ? undefined : { scale: 0.98, filter: "blur(4px)" }}
+            initial={reduceMotion ? false : { scale: 0.98 }}
+            animate={{ scale: 1 }}
+            exit={reduceMotion ? undefined : { scale: 0.98 }}
             transition={collapse}
           >
             <AlertSurface {...props} onDismiss={dismiss} />

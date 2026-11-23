@@ -22,7 +22,7 @@ export default function SnapDrawerDemo() {
       peek={
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
           <span className="flex items-center gap-1.5">
-            <Star className="size-4 fill-primary text-primary" aria-hidden /> 4.8 (312)
+            <Star className="size-4 fill-foreground text-foreground" aria-hidden /> 4.8 (312)
           </span>
           <span className="flex items-center gap-1.5">
             <Clock className="size-4" aria-hidden /> Open until 18:00

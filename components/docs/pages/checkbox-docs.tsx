@@ -12,7 +12,7 @@ const block = (file: string) => `components/dusk/checkbox/${file}`;
 const config: DocConfig = {
   title: "Checkbox",
   intro:
-    "An animated React checkbox built on shadcn/ui and Radix: the drop-in Checkbox draws its check mark with an SVG stroke and supports indeterminate — plus Motion blocks for a to-do item that strikes its label through with a little burst, and selectable checkbox cards that trace a glowing outline.",
+    "An animated React checkbox built on shadcn/ui and Radix: the drop-in Checkbox draws its check mark with an SVG stroke and supports indeterminate — plus Motion blocks for a to-do item that strikes its label through, and selectable checkbox cards that trace their outline.",
   tags: ["Drop-in shadcn API", "Radix Checkbox", "SVG pathLength", "Indeterminate", "prefers-reduced-motion"],
   hero: { Demo: TaskCheckboxDemo, file: demo("task-checkbox-demo.tsx"), minHeight: 280 },
   install: {
@@ -78,8 +78,8 @@ export function Terms() {
       description: (
         <>
           A to-do row. Checking it draws the check, strikes the label through from left to right — across
-          every wrapped line, one after another — dims the text and pops a ring and particle burst around
-          the box. The whole label is the click target.
+          every wrapped line, one after another — and dims the text. Set <Code>celebrate</Code> for a small
+          ring and particle burst around the box. The whole label is the click target.
         </>
       ),
       Demo: TaskCheckboxDemo,
@@ -90,7 +90,7 @@ export function Terms() {
         { name: "description", type: "ReactNode", description: "Secondary line, linked with aria-describedby." },
         { name: "checked / onCheckedChange", type: 'boolean | "indeterminate"', description: "Controlled state." },
         { name: "defaultChecked", type: 'boolean | "indeterminate"', default: "false", description: "Uncontrolled initial state." },
-        { name: "celebrate", type: "boolean", default: "true", description: "Ring + particle burst when checked." },
+        { name: "celebrate", type: "boolean", default: "false", description: "Small ring + particle burst when checked." },
         { name: "containerClassName", type: "string", description: "Classes for the row; className styles the checkbox." },
       ],
     },
@@ -103,8 +103,8 @@ export function Terms() {
       description: (
         <>
           A selectable card for plans, add-ons and multi-select options. Selecting it traces a mint
-          outline around the card (an SVG rect drawn with <Code>pathLength</Code>), tints the surface,
-          lifts the icon and draws the check. The card is announced as one checkbox named by its title.
+          outline around the card (an SVG rect drawn with <Code>pathLength</Code>) and draws the
+          check. The card is announced as one checkbox named by its title.
         </>
       ),
       Demo: CheckboxCardDemo,

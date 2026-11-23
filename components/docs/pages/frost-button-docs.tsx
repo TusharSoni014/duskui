@@ -10,8 +10,8 @@ const demo = (file: string) => `components/demos/frost-button/${file}`;
 const config: DocConfig = {
   title: "Frost Button",
   intro:
-    "A frosted-glass button for React, built on the DuskUI Button with Motion and Tailwind CSS. A band of light sweeps across on hover and keyboard focus, a ripple spreads from where you press, and loading states, sizes and every shadcn/ui Button prop keep working.",
-  tags: ["Built on Button", "Light sweep", "Press ripple", "Loading state", "prefers-reduced-motion"],
+    "A frosted-glass button for React, built on the DuskUI Button with Motion and Tailwind CSS. A soft ripple spreads from where you press, an optional faint light sweep runs on hover and focus, and loading states, sizes and every shadcn/ui Button prop keep working.",
+  tags: ["Built on Button", "Press ripple", "Light sweep", "Loading state", "prefers-reduced-motion"],
   hero: { Demo: FrostButtonDemo, file: demo("frost-button-demo.tsx"), minHeight: 260 },
   install: {
     registry: "frost-button",
@@ -75,13 +75,13 @@ export function HeroActions() {
     ),
     props: [
       { name: "tone", type: '"clear" | "dark" | "primary"', default: '"clear"', description: "White frost, smoked glass or a primary-tinted pane." },
-      { name: "effect", type: '"sweep" | "ripple" | "both" | "none"', default: '"both"', description: "Light sweep on hover/focus, ripple on press, both or neither." },
+      { name: "effect", type: '"sweep" | "ripple" | "both" | "none"', default: '"ripple"', description: "Ripple on press, light sweep on hover/focus, both or neither." },
       { name: "loading", type: "boolean", default: "false", description: "Spinner without a width change; clicks are blocked but focus is kept." },
     ],
   },
   accessibility: [
     "It's the DuskUI Button underneath: a native <button> with focus-visible ring, aria-busy and aria-disabled while loading.",
-    "Keyboard presses (Enter / Space) get the ripple from the center, and keyboard focus triggers the light sweep.",
+    "Keyboard presses (Enter / Space) get the ripple from the center, and keyboard focus triggers the light sweep when it is on.",
     "White text gets a soft text-shadow, and browsers without backdrop-filter get an opaque fill, so the label stays readable on any background.",
     "With reduced motion the sweep is skipped and the ripple becomes a soft flash.",
   ],

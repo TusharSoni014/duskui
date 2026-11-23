@@ -57,7 +57,7 @@ export function GlitchText({
   trigger = "hover",
   interval = 3200,
   duration = 450,
-  intensity = 4,
+  intensity = 3,
   colors = ["#ff2bd6", "#00e5ff"],
   disabled = false,
   className,

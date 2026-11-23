@@ -14,7 +14,7 @@ export default function MotionCollapsibleDemo() {
       <MotionCollapsible defaultOpen>
         <MotionCollapsibleTrigger>
           <span className="flex items-center gap-3">
-            <span className="flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+            <span className="flex size-8 items-center justify-center rounded-lg border border-white/10 text-muted-foreground">
               <Package className="size-4" aria-hidden />
             </span>
             <span className="flex flex-col">
@@ -27,7 +27,7 @@ export default function MotionCollapsibleDemo() {
           <ol className="flex flex-col gap-2 border-t border-white/5 pt-3">
             {steps.map((step) => (
               <li key={step} className="flex items-center gap-2">
-                <Check className="size-3.5 text-primary" aria-hidden />
+                <Check className="size-3.5 text-muted-foreground" aria-hidden />
                 {step}
               </li>
             ))}

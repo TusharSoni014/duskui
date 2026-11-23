@@ -27,7 +27,7 @@ export interface ScratchToRevealProps extends Omit<React.ComponentProps<"div">, 
   showRevealButton?: boolean;
 }
 
-const DEFAULT_COLORS = ["#0f2a22", "#1f6f57", "#5eead4", "#1f6f57", "#0b1f19"];
+const DEFAULT_COLORS = ["#3f3f46", "#71717a", "#a1a1aa", "#71717a", "#3f3f46"];
 
 type Point = [number, number];
 
@@ -185,7 +185,7 @@ export function ScratchToReveal({
         const count = Math.round((w * h) / 900);
         ctx.fillStyle = "#ffffff";
         for (let i = 0; i < count; i++) {
-          ctx.globalAlpha = 0.08 + rand() * 0.35;
+          ctx.globalAlpha = 0.05 + rand() * 0.15;
           ctx.beginPath();
           ctx.arc(rand() * w, rand() * h, 0.4 + rand() * 0.9, 0, Math.PI * 2);
           ctx.fill();
@@ -287,7 +287,7 @@ export function ScratchToReveal({
   const foilGradient = `linear-gradient(to bottom right, ${gradientColors.join(", ")})`;
   const exit = reduceMotion
     ? { opacity: 0, transition: { duration: 0 } }
-    : { opacity: 0, scale: 1.06, filter: "blur(6px)", transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const } };
+    : { opacity: 0, transition: { duration: 0.3, ease: "easeOut" as const } };
 
   return (
     <div
@@ -305,8 +305,8 @@ export function ScratchToReveal({
         inert={!revealed}
         className="size-full outline-none"
         initial={false}
-        animate={revealed && !reduceMotion ? { scale: [0.96, 1.02, 1] } : { scale: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        animate={revealed && !reduceMotion ? { scale: [0.98, 1] } : { scale: 1 }}
+        transition={{ duration: 0.25, ease: "easeOut" }}
       >
         {children}
       </motion.div>
@@ -331,7 +331,7 @@ export function ScratchToReveal({
                 animate={{ opacity: started ? 0 : 1 }}
                 transition={{ duration: 0.3 }}
               >
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-3 py-1.5 text-xs font-medium tracking-wide text-white/85 backdrop-blur-sm">
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3 py-1.5 text-xs font-medium text-white/85">
                   {hint}
                 </span>
               </motion.div>
@@ -345,7 +345,7 @@ export function ScratchToReveal({
           type="button"
           onClick={() => finish(true)}
           className={cn(
-            "absolute bottom-3 left-1/2 z-20 -translate-x-1/2 rounded-full bg-primary px-3.5 py-1.5 text-xs font-semibold text-primary-foreground shadow-[0_0_24px_-6px_var(--color-primary)] outline-none",
+            "absolute bottom-3 left-1/2 z-20 -translate-x-1/2 rounded-md border bg-background px-3 py-1.5 text-xs font-medium text-foreground shadow-sm outline-none",
             "transition-opacity duration-200 focus-visible:ring-[3px] focus-visible:ring-ring/50 motion-reduce:transition-none",
             !showRevealButton && "pointer-events-none opacity-0 focus-visible:pointer-events-auto focus-visible:opacity-100"
           )}

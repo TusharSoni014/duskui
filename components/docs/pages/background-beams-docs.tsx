@@ -74,9 +74,9 @@ export function Hero() {
     ),
     props: [
       { name: "color", type: "string", default: '"var(--color-primary)"', description: "Beam color. Any CSS color." },
-      { name: "count", type: "number", default: "14", description: "Number of curved paths." },
+      { name: "count", type: "number", default: "10", description: "Number of curved paths." },
       { name: "speed", type: "number", default: "1", description: "Speed multiplier for the beams." },
-      { name: "pathOpacity", type: "number", default: "0.08", description: "Opacity of the faint guide paths, 0 hides them." },
+      { name: "pathOpacity", type: "number", default: "0.05", description: "Opacity of the faint guide paths, 0 hides them." },
       { name: "seed", type: "number", default: "1", description: "Layout seed; the same seed always draws the same beams." },
       { name: "fade", type: "boolean", default: "true", description: "Fade the beams out toward the edges." },
       { name: "className", type: "string", description: "Merged onto the absolutely positioned root." },

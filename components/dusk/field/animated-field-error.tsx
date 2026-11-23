@@ -91,9 +91,9 @@ export function AnimatedFieldError({ id, children, className }: AnimatedFieldErr
               <motion.span
                 key={swapKey}
                 className="[grid-area:1/1]"
-                initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -6, filter: "blur(2px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 6, filter: "blur(2px)" }}
+                initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 4 }}
                 transition={swapSpring}
               >
                 {shown}

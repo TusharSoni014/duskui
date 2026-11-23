@@ -14,11 +14,9 @@ export interface AuroraTextProps extends Omit<React.HTMLAttributes<HTMLElement>,
   colors?: string[];
   /** Speed multiplier. 1 is one slow loop every 14 seconds; 2 is twice as fast. */
   speed?: number;
-  /** Add a soft blurred halo of the same colors behind the text. */
-  glow?: boolean;
 }
 
-const DEFAULT_COLORS = ["var(--color-primary)", "#22d3ee", "#a78bfa", "#f472b6"];
+const DEFAULT_COLORS = ["var(--color-primary)", "#38bdf8", "#818cf8"];
 
 /** Where each blob sits on the oversized canvas (percent). Cycled for long palettes. */
 const BLOBS: [number, number][] = [
@@ -55,7 +53,6 @@ export function AuroraText({
   as = "span",
   colors = DEFAULT_COLORS,
   speed = 1,
-  glow = false,
   className,
   style,
   children,
@@ -75,21 +72,18 @@ export function AuroraText({
   React.useEffect(() => {
     const root = rootRef.current;
     if (!root || reduceMotion) return;
-    const layers = Array.from(root.querySelectorAll<HTMLElement>("[data-aurora-layer]"));
-    controls.current = layers.map((layer) =>
-      animate(layer, { backgroundPosition: PATH }, { duration, ease: "easeInOut", repeat: Infinity })
-    );
+    controls.current = [animate(root, { backgroundPosition: PATH }, { duration, ease: "easeInOut", repeat: Infinity })];
     return () => {
       controls.current.forEach((c) => c.stop());
       controls.current = [];
-      layers.forEach((layer) => (layer.style.backgroundPosition = PATH[0]));
+      root.style.backgroundPosition = PATH[0];
     };
-  }, [duration, reduceMotion, glow]);
+  }, [duration, reduceMotion]);
 
   // Pause instead of stopping, so it resumes from the same spot.
   React.useEffect(() => {
     controls.current.forEach((c) => (inView && pageVisible ? c.play() : c.pause()));
-  }, [inView, pageVisible, duration, reduceMotion, glow]);
+  }, [inView, pageVisible, duration, reduceMotion]);
 
   const layer = cn(
     "bg-clip-text text-transparent [-webkit-background-clip:text] [background-image:var(--aurora-gradient)] [background-size:250%_250%]",
@@ -98,41 +92,16 @@ export function AuroraText({
   );
   const vars = { "--aurora-gradient": gradient, backgroundPosition: PATH[0] } as React.CSSProperties;
 
-  if (!glow) {
-    return (
-      <Comp
-        ref={rootRef}
-        data-slot="aurora-text"
-        data-aurora-layer
-        // Keep selected text legible: the glyph fill is transparent otherwise.
-        className={cn(layer, "selection:text-foreground", className)}
-        style={{ ...vars, ...style }}
-        {...props}
-      >
-        {children}
-      </Comp>
-    );
-  }
-
   return (
     <Comp
       ref={rootRef}
       data-slot="aurora-text"
-      className={cn("relative isolate", as === "span" || as === "strong" || as === "em" ? "inline-block" : "block", className)}
-      style={style}
+      // Keep selected text legible: the glyph fill is transparent otherwise.
+      className={cn(layer, "selection:text-foreground", className)}
+      style={{ ...vars, ...style }}
       {...props}
     >
-      <span data-aurora-layer className={cn(layer, "selection:text-foreground")} style={vars}>
-        {children}
-      </span>
-      <span
-        data-aurora-layer
-        aria-hidden
-        className={cn(layer, "pointer-events-none absolute inset-0 -z-10 opacity-60 blur-[0.35em] select-none")}
-        style={vars}
-      >
-        {children}
-      </span>
+      {children}
     </Comp>
   );
 }

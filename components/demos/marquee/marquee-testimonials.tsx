@@ -1,17 +1,17 @@
 "use client";
 
 import * as React from "react";
-import { Pause, Play, Star } from "lucide-react";
+import { Pause, Play } from "lucide-react";
 
 import { Marquee } from "@/components/dusk/marquee/marquee";
 import { Button } from "@/components/ui/button";
 
 const reviews = [
-  { name: "Maya Chen", handle: "@mayabuilds", hue: 160, text: "Swapped our landing page sections in an afternoon. The motion feels expensive." },
-  { name: "Leo Park", handle: "@leop", hue: 200, text: "Finally a component library that respects reduced motion out of the box." },
-  { name: "Ama Owusu", handle: "@ama.codes", hue: 280, text: "Copy, paste, ship. Our conversion page has never looked this alive." },
-  { name: "Jonas Weber", handle: "@jweber", hue: 30, text: "The marquee loops perfectly at every width. No more janky seams." },
-  { name: "Priya Nair", handle: "@priyanair", hue: 330, text: "Dark theme done right. Every hover state feels intentional." },
+  { name: "Maya Chen", handle: "@mayabuilds", text: "We rebuilt our pricing page sections in an afternoon and kept our own styles." },
+  { name: "Leo Park", handle: "@leop", text: "Reduced motion is handled out of the box, which saved us an accessibility pass." },
+  { name: "Ama Owusu", handle: "@ama.codes", text: "The components are plain React and Tailwind, so code review was quick." },
+  { name: "Jonas Weber", handle: "@jweber", text: "The marquee loops cleanly at every width. No visible seams." },
+  { name: "Priya Nair", handle: "@priyanair", text: "Focus states and keyboard support were already there when we checked." },
 ];
 
 function initials(name: string) {
@@ -21,14 +21,13 @@ function initials(name: string) {
     .join("");
 }
 
-function Review({ name, handle, hue, text }: (typeof reviews)[number]) {
+function Review({ name, handle, text }: (typeof reviews)[number]) {
   return (
     <figure className="w-72 rounded-xl border border-white/10 bg-white/[0.03] p-4">
       <div className="flex items-center gap-3">
         <span
           aria-hidden
-          className="flex size-9 items-center justify-center rounded-full text-xs font-semibold text-black"
-          style={{ background: `linear-gradient(135deg, oklch(0.85 0.15 ${hue}), oklch(0.65 0.18 ${hue + 40}))` }}
+          className="flex size-9 items-center justify-center rounded-full bg-muted text-xs font-semibold text-foreground"
         >
           {initials(name)}
         </span>
@@ -36,11 +35,6 @@ function Review({ name, handle, hue, text }: (typeof reviews)[number]) {
           <p className="truncate text-sm font-medium text-white">{name}</p>
           <p className="truncate text-xs text-white/45">{handle}</p>
         </figcaption>
-        <span role="img" aria-label="5 out of 5 stars" className="ml-auto flex text-primary">
-          {Array.from({ length: 5 }, (_, i) => (
-            <Star key={i} aria-hidden className="size-3 fill-current" />
-          ))}
-        </span>
       </div>
       <blockquote className="mt-3 text-sm leading-relaxed text-white/70">{text}</blockquote>
     </figure>

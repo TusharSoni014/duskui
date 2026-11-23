@@ -10,7 +10,7 @@ const demo = (file: string) => `components/demos/tag-input/${file}`;
 const config: DocConfig = {
   title: "Tag Input",
   intro:
-    "An accessible React tag input (chip input): type and press Enter or comma to add tags that pop in as chips, Backspace twice to remove, paste a comma-separated list to add many at once, with duplicate detection, validation, a max count, optional suggestions and form submission — animated with Motion and styled with Tailwind CSS.",
+    "An accessible React tag input (chip input): type and press Enter or comma to add tags as chips, Backspace twice to remove, paste a comma-separated list to add many at once, with duplicate detection, validation, a max count, optional suggestions and form submission — animated with Motion and styled with Tailwind CSS.",
   tags: ["Chips", "Paste lists", "Duplicate shake", "Suggestions", "Live announcements", "Form-ready"],
   hero: { Demo: TagInputDemo, file: demo("tag-input-demo.tsx"), minHeight: 200 },
   install: {

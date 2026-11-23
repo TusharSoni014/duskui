@@ -26,7 +26,7 @@ export default function ContextMenuBasicDemo() {
     <ContextMenu>
       <ContextMenuTrigger
         tabIndex={0}
-        className="flex h-40 w-full max-w-sm items-center justify-center rounded-xl border border-dashed text-sm text-muted-foreground outline-none select-none focus-visible:ring-[3px] focus-visible:ring-ring/50 data-[state=open]:border-primary/40 data-[state=open]:text-foreground"
+        className="flex h-40 w-full max-w-sm items-center justify-center rounded-xl border border-dashed text-sm text-muted-foreground outline-none select-none focus-visible:ring-[3px] focus-visible:ring-ring/50 data-[state=open]:border-foreground/25 data-[state=open]:text-foreground"
       >
         Right-click here (or long-press)
       </ContextMenuTrigger>

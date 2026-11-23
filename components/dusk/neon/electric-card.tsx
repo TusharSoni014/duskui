@@ -6,7 +6,7 @@ import { useInView, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export interface ElectricCardProps extends Omit<React.ComponentProps<"div">, "color"> {
-  /** Any CSS color for the arcs and glow. Defaults to the theme primary. */
+  /** Any CSS color for the arcs. Defaults to the theme primary. */
   color?: string;
   /** How far the lightning jumps off the border, in px. */
   chaos?: number;
@@ -99,19 +99,19 @@ function outlinePath(size: Size, r: number, chaos: number, perimeter: number) {
  * A card whose border crackles with electricity on hover or keyboard focus.
  *
  * Lightning is procedurally generated SVG: jagged bolts that crawl around the
- * rounded border and re-randomize on an interval, plus a soft glow. Paths are
+ * rounded border and re-randomize on an interval, with one soft glow. Paths are
  * written straight to the DOM, so the card never re-renders while it sparks.
  * The bolts change shape but never blink on and off, and reduced-motion users
  * get a single still frame instead of the crackle.
  */
 export function ElectricCard({
   color = "var(--color-primary)",
-  chaos = 6,
-  arcs = 2,
-  interval = 90,
-  speed = 0.35,
+  chaos = 4,
+  arcs = 1,
+  interval = 110,
+  speed = 0.25,
   active = false,
-  radius = 16,
+  radius = 12,
   className,
   style,
   children,
@@ -216,7 +216,7 @@ export function ElectricCard({
       style={
         {
           "--electric": color,
-          "--electric-dim": "color-mix(in oklab, var(--electric) 45%, transparent)",
+          "--electric-dim": "color-mix(in oklab, var(--electric) 30%, transparent)",
           borderRadius: radius,
           ...style,
         } as React.CSSProperties
@@ -239,15 +239,6 @@ export function ElectricCard({
       }}
       {...props}
     >
-      {/* Soft outer and inner glow. */}
-      <span
-        aria-hidden
-        className={cn("pointer-events-none absolute -inset-px -z-10 rounded-[inherit]", visible)}
-        style={{
-          boxShadow:
-            "0 0 24px -4px color-mix(in oklab, var(--electric) 55%, transparent), 0 0 64px -12px color-mix(in oklab, var(--electric) 45%, transparent), inset 0 0 24px -8px color-mix(in oklab, var(--electric) 40%, transparent)",
-        }}
-      />
       <svg
         aria-hidden
         focusable="false"
@@ -255,23 +246,14 @@ export function ElectricCard({
         fill="none"
         strokeLinecap="round"
         strokeLinejoin="round"
-        style={{
-          filter:
-            "drop-shadow(0 0 2px var(--electric)) drop-shadow(0 0 6px color-mix(in oklab, var(--electric) 70%, transparent))",
-        }}
+        style={{ filter: "drop-shadow(0 0 3px color-mix(in oklab, var(--electric) 45%, transparent))" }}
       >
         <defs>
           <path ref={boltRef} id={boltId} />
         </defs>
         <g transform="translate(0.5 0.5)">
-          <path ref={outlineRef} style={{ stroke: "var(--electric)" }} strokeOpacity={0.55} strokeWidth={1} />
-          <use href={`#${boltId}`} style={{ stroke: "var(--electric)" }} strokeWidth={2.75} />
-          {/* Hot white core on the same bolt. */}
-          <use
-            href={`#${boltId}`}
-            style={{ stroke: "color-mix(in oklab, var(--electric) 30%, white)" }}
-            strokeWidth={1}
-          />
+          <path ref={outlineRef} style={{ stroke: "var(--electric)" }} strokeOpacity={0.25} strokeWidth={1} />
+          <use href={`#${boltId}`} style={{ stroke: "var(--electric)" }} strokeOpacity={0.85} strokeWidth={1.5} />
         </g>
       </svg>
       {children}

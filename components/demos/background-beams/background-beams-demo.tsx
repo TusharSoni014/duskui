@@ -5,10 +5,9 @@ export default function BackgroundBeamsDemo() {
     <div className="relative flex h-80 w-full items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-background">
       <BackgroundBeams />
       <div className="relative px-6 text-center">
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary">Realtime</p>
-        <h3 className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Every event, in flight</h3>
-        <p className="mx-auto mt-2 max-w-sm text-sm text-white/60">
-          Stream changes from your database to every client in milliseconds.
+        <h3 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">Realtime sync</h3>
+        <p className="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-white/60">
+          Changes in your database reach every connected client in under 100 ms.
         </p>
       </div>
     </div>

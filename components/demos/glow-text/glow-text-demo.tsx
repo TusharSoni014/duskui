@@ -4,8 +4,7 @@ export default function GlowTextDemo() {
   return (
     <GlowText
       as="h2"
-      color="#ff2bd6"
-      animation="flicker"
+      color="#f472b6"
       className="text-center text-5xl font-bold tracking-tight sm:text-6xl"
     >
       Open all night

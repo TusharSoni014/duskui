@@ -43,7 +43,7 @@ export interface ComboboxProps
 }
 
 const pillSpring: Transition = { type: "spring", stiffness: 520, damping: 38, mass: 0.6 };
-const layoutSpring: Transition = { type: "spring", bounce: 0.15, duration: 0.35 };
+const layoutSpring: Transition = { type: "spring", bounce: 0.1, duration: 0.3 };
 
 /** Options whose label starts with the query come first; the rest keep their order. */
 function filterOptions(options: ComboboxOption[], query: string) {
@@ -67,7 +67,7 @@ function Highlight({ label, query }: { label: string; query: string }) {
   return (
     <>
       {label.slice(0, index)}
-      <mark className="rounded-[3px] bg-primary/15 text-primary">{label.slice(index, index + q.length)}</mark>
+      <mark className="bg-transparent font-semibold text-foreground">{label.slice(index, index + q.length)}</mark>
       {label.slice(index + q.length)}
     </>
   );
@@ -75,9 +75,9 @@ function Highlight({ label, query }: { label: string; query: string }) {
 
 /**
  * A searchable select (shadcn's Popover + Command recipe) with motion. The
- * panel springs out of the trigger, the options cascade in, and as you type
+ * panel scales out of the trigger, the options cascade in, and as you type
  * the list filters with layout animations: matches slide into their new
- * places, the list height eases to fit, matched text lights up and a
+ * places, the list height eases to fit, matched text is bolded and a
  * highlight pill glides with the arrow keys. A friendly empty state appears
  * when nothing matches. cmdk handles Up/Down/Home/End/Enter and aria
  * (combobox + listbox), Radix handles focus, Escape and outside clicks.
@@ -126,8 +126,8 @@ export function Combobox({
   const surface: Variants = reduceMotion
     ? { closed: { opacity: 0, transition: { duration: 0.1 } }, open: { opacity: 1, transition: { duration: 0.15 } } }
     : {
-        closed: { opacity: 0, scale: 0.92, y: -6, transition: { duration: 0.12, ease: "easeIn" } },
-        open: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", duration: 0.4, bounce: 0.2 } },
+        closed: { opacity: 0, scale: 0.96, y: -4, transition: { duration: 0.12, ease: "easeIn" } },
+        open: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", duration: 0.25, bounce: 0 } },
       };
 
   return (
@@ -152,13 +152,13 @@ export function Combobox({
               <motion.span
                 key={selected?.value ?? "placeholder"}
                 className={cn("flex min-w-0 items-center gap-2", !selected && "text-muted-foreground")}
-                initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 8, filter: "blur(2px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)", transitionEnd: { filter: "none" } }}
-                exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8, filter: "blur(2px)" }}
-                transition={{ type: "spring", duration: 0.3, bounce: 0 }}
+                initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -6 }}
+                transition={{ type: "spring", duration: 0.25, bounce: 0 }}
               >
                 {selected?.icon && (
-                  <span aria-hidden className="flex text-primary">
+                  <span aria-hidden className="flex text-muted-foreground">
                     {selected.icon}
                   </span>
                 )}
@@ -188,7 +188,7 @@ export function Combobox({
                 className={cn(
                   "z-50 w-(--radix-popover-trigger-width) min-w-56 overflow-hidden rounded-xl border bg-popover text-popover-foreground outline-none",
                   "origin-(--radix-popover-content-transform-origin)",
-                  "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_16px_40px_-12px_rgb(0_0_0/0.7),0_0_0_1px_rgb(0_0_0/0.2)]",
+                  "shadow-lg",
                   contentClassName
                 )}
               >
@@ -250,7 +250,7 @@ export function Combobox({
                                   aria-hidden
                                   layoutId={`${id}-pill`}
                                   transition={reduceMotion ? { duration: 0 } : pillSpring}
-                                  className="absolute inset-0 rounded-lg bg-accent shadow-[inset_0_1px_0_rgb(255_255_255/0.04)]"
+                                  className="absolute inset-0 rounded-lg bg-accent"
                                 />
                               )}
                               {option.icon && (
@@ -258,7 +258,7 @@ export function Combobox({
                                   aria-hidden
                                   className={cn(
                                     "relative flex transition-colors duration-150",
-                                    isHighlighted || isSelected ? "text-primary" : "text-muted-foreground"
+                                    isHighlighted || isSelected ? "text-foreground" : "text-muted-foreground"
                                   )}
                                 >
                                   {option.icon}
@@ -275,11 +275,11 @@ export function Combobox({
                                   {isSelected && (
                                     <motion.span
                                       key="check"
-                                      initial={reduceMotion ? { opacity: 0 } : { scale: 0, rotate: -45, opacity: 0 }}
-                                      animate={{ scale: 1, rotate: 0, opacity: 1 }}
-                                      exit={{ opacity: 0, scale: reduceMotion ? 1 : 0.5 }}
-                                      transition={reduceMotion ? { duration: 0.15 } : { type: "spring", bounce: 0.5, duration: 0.45, delay: 0.1 }}
-                                      className="flex text-primary drop-shadow-[0_0_6px_var(--color-primary)]"
+                                      initial={reduceMotion ? { opacity: 0 } : { scale: 0.6, opacity: 0 }}
+                                      animate={{ scale: 1, opacity: 1 }}
+                                      exit={{ opacity: 0, scale: reduceMotion ? 1 : 0.6 }}
+                                      transition={reduceMotion ? { duration: 0.15 } : { type: "spring", bounce: 0.15, duration: 0.25 }}
+                                      className="flex text-primary"
                                     >
                                       <CheckIcon className="size-4" />
                                     </motion.span>
@@ -298,17 +298,14 @@ export function Combobox({
                       <motion.div
                         key="empty"
                         role="status"
-                        initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 4 }}
+                        initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.98, y: 4 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
-                        transition={{ type: "spring", duration: 0.35, bounce: 0.2 }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
                         className="flex flex-col items-center gap-2 px-4 py-6 text-center text-sm text-muted-foreground"
                       >
                         <motion.span
                           aria-hidden
                           className="grid size-9 place-items-center rounded-full border border-white/10 bg-white/[0.03]"
-                          initial={reduceMotion ? false : { rotate: -12 }}
-                          animate={{ rotate: 0 }}
-                          transition={{ type: "spring", bounce: 0.6, duration: 0.6 }}
                         >
                           <SearchXIcon className="size-4" />
                         </motion.span>

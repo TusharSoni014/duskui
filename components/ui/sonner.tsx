@@ -22,7 +22,7 @@ import { cn } from "@/lib/utils";
 const toastClassNames: NonNullable<NonNullable<ToasterProps["toastOptions"]>["classNames"]> = {
   toast: cn(
     "data-[styled=true]:gap-2.5! data-[styled=true]:px-4! data-[styled=true]:py-3.5!",
-    "data-[styled=true]:shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_16px_40px_-12px_rgb(0_0_0/0.7),0_0_0_1px_rgb(0_0_0/0.25)]!",
+    "data-[styled=true]:shadow-lg!",
     "data-[styled=true]:focus-visible:ring-[3px]! data-[styled=true]:focus-visible:ring-ring/50!"
   ),
   title: "text-sm! font-medium! leading-snug!",
@@ -60,7 +60,7 @@ function mergeClassNames(
  *
  * Same component and props as shadcn (every Sonner `ToasterProps`), plus:
  * - Dark by default and styled with the DuskUI tokens: popover surface,
- *   layered shadow, mint action button, tinted status icons.
+ *   neutral shadow, mint action button, tinted status icons.
  * - On-brand `richColors` (success, info, warning, error).
  * - Your `toastOptions.classNames` are merged with ours instead of replacing them.
  * Fire toasts with `toast()` from "sonner" anywhere in your app.
@@ -74,11 +74,11 @@ function Toaster({ theme = "dark", className, toastOptions, style, icons, ...pro
       // Sonner sets a system font stack on the toaster; use the app font instead.
       className={cn("toaster group font-sans!", className)}
       icons={{
-        success: <CircleCheckIcon className="size-4 text-primary" />,
+        success: <CircleCheckIcon className="size-4 text-emerald-300" />,
         info: <InfoIcon className="size-4 text-sky-300" />,
         warning: <TriangleAlertIcon className="size-4 text-amber-300" />,
         error: <OctagonXIcon className="size-4 text-destructive" />,
-        loading: <Loader2Icon className="size-4 animate-spin text-primary motion-reduce:animate-none" />,
+        loading: <Loader2Icon className="size-4 animate-spin text-muted-foreground motion-reduce:animate-none" />,
         close: <XIcon className="size-3" />,
         ...icons,
       }}
@@ -92,11 +92,11 @@ function Toaster({ theme = "dark", className, toastOptions, style, icons, ...pro
           "--normal-bg-hover": "var(--accent)",
           "--normal-text": "var(--popover-foreground)",
           "--normal-border": "var(--border)",
-          "--normal-border-hover": "color-mix(in oklab, var(--primary) 30%, var(--border))",
+          "--normal-border-hover": "var(--input)",
           "--border-radius": "calc(var(--radius) + 4px)",
-          "--success-bg": "color-mix(in oklab, var(--primary) 10%, var(--popover))",
-          "--success-border": "color-mix(in oklab, var(--primary) 30%, transparent)",
-          "--success-text": "var(--primary)",
+          "--success-bg": "color-mix(in oklab, oklch(0.765 0.177 163.2) 10%, var(--popover))",
+          "--success-border": "color-mix(in oklab, oklch(0.765 0.177 163.2) 25%, transparent)",
+          "--success-text": "oklch(0.845 0.143 165)",
           "--info-bg": "color-mix(in oklab, oklch(0.746 0.16 232.7) 10%, var(--popover))",
           "--info-border": "color-mix(in oklab, oklch(0.746 0.16 232.7) 25%, transparent)",
           "--info-text": "oklch(0.828 0.111 230.3)",

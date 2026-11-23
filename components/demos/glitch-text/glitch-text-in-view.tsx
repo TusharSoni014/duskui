@@ -6,11 +6,11 @@ export default function GlitchTextInViewDemo() {
       as="h3"
       trigger="inView"
       duration={700}
-      intensity={8}
+      intensity={5}
       colors={["#facc15", "#22d3ee"]}
-      className="font-mono text-4xl font-bold tracking-widest"
+      className="text-4xl font-semibold tracking-tight"
     >
-      {"// SIGNAL LOST"}
+      Connection interrupted
     </GlitchText>
   );
 }

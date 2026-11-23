@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pulsating-button",
+  "title": "Pulsating Button",
+  "description": "DuskUI Button with expanding pulse rings that pause on hover, focus and reduced motion.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "utils",
+    "https://duskui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "components/dusk/pulsating-button/pulsating-button.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport {\n  animate,\n  motion,\n  useInView,\n  useMotionValue,\n  useReducedMotion,\n  useTransform,\n} from \"motion/react\";\n\nimport { Button, type ButtonProps } from \"@/components/ui/button\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface PulsatingButtonProps extends Omit<ButtonProps, \"asChild\"> {\n  /** Any CSS color for the rings. Defaults to the theme primary. */\n  pulseColor?: string;\n  /** Seconds for one ring to expand and fade. A second ring follows half a beat later. */\n  duration?: number;\n  /** How far the rings travel outwards, in px. */\n  spread?: number;\n}\n\n/** Button that sends out soft expanding rings to draw attention, pausing on hover and focus. */\nexport function PulsatingButton({\n  pulseColor = \"var(--color-primary)\",\n  duration = 2.4,\n  spread = 8,\n  className,\n  style,\n  children,\n  onPointerEnter,\n  onPointerLeave,\n  onFocus,\n  onBlur,\n  ...props\n}: PulsatingButtonProps) {\n  const rings = React.useRef<HTMLSpanElement>(null);\n  const reduceMotion = useReducedMotion();\n  const inView = useInView(rings);\n  const [hovered, setHovered] = React.useState(false);\n  const [focused, setFocused] = React.useState(false);\n\n  // `progress` drives both rings; `level` fades them out when paused.\n  const progress = useMotionValue(0);\n  const level = useMotionValue(1);\n  const boxShadow = useTransform(() => {\n    const t = progress.get();\n    const l = level.get();\n    return [t % 1, (t + 0.5) % 1]\n      .map((p) => {\n        // Ease out so rings leave quickly, then drift and fade.\n        const eased = 1 - (1 - p) ** 2;\n        const alpha = Math.round((1 - p) * 28 * l);\n        return `0 0 0 ${(eased * spread).toFixed(2)}px color-mix(in oklab, var(--pulse) ${alpha}%, transparent)`;\n      })\n      .join(\", \");\n  });\n\n  const paused = hovered || focused || !inView || reduceMotion === true;\n\n  React.useEffect(() => {\n    if (paused) {\n      const fade = animate(level, 0, { duration: 0.25, ease: \"easeOut\" });\n      return () => fade.stop();\n    }\n    level.set(1);\n    const controls = animate(progress, progress.get() + 1, {\n      duration: Math.max(0.6, duration),\n      ease: \"linear\",\n      repeat: Infinity,\n    });\n    return () => controls.stop();\n  }, [duration, level, paused, progress]);\n\n  return (\n    <Button\n      className={cn(\"group/pulse\", className)}\n      style={{ \"--pulse\": pulseColor, ...style } as React.CSSProperties}\n      onPointerEnter={(e) => {\n        onPointerEnter?.(e);\n        setHovered(true);\n      }}\n      onPointerLeave={(e) => {\n        onPointerLeave?.(e);\n        setHovered(false);\n      }}\n      onFocus={(e) => {\n        onFocus?.(e);\n        setFocused(true);\n      }}\n      onBlur={(e) => {\n        onBlur?.(e);\n        setFocused(false);\n      }}\n      {...props}\n    >\n      {/* Rings are an outer box-shadow on an empty layer, so they never take up space. */}\n      <motion.span\n        ref={rings}\n        aria-hidden\n        data-slot=\"pulse-rings\"\n        className=\"pointer-events-none absolute inset-0 rounded-[inherit]\"\n        style={{ boxShadow }}\n      />\n      {/* Reduced motion: a steady thin ring instead of moving rings (CSS-only, so SSR markup matches). */}\n      <span\n        aria-hidden\n        className=\"pointer-events-none absolute inset-0 hidden rounded-[inherit] shadow-[0_0_0_3px_color-mix(in_oklab,var(--pulse)_18%,transparent)] motion-reduce:block\"\n      />\n      {children}\n    </Button>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "pulsating-button"
+  ],
+  "type": "registry:component"
+}

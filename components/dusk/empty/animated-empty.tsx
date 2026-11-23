@@ -29,9 +29,9 @@ export interface AnimatedEmptyProps extends Omit<React.ComponentProps<typeof Emp
 
 // Where the satellites sit around the tile, and how each one drifts.
 const orbit = [
-  { className: "-top-3 -left-9", drift: { x: [0, -3, 0], y: [0, -5, 0], rotate: [-12, -4, -12] }, duration: 5.2 },
-  { className: "-right-10 top-1", drift: { x: [0, 4, 0], y: [0, 4, 0], rotate: [10, 18, 10] }, duration: 6.1 },
-  { className: "-bottom-4 -left-4", drift: { x: [0, -2, 0], y: [0, 4, 0], rotate: [6, -4, 6] }, duration: 4.6 },
+  { className: "-top-3 -left-9", drift: { x: [0, -1, 0], y: [0, -3, 0], rotate: [-8, -6, -8] }, duration: 6 },
+  { className: "-right-10 top-1", drift: { x: [0, 1, 0], y: [0, 3, 0], rotate: [8, 10, 8] }, duration: 7 },
+  { className: "-bottom-4 -left-4", drift: { x: [0, -1, 0], y: [0, 2, 0], rotate: [4, 2, 4] }, duration: 5.5 },
 ];
 
 const container: Variants = {
@@ -40,9 +40,9 @@ const container: Variants = {
 };
 
 /**
- * An empty state with a floating illustration. A glassy tile holding your
- * icon bobs gently while small satellite icons drift around it and soft rings
- * breathe behind it; the title, description and actions rise in one after
+ * An empty state with a floating illustration. A tile holding your icon
+ * floats gently while small satellite icons drift slowly around it; the
+ * title, description and actions rise in one after
  * another. Built on the DuskUI Empty parts. Under reduced motion everything
  * simply fades in and stays still.
  */
@@ -61,15 +61,13 @@ export function AnimatedEmpty({
   // The hidden state is the same either way, so server and client HTML match;
   // under reduced motion only the opacity animates.
   const item: Variants = {
-    hidden: { opacity: 0, y: 12, filter: "blur(4px)" },
+    hidden: { opacity: 0, y: 8 },
     show: {
       opacity: 1,
       y: 0,
-      filter: "blur(0px)",
       transition: reduceMotion
-        ? { opacity: { duration: 0.3 }, y: { duration: 0 }, filter: { duration: 0 } }
-        : { type: "spring", duration: 0.6, bounce: 0.15 },
-      transitionEnd: { filter: "none" },
+        ? { opacity: { duration: 0.3 }, y: { duration: 0 } }
+        : { duration: 0.35, ease: "easeOut" },
     },
   };
 
@@ -85,39 +83,17 @@ export function AnimatedEmpty({
         <EmptyHeader>
           <motion.div variants={item}>
             <EmptyMedia className="mb-6 size-24">
-              {/* Breathing rings */}
-              {[0, 1].map((ring) => (
-                <motion.span
-                  key={ring}
-                  aria-hidden
-                  className="absolute inset-0 rounded-full border border-primary/15"
-                  initial={{ scale: 1, opacity: 0.5 }}
-                  animate={reduceMotion ? { scale: 1, opacity: 0.5 } : { scale: [0.75, 1.35], opacity: [0.6, 0] }}
-                  transition={
-                    reduceMotion
-                      ? { duration: 0 }
-                      : { duration: 3.2, repeat: Infinity, ease: "easeOut", delay: ring * 1.6 }
-                  }
-                />
-              ))}
-              <span
-                aria-hidden
-                className="absolute inset-3 rounded-full bg-primary/10 blur-xl"
-              />
-
               {/* Floating tile */}
               <motion.span
                 aria-hidden
                 className={cn(
-                  "relative grid size-16 place-items-center rounded-2xl border border-white/10 text-primary",
-                  "bg-linear-to-b from-white/[0.1] to-white/[0.02] backdrop-blur-sm",
-                  "shadow-[inset_0_1px_0_rgb(255_255_255/0.1),0_18px_40px_-12px_rgb(0_0_0/0.8),0_0_40px_-12px_var(--color-primary)]"
+                  "relative grid size-16 place-items-center rounded-2xl border border-white/10 bg-card text-foreground shadow-md"
                 )}
-                initial={{ y: 0, rotate: 0 }}
-                animate={reduceMotion ? { y: 0, rotate: 0 } : { y: [0, -6, 0], rotate: [0, -2, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                initial={{ y: 0 }}
+                animate={reduceMotion ? { y: 0 } : { y: [0, -3, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               >
-                <Icon className="size-7 drop-shadow-[0_0_8px_color-mix(in_oklab,var(--color-primary)_60%,transparent)]" />
+                <Icon className="size-7" />
               </motion.span>
 
               {/* Satellites */}
@@ -128,8 +104,7 @@ export function AnimatedEmpty({
                     key={index}
                     aria-hidden
                     className={cn(
-                      "absolute grid size-8 place-items-center rounded-lg border border-white/10 bg-card/80 text-muted-foreground",
-                      "shadow-[inset_0_1px_0_rgb(255_255_255/0.06),0_8px_20px_-8px_rgb(0_0_0/0.7)]",
+                      "absolute grid size-8 place-items-center rounded-lg border border-white/10 bg-card text-muted-foreground shadow-sm",
                       spot.className
                     )}
                     initial={{ rotate: spot.drift.rotate[0] }}

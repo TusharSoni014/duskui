@@ -57,11 +57,8 @@ export default function TimelineDemo() {
       aria-label="Changelog, scrollable"
       className="relative h-[26rem] w-full max-w-2xl overflow-y-auto rounded-xl border border-white/10 bg-black/30 px-5 outline-none focus-visible:ring-2 focus-visible:ring-ring/50 [scrollbar-width:thin] sm:px-8"
     >
-      <p className="sticky top-0 z-20 bg-linear-to-b from-black/80 to-transparent pt-4 pb-6 text-center text-xs uppercase tracking-widest text-white/40">
-        Scroll inside ↓
-      </p>
-      <h3 className="mb-8 text-2xl font-semibold tracking-tight">Changelog</h3>
-      <Timeline container={scroller} anchor={0.55} stickyTop="3.5rem">
+      <h3 className="mt-6 mb-6 text-lg font-semibold tracking-tight">Changelog</h3>
+      <Timeline container={scroller} anchor={0.55} stickyTop="1.5rem">
         {releases.map((r) => (
           <TimelineItem key={r.version} date={r.date} dateTime={r.dateTime} title={`${r.version} · ${r.title}`}>
             <p>{r.body}</p>
@@ -73,7 +70,7 @@ export default function TimelineDemo() {
               ))}
             </ul>
             {/* Placeholder for screenshots, release notes… */}
-            <div aria-hidden className="mt-4 h-24 rounded-lg border border-white/5 bg-linear-to-br from-primary/10 via-white/[0.02] to-transparent" />
+            <div aria-hidden className="mt-4 h-24 rounded-lg border border-white/5 bg-white/[0.02]" />
           </TimelineItem>
         ))}
       </Timeline>

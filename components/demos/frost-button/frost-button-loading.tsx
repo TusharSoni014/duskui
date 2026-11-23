@@ -15,7 +15,7 @@ export default function FrostButtonLoading() {
       <FrostButton
         size="lg"
         tone="primary"
-        className="min-w-40 rounded-full"
+        className="min-w-40"
         loading={loading}
         loadingText="Publishing…"
         onClick={() => {

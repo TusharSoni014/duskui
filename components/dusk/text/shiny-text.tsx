@@ -45,7 +45,7 @@ export function ShinyText({
   color = "color-mix(in oklab, var(--color-foreground) 55%, transparent)",
   shineColor = "var(--color-foreground)",
   duration = 1.8,
-  repeatDelay = 1.6,
+  repeatDelay = 2.5,
   spread = 0.35,
   angle = 110,
   direction = "ltr",

@@ -3,12 +3,12 @@ import { Cloud, Code2, Cpu, Database, GitBranch, Globe, Lock, Moon, Terminal, Za
 import { OrbitingCircles } from "@/components/dusk/orbiting-circles/orbiting-circles";
 
 const chip =
-  "flex size-full items-center justify-center rounded-full border border-white/10 bg-card text-white/80 shadow-[0_0_20px_rgb(0_0_0/0.5)]";
+  "flex size-full items-center justify-center rounded-full border border-white/10 bg-card text-muted-foreground";
 
 export default function OrbitingCirclesDemo() {
   return (
     <div className="relative flex h-[420px] w-full items-center justify-center overflow-hidden">
-      <div className="relative z-10 flex size-16 items-center justify-center rounded-2xl border border-primary/40 bg-primary/10 text-primary shadow-[0_0_40px_color-mix(in_oklab,var(--color-primary)_30%,transparent)]">
+      <div className="relative z-10 flex size-16 items-center justify-center rounded-xl border bg-card text-foreground">
         <Moon className="size-7" aria-hidden />
         <span className="sr-only">DuskUI</span>
       </div>

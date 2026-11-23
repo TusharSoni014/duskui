@@ -16,17 +16,17 @@ export default function BannerAlertDemo() {
           open={open}
           onOpenChange={setOpen}
           action={
-            <a href="#" className="inline-flex items-center gap-1 font-medium text-primary hover:underline">
-              Read the changelog
+            <a href="#" className="inline-flex items-center gap-1 font-medium text-foreground underline-offset-4 hover:underline">
+              See what changes
               <ArrowRight className="size-3.5" aria-hidden />
             </a>
           }
         >
-          <span className="font-medium">DuskUI 2.0 is here</span>
-          <span className="text-muted-foreground"> with 40 new animated components.</span>
+          <span className="font-medium">Usage-based billing starts June 1.</span>
+          <span className="text-muted-foreground"> Review your plan before then.</span>
         </BannerAlert>
         <div className="flex items-center gap-3 border-b px-4 py-3">
-          <span className="size-5 rounded-md bg-primary/80" aria-hidden />
+          <span className="size-5 rounded-md bg-white/15" aria-hidden />
           <span className="text-sm font-medium">Acme</span>
           <span className="ml-auto h-2 w-24 rounded-full bg-white/10" aria-hidden />
         </div>

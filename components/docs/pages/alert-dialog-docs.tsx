@@ -69,7 +69,7 @@ export function DiscardDraft() {
       title: "Default",
       description: (
         <>
-          Fades, scales and rises in, then exits faster than it entered. Unlike Dialog, clicking the
+          Fades and scales in slightly, then exits faster than it entered. Unlike Dialog, clicking the
           backdrop does nothing and focus starts on Cancel: the user has to answer. Give{" "}
           <Code>AlertDialogAction</Code> a <Code>variant</Code> to make it destructive.
         </>
@@ -101,9 +101,9 @@ export function DiscardDraft() {
       deps: "motion lucide-react",
       description: (
         <>
-          For deleting things that can&apos;t come back. The red icon sends out a slow pulse,{" "}
+          For deleting things that can&apos;t come back. A red icon marks the danger,{" "}
           <Code>consequences</Code> lists what will be lost, and with <Code>confirmText</Code> each
-          character lights up as it matches. Return a promise from <Code>onConfirm</Code> and the button
+          character turns red as it matches. Return a promise from <Code>onConfirm</Code> and the button
           shows the DuskUI Button <Code>loading</Code> state; Escape and Cancel are blocked mid-request,
           and a failure shakes the dialog and shows the error inline. Unlike the Dialog&apos;s Confirm
           Dialog, it uses Alert Dialog semantics, so clicking outside never closes it. Try both buttons.
@@ -122,7 +122,7 @@ export function DiscardDraft() {
         { name: "confirmText", type: "string", description: "Text the user must type before confirming. Focus starts in that field." },
         { name: "confirmLabel / cancelLabel", type: "ReactNode", default: '"Delete" / "Cancel"', description: "Button labels." },
         { name: "pendingLabel", type: "ReactNode", description: "Shown next to the spinner while confirming." },
-        { name: "icon", type: "ReactNode", default: "<Trash2 />", description: "Icon inside the pulsing badge." },
+        { name: "icon", type: "ReactNode", default: "<Trash2 />", description: "Icon inside the red badge." },
         { name: "errorMessage", type: "ReactNode", description: "Replaces the thrown error's message." },
       ],
     },
@@ -177,7 +177,7 @@ export function DiscardDraft() {
     <>Always render an <Code>AlertDialogTitle</Code> and an <Code>AlertDialogDescription</Code>; they become the dialog&apos;s accessible name and description.</>,
     "The Destructive Alert Dialog keeps both buttons focusable while pending (aria-disabled + aria-busy) and reads the confirm text once instead of letter by letter.",
     "The Session Timeout Dialog announces the time left when it opens and once more at ten seconds, not on every tick.",
-    "Under prefers-reduced-motion the dialog only fades, the pulse and shake are skipped, and the countdown digits swap without sliding.",
+    "Under prefers-reduced-motion the dialog only fades, the shake is skipped, and the countdown digits swap without sliding.",
   ],
 };
 

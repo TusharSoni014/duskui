@@ -10,7 +10,7 @@ const demo = (file: string) => `components/demos/electric-card/${file}`;
 const config: DocConfig = {
   title: "Electric Card",
   intro:
-    "A React card with an electric border effect: procedurally generated SVG lightning crackles around the edge and the card glows on hover or keyboard focus. Built with Tailwind CSS and Motion, with tunable chaos, arc count, speed and color.",
+    "A React card with an electric border effect: procedurally generated SVG lightning crackles around the edge on hover or keyboard focus. Built with Tailwind CSS and Motion, with tunable chaos, arc count, speed and color.",
   tags: ["Procedural SVG lightning", "Hover & focus-within", "No re-renders", "Any CSS color", "prefers-reduced-motion"],
   hero: { Demo: ElectricCardDemo, file: demo("electric-card-demo.tsx"), minHeight: 340 },
   install: {
@@ -62,20 +62,20 @@ export function FeatureCard() {
   api: {
     intro: <>Also accepts any <Code>&lt;div&gt;</Code> prop. Padding, width and background are regular classes.</>,
     props: [
-      { name: "color", type: "string", default: "var(--color-primary)", description: "Any CSS color for the lightning and glow." },
-      { name: "chaos", type: "number", default: "6", description: "How far bolts jump off the border, in px." },
-      { name: "arcs", type: "number", default: "2", description: "Number of bright arcs crawling around the border." },
-      { name: "interval", type: "number", default: "90", description: "Milliseconds between new lightning shapes (min 60)." },
-      { name: "speed", type: "number", default: "0.35", description: "Laps per second the arcs crawl." },
+      { name: "color", type: "string", default: "var(--color-primary)", description: "Any CSS color for the lightning." },
+      { name: "chaos", type: "number", default: "4", description: "How far bolts jump off the border, in px." },
+      { name: "arcs", type: "number", default: "1", description: "Number of bright arcs crawling around the border." },
+      { name: "interval", type: "number", default: "110", description: "Milliseconds between new lightning shapes (min 60)." },
+      { name: "speed", type: "number", default: "0.25", description: "Laps per second the arcs crawl." },
       { name: "active", type: "boolean", default: "false", description: "Keep the effect on instead of only on hover / focus." },
-      { name: "radius", type: "number", default: "16", description: "Corner radius in px; the lightning follows it." },
+      { name: "radius", type: "number", default: "12", description: "Corner radius in px; the lightning follows it." },
     ],
   },
   accessibility: [
-    "The lightning SVG and glow are aria-hidden and pointer-events-none; the card's content keeps its own semantics.",
+    "The lightning SVG is aria-hidden and pointer-events-none; the card's content keeps its own semantics.",
     "The effect starts when keyboard focus moves into the card, not only on hover.",
     "Bolts change shape but never blink on and off and the overall brightness stays constant, so there is no strobing.",
-    "With prefers-reduced-motion the card shows a single still frame of lightning and glow instead of the crackle.",
+    "With prefers-reduced-motion the card shows a single still frame of lightning instead of the crackle.",
     "Paths are written directly to the DOM and the timer only runs while the card is active and on-screen.",
   ],
 };

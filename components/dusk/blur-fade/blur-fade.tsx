@@ -99,8 +99,8 @@ const BlurFadeGroupContext = React.createContext<GroupContextValue | null>(null)
 export function BlurFade({
   as = "div",
   direction = "up",
-  offset = 12,
-  blur = 8,
+  offset = 8,
+  blur = 6,
   delay = 0,
   duration = 0.5,
   trigger = "inView",

@@ -15,18 +15,18 @@ export interface ShimmerButtonProps extends MotionButtonProps {
 
 const sheen: Variants = {
   rest: { x: "-110%", transition: { duration: 0 } },
-  hover: { x: "110%", transition: { duration: 0.75, ease: [0.4, 0, 0.2, 1] } },
+  hover: { x: "110%", transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] } },
 };
 
 /**
- * A light sheen sweeps across the button on hover (and optionally on a loop).
+ * A thin, faint sheen sweeps across the button on hover (and optionally on a loop).
  * Good for a single primary call-to-action per screen.
  */
 export function ShimmerButton({
   className,
   children,
   idle = false,
-  interval = 2.5,
+  interval = 4,
   ...props
 }: ShimmerButtonProps) {
   const reduceMotion = useReducedMotion();
@@ -42,13 +42,13 @@ export function ShimmerButton({
       {!reduceMotion && (
         <motion.span
           aria-hidden
-          className="pointer-events-none absolute inset-0 -skew-x-12 bg-[linear-gradient(90deg,transparent_20%,rgb(255_255_255/0.55)_50%,transparent_80%)] mix-blend-overlay"
+          className="pointer-events-none absolute inset-0 -skew-x-12 bg-[linear-gradient(90deg,transparent_42%,rgb(255_255_255/0.3)_50%,transparent_58%)] mix-blend-overlay"
           {...(idle
             ? {
                 initial: { x: "-110%" },
                 animate: { x: ["-110%", "110%"] },
                 transition: {
-                  duration: 1.1,
+                  duration: 1.2,
                   ease: "easeInOut",
                   repeat: Infinity,
                   repeatDelay: interval,

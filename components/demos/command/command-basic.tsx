@@ -15,7 +15,7 @@ import {
 
 export default function CommandBasicDemo() {
   return (
-    <Command className="w-full max-w-sm rounded-xl border shadow-[0_16px_40px_-12px_rgb(0_0_0/0.7)]">
+    <Command className="w-full max-w-sm rounded-xl border shadow-md">
       <CommandInput placeholder="Type a command or search…" />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>

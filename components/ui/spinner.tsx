@@ -28,7 +28,7 @@ export interface SpinnerProps
  * Like shadcn/ui's Spinner, plus:
  * - `role="status"` with a screen-reader-only `label` ("Loading" by default),
  *   so the busy state is announced instead of being a silent icon.
- * - A faint track with a tapered arc that has a rounded, glowing head.
+ * - A faint track with a rounded arc.
  * - `size`: sm, default, lg, xl. Colored with `currentColor` (use `text-*`).
  * - Under `prefers-reduced-motion` it turns slowly instead of spinning.
  * CSS only, so it works in Server Components.
@@ -53,7 +53,6 @@ function Spinner({ className, size, label = "Loading", ...props }: SpinnerProps)
           stroke="currentColor"
           strokeWidth="2.5"
           strokeLinecap="round"
-          className="drop-shadow-[0_0_3px_currentColor]"
         />
       </svg>
       <span className="sr-only">{label}</span>

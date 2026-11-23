@@ -83,7 +83,7 @@ export function UsernameField({ error }: { error?: string }) {
       description: (
         <>
           Wrap a horizontal <Code>Field</Code> in a <Code>FieldLabel</Code> and the whole card becomes the hit area.
-          It glows mint while its switch or checkbox is on.
+          Its border turns mint while its switch or checkbox is on.
         </>
       ),
       Demo: FieldChoiceCardDemo,

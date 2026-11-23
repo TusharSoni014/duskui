@@ -125,9 +125,8 @@ export function CollapsibleBreadcrumb({
   const hidden = items.slice(before, before + shown);
   const Link = linkAs ?? "a";
 
-  const enter = reduceMotion ? { opacity: 0 } : { opacity: 0, x: -6, filter: "blur(2px)" };
-  // Clear the filter at rest so it doesn't create a containing block.
-  const visibleState = { opacity: 1, x: 0, filter: "blur(0px)", transitionEnd: { filter: "none" } };
+  const enter = reduceMotion ? { opacity: 0 } : { opacity: 0, x: -6 };
+  const visibleState = { opacity: 1, x: 0 };
 
   const renderItem = (item: BreadcrumbEntry, index: number) =>
     index === count - 1 || !item.href ? (
@@ -256,12 +255,12 @@ function BreadcrumbMenu({
         open: { opacity: 1, transition: { duration: 0.15 } },
       }
     : {
-        closed: { opacity: 0, scale: 0.92, y: -6, transition: { duration: 0.12, ease: "easeIn" } },
+        closed: { opacity: 0, scale: 0.96, y: -4, transition: { duration: 0.12, ease: "easeIn" } },
         open: {
           opacity: 1,
           scale: 1,
           y: 0,
-          transition: { type: "spring", duration: 0.35, bounce: 0.2, staggerChildren: 0.03, delayChildren: 0.02 },
+          transition: { type: "spring", duration: 0.25, bounce: 0, staggerChildren: 0.02, delayChildren: 0.02 },
         },
       };
 
@@ -272,16 +271,10 @@ function BreadcrumbMenu({
         className={cn(
           "flex size-7 items-center justify-center rounded-md text-muted-foreground outline-none transition-colors duration-200",
           "hover:bg-accent hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50",
-          "data-[state=open]:bg-primary/10 data-[state=open]:text-primary"
+          "data-[state=open]:bg-accent data-[state=open]:text-foreground"
         )}
       >
-        <motion.span
-          className="flex"
-          animate={{ rotate: open && !reduceMotion ? 90 : 0 }}
-          transition={{ type: "spring", duration: 0.3, bounce: 0.2 }}
-        >
-          <MoreHorizontal className="size-4" aria-hidden />
-        </motion.span>
+        <MoreHorizontal className="size-4" aria-hidden />
       </DropdownMenuPrimitive.Trigger>
       <AnimatePresence>
         {open && (
@@ -296,7 +289,7 @@ function BreadcrumbMenu({
                 className={cn(
                   "z-50 min-w-44 overflow-hidden rounded-xl border bg-popover p-1.5 text-popover-foreground outline-none",
                   "origin-(--radix-dropdown-menu-content-transform-origin)",
-                  "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_16px_40px_-12px_rgb(0_0_0/0.7),0_0_0_1px_rgb(0_0_0/0.2)]"
+                  "shadow-lg"
                 )}
               >
                 {items.map((item) => (

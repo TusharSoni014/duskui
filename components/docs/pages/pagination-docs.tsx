@@ -12,7 +12,7 @@ const block = (file: string) => `components/dusk/pagination/${file}`;
 const config: DocConfig = {
   title: "Pagination",
   intro:
-    "Animated React pagination for shadcn/ui and Tailwind CSS: the drop-in Pagination adds a glowing current page, asChild links and focus-safe disabled states — plus a Motion block whose active indicator glides between pages, whose numbers roll as the range shifts, and whose smart ellipsis keeps the bar a constant width.",
+    "Animated React pagination for shadcn/ui and Tailwind CSS: the drop-in Pagination adds a clear current page, asChild links and focus-safe disabled states — plus a Motion block whose active indicator glides between pages, whose numbers roll as the range shifts, and whose smart ellipsis keeps the bar a constant width.",
   tags: ["Drop-in shadcn API", "Motion layoutId", "Smart ellipsis range", "aria-current", "prefers-reduced-motion"],
   hero: { Demo: AnimatedPaginationDemo, file: demo("animated-pagination-demo.tsx"), minHeight: 200 },
   install: {
@@ -69,7 +69,7 @@ export function ResultsPagination() {
       title: "Default",
       description: (
         <>
-          The shadcn composition with a soft mint current page and chevrons that nudge on hover. Here{" "}
+          The shadcn composition with an outlined current page. Here{" "}
           <Code>asChild</Code> renders buttons for local state, and <Code>aria-disabled</Code> dims
           Previous / Next at the ends without stealing keyboard focus.
         </>
@@ -153,7 +153,7 @@ export function ResultsPagination() {
       </>
     ),
     props: [
-      { name: "isActive", type: "boolean", default: "false", description: "On PaginationLink: sets aria-current=\"page\" and the mint active style." },
+      { name: "isActive", type: "boolean", default: "false", description: "On PaginationLink: sets aria-current=\"page\" and the active style." },
       { name: "asChild", type: "boolean", default: "false", description: "On PaginationLink / Previous / Next: render your Link or a <button>. An empty child gets the default chevron and label." },
       { name: "size", type: "Button size", default: '"icon"', description: "On PaginationLink: any DuskUI Button size." },
       { name: "aria-disabled", type: "boolean", description: "Dims the link and blocks pointer clicks while keeping it focusable." },

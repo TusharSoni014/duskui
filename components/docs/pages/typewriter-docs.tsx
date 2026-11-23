@@ -28,8 +28,8 @@ export function Hero() {
     <h1 className="text-5xl font-bold">
       Ship{" "}
       <Typewriter
-        phrases={["faster", "safer", "after dark"]}
-        className="text-primary"
+        phrases={["faster", "safer", "together"]}
+        className="text-muted-foreground"
       />
     </h1>
   )

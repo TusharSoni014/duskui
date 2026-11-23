@@ -149,8 +149,8 @@ export function DateRangePicker({
   const surface: Variants = reduceMotion
     ? { closed: { opacity: 0, transition: { duration: 0.1 } }, open: { opacity: 1, transition: { duration: 0.15 } } }
     : {
-        closed: { opacity: 0, scale: 0.96, y: -6, transition: { duration: 0.12, ease: "easeIn" } },
-        open: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", duration: 0.45, bounce: 0.15 } },
+        closed: { opacity: 0, scale: 0.96, y: -4, transition: { duration: 0.12, ease: "easeIn" } },
+        open: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", duration: 0.25, bounce: 0 } },
       };
 
   return (
@@ -167,16 +167,16 @@ export function DateRangePicker({
           )}
           {...props}
         >
-          <CalendarRangeIcon aria-hidden className={cn("text-muted-foreground transition-colors", (open || value?.from) && "text-primary")} />
+          <CalendarRangeIcon aria-hidden className={cn("text-muted-foreground transition-colors", (open || value?.from) && "text-foreground")} />
           <span className="relative flex min-w-0 flex-1 overflow-hidden">
             <AnimatePresence mode="popLayout" initial={false}>
               <motion.span
                 key={label}
                 className={cn("truncate", !value?.from && "text-muted-foreground")}
-                initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 8, filter: "blur(2px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)", transitionEnd: { filter: "none" } }}
-                exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8, filter: "blur(2px)" }}
-                transition={{ type: "spring", duration: 0.3, bounce: 0 }}
+                initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -6 }}
+                transition={{ type: "spring", duration: 0.25, bounce: 0 }}
               >
                 {label}
               </motion.span>
@@ -197,7 +197,7 @@ export function DateRangePicker({
                 className={cn(
                   "z-50 max-h-(--radix-popover-content-available-height) max-w-[calc(100vw-1rem)] overflow-auto rounded-xl border bg-popover text-popover-foreground outline-none",
                   "origin-(--radix-popover-content-transform-origin)",
-                  "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_16px_40px_-12px_rgb(0_0_0/0.7),0_0_0_1px_rgb(0_0_0/0.2)]",
+                  "shadow-lg",
                   contentClassName
                 )}
               >
@@ -219,7 +219,7 @@ export function DateRangePicker({
                             className={cn(
                               "relative shrink-0 rounded-md px-2.5 py-1.5 text-left text-sm whitespace-nowrap text-muted-foreground outline-none",
                               "transition-colors duration-150 hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50",
-                              active && "text-primary hover:text-primary"
+                              active && "text-foreground"
                             )}
                           >
                             {active && (
@@ -227,7 +227,7 @@ export function DateRangePicker({
                                 aria-hidden
                                 layoutId={`${id}-preset`}
                                 transition={reduceMotion ? { duration: 0 } : pillSpring}
-                                className="absolute inset-0 rounded-md bg-primary/10 shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--color-primary)_25%,transparent)]"
+                                className="absolute inset-0 rounded-md bg-accent"
                               />
                             )}
                             <span className="relative">{preset.label}</span>

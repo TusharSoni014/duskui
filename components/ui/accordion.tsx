@@ -11,9 +11,9 @@ import { cn } from "@/lib/utils";
  *
  * Same parts, props and data-slot attributes as shadcn (Accordion,
  * AccordionItem, AccordionTrigger, AccordionContent) plus:
- * - A smoother height animation on an expo-out curve, with a quicker close.
- * - The answer fades and un-blurs in as the panel opens.
- * - The chevron rotates with a little overshoot and turns mint when open.
+ * - A short ease-out height animation, with a quicker close.
+ * - The answer fades in as the panel opens.
+ * - The chevron rotates 180° when open.
  * - `icon` on AccordionTrigger to swap the chevron for your own indicator.
  * - Focus-visible ring on triggers; no hover underline.
  * - Under `prefers-reduced-motion` panels open and close instantly.
@@ -75,9 +75,9 @@ function AccordionTrigger({
             aria-hidden
             className={cn(
               "pointer-events-none size-4 shrink-0 translate-y-0.5 text-muted-foreground",
-              "transition-[rotate,color] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] motion-reduce:transition-none",
+              "transition-[rotate,color] duration-200 ease-out motion-reduce:transition-none",
               "group-hover/accordion-trigger:text-foreground",
-              "group-data-[state=open]/accordion-trigger:rotate-180 group-data-[state=open]/accordion-trigger:text-primary"
+              "group-data-[state=open]/accordion-trigger:rotate-180"
             )}
           />
         )}
@@ -97,8 +97,8 @@ function AccordionContent({
       data-slot="accordion-content"
       className={cn(
         "group/accordion-content overflow-hidden text-sm",
-        "ease-[cubic-bezier(0.16,1,0.3,1)] data-[state=open]:animate-accordion-down data-[state=open]:duration-300",
-        "data-[state=closed]:animate-accordion-up data-[state=closed]:duration-200",
+        "ease-out data-[state=open]:animate-accordion-down data-[state=open]:duration-200",
+        "data-[state=closed]:animate-accordion-up data-[state=closed]:duration-150",
         "motion-reduce:animate-none"
       )}
       {...props}
@@ -106,8 +106,7 @@ function AccordionContent({
       <div
         className={cn(
           "pt-0 pb-4 text-muted-foreground",
-          "group-data-[state=open]/accordion-content:animate-in group-data-[state=open]/accordion-content:fade-in-0 group-data-[state=open]/accordion-content:blur-in-[2px]",
-          "group-data-[state=open]/accordion-content:slide-in-from-top-1 group-data-[state=open]/accordion-content:duration-300",
+          "group-data-[state=open]/accordion-content:animate-in group-data-[state=open]/accordion-content:fade-in-0 group-data-[state=open]/accordion-content:duration-200",
           "motion-reduce:animate-none",
           className
         )}

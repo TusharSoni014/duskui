@@ -10,8 +10,8 @@ const demo = (file: string) => `components/demos/ice-input/${file}`;
 const config: DocConfig = {
   title: "Ice Input",
   intro:
-    "A frosted-glass text input for React, built on the DuskUI Input with Motion and Tailwind CSS. On focus, frost spreads across the field from where you clicked and a cool glow lights the border — while it stays a native input that works with labels, autofill and forms.",
-  tags: ["Built on Input", "Frost-spread focus", "Any glow color", "Invalid state", "prefers-reduced-motion"],
+    "A frosted-glass text input for React, built on the DuskUI Input with Motion and Tailwind CSS. On focus, frost spreads across the field from where you clicked and the border takes a cool tint, while it stays a native input that works with labels, autofill and forms.",
+  tags: ["Built on Input", "Frost-spread focus", "Any frost color", "Invalid state", "prefers-reduced-motion"],
   hero: { Demo: IceInputDemo, file: demo("ice-input-demo.tsx"), minHeight: 320 },
   install: {
     registry: "ice-input",
@@ -36,11 +36,11 @@ export function Newsletter() {
   examples: [
     {
       id: "colors",
-      title: "Glow colors",
+      title: "Colors",
       description: (
         <>
           <Code>color</Code> takes any CSS color — a hex, <Code>oklch()</Code> or a theme variable like{" "}
-          <Code>var(--color-primary)</Code>. The frost, border and glow are all mixed from it.
+          <Code>var(--color-primary)</Code>. The frost, border and focus ring are all mixed from it.
         </>
       ),
       Demo: IceInputColors,
@@ -52,7 +52,7 @@ export function Newsletter() {
       title: "Invalid",
       description: (
         <>
-          Set <Code>aria-invalid</Code> and the glow switches to the destructive color. Link the message
+          Set <Code>aria-invalid</Code> and the tint switches to the destructive color. Link the message
           with <Code>aria-describedby</Code>.
         </>
       ),
@@ -69,14 +69,14 @@ export function Newsletter() {
       </>
     ),
     props: [
-      { name: "color", type: "string", default: '"oklch(0.86 0.11 215)"', description: "Glow color — any CSS color. Switches to destructive when aria-invalid." },
+      { name: "color", type: "string", default: '"oklch(0.86 0.11 215)"', description: "Frost and focus color — any CSS color. Switches to destructive when aria-invalid." },
       { name: "icon", type: "ReactNode", description: "Decorative leading icon. Label the input itself." },
       { name: "wrapperClassName", type: "string", description: "Classes for the glass wrapper (width, radius…)." },
     ],
   },
   accessibility: [
     <>It&apos;s a native <Code>&lt;input&gt;</Code>: pair it with a <Code>&lt;label htmlFor&gt;</Code> or <Code>aria-label</Code>; autofill and password managers keep working.</>,
-    "Focus is always visible: the border and glow light up on focus, and the frost covers the field from the left edge for keyboard focus.",
+    "Focus is always visible: the border tints and a focus ring appears, and the frost covers the field from the left edge for keyboard focus.",
     "Icons and effect layers are aria-hidden. Browsers without backdrop-filter get an opaque field for contrast.",
     "With reduced motion the frost appears instantly instead of spreading. The effect is a clip-path, so the field never changes size.",
   ],

@@ -37,7 +37,7 @@ function resolveColor(host: HTMLElement, color: string): [number, number, number
 }
 
 /**
- * Columns of falling 0s and 1s drawn on a <canvas>: bright heads, fading
+ * Columns of falling 0s and 1s drawn on a <canvas>: lighter heads, fading
  * trails and glyphs that flicker as they fall. Fills its nearest positioned parent.
  *
  * Glyphs are pre-rendered once per color/size, the loop pauses while off-screen
@@ -47,7 +47,7 @@ export function BinaryRain({
   color = "var(--color-primary)",
   fontSize = 14,
   speed = 1,
-  density = 0.6,
+  density = 0.4,
   characters = "01",
   className,
   ...props
@@ -77,7 +77,7 @@ export function BinaryRain({
     let tailSprites: HTMLCanvasElement[] = [];
     let headSprites: HTMLCanvasElement[] = [];
 
-    const sprite = (char: string, style: string, glow: boolean) => {
+    const sprite = (char: string, style: string) => {
       const c = document.createElement("canvas");
       c.width = c.height = Math.ceil(cell * dpr);
       const s = c.getContext("2d");
@@ -87,10 +87,6 @@ export function BinaryRain({
       s.textAlign = "center";
       s.textBaseline = "middle";
       s.fillStyle = style;
-      if (glow) {
-        s.shadowColor = `rgb(${r}, ${g}, ${b})`;
-        s.shadowBlur = cell * 0.5;
-      }
       s.fillText(char, cell / 2, cell / 2 + 1);
       return c;
     };
@@ -112,7 +108,7 @@ export function BinaryRain({
           const row = head - k;
           if (row < 0 || row >= rows) continue;
           const glyph = glyphs[row * cols + c];
-          ctx.globalAlpha = k === 0 ? 1 : Math.pow(1 - k / (drop.trail + 1), 1.6) * 0.85;
+          ctx.globalAlpha = k === 0 ? 0.7 : Math.pow(1 - k / (drop.trail + 1), 1.6) * 0.45;
           ctx.drawImage(k === 0 ? headSprites[glyph] : tailSprites[glyph], c * cell, row * cell, cell, cell);
         }
       }
@@ -138,9 +134,9 @@ export function BinaryRain({
       const nextDpr = Math.min(window.devicePixelRatio || 1, 2);
       if (nextDpr !== dpr || !tailSprites.length) {
         dpr = nextDpr;
-        tailSprites = chars.map((ch) => sprite(ch, `rgb(${r}, ${g}, ${b})`, false));
+        tailSprites = chars.map((ch) => sprite(ch, `rgb(${r}, ${g}, ${b})`));
         headSprites = chars.map((ch) =>
-          sprite(ch, `rgb(${Math.round(r + (255 - r) * 0.75)}, ${Math.round(g + (255 - g) * 0.75)}, ${Math.round(b + (255 - b) * 0.75)})`, true)
+          sprite(ch, `rgb(${Math.round(r + (255 - r) * 0.5)}, ${Math.round(g + (255 - g) * 0.5)}, ${Math.round(b + (255 - b) * 0.5)})`)
         );
       }
       canvas.width = Math.max(1, Math.round(width * dpr));

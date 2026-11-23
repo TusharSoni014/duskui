@@ -119,29 +119,29 @@ export interface AnimatedSelectContentProps
   stagger?: number;
 }
 
-/** The list surface. Drops below the trigger at its width, springs open and staggers its items in. */
+/** The list surface. Drops below the trigger at its width, scales open and staggers its items in. */
 export function AnimatedSelectContent({
   className,
   children,
   side = "bottom",
   sideOffset = 6,
   align = "start",
-  stagger = 0.03,
+  stagger = 0.015,
   onPointerLeave,
   ...props
 }: AnimatedSelectContentProps) {
   const { reduceMotion, setActive } = useAnimatedSelect();
-  const offset = side === "top" ? 8 : side === "bottom" ? -8 : 0;
+  const offset = side === "top" ? 4 : side === "bottom" ? -4 : 0;
 
   const variants: Variants = reduceMotion
     ? { closed: { opacity: 0 }, open: { opacity: 1, transition: { duration: 0.15 } } }
     : {
-        closed: { opacity: 0, scale: 0.92, y: offset },
+        closed: { opacity: 0, scale: 0.96, y: offset },
         open: {
           opacity: 1,
           scale: 1,
           y: 0,
-          transition: { type: "spring", duration: 0.4, bounce: 0.2, staggerChildren: stagger, delayChildren: 0.02 },
+          transition: { type: "spring", duration: 0.25, bounce: 0.1, staggerChildren: stagger, delayChildren: 0.02 },
         },
       };
 
@@ -165,9 +165,9 @@ export function AnimatedSelectContent({
           initial="closed"
           animate="open"
           className={cn(
-            "relative z-50 max-h-[min(20rem,var(--radix-select-content-available-height))] min-w-(--radix-select-trigger-width) overflow-hidden rounded-xl border bg-popover text-popover-foreground outline-none",
+            "relative z-50 max-h-[min(20rem,var(--radix-select-content-available-height))] min-w-(--radix-select-trigger-width) overflow-hidden rounded-md border bg-popover text-popover-foreground outline-none",
             "origin-(--radix-select-content-transform-origin)",
-            "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_16px_40px_-12px_rgb(0_0_0/0.7),0_0_0_1px_rgb(0_0_0/0.2)]",
+            "shadow-md",
             // Exit: a quick CSS fade that Radix waits for before unmounting.
             "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:duration-100",
             "motion-reduce:data-[state=closed]:zoom-out-100",
@@ -192,13 +192,11 @@ function useItemVariants(): Variants {
   return reduceMotion
     ? { closed: { opacity: 0 }, open: { opacity: 1 } }
     : {
-        closed: { opacity: 0, y: -4, filter: "blur(2px)" },
+        closed: { opacity: 0, y: -2 },
         open: {
           opacity: 1,
           y: 0,
-          filter: "blur(0px)",
-          transitionEnd: { filter: "none" },
-          transition: { type: "spring", duration: 0.35, bounce: 0.15 },
+          transition: { duration: 0.2, ease: "easeOut" },
         },
       };
 }
@@ -240,7 +238,7 @@ export function AnimatedSelectItem({
       <motion.div
         variants={variants}
         className={cn(
-          "relative flex w-full cursor-default items-center gap-2.5 rounded-lg py-2 pr-9 pl-2.5 text-sm text-foreground/85 outline-none select-none",
+          "relative flex w-full cursor-default items-center gap-2.5 rounded-sm py-2 pr-9 pl-2.5 text-sm text-foreground/85 outline-none select-none",
           "transition-colors duration-150 data-[highlighted]:text-foreground data-[state=checked]:text-foreground",
           "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
           "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
@@ -251,7 +249,7 @@ export function AnimatedSelectItem({
           <motion.span
             aria-hidden
             layoutId={layoutId}
-            className="absolute inset-0 rounded-lg bg-accent shadow-[inset_0_1px_0_rgb(255_255_255/0.04)]"
+            className="absolute inset-0 rounded-sm bg-accent"
             transition={reduceMotion ? { duration: 0 } : pillSpring}
           />
         )}
@@ -263,7 +261,7 @@ export function AnimatedSelectItem({
                 aria-hidden
                 className={cn(
                   "flex transition-colors duration-150",
-                  isActive || isSelected ? "text-primary" : "text-muted-foreground"
+                  isActive || isSelected ? "text-foreground" : "text-muted-foreground"
                 )}
               >
                 {icon}
@@ -278,10 +276,10 @@ export function AnimatedSelectItem({
         <span className="absolute right-2.5 flex size-4 items-center justify-center">
           <SelectPrimitive.ItemIndicator asChild>
             <motion.span
-              initial={reduceMotion ? { opacity: 0 } : { scale: 0, rotate: -45, opacity: 0 }}
-              animate={{ scale: 1, rotate: 0, opacity: 1 }}
-              transition={reduceMotion ? { duration: 0.15 } : { type: "spring", bounce: 0.5, duration: 0.45, delay: 0.12 }}
-              className="flex text-primary drop-shadow-[0_0_6px_var(--color-primary)]"
+              initial={reduceMotion ? { opacity: 0 } : { scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={reduceMotion ? { duration: 0.15 } : { type: "spring", bounce: 0.1, duration: 0.2 }}
+              className="flex text-foreground"
             >
               <CheckIcon className="size-4" />
             </motion.span>

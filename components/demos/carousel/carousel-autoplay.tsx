@@ -19,7 +19,7 @@ export default function CarouselAutoplayDemo() {
       <CarouselContent>
         {quotes.map((q) => (
           <CarouselItem key={q.name}>
-            <figure className="flex h-44 flex-col justify-between rounded-2xl border border-white/10 bg-[radial-gradient(circle_at_0%_0%,color-mix(in_oklab,var(--color-primary)_14%,transparent),transparent_60%)] bg-card p-6">
+            <figure className="flex h-44 flex-col justify-between rounded-xl border border-white/10 bg-card p-6">
               <blockquote className="text-lg leading-snug text-balance">“{q.quote}”</blockquote>
               <figcaption className="text-sm text-muted-foreground">
                 <span className="text-foreground">{q.name}</span> · {q.role}

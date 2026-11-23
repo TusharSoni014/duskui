@@ -23,7 +23,7 @@ export interface TiltCardProps extends MotionCardProps {
   maxTilt?: number;
   /** Scale while hovered. 1 to disable. */
   hoverScale?: number;
-  /** Show a light reflection that follows the cursor. */
+  /** Show a faint light reflection that follows the cursor. */
   glare?: boolean;
   /** CSS perspective in px. Lower = more dramatic. */
   perspective?: number;
@@ -31,19 +31,19 @@ export interface TiltCardProps extends MotionCardProps {
   containerClassName?: string;
 }
 
-const spring = { stiffness: 260, damping: 24, mass: 0.6 };
+const spring = { stiffness: 260, damping: 30, mass: 0.6 };
 
 /**
- * A card that tilts in 3D toward the cursor and springs back on leave, with a
- * glare highlight sliding across the surface. Elements inside the Card parts
- * (CardHeader, CardContent…) can pop out with `[transform:translateZ(40px)]`;
+ * A card that tilts gently in 3D toward the cursor and eases back on leave,
+ * with an optional, barely visible glare. Elements inside the Card parts
+ * (CardHeader, CardContent…) can pop out with `[transform:translateZ(24px)]`;
  * add `transform-3d` to any extra wrapper in between. Reacts to a mouse only
  * (never touch), and stays flat when the user prefers reduced motion.
  */
 export function TiltCard({
-  maxTilt = 10,
-  hoverScale = 1.02,
-  glare = true,
+  maxTilt = 6,
+  hoverScale = 1,
+  glare = false,
   perspective = 900,
   className,
   containerClassName,
@@ -63,7 +63,7 @@ export function TiltCard({
   const glareOpacity = useSpring(hover, { stiffness: 200, damping: 30 });
   const glareX = useTransform(px, (v) => `${v * 100}%`);
   const glareY = useTransform(py, (v) => `${v * 100}%`);
-  const glareBackground = useMotionTemplate`radial-gradient(farthest-corner circle at ${glareX} ${glareY}, rgb(255 255 255 / 0.14), transparent 55%)`;
+  const glareBackground = useMotionTemplate`radial-gradient(farthest-corner circle at ${glareX} ${glareY}, rgb(255 255 255 / 0.04), transparent 50%)`;
 
   const handleMove = (event: React.PointerEvent<HTMLDivElement>) => {
     if (reduceMotion || event.pointerType !== "mouse") return;

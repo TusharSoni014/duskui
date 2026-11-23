@@ -4,7 +4,7 @@ import { BackgroundBeams } from "@/components/dusk/backgrounds/background-beams"
 export default function BackgroundBeamsCta() {
   return (
     <div className="relative flex h-80 w-full items-center overflow-hidden rounded-xl border border-white/10 bg-background p-8">
-      <BackgroundBeams count={18} pathOpacity={0} fade={false} className="opacity-80" />
+      <BackgroundBeams count={12} pathOpacity={0} fade={false} />
       <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
       <div className="relative max-w-sm">
         <h3 className="text-2xl font-semibold tracking-tight text-white">Ready when you are</h3>

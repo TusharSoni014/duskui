@@ -88,7 +88,7 @@ export function Status() {
       props: [
         { name: "tone", type: '"primary" | "success" | "warning" | "danger" | "info" | "muted"', default: '"success"', description: "Dot color." },
         { name: "pulse", type: "boolean", default: "true", description: "Emit the ring. Turn off for idle states." },
-        { name: "speed", type: "number", default: "1.6", description: "Seconds per pulse; lower feels more urgent." },
+        { name: "speed", type: "number", default: "2", description: "Seconds per pulse; lower feels more urgent." },
         { name: "variant / size", type: "Badge props", default: '"outline"', description: "Any Badge variant and size." },
       ],
     },
@@ -111,7 +111,7 @@ export function Status() {
       props: [
         { name: "value", type: "number", description: "The count. Negative numbers show as 0. Required." },
         { name: "max", type: "number", default: "99", description: "Above this, show max+." },
-        { name: "bump", type: "boolean", default: "true", description: "Bounce the badge when the count goes up." },
+        { name: "bump", type: "boolean", default: "true", description: "Bump the badge slightly when the count goes up." },
         { name: "label", type: "(value: number) => string", description: "Screen-reader text, e.g. “3 unread messages”." },
       ],
     },
@@ -127,8 +127,8 @@ export function Status() {
       file: demo("shimmer-badge-demo.tsx"),
       minHeight: 160,
       props: [
-        { name: "duration", type: "number", default: "1.2", description: "Seconds for one sweep." },
-        { name: "delay", type: "number", default: "2.4", description: "Pause between sweeps in seconds." },
+        { name: "duration", type: "number", default: "1.4", description: "Seconds for one sweep." },
+        { name: "delay", type: "number", default: "4", description: "Pause between sweeps in seconds." },
         { name: "variant / size", type: "Badge props", default: '"soft"', description: "Any Badge variant and size." },
       ],
     },

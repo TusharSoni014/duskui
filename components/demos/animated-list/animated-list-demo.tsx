@@ -8,20 +8,19 @@ import { AnimatedList, useListStream } from "@/components/dusk/animated-list/ani
 import { Button } from "@/components/ui/button";
 
 const notifications = [
-  { icon: CreditCard, color: "#34d399", title: "Payment received", body: "$249.00 from Northwind Labs" },
-  { icon: UserPlus, color: "#38bdf8", title: "New sign-up", body: "maya@orbit.dev joined your workspace" },
-  { icon: MessageCircle, color: "#a78bfa", title: "New comment", body: "Leo: “Ship it, looks great on mobile.”" },
-  { icon: GitPullRequest, color: "#f59e0b", title: "Pull request merged", body: "#482 Add bento grid to landing page" },
-  { icon: Star, color: "#f472b6", title: "New star", body: "duskui reached 2,000 stars" },
+  { icon: CreditCard, title: "Payment received", body: "$249.00 from Northwind Labs" },
+  { icon: UserPlus, title: "New sign-up", body: "maya@orbit.dev joined your workspace" },
+  { icon: MessageCircle, title: "New comment", body: "Leo: “Ship it, looks great on mobile.”" },
+  { icon: GitPullRequest, title: "Pull request merged", body: "#482 Add bento grid to landing page" },
+  { icon: Star, title: "New review", body: "Priya rated your app 5 stars" },
 ];
 
-function Notification({ icon: Icon, color, title, body }: (typeof notifications)[number]) {
+function Notification({ icon: Icon, title, body }: (typeof notifications)[number]) {
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] p-3 backdrop-blur">
+    <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-card p-3">
       <span
         aria-hidden
-        className="flex size-9 shrink-0 items-center justify-center rounded-lg"
-        style={{ background: `color-mix(in oklab, ${color} 18%, transparent)`, color }}
+        className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-white/[0.06] text-white/70"
       >
         <Icon className="size-4.5" />
       </span>

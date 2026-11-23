@@ -12,7 +12,7 @@ const block = (file: string) => `components/dusk/accordion/${file}`;
 const config: DocConfig = {
   title: "Accordion",
   intro:
-    "An animated React accordion built on shadcn/ui and Radix: the drop-in Accordion eases its height open, fades answers in and turns its chevron with a little overshoot — plus a spring-physics Motion accordion with a gliding hover highlight, and an SEO-ready FAQ section with a plus-to-minus icon and FAQPage JSON-LD.",
+    "An animated React accordion built on shadcn/ui and Radix: the drop-in Accordion eases its height open, fades answers in and turns its chevron — plus a spring-physics Motion accordion with a gliding hover highlight, and an SEO-ready FAQ section with a plus-to-minus icon and FAQPage JSON-LD.",
   tags: ["Drop-in shadcn API", "Radix Accordion", "Spring height", "FAQ schema", "prefers-reduced-motion"],
   hero: { Demo: MotionAccordionDemo, file: demo("motion-accordion-demo.tsx"), minHeight: 380 },
   install: {
@@ -55,7 +55,7 @@ export function Faq() {
       description: (
         <>
           <Code>type=&quot;single&quot;</Code> with <Code>collapsible</Code> keeps at most one item open.
-          The answer fades and un-blurs in while the panel grows; closing is quicker than opening.
+          The answer fades in while the panel grows; closing is quicker than opening.
         </>
       ),
       Demo: AccordionBasicDemo,
@@ -85,9 +85,8 @@ export function Faq() {
       deps: "motion @radix-ui/react-accordion",
       description: (
         <>
-          Panels open on a spring and their content fades, rises and un-blurs in. A soft highlight glides
-          between items under the cursor (a shared <Code>layoutId</Code>) and the open item gets a mint
-          outline. Closed answers stay in the DOM as <Code>inert</Code>, so they are still indexed by
+          Panels open on a spring and their content fades in. A soft highlight glides between items under
+          the cursor (a shared <Code>layoutId</Code>) and the open item gets a quiet outline. Closed answers stay in the DOM as <Code>inert</Code>, so they are still indexed by
           search engines. <Code>value</Code> is always an array, in single and multiple mode.
         </>
       ),
@@ -111,8 +110,7 @@ export function Faq() {
       deps: "",
       description: (
         <>
-          A data-driven FAQ section: numbered questions, a plus that folds into a minus as its badge spins
-          and fills, and answers that ease open. Set <Code>jsonLd</Code> to emit schema.org{" "}
+          A data-driven FAQ section: numbered questions, a plus that folds into a minus, and answers that ease open. Set <Code>jsonLd</Code> to emit schema.org{" "}
           <Code>FAQPage</Code> structured data for rich results. It has no hooks, so it renders in a Server
           Component and the JSON-LD lands in the initial HTML.
         </>

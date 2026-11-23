@@ -88,8 +88,8 @@ toast.success("Changes saved", { description: "Your team can see them now." })`,
       deps: "motion sonner lucide-react",
       description: (
         <>
-          A custom toast rendered with <Code>toast.custom</Code>. Update it by id and the icon morphs: the
-          spinner spins out, the check or cross draws itself in and a ripple marks the result. A thin line
+          A custom toast rendered with <Code>toast.custom</Code>. Update it by id and the icon changes: the
+          spinner fades out and the check or cross draws itself in. A thin line
           shows the time left, driven by the same motion value as the timer, so they never drift; it
           pauses on hover, focus and hidden tabs. <Code>animatedToast.promise</Code> keeps the spinner up
           for at least <Code>minLoading</Code> ms so fast requests don&apos;t flash, and when you pass a
@@ -123,7 +123,7 @@ toast.success("Changes saved", { description: "Your team can see them now." })`,
         <>
           The optimistic-delete pattern: remove the item right away, call <Code>undoToast()</Code>, and
           only make it permanent in <Code>onCommit</Code>. A ring drains around the seconds left; Undo (or
-          ⌘Z / Ctrl+Z) calls <Code>onUndo</Code> and the toast morphs into a &ldquo;Restored&rdquo;
+          ⌘Z / Ctrl+Z) calls <Code>onUndo</Code> and the toast turns into a &ldquo;Restored&rdquo;
           confirmation. <Code>onUndo</Code> and <Code>onCommit</Code> are guaranteed to run at most once,
           and never both. Archive a few emails, then undo one.
         </>

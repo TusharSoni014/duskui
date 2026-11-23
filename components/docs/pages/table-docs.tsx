@@ -62,8 +62,7 @@ export function Invoices() {
       title: "Default",
       description: (
         <>
-          Hover a row: it warms up and a thin mint bar fades in on its leading edge. The bar is an inset
-          shadow, so it never shifts the layout. Header and footer rows stay still.
+          Hover a row: its background lightens slightly. Header and footer rows stay still.
         </>
       ),
       Demo: TableBasicDemo,

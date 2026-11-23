@@ -41,7 +41,7 @@ export interface ThemeToggleProps
   label?: string;
 }
 
-const morph: Transition = { type: "spring", bounce: 0.3, duration: 0.7 };
+const morph: Transition = { type: "spring", bounce: 0.1, duration: 0.5 };
 
 const sizes = {
   sm: "size-8 [&_svg]:size-4",

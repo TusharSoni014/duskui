@@ -49,7 +49,7 @@ export function ReleaseList({ releases }: { releases: string[] }) {
       title: "Default",
       description: (
         <>
-          Hover the list: the scrollbar fades in, brightens when you hover it, turns mint while you
+          Hover the list: the scrollbar fades in, brightens when you hover it and while you
           drag the thumb, and fades out shortly after the pointer leaves. Wheel, touch and keyboard
           scrolling stay native. Pass <Code>type=&quot;scroll&quot;</Code> to show it only while
           scrolling, or <Code>type=&quot;always&quot;</Code>.

@@ -67,18 +67,18 @@ const isFolder = (item: FileTreeItem) => Array.isArray(item.children);
 
 const ICONS: Array<[RegExp, LucideIcon, string]> = [
   // Lock and config files first, so `package-lock.json` or `next.config.ts` don't read as plain code.
-  [/(\.lock|-lock\.json|-lock\.ya?ml)$/i, FileLock, "text-white/45"],
+  [/(\.lock|-lock\.json|-lock\.ya?ml)$/i, FileLock, "text-white/55"],
   [/(\.config\.[a-z]+|^\.[\w.-]+)$/i, FileCog, "text-white/55"],
-  [/\.(tsx?|jsx?|mjs|cjs|vue|svelte|astro|py|rb|go|rs|java|kt|swift|c|cpp|h|php)$/i, FileCode, "text-sky-400"],
-  [/\.(json|jsonc|ya?ml|toml)$/i, FileBraces, "text-amber-300"],
-  [/\.(css|scss|sass|less)$/i, FileType, "text-pink-400"],
-  [/\.(mdx?|txt|rst)$/i, FileText, "text-white/60"],
-  [/\.(png|jpe?g|gif|webp|avif|svg|ico)$/i, FileImage, "text-violet-400"],
-  [/\.(mp4|mov|webm|mkv)$/i, FileVideoCamera, "text-rose-400"],
-  [/\.(mp3|wav|ogg|flac)$/i, FileMusic, "text-fuchsia-400"],
-  [/\.(zip|tar|gz|tgz|rar|7z)$/i, FileArchive, "text-orange-300"],
-  [/\.(csv|tsv|xlsx?)$/i, FileSpreadsheet, "text-emerald-400"],
-  [/\.(sh|bash|zsh|ps1)$/i, FileTerminal, "text-lime-300"],
+  [/\.(tsx?|jsx?|mjs|cjs|vue|svelte|astro|py|rb|go|rs|java|kt|swift|c|cpp|h|php)$/i, FileCode, "text-white/55"],
+  [/\.(json|jsonc|ya?ml|toml)$/i, FileBraces, "text-white/55"],
+  [/\.(css|scss|sass|less)$/i, FileType, "text-white/55"],
+  [/\.(mdx?|txt|rst)$/i, FileText, "text-white/55"],
+  [/\.(png|jpe?g|gif|webp|avif|svg|ico)$/i, FileImage, "text-white/55"],
+  [/\.(mp4|mov|webm|mkv)$/i, FileVideoCamera, "text-white/55"],
+  [/\.(mp3|wav|ogg|flac)$/i, FileMusic, "text-white/55"],
+  [/\.(zip|tar|gz|tgz|rar|7z)$/i, FileArchive, "text-white/55"],
+  [/\.(csv|tsv|xlsx?)$/i, FileSpreadsheet, "text-white/55"],
+  [/\.(sh|bash|zsh|ps1)$/i, FileTerminal, "text-white/55"],
 ];
 
 /** The lucide icon and color class used for a file name. */
@@ -86,7 +86,7 @@ export function fileIcon(name: string): { Icon: LucideIcon; className: string } 
   for (const [pattern, Icon, className] of ICONS) {
     if (pattern.test(name)) return { Icon, className };
   }
-  return { Icon: File, className: "text-white/50" };
+  return { Icon: File, className: "text-white/55" };
 }
 
 function flatten(items: FileTreeItem[], open: Set<string>, depth = 0, parentId: string | null = null, out: Row[] = []) {
@@ -363,8 +363,8 @@ function TreeNode({
           <motion.span
             layoutId={`${ctx.layoutId}-selection`}
             aria-hidden
-            className="absolute inset-0 rounded-md bg-primary/12 shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--color-primary)_28%,transparent)]"
-            transition={ctx.instant ? { duration: 0 } : { type: "spring", bounce: 0.18, duration: 0.4 }}
+            className="absolute inset-0 rounded-md bg-primary/10"
+            transition={ctx.instant ? { duration: 0 } : { type: "spring", bounce: 0.1, duration: 0.3 }}
           />
         )}
         <span aria-hidden className="relative grid size-4 shrink-0 place-items-center text-white/40">
@@ -381,9 +381,9 @@ function TreeNode({
           {item.icon ??
             (folder ? (
               isOpen ? (
-                <FolderOpen className="size-4 text-primary" />
+                <FolderOpen className="size-4 text-white/55" />
               ) : (
-                <Folder className="size-4 text-primary/80" />
+                <Folder className="size-4 text-white/55" />
               )
             ) : (
               <Icon className={cn("size-4", iconColor)} />
@@ -410,7 +410,7 @@ function TreeNode({
                   aria-hidden
                   className={cn(
                     "pointer-events-none absolute inset-y-1 w-px transition-colors duration-200",
-                    ctx.branch.has(item.id) ? "bg-primary/45" : "bg-white/10"
+                    ctx.branch.has(item.id) ? "bg-white/25" : "bg-white/10"
                   )}
                   style={{ left: padding + 7.5 }}
                 />

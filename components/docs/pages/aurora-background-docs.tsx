@@ -73,10 +73,10 @@ export function Hero() {
       </>
     ),
     props: [
-      { name: "colors", type: "string[]", default: '["var(--color-primary)", "#22d3ee", "#818cf8", "#2dd4bf"]', description: "Band colors, any CSS color. One band per color, up to six." },
-      { name: "intensity", type: "number", default: "0.6", description: "Overall brightness, from 0 to 1." },
+      { name: "colors", type: "string[]", default: '["var(--color-primary)", "#38bdf8", "#6366f1"]', description: "Band colors, any CSS color. One band per color, up to six." },
+      { name: "intensity", type: "number", default: "0.35", description: "Overall brightness, from 0 to 1." },
       { name: "speed", type: "number", default: "1", description: "Speed multiplier for the drift." },
-      { name: "blur", type: "number", default: "48", description: "Softness of the bands in px. 0 turns the blur filter off." },
+      { name: "blur", type: "number", default: "64", description: "Softness of the bands in px. 0 turns the blur filter off." },
       { name: "fade", type: "boolean", default: "true", description: "Fade the aurora out toward the bottom and sides." },
       { name: "className", type: "string", description: "Merged onto the absolutely positioned root." },
     ],

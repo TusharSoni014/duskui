@@ -15,7 +15,7 @@ import {
 function Row({ icon, title, hint }: { icon: React.ReactNode; title: string; hint: string }) {
   return (
     <span className="flex w-full items-center gap-3 rounded-lg border px-3 py-3 text-left transition-colors hover:bg-accent/60">
-      <span className="flex size-8 items-center justify-center rounded-md border bg-white/[0.03] text-primary [&_svg]:size-4">
+      <span className="flex size-8 items-center justify-center rounded-md border bg-white/[0.03] text-muted-foreground [&_svg]:size-4">
         {icon}
       </span>
       <span className="flex-1">

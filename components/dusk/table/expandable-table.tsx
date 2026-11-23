@@ -107,7 +107,7 @@ export function ExpandableTable<T>({
                       className={cn(
                         "grid size-7 place-items-center rounded-md text-muted-foreground outline-none",
                         "transition-colors duration-150 hover:bg-accent hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50",
-                        open && "text-primary"
+                        open && "text-foreground"
                       )}
                     >
                       <motion.span
@@ -115,7 +115,7 @@ export function ExpandableTable<T>({
                         className="flex"
                         initial={false}
                         animate={{ rotate: open ? 90 : 0 }}
-                        transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 500, damping: 30 }}
+                        transition={reduceMotion ? { duration: 0 } : { duration: 0.2, ease: "easeOut" }}
                       >
                         <ChevronRightIcon className="size-4" />
                       </motion.span>
@@ -133,8 +133,8 @@ export function ExpandableTable<T>({
 
                 <AnimatePresence initial={false}>
                   {open && (
-                    <tr key="detail" id={panelId} className="border-b bg-primary/[0.03] last:border-0">
-                      <td colSpan={colSpan} className="p-0 shadow-[inset_2px_0_0_var(--color-primary)]">
+                    <tr key="detail" id={panelId} className="border-b bg-muted/30 last:border-0">
+                      <td colSpan={colSpan} className="p-0">
                         <motion.div
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}

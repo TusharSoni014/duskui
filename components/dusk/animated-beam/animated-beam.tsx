@@ -89,7 +89,7 @@ function PulseDash({
 }
 
 /**
- * An SVG beam that links two elements with a gentle curve and sends a glowing
+ * An SVG beam that links two elements with a gentle curve and sends a thin
  * pulse along it. Place it inside the positioned container that holds both
  * elements; it measures them and redraws whenever any of the three resize.
  *
@@ -107,10 +107,10 @@ export function AnimatedBeam({
   delay = 0,
   repeatDelay = 0.6,
   pathColor = "#ffffff",
-  pathWidth = 2,
-  pathOpacity = 0.12,
+  pathWidth = 1.5,
+  pathOpacity = 0.1,
   gradientStartColor = "var(--color-primary)",
-  gradientStopColor = "#22d3ee",
+  gradientStopColor = "#e4e4e7",
   pulseLength = 0.25,
   fromOffset,
   toOffset,
@@ -228,12 +228,12 @@ export function AnimatedBeam({
               d={geo.d}
               fill="none"
               stroke={`url(#${gradientId})`}
-              strokeOpacity={0.55}
+              strokeOpacity={0.4}
               strokeWidth={pathWidth}
               strokeLinecap="round"
             />
           ) : (
-            <g style={{ filter: `drop-shadow(0 0 ${pathWidth * 2}px ${gradientStartColor})` }}>
+            <g>
               {TAIL.map((share, i) => (
                 <PulseDash
                   key={i}
@@ -243,7 +243,7 @@ export function AnimatedBeam({
                   reverse={reverse}
                   stroke={`url(#${gradientId})`}
                   width={pathWidth}
-                  opacity={i === TAIL.length - 1 ? 1 : 0.35}
+                  opacity={i === TAIL.length - 1 ? 0.85 : 0.3}
                 />
               ))}
             </g>

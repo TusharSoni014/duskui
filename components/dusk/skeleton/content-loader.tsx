@@ -21,7 +21,7 @@ export interface ContentLoaderProps
   contentClassName?: string;
 }
 
-const swap = { type: "spring", duration: 0.45, bounce: 0 } as const;
+const swap = { type: "spring", duration: 0.3, bounce: 0 } as const;
 
 /** Tracks an element's height so the wrapper can spring between skeleton and content sizes. */
 function useMeasuredHeight<T extends HTMLElement>() {
@@ -40,7 +40,7 @@ function useMeasuredHeight<T extends HTMLElement>() {
 }
 
 /**
- * Swaps a skeleton for the real content. The two crossfade with a soft blur
+ * Swaps a skeleton for the real content. The two crossfade
  * while the wrapper's height springs from one to the other, so whatever sits
  * below glides instead of jumping. With `stagger`, the content's direct
  * children fade up one after another. The region is aria-busy while loading
@@ -83,10 +83,9 @@ export function ContentLoader({
               key={loading ? "skeleton" : "content"}
               aria-hidden={loading || undefined}
               className={loading ? undefined : contentClassName}
-              initial={{ opacity: 0, filter: reduceMotion ? "blur(0px)" : "blur(6px)" }}
-              // Drop the filter when done: it would trap fixed/absolute children.
-              animate={{ opacity: 1, filter: "blur(0px)", transitionEnd: { filter: "none" } }}
-              exit={{ opacity: 0, filter: reduceMotion ? "blur(0px)" : "blur(6px)" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={swap}
             >
               {loading || !stagger ? (
@@ -96,13 +95,13 @@ export function ContentLoader({
                   className="contents"
                   initial="hidden"
                   animate="visible"
-                  variants={{ visible: { transition: { staggerChildren: 0.06, delayChildren: 0.05 } } }}
+                  variants={{ visible: { transition: { staggerChildren: 0.04, delayChildren: 0.03 } } }}
                 >
                   {React.Children.map(children, (child) =>
                     child == null || typeof child === "boolean" ? child : (
                       <motion.div
                         variants={{
-                          hidden: { opacity: 0, y: reduceMotion ? 0 : 8 },
+                          hidden: { opacity: 0, y: reduceMotion ? 0 : 4 },
                           visible: { opacity: 1, y: 0, transition: swap },
                         }}
                       >

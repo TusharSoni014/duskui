@@ -243,7 +243,7 @@
       "name": "search-input",
       "type": "registry:component",
       "title": "Search Input",
-      "description": "Search field with loading spinner, animated clear button, Escape to clear and a \u2318K focus shortcut.",
+      "description": "Search field with loading spinner, animated clear button, Escape to clear and a ⌘K focus shortcut.",
       "dependencies": [
         "motion",
         "lucide-react"
@@ -286,7 +286,7 @@
       "name": "neon-button",
       "type": "registry:component",
       "title": "Neon Button",
-      "description": "Button that glows like a neon tube. Glow intensifies on hover and keyboard focus, optional flicker-on effect, any CSS color, solid or outline. Built on the DuskUI Button, so loading and loadingText keep working.",
+      "description": "Neon-tube button with one soft glow that brightens on hover and keyboard focus, optional flicker-on, any CSS color, solid or outline. Built on the DuskUI Button, so loading and loadingText keep working.",
       "dependencies": [
         "motion"
       ],
@@ -307,7 +307,7 @@
       "name": "glow-text",
       "type": "registry:component",
       "title": "Glow Text",
-      "description": "Real, selectable, SEO-readable text with a layered neon text-shadow glow, optional breathe or flicker animation, any color and any heading level via the as prop.",
+      "description": "Real, selectable, SEO-readable text with a single soft neon text-shadow, optional breathe or flicker animation, any color and any heading level via the as prop.",
       "dependencies": [
         "motion"
       ],
@@ -328,7 +328,7 @@
       "name": "neon-border",
       "type": "registry:component",
       "title": "Neon Border",
-      "description": "Wrapper that draws an animated neon border around any content: a beam of light travels around the edge with a soft glow. Color, two-tone, speed, thickness, radius and hover trigger props.",
+      "description": "Wrapper that draws an animated neon border around any content: a thin beam travels around the edge with a low, adjustable glow. Color, two-tone, speed, thickness, radius and hover trigger props.",
       "dependencies": [
         "motion"
       ],
@@ -349,7 +349,7 @@
       "name": "electric-card",
       "type": "registry:component",
       "title": "Electric Card",
-      "description": "Card whose border crackles with procedurally generated SVG lightning and glows on hover or keyboard focus. Tunable chaos, arc count, speed, radius and color.",
+      "description": "Card whose border crackles with procedurally generated SVG lightning on hover or keyboard focus. Tunable chaos, arc count, speed, radius and color.",
       "dependencies": [
         "motion"
       ],
@@ -370,7 +370,7 @@
       "name": "plasma-loader",
       "type": "registry:component",
       "title": "Plasma Loader",
-      "description": "Accessible loading spinner with a plasma effect: glowing blobs orbit a ring and fuse through an SVG gooey filter. Size, color, secondary color, speed and screen-reader label props.",
+      "description": "Accessible loading spinner with a plasma effect: blobs orbit a ring and fuse through an SVG gooey filter. Size, color, secondary color, speed and screen-reader label props.",
       "dependencies": [
         "motion"
       ],
@@ -391,7 +391,7 @@
       "name": "circuit-board",
       "type": "registry:component",
       "title": "Circuit Board",
-      "description": "Animated circuit board background with 45\u00b0-routed SVG traces, solder pads and pulses of light travelling along them.",
+      "description": "Animated circuit board background with 45°-routed SVG traces, solder pads and pulses of light travelling along them.",
       "dependencies": [
         "motion"
       ],
@@ -412,7 +412,7 @@
       "name": "data-stream",
       "type": "registry:component",
       "title": "Data Stream",
-      "description": "Canvas data-flow effect where glowing packets stream along horizontal lanes at varying speeds. A hero accent.",
+      "description": "Canvas data-flow effect where faint packets stream along horizontal lanes at varying speeds. A quiet hero accent.",
       "dependencies": [
         "motion"
       ],
@@ -433,7 +433,7 @@
       "name": "hologram-card",
       "type": "registry:component",
       "title": "Hologram Card",
-      "description": "Holographic card with iridescent foil, rainbow rim, scanlines, and 3D tilt and glare that follow the pointer.",
+      "description": "Holographic card with a faint iridescent foil, rainbow rim, optional static scanlines and a gentle 3D tilt toward the pointer.",
       "dependencies": [
         "motion"
       ],
@@ -601,7 +601,7 @@
       "name": "glass-card",
       "type": "registry:component",
       "title": "Glass Card",
-      "description": "Frosted-glass card with backdrop blur and saturation, gradient hairline border, film grain, a pointer-following specular highlight and optional 3D tilt.",
+      "description": "Frosted-glass card with backdrop blur and saturation, a 1px hairline border, film grain and optional 3D tilt.",
       "dependencies": [
         "motion"
       ],
@@ -688,7 +688,7 @@
       "name": "ice-input",
       "type": "registry:component",
       "title": "Ice Input",
-      "description": "Frosted-glass input built on the DuskUI Input where frost spreads from the click point on focus and a cool glow lights the border.",
+      "description": "Frosted-glass input built on the DuskUI Input where frost spreads from the click point on focus, with a standard focus ring.",
       "dependencies": [
         "motion"
       ],
@@ -752,7 +752,7 @@
       "name": "tilt-card",
       "type": "registry:component",
       "title": "Tilt Card",
-      "description": "Card that tilts in 3D toward the cursor on springs with a moving glare highlight. Mouse only, static with reduced motion.",
+      "description": "Card that tilts in 3D toward the cursor on springs, with an optional faint glare. Mouse only, static with reduced motion.",
       "dependencies": [
         "motion"
       ],
@@ -1055,7 +1055,7 @@
       "name": "meteors",
       "type": "registry:component",
       "title": "Meteors",
-      "description": "Shooting stars with glowing heads and fading tails streaking diagonally across the container at staggered intervals.",
+      "description": "Shooting stars with soft fading tails streaking diagonally across the container at staggered intervals.",
       "dependencies": [
         "motion"
       ],
@@ -1332,7 +1332,7 @@
       "name": "segmented-progress",
       "type": "registry:component",
       "title": "Segmented Progress",
-      "description": "Progress bar split into segments that fill one after another from a single spring; the filling segment glows.",
+      "description": "Progress bar split into segments that fill one after another from a single spring.",
       "dependencies": [
         "motion",
         "@radix-ui/react-progress"
@@ -1354,7 +1354,7 @@
       "name": "slider",
       "type": "registry:ui",
       "title": "Slider",
-      "description": "Drop-in upgrade of the shadcn/ui Slider: thumb grows with a halo while dragging, gradient range, labels forwarded to thumbs. Single, range and vertical.",
+      "description": "Drop-in upgrade of the shadcn/ui Slider: the thumb grows while dragging, labels are forwarded to thumbs. Single, range and vertical.",
       "dependencies": [
         "@radix-ui/react-slider"
       ],
@@ -1656,7 +1656,7 @@
       "name": "switch",
       "type": "registry:ui",
       "title": "Switch",
-      "description": "Drop-in upgrade of the shadcn/ui Switch: spring-loaded thumb (CSS linear()), glowing on state, sm/default/lg sizes, thumbContent.",
+      "description": "Drop-in upgrade of the shadcn/ui Switch: spring-loaded thumb (CSS linear()), sm/default/lg sizes, thumbContent.",
       "dependencies": [
         "@radix-ui/react-switch",
         "class-variance-authority"
@@ -1869,7 +1869,7 @@
       "name": "bento-grid",
       "type": "registry:component",
       "title": "Bento Grid",
-      "description": "Responsive bento layout with column/row spans; cards reveal a CTA, zoom their background and follow the cursor with a glow on hover or focus.",
+      "description": "Responsive bento layout with column/row spans; cards reveal a CTA and zoom their background on hover or focus.",
       "dependencies": [
         "motion",
         "lucide-react"
@@ -2002,7 +2002,7 @@
       "name": "radio-group",
       "type": "registry:ui",
       "title": "Radio Group",
-      "description": "Drop-in shadcn Radio Group with a dot that springs in and a mint glow when checked.",
+      "description": "Drop-in shadcn Radio Group with a dot that springs in when checked.",
       "dependencies": [
         "@radix-ui/react-radio-group"
       ],
@@ -2023,7 +2023,7 @@
       "name": "radio-cards",
       "type": "registry:component",
       "title": "Radio Cards",
-      "description": "Selectable plan cards with a glowing outline that glides to the selected card.",
+      "description": "Selectable plan cards with a 1px primary outline that glides to the selected card.",
       "dependencies": [
         "motion",
         "@radix-ui/react-radio-group"
@@ -3054,7 +3054,7 @@
       "name": "command-palette",
       "type": "registry:component",
       "title": "Command Palette",
-      "description": "\u2318K command palette with a gliding highlight, recent items and nested pages that slide in with a breadcrumb and a springing height.",
+      "description": "⌘K command palette with a gliding highlight, recent items and nested pages that slide in with a breadcrumb and a springing height.",
       "dependencies": [
         "motion",
         "cmdk",
@@ -3359,7 +3359,7 @@
       "name": "kbd",
       "type": "registry:ui",
       "title": "Kbd",
-      "description": "Keycap-styled Kbd and KbdGroup with sizes and a pressed state that sinks and glows.",
+      "description": "Keycap-styled Kbd and KbdGroup with sizes and a pressed state that sinks.",
       "dependencies": [
         "class-variance-authority"
       ],
@@ -3380,7 +3380,7 @@
       "name": "shortcut-kbd",
       "type": "registry:component",
       "title": "Shortcut Kbd",
-      "description": "Keycaps that light up as you press a shortcut, flash on trigger, show \u2318 or Ctrl without hydration mismatch, plus a useShortcut hook.",
+      "description": "Keycaps that light up as you press a shortcut, flash on trigger, show ⌘ or Ctrl without hydration mismatch, plus a useShortcut hook.",
       "dependencies": [
         "motion"
       ],
@@ -3401,7 +3401,7 @@
       "name": "empty",
       "type": "registry:ui",
       "title": "Empty",
-      "description": "shadcn-style Empty state parts with a dashed glowing surface, icon tile media and an outline toggle.",
+      "description": "shadcn-style Empty state parts with a dashed surface, icon tile media and an outline toggle.",
       "dependencies": [
         "class-variance-authority"
       ],
@@ -3532,7 +3532,7 @@
       "name": "resizable",
       "type": "registry:ui",
       "title": "Resizable",
-      "description": "shadcn/ui Resizable panels on react-resizable-panels v4 with a handle that glows while dragging.",
+      "description": "shadcn/ui Resizable panels on react-resizable-panels v4 with a handle that highlights while dragging.",
       "dependencies": [
         "react-resizable-panels"
       ],
@@ -4262,6 +4262,440 @@
       ],
       "categories": [
         "file-tree"
+      ]
+    },
+    {
+      "name": "shine-border",
+      "type": "registry:component",
+      "title": "Shine Border",
+      "description": "Wrapper that sweeps a soft multi-colour sheen around a thin border.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/shine-border/shine-border.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "shine-border"
+      ]
+    },
+    {
+      "name": "rainbow-button",
+      "type": "registry:component",
+      "title": "Rainbow Button",
+      "description": "DuskUI Button with an animated rainbow gradient border; default and outline variants.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/rainbow-button/rainbow-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "rainbow-button"
+      ]
+    },
+    {
+      "name": "pulsating-button",
+      "type": "registry:component",
+      "title": "Pulsating Button",
+      "description": "DuskUI Button with expanding pulse rings that pause on hover, focus and reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/pulsating-button/pulsating-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "pulsating-button"
+      ]
+    },
+    {
+      "name": "interactive-hover-button",
+      "type": "registry:component",
+      "title": "Interactive Hover Button",
+      "description": "Pill button whose dot expands to fill it on hover while the label swaps for an arrow.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/interactive-hover-button/interactive-hover-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "interactive-hover-button"
+      ]
+    },
+    {
+      "name": "moving-border",
+      "type": "registry:component",
+      "title": "Moving Border",
+      "description": "A soft beam that travels around an element's rounded border, plus a ready MovingBorderButton.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/moving-border/moving-border.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "moving-border"
+      ]
+    },
+    {
+      "name": "retro-grid",
+      "type": "registry:component",
+      "title": "Retro Grid",
+      "description": "A synthwave perspective grid: a faint floor that scrolls toward the viewer and recedes to the horizon, with an optional striped sun.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/retro-grid/retro-grid.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "retro-grid"
+      ]
+    },
+    {
+      "name": "flickering-grid",
+      "type": "registry:component",
+      "title": "Flickering Grid",
+      "description": "A canvas grid of small squares that flicker at random, optionally masked so squares only appear inside a word.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/flickering-grid/flickering-grid.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "flickering-grid"
+      ]
+    },
+    {
+      "name": "ripple",
+      "type": "registry:component",
+      "title": "Ripple",
+      "description": "Concentric rings that expand from the center in a staggered, seamless loop, with optional ripples spawned wherever the pointer presses.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/ripple/ripple.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "ripple"
+      ]
+    },
+    {
+      "name": "wavy-background",
+      "type": "registry:component",
+      "title": "Wavy Background",
+      "description": "Layered, flowing waves drawn on a canvas from seeded noise, each in its own color and softened with a blur.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/wavy-background/wavy-background.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "wavy-background"
+      ]
+    },
+    {
+      "name": "lamp",
+      "type": "registry:component",
+      "title": "Lamp",
+      "description": "An overhead lamp: a thin bar whose two conic light cones widen into place when the section scrolls into view, lighting the content below.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/lamp/lamp.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "lamp"
+      ]
+    },
+    {
+      "name": "globe",
+      "type": "registry:component",
+      "title": "Globe",
+      "description": "Interactive WebGL globe with markers and arcs that auto-rotates and spins with spring momentum when dragged.",
+      "dependencies": [
+        "cobe",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/globe/globe.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "globe"
+      ]
+    },
+    {
+      "name": "icon-cloud",
+      "type": "registry:component",
+      "title": "Icon Cloud",
+      "description": "A slowly rotating 3D sphere of icons that you can steer by hovering or spin by dragging, with nearer icons larger and brighter.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/icon-cloud/icon-cloud.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "icon-cloud"
+      ]
+    },
+    {
+      "name": "card-stack",
+      "type": "registry:component",
+      "title": "Card Stack",
+      "description": "A stack of cards where the top one can be swiped left or right, by drag, buttons or arrow keys, while the rest spring forward.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/card-stack/card-stack.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "card-stack"
+      ]
+    },
+    {
+      "name": "countdown",
+      "type": "registry:component",
+      "title": "Countdown",
+      "description": "A countdown to a target date with rolling or flipping digits, a compact variant and throttled screen reader announcements.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/countdown/countdown.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "countdown"
+      ]
+    },
+    {
+      "name": "vanish-input",
+      "type": "registry:component",
+      "title": "Vanish Input",
+      "description": "A prompt field whose placeholder cycles through suggestions and whose text dissolves into particles when submitted.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/vanish-input/vanish-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "vanish-input"
+      ]
+    },
+    {
+      "name": "image-compare",
+      "type": "registry:component",
+      "title": "Image Compare",
+      "description": "A before/after comparison slider that reveals one layer over another with a clip-path as you drag the divider, hover, or use the keyboard.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/image-compare/image-compare.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "image-compare"
+      ]
+    },
+    {
+      "name": "sortable-list",
+      "type": "registry:component",
+      "title": "Sortable List",
+      "description": "A vertical drag-to-reorder list built on Motion's Reorder: drag rows by their handle, neighbours spring out of the way, and the keyboard can pick up, move and drop rows too.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/sortable-list/sortable-list.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "sortable-list"
+      ]
+    },
+    {
+      "name": "kanban",
+      "type": "registry:component",
+      "title": "Kanban",
+      "description": "A kanban board whose cards drag between columns and reorder with layout springs, with a live drop slot, column counts and a full keyboard alternative.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/dropdown-menu.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/kanban/kanban.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "kanban"
+      ]
+    },
+    {
+      "name": "rating",
+      "type": "registry:component",
+      "title": "Rating",
+      "description": "A star rating input with hover preview, half steps and a pop as stars fill, exposed as a keyboard-friendly slider that also submits with forms.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/rating/rating.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "rating"
+      ]
+    },
+    {
+      "name": "stepper",
+      "type": "registry:component",
+      "title": "Stepper",
+      "description": "A multi-step flow that manages content panels and navigation, with an animated progress line, check marks that draw on completed steps, direction-aware panel slides and optional per-step validation.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/stepper/stepper.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "stepper"
       ]
     }
   ]

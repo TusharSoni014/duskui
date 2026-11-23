@@ -12,7 +12,7 @@ const block = (file: string) => `components/dusk/select/${file}`;
 const config: DocConfig = {
   title: "Select",
   intro:
-    "An animated React select built on shadcn/ui and Radix Select: the drop-in Select grows out of its trigger, flips its chevron and pops in the check mark — plus a Motion block with a spring-open list, cascading options and a highlight that glides between items.",
+    "An animated React select built on shadcn/ui and Radix Select: the drop-in Select grows out of its trigger, flips its chevron and fades in the check mark — plus a Motion block with a list that scales open, cascading options and a highlight that glides between items.",
   tags: ["Drop-in shadcn API", "Radix Select", "Motion layoutId", "Keyboard & typeahead", "prefers-reduced-motion"],
   hero: { Demo: AnimatedSelectDemo, file: demo("animated-select-demo.tsx"), minHeight: 380 },
   install: {
@@ -102,9 +102,9 @@ export function ThemeSelect() {
       deps: "motion @radix-ui/react-select lucide-react",
       description: (
         <>
-          The list springs out of the trigger and options cascade in. A highlight pill glides between
+          The list scales out of the trigger and options cascade in quickly. A highlight pill glides between
           options as you hover or arrow through them (a shared Motion <Code>layoutId</Code>), the selected
-          option&apos;s check mark pops in with a twist, and icons light up mint. Options can carry an{" "}
+          option&apos;s check mark fades in, and the active option&apos;s icon brightens. Options can carry an{" "}
           <Code>icon</Code> (shown in the trigger too) and a <Code>description</Code>. Same composition as
           the shadcn Select.
         </>
@@ -118,7 +118,7 @@ export function ThemeSelect() {
         { name: "open / onOpenChange", type: "boolean / (open: boolean) => void", description: "Controlled open state." },
         { name: "name / required / disabled", type: "Radix Select props", description: "Forwarded to the Radix root; `name` submits with forms." },
         { name: "AnimatedSelectTrigger", type: "SelectTrigger props", description: "The trigger button. Put AnimatedSelectValue inside." },
-        { name: "AnimatedSelectContent › stagger", type: "number", default: "0.03", description: "Delay between options as they cascade in, in seconds." },
+        { name: "AnimatedSelectContent › stagger", type: "number", default: "0.015", description: "Delay between options as they cascade in, in seconds." },
         { name: "AnimatedSelectContent › side / align / sideOffset", type: "Radix props", default: '"bottom" / "start" / 6', description: "Placement next to the trigger." },
         { name: "AnimatedSelectItem › icon", type: "ReactNode", description: "Leading icon; also shown in the trigger when selected." },
         { name: "AnimatedSelectItem › description", type: "ReactNode", description: "Secondary text on the right (list only)." },

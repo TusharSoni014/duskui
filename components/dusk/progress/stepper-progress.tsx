@@ -6,7 +6,7 @@ import { AnimatePresence, motion, useReducedMotion, type Transition } from "moti
 import { cn } from "@/lib/utils";
 
 const fill: Transition = { type: "spring", stiffness: 120, damping: 22 };
-const pop: Transition = { type: "spring", duration: 0.45, bounce: 0.45 };
+const pop: Transition = { type: "spring", duration: 0.25, bounce: 0.1 };
 
 export type StepperStep = {
   /** Short step name shown under the marker. */
@@ -39,7 +39,7 @@ function Check({ instant }: { instant: boolean }) {
 /**
  * A horizontal stepper for multi-step flows. Connectors fill with a spring as
  * you advance, completed markers draw a check mark, and the current marker
- * has a soft breathing halo. Semantically an ordered list with
+ * is outlined in the primary color. Semantically an ordered list with
  * `aria-current="step"` on the active step and the state of each step spelled
  * out for screen readers. Static under reduced motion.
  */
@@ -76,32 +76,21 @@ export function StepperProgress({ steps, current, label = "Progress", className,
             )}
 
             <span aria-hidden className="relative grid size-8 place-items-center">
-              {state === "current" && !reduceMotion && (
-                <motion.span
-                  className="absolute inset-0 rounded-full bg-primary/25"
-                  initial={{ scale: 1, opacity: 0.7 }}
-                  animate={{ scale: 1.6, opacity: 0 }}
-                  transition={{ duration: 1.8, ease: "easeOut", repeat: Infinity }}
-                />
-              )}
-              <motion.span
+              <span
                 className={cn(
                   "relative grid size-8 place-items-center rounded-full border-2 text-xs font-semibold tabular-nums transition-colors duration-300",
                   state === "complete" && "border-primary bg-primary text-primary-foreground",
                   state === "current" && "border-primary bg-background text-primary",
                   state === "upcoming" && "border-border bg-background text-muted-foreground"
                 )}
-                initial={false}
-                animate={{ scale: state === "current" && !reduceMotion ? 1.08 : 1 }}
-                transition={pop}
               >
                 <AnimatePresence initial={false} mode="popLayout">
                   {state === "complete" ? (
                     <motion.span
                       key="check"
-                      initial={reduceMotion ? false : { scale: 0.4, opacity: 0 }}
+                      initial={reduceMotion ? false : { scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0.4, opacity: 0, transition: { duration: 0.12 } }}
+                      exit={{ scale: 0.8, opacity: 0, transition: { duration: 0.12 } }}
                       transition={pop}
                     >
                       <Check instant={reduceMotion} />
@@ -109,16 +98,16 @@ export function StepperProgress({ steps, current, label = "Progress", className,
                   ) : (
                     <motion.span
                       key="number"
-                      initial={reduceMotion ? false : { scale: 0.4, opacity: 0 }}
+                      initial={reduceMotion ? false : { scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0.4, opacity: 0, transition: { duration: 0.12 } }}
+                      exit={{ scale: 0.8, opacity: 0, transition: { duration: 0.12 } }}
                       transition={pop}
                     >
                       {index + 1}
                     </motion.span>
                   )}
                 </AnimatePresence>
-              </motion.span>
+              </span>
             </span>
 
             <span className="mt-2 max-w-28 px-1">

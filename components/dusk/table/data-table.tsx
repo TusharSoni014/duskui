@@ -57,7 +57,7 @@ export interface DataTableProps<T> extends Omit<React.ComponentProps<"div">, "ch
 }
 
 const rowLayout: Transition = { type: "spring", stiffness: 500, damping: 42, mass: 0.8 };
-const iconSpring: Transition = { type: "spring", stiffness: 420, damping: 26 };
+const iconSpring: Transition = { type: "spring", bounce: 0, duration: 0.2 };
 
 function compare(a: unknown, b: unknown) {
   if (a == null && b == null) return 0;
@@ -82,7 +82,7 @@ function SortIcon({ direction }: { direction: SortDirection | null }) {
         <ChevronsUpDownIcon className="size-3.5" />
       </motion.span>
       <motion.span
-        className="col-start-1 row-start-1 flex text-primary"
+        className="col-start-1 row-start-1 flex text-foreground"
         initial={false}
         animate={{
           opacity: direction ? 1 : 0,

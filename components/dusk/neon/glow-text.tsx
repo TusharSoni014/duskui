@@ -17,7 +17,7 @@ export interface GlowTextProps extends Omit<React.HTMLAttributes<HTMLElement>, "
   /**
    * `breathe`: the glow slowly swells and fades.
    * `flicker`: steady glow with an occasional double flicker, like an old neon sign.
-   * `none`: static glow. Reduced-motion users always get `none`.
+   * `none`: static glow (default). Reduced-motion users always get `none`.
    */
   animation?: "none" | "breathe" | "flicker";
   /** Seconds per animation cycle. Flicker cycles are clamped to at least 2s. */
@@ -35,7 +35,7 @@ const FLICKER = {
 };
 
 /**
- * Real, selectable text with a layered neon glow. The glow is a `text-shadow`
+ * Real, selectable text with a single soft neon glow. The glow is a `text-shadow`
  * driven by a CSS variable that Motion animates outside React, so the text
  * never re-renders and search engines and screen readers see plain text.
  */
@@ -43,7 +43,7 @@ export function GlowText({
   as: Tag = "span",
   color = "var(--color-primary)",
   intensity = 1,
-  animation = "breathe",
+  animation = "none",
   speed,
   className,
   style,
@@ -66,7 +66,7 @@ export function GlowText({
     }
     const controls =
       mode === "breathe"
-        ? animate(glow, [1, 0.55, 1], {
+        ? animate(glow, [1, 0.7, 1], {
             duration: Math.max(1, speed ?? 3.2),
             ease: "easeInOut",
             repeat: Infinity,
@@ -81,17 +81,15 @@ export function GlowText({
   }, [mode, speed, glow]);
 
   const i = Math.max(0, intensity);
-  const layer = (blur: number, alpha: number) =>
-    `0 0 calc(${blur * i}px * var(--glow)) color-mix(in oklab, var(--glow-color) ${alpha}%, transparent)`;
-
   const vars = {
     "--glow": 1,
     "--glow-color": color,
-    color: "color-mix(in oklab, var(--glow-color) 45%, white)",
+    color: "color-mix(in oklab, var(--glow-color) 35%, white)",
+    // One soft layer: enough to read as neon, not a bloom.
     textShadow:
       i === 0
         ? undefined
-        : [layer(2, 90), layer(6, 80), layer(14, 65), layer(28, 45), layer(56, 30)].join(", "),
+        : `0 0 calc(${12 * i}px * var(--glow)) color-mix(in oklab, var(--glow-color) 35%, transparent)`,
   } as React.CSSProperties;
 
   // Cast keeps JSX happy with a union of intrinsic tags; every option accepts the same props.

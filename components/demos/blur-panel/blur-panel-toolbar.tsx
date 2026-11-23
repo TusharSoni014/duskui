@@ -6,7 +6,7 @@ import { BlurPanel } from "@/components/dusk/glass/blur-panel";
 const tiles = [
   "from-amber-300 to-rose-500",
   "from-sky-400 to-violet-600",
-  "from-primary to-teal-600",
+  "from-teal-300 to-teal-600",
   "from-fuchsia-500 to-indigo-600",
   "from-lime-300 to-emerald-600",
   "from-orange-400 to-pink-600",

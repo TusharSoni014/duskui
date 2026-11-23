@@ -36,7 +36,7 @@ export interface DatePickerProps
 
 /**
  * A date picker: an outline trigger that opens the DuskUI Calendar in a
- * popover. The panel springs out of the trigger, the formatted date rolls in
+ * popover. The panel scales out of the trigger, the formatted date rolls in
  * when it changes, and the calendar's selected pill glides between days. The
  * popover closes on pick and focus returns to the trigger. Radix handles
  * focus, Escape and outside clicks; react-day-picker handles the keyboard
@@ -71,8 +71,8 @@ export function DatePicker({
   const surface: Variants = reduceMotion
     ? { closed: { opacity: 0, transition: { duration: 0.1 } }, open: { opacity: 1, transition: { duration: 0.15 } } }
     : {
-        closed: { opacity: 0, scale: 0.94, y: -6, transition: { duration: 0.12, ease: "easeIn" } },
-        open: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", duration: 0.4, bounce: 0.18 } },
+        closed: { opacity: 0, scale: 0.96, y: -4, transition: { duration: 0.12, ease: "easeIn" } },
+        open: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", duration: 0.25, bounce: 0 } },
       };
 
   return (
@@ -89,16 +89,16 @@ export function DatePicker({
           )}
           {...props}
         >
-          <CalendarIcon aria-hidden className={cn("text-muted-foreground transition-colors", (open || value) && "text-primary")} />
+          <CalendarIcon aria-hidden className={cn("text-muted-foreground transition-colors", (open || value) && "text-foreground")} />
           <span className="relative flex min-w-0 flex-1 overflow-hidden">
             <AnimatePresence mode="popLayout" initial={false}>
               <motion.span
                 key={label}
                 className={cn("truncate", !value && "text-muted-foreground")}
-                initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 8, filter: "blur(2px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)", transitionEnd: { filter: "none" } }}
-                exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8, filter: "blur(2px)" }}
-                transition={{ type: "spring", duration: 0.3, bounce: 0 }}
+                initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -6 }}
+                transition={{ type: "spring", duration: 0.25, bounce: 0 }}
               >
                 {label}
               </motion.span>
@@ -122,7 +122,7 @@ export function DatePicker({
                 className={cn(
                   "z-50 w-auto overflow-hidden rounded-xl border bg-popover text-popover-foreground outline-none",
                   "origin-(--radix-popover-content-transform-origin)",
-                  "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_16px_40px_-12px_rgb(0_0_0/0.7),0_0_0_1px_rgb(0_0_0/0.2)]",
+                  "shadow-lg",
                   contentClassName
                 )}
               >

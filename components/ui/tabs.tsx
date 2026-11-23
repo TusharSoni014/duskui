@@ -14,10 +14,10 @@ import { cn } from "@/lib/utils";
  * - `variant` on TabsList: `default` (segmented surface) or `line` (an
  *   underline that grows in under the active trigger).
  * - Vertical orientation styles out of the box (`orientation="vertical"`).
- * - Panels fade and rise in when they become active, and show a focus ring
+ * - Panels fade in when they become active, and show a focus ring
  *   when focused from the keyboard.
  * - Hover, active and focus-visible states with smooth color transitions.
- * - Under `prefers-reduced-motion` panels only fade.
+ * - Under `prefers-reduced-motion` panels appear instantly.
  * CSS only (tw-animate-css), powered by Radix for roving focus and aria.
  */
 function Tabs({
@@ -44,7 +44,7 @@ const tabsListVariants = cva(
     variants: {
       variant: {
         default:
-          "h-9 rounded-lg bg-muted p-[3px] shadow-[inset_0_1px_2px_rgb(0_0_0/0.35)] data-[orientation=vertical]:gap-0.5",
+          "h-9 rounded-lg bg-muted p-[3px] data-[orientation=vertical]:gap-0.5",
         line: "h-9 gap-1 border-b border-border data-[orientation=vertical]:gap-0.5 data-[orientation=vertical]:border-b-0 data-[orientation=vertical]:border-s",
       },
     },
@@ -57,7 +57,7 @@ const tabsListVariants = cva(
 const tabsTriggerVariants = cva(
   [
     "relative inline-flex flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-md border border-transparent px-2.5 py-1 text-sm font-medium text-muted-foreground outline-none select-none",
-    "transition-[color,background-color,border-color,box-shadow] duration-200 ease-out motion-reduce:transition-none",
+    "transition-[color,background-color,border-color,box-shadow] duration-150 ease-out motion-reduce:transition-none",
     "hover:text-foreground data-[state=active]:text-foreground",
     "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
     "disabled:pointer-events-none disabled:opacity-50",
@@ -70,13 +70,13 @@ const tabsTriggerVariants = cva(
         default: [
           "h-[calc(100%-1px)] data-[orientation=vertical]:h-8",
           "data-[state=active]:border-white/10 data-[state=active]:bg-background",
-          "data-[state=active]:shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_1px_3px_rgb(0_0_0/0.4)]",
+          "data-[state=active]:shadow-sm",
         ],
         line: [
           "h-full rounded-b-none data-[orientation=vertical]:h-8 data-[orientation=vertical]:rounded-s-none data-[orientation=vertical]:rounded-e-md",
           // The underline: grows from the center on the active trigger.
           "after:pointer-events-none after:absolute after:inset-x-1.5 after:-bottom-px after:h-0.5 after:rounded-full after:bg-primary",
-          "after:scale-x-0 after:transition-[scale] after:duration-300 after:ease-[cubic-bezier(0.16,1,0.3,1)] data-[state=active]:after:scale-x-100",
+          "after:scale-x-0 after:transition-[scale] after:duration-200 after:ease-out data-[state=active]:after:scale-x-100",
           "data-[orientation=vertical]:after:inset-x-auto data-[orientation=vertical]:after:inset-y-1.5 data-[orientation=vertical]:after:-start-px data-[orientation=vertical]:after:bottom-auto data-[orientation=vertical]:after:h-auto data-[orientation=vertical]:after:w-0.5",
           "data-[orientation=vertical]:after:scale-x-100 data-[orientation=vertical]:after:scale-y-0 data-[orientation=vertical]:data-[state=active]:after:scale-y-100",
           "motion-reduce:after:transition-none",
@@ -131,8 +131,8 @@ function TabsContent({ className, ...props }: React.ComponentProps<typeof TabsPr
       data-slot="tabs-content"
       className={cn(
         "flex-1 rounded-md outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50",
-        "data-[state=active]:animate-in data-[state=active]:fade-in-0 data-[state=active]:slide-in-from-bottom-1 data-[state=active]:duration-300 data-[state=active]:ease-[cubic-bezier(0.16,1,0.3,1)]",
-        "motion-reduce:data-[state=active]:slide-in-from-bottom-0",
+        "data-[state=active]:animate-in data-[state=active]:fade-in-0 data-[state=active]:duration-200 data-[state=active]:ease-out",
+        "motion-reduce:data-[state=active]:animate-none",
         className
       )}
       {...props}

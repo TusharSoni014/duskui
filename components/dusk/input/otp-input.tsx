@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { AnimatePresence, motion, useAnimate } from "motion/react";
+import { AnimatePresence, motion, useAnimate, useReducedMotion } from "motion/react";
 
 import { cn } from "@/lib/utils";
 
@@ -44,16 +44,17 @@ export function OTPInput({
   const id = React.useId();
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [scope, animate] = useAnimate<HTMLDivElement>();
+  const reduceMotion = useReducedMotion();
   const [internal, setInternal] = React.useState(defaultValue);
   const [focused, setFocused] = React.useState(false);
   const current = (value ?? internal).slice(0, length);
   const allowed = React.useMemo(() => new RegExp(`^${pattern}$`), [pattern]);
 
   React.useEffect(() => {
-    if (invalid && scope.current) {
+    if (invalid && scope.current && !reduceMotion) {
       animate(scope.current, { x: [0, -6, 6, -4, 4, 0] }, { duration: 0.4 });
     }
-  }, [invalid, animate, scope]);
+  }, [invalid, animate, scope, reduceMotion]);
 
   const update = (raw: string) => {
     const next = [...raw].filter((ch) => allowed.test(ch)).join("").slice(0, length);
@@ -109,7 +110,6 @@ export function OTPInput({
               aria-hidden
               className={cn(
                 "relative flex size-11 items-center justify-center rounded-lg border border-input bg-transparent font-mono text-lg font-medium shadow-xs transition-colors duration-200 dark:bg-input/30",
-                char && "border-ring/40",
                 invalid && "border-destructive text-destructive"
               )}
             >
@@ -117,20 +117,20 @@ export function OTPInput({
                 <motion.span
                   layoutId={`${id}-active`}
                   className={cn(
-                    "absolute -inset-px rounded-lg border-2 ring-[3px]",
-                    invalid ? "border-destructive ring-destructive/20" : "border-ring ring-ring/25"
+                    "absolute -inset-px rounded-lg border ring-[3px]",
+                    invalid ? "border-destructive ring-destructive/20" : "border-ring ring-ring/50"
                   )}
-                  transition={{ type: "spring", duration: 0.3, bounce: 0.15 }}
+                  transition={{ type: "spring", duration: 0.25, bounce: 0 }}
                 />
               )}
               <AnimatePresence mode="popLayout" initial={false}>
                 {char ? (
                   <motion.span
                     key={char + i}
-                    initial={{ opacity: 0, y: 8, scale: 0.6 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.6 }}
-                    transition={{ type: "spring", duration: 0.3, bounce: 0.3 }}
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.15, ease: "easeOut" }}
                   >
                     {char}
                   </motion.span>

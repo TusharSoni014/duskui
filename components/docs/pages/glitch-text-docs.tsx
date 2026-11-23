@@ -67,7 +67,7 @@ export function HeroTitle() {
       { name: "trigger", type: '"hover" | "loop" | "inView"', default: '"hover"', description: "What starts a glitch burst." },
       { name: "interval", type: "number", default: "3200", description: "Milliseconds between bursts in loop mode (minimum 1000)." },
       { name: "duration", type: "number", default: "450", description: "Length of one burst, in ms." },
-      { name: "intensity", type: "number", default: "4", description: "Maximum horizontal offset of the color layers, in px." },
+      { name: "intensity", type: "number", default: "3", description: "Maximum horizontal offset of the color layers, in px." },
       { name: "colors", type: "[string, string]", default: '["#ff2bd6", "#00e5ff"]', description: "Colors of the two split layers." },
       { name: "disabled", type: "boolean", default: "false", description: "Stop all glitching." },
     ],

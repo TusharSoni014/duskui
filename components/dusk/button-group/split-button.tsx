@@ -116,9 +116,9 @@ export function SplitButton({
               <motion.span
                 key={current?.value}
                 className="inline-flex items-center gap-2"
-                initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 10, filter: "blur(2px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -10, filter: "blur(2px)" }}
+                initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
                 transition={swap}
               >
                 {current?.icon}

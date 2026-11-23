@@ -43,7 +43,7 @@ export default function NavigationMenuBasicDemo() {
               <li className="row-span-3">
                 <NavigationMenuLink
                   asChild
-                  className="h-full justify-end rounded-lg bg-[radial-gradient(120%_90%_at_0%_0%,color-mix(in_oklab,var(--color-primary)_25%,transparent),transparent_65%)] p-4"
+                  className="h-full justify-end rounded-md bg-muted/50 p-4"
                 >
                   <a href="#intro">
                     <span className="text-base font-semibold">DuskUI</span>

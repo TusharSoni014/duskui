@@ -11,7 +11,7 @@ const demo = (file: string) => `components/demos/neon-button/${file}`;
 const config: DocConfig = {
   title: "Neon Button",
   intro:
-    "A React button that glows like a neon tube, built on the DuskUI Button with Motion and Tailwind CSS. The glow brightens on hover and keyboard focus, can flicker on when it scrolls into view, and takes any CSS color — while loading states and every shadcn/ui Button prop keep working.",
+    "A React button with a soft neon-tube glow, built on the DuskUI Button with Motion and Tailwind CSS. One glow layer brightens a little on hover and keyboard focus, can flicker on when it scrolls into view, and takes any CSS color. Loading states and every shadcn/ui Button prop keep working.",
   tags: ["Any CSS color", "Flicker-on effect", "Loading state", "Focus-visible glow", "prefers-reduced-motion"],
   hero: { Demo: NeonButtonDemo, file: demo("neon-button-demo.tsx") },
   install: {
@@ -31,7 +31,7 @@ const config: DocConfig = {
 
 export function HeroCta() {
   return (
-    <NeonButton size="lg" color="#ff2bd6" flicker>
+    <NeonButton size="lg" color="#f472b6" flicker>
       Get early access
     </NeonButton>
   )
@@ -56,7 +56,7 @@ export function HeroCta() {
       title: "Intensity & solid",
       description: (
         <>
-          <Code>intensity</Code> scales every glow layer. <Code>solid</Code> fills the tube for a
+          <Code>intensity</Code> scales the glow; <Code>0</Code> turns it off. <Code>solid</Code> fills the tube for a
           higher-emphasis call to action.
         </>
       ),
@@ -96,8 +96,8 @@ export function HeroCta() {
   },
   accessibility: [
     "Renders a native <button>, so Enter, Space and focus order work as usual.",
-    "Keyboard focus shows the same bright glow as hover, plus a focus ring tinted to the neon color.",
-    "Glow layers are aria-hidden and absolutely positioned, so they never shift layout or reach screen readers.",
+    "Keyboard focus brightens the glow like hover does, plus a focus ring tinted to the neon color.",
+    "The glow layer is aria-hidden and absolutely positioned, so they never shift layout or reach screen readers.",
     "The flicker-on effect has at most two soft dips per second (under the 3-flashes limit), only dims the glow, and is skipped entirely with prefers-reduced-motion.",
     "Text is a light tint of the chosen color for strong contrast on dark backgrounds; check contrast if you place it on light surfaces.",
   ],

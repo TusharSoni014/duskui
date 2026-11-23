@@ -52,10 +52,10 @@ const CSS = `
 export function ScanLine({
   lines = true,
   lineSpacing = 3,
-  lineOpacity = 0.35,
+  lineOpacity = 0.25,
   bar = true,
   barDuration = 7,
-  barColor = "var(--color-primary)",
+  barColor = "rgb(255 255 255)",
   vignette = true,
   flicker = false,
   curvature = false,
@@ -101,7 +101,7 @@ export function ScanLine({
             style={
               {
                 "--dusk-scan-duration": `${barDuration}s`,
-                backgroundImage: `linear-gradient(to bottom, transparent 38%, color-mix(in oklab, ${barColor} 6%, transparent) 46%, color-mix(in oklab, ${barColor} 16%, transparent) 49.6%, color-mix(in oklab, ${barColor} 28%, transparent) 50%, transparent 50.4%)`,
+                backgroundImage: `linear-gradient(to bottom, transparent 38%, color-mix(in oklab, ${barColor} 3%, transparent) 46%, color-mix(in oklab, ${barColor} 7%, transparent) 49.6%, color-mix(in oklab, ${barColor} 12%, transparent) 50%, transparent 50.4%)`,
               } as React.CSSProperties
             }
           />
@@ -110,7 +110,7 @@ export function ScanLine({
         {flicker && <div className="dusk-scan-flicker absolute inset-0 bg-white opacity-[0.02]" />}
 
         {vignette && (
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgb(0_0_0/0.55)_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgb(0_0_0/0.4)_100%)]" />
         )}
 
         {curvature && (

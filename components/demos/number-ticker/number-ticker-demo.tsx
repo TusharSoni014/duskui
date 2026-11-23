@@ -15,7 +15,7 @@ export default function NumberTickerDemo() {
           className="flex flex-col-reverse gap-1 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-6"
         >
           <dt className="text-sm text-white/55">{stat.label}</dt>
-          <dd className="text-4xl font-bold tracking-tight text-primary">{stat.ticker}</dd>
+          <dd className="text-4xl font-semibold tracking-tight text-white">{stat.ticker}</dd>
         </div>
       ))}
     </dl>

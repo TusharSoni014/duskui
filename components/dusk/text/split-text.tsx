@@ -27,9 +27,9 @@ export interface SplitTextProps extends Omit<React.HTMLAttributes<HTMLElement>, 
 }
 
 const HIDDEN: Record<NonNullable<SplitTextProps["effect"]>, DOMKeyframesDefinition> = {
-  rise: { opacity: 0, transform: "translateY(0.45em)" },
-  drop: { opacity: 0, transform: "translateY(-0.6em) rotate(-6deg)" },
-  blur: { opacity: 0, filter: "blur(8px)", transform: "scale(1.15)" },
+  rise: { opacity: 0, transform: "translateY(0.35em)" },
+  drop: { opacity: 0, transform: "translateY(-0.4em) rotate(-3deg)" },
+  blur: { opacity: 0, filter: "blur(6px)", transform: "scale(1.05)" },
   fade: { opacity: 0 },
 };
 

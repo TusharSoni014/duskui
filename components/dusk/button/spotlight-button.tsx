@@ -9,17 +9,18 @@ import { cn } from "@/lib/utils";
 export interface SpotlightButtonProps extends ButtonProps {
   /** Radius of the light in px. */
   radius?: number;
-  /** Any CSS color. Defaults to the theme primary. */
+  /** Any CSS color. Mixed in at low opacity; defaults to white. */
   color?: string;
 }
 
 /**
- * A soft light follows the cursor along the border and surface.
- * Pairs well with `variant="outline"` on dark backgrounds.
+ * A faint highlight follows the cursor along the 1px border, with a barely
+ * visible tint on the surface. Pairs well with `variant="outline"` on dark
+ * backgrounds.
  */
 export function SpotlightButton({
-  radius = 80,
-  color = "var(--color-primary)",
+  radius = 60,
+  color = "#ffffff",
   variant = "outline",
   className,
   children,
@@ -28,8 +29,8 @@ export function SpotlightButton({
 }: SpotlightButtonProps) {
   const x = useMotionValue(-radius * 2);
   const y = useMotionValue(-radius * 2);
-  const border = useMotionTemplate`radial-gradient(${radius}px circle at ${x}px ${y}px, ${color}, transparent 70%)`;
-  const fill = useMotionTemplate`radial-gradient(${radius * 1.5}px circle at ${x}px ${y}px, color-mix(in oklab, ${color} 14%, transparent), transparent 70%)`;
+  const border = useMotionTemplate`radial-gradient(${radius}px circle at ${x}px ${y}px, color-mix(in oklab, ${color} 35%, transparent), transparent 70%)`;
+  const fill = useMotionTemplate`radial-gradient(${radius}px circle at ${x}px ${y}px, color-mix(in oklab, ${color} 4%, transparent), transparent 70%)`;
 
   const handleMove = (event: React.PointerEvent<HTMLButtonElement>) => {
     onPointerMove?.(event);
@@ -39,7 +40,7 @@ export function SpotlightButton({
   };
 
   const layer =
-    "pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover/spotlight:opacity-100 group-focus-visible/spotlight:opacity-100";
+    "pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-200 group-hover/spotlight:opacity-100 group-focus-visible/spotlight:opacity-100";
 
   return (
     <Button
@@ -53,7 +54,7 @@ export function SpotlightButton({
         aria-hidden
         className={cn(
           layer,
-          "p-px [mask-composite:exclude] [mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)]"
+          "p-px [mask-image:linear-gradient(#000_0_0),linear-gradient(#000_0_0)] [mask-clip:content-box,border-box] [mask-composite:exclude]"
         )}
         style={{ background: border }}
       />

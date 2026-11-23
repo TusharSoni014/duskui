@@ -64,7 +64,7 @@ const list: Component[] = [
     name: "Card",
     slug: "card",
     description:
-      "Animated React card components for shadcn/ui: cursor-following glow border, 3D tilt with glare and a shimmer skeleton loading card, built with Motion and Tailwind CSS.",
+      "Animated React card components for shadcn/ui: a subtle cursor-following border highlight, 3D tilt and a shimmer skeleton loading card, built with Motion and Tailwind CSS.",
     keywords: ["card", "glow card", "tilt card", "3d card", "skeleton", "loading card", "hover", "shadcn", "motion"],
   },
   {
@@ -92,7 +92,7 @@ const list: Component[] = [
     name: "Data Stream",
     slug: "data-stream",
     description:
-      "A flowing data stream effect for React: glowing packets race along lanes on a high-DPI canvas, a lightweight hero accent.",
+      "A flowing data stream effect for React: faint packets move along lanes on a high-DPI canvas, a lightweight hero accent.",
     keywords: ["data stream", "data flow animation", "canvas animation", "network traffic", "hero background", "react", "tailwind"],
   },
   {
@@ -106,8 +106,8 @@ const list: Component[] = [
     name: "Dot Spotlight",
     slug: "dot-spotlight",
     description:
-      "A dot grid background for React with a cursor-following spotlight that lights up nearby dots.",
-    keywords: ["dot grid", "dot pattern", "spotlight", "cursor glow", "mouse follow", "background", "motion values"],
+      "A dot grid background for React with a subtle cursor-following spotlight that lights up nearby dots.",
+    keywords: ["dot grid", "dot pattern", "spotlight", "mouse follow", "background", "motion values"],
   },
   {
     name: "Dropdown Menu",
@@ -134,7 +134,7 @@ const list: Component[] = [
     name: "Glass Card",
     slug: "glass-card",
     description:
-      "React glassmorphism card with Tailwind backdrop blur, a pointer-tracking specular highlight, gradient border and optional 3D tilt.",
+      "React glassmorphism card with Tailwind backdrop blur, a hairline border, film grain and optional 3D tilt.",
     keywords: ["glass", "glassmorphism", "card", "frosted", "backdrop blur", "tilt", "highlight"],
   },
   {
@@ -148,21 +148,21 @@ const list: Component[] = [
     name: "Glow Text",
     slug: "glow-text",
     description:
-      "Neon glow text effect for React with breathing or flicker animation that stays real, selectable and SEO-friendly.",
+      "Neon text effect for React with one soft text-shadow and optional breathe or flicker animation, staying real, selectable and SEO-friendly.",
     keywords: ["glow text", "neon text", "text shadow", "text effect", "flicker", "heading", "tailwind"],
   },
   {
     name: "Hologram Card",
     slug: "hologram-card",
     description:
-      "A holographic React card with iridescent foil, scanlines and a 3D tilt and glare that follow the cursor, built with Motion.",
-    keywords: ["hologram card", "holographic effect", "3d tilt card", "iridescent", "glare effect", "framer motion", "react", "tailwind"],
+      "A holographic React card with faint iridescent foil, a rainbow rim and a gentle 3D tilt toward the cursor, built with Motion.",
+    keywords: ["hologram card", "holographic effect", "3d tilt card", "iridescent", "framer motion", "react", "tailwind"],
   },
   {
     name: "Ice Input",
     slug: "ice-input",
     description:
-      "Frosted-glass React input with a frost-spread focus animation and cool glow, built on the DuskUI Input.",
+      "Frosted-glass React input with a frost-spread focus animation, built on the DuskUI Input.",
     keywords: ["input", "ice", "glass", "form", "text field", "focus", "glow"],
   },
   {
@@ -183,21 +183,21 @@ const list: Component[] = [
     name: "Meteors",
     slug: "meteors",
     description:
-      "An animated meteor shower background for React with shooting stars and glowing tails.",
+      "An animated meteor shower background for React with soft shooting stars and fading tails.",
     keywords: ["meteors", "shooting stars", "meteor shower", "night sky", "animated background", "stars", "card background"],
   },
   {
     name: "Neon Border",
     slug: "neon-border",
     description:
-      "Animated neon border for any React element, with a travelling light beam, glow and hover trigger.",
+      "Animated neon border for any React element, with a thin travelling light beam, an adjustable glow and hover trigger.",
     keywords: ["neon border", "animated border", "glowing border", "border beam", "conic gradient", "card", "tailwind"],
   },
   {
     name: "Neon Button",
     slug: "neon-button",
     description:
-      "React neon button with a glow that brightens on hover and focus, a flicker-on effect, any color and a width-stable loading state.",
+      "React neon button with one soft glow that brightens on hover and focus, a flicker-on effect, any color and a width-stable loading state.",
     keywords: ["neon button", "glow button", "glowing button", "flicker", "loading button", "tailwind", "motion"],
   },
   {
@@ -218,7 +218,7 @@ const list: Component[] = [
     name: "Plasma Loader",
     slug: "plasma-loader",
     description:
-      "Accessible React loading spinner with a glowing plasma effect made of gooey orbiting blobs.",
+      "Accessible React loading spinner with a plasma effect made of gooey orbiting blobs.",
     keywords: ["loader", "spinner", "plasma", "gooey", "loading indicator", "neon", "accessible"],
   },
   {
@@ -274,8 +274,8 @@ const list: Component[] = [
     name: "Tech Grid",
     slug: "tech-grid",
     description:
-      "An animated tech grid background for React with cursor-lit cells, a scan line and a retro perspective floor.",
-    keywords: ["grid background", "retro grid", "perspective grid", "cyberpunk grid", "cursor spotlight", "react", "tailwind"],
+      "An animated tech grid background for React with faint lines, a scan line and a retro perspective floor.",
+    keywords: ["grid background", "retro grid", "perspective grid", "cyberpunk grid", "react", "tailwind"],
   },
   {
     name: "Terminal Window",
@@ -344,8 +344,8 @@ const list: Component[] = [
     name: "Bento Grid",
     slug: "bento-grid",
     description:
-      "A responsive bento grid for React and Tailwind CSS with hover-reveal call-to-action cards, cursor glow and zooming background visuals for feature sections.",
-    keywords: ["bento grid", "bento", "feature grid", "feature section", "landing page", "card grid", "hover reveal", "cursor glow", "motion"],
+      "A responsive bento grid for React and Tailwind CSS with hover-reveal call-to-action cards and zooming background visuals for feature sections.",
+    keywords: ["bento grid", "bento", "feature grid", "feature section", "landing page", "card grid", "hover reveal", "motion"],
   },
   {
     name: "File Upload",
@@ -491,7 +491,7 @@ const list: Component[] = [
     name: "Animated Beam",
     slug: "animated-beam",
     description:
-      "Animated SVG beam for React that connects two elements with a curved path and a glowing gradient pulse, ideal for integration and data-flow diagrams.",
+      "Animated SVG beam for React that connects two elements with a curved path and a gradient pulse, ideal for integration and data-flow diagrams.",
     keywords: ["animated beam", "svg beam", "connector line", "integration diagram", "data flow", "gradient pulse", "how it works", "motion"],
   },
   {
@@ -624,7 +624,7 @@ const list: Component[] = [
     name: "Resizable",
     slug: "resizable",
     description:
-      "Resizable React panels for shadcn/ui on react-resizable-panels v4, with glowing handles and an IDE-style collapsible layout.",
+      "Resizable React panels for shadcn/ui on react-resizable-panels v4, with handles that highlight while dragging and an IDE-style collapsible layout.",
     keywords: ["resizable", "resizable panels", "split pane", "panel group", "ide layout", "shadcn resizable", "react-resizable-panels"],
   },
   {
@@ -752,6 +752,146 @@ const list: Component[] = [
     description:
       "Accessible animated React file tree with keyboard navigation, file icons and expandable folders.",
     keywords: ["file tree", "tree view", "file explorer", "folder tree", "sidebar tree", "treeview", "react"],
+  },
+  {
+    name: "Shine Border",
+    slug: "shine-border",
+    description:
+      "Animated shine border for React that sweeps a soft multi-colour sheen around any card or element.",
+    keywords: ["shine border", "animated border", "gradient border", "card border", "glow border", "border animation", "tailwind"],
+  },
+  {
+    name: "Rainbow Button",
+    slug: "rainbow-button",
+    description:
+      "React rainbow button with an animated gradient border, built on the shadcn-compatible DuskUI Button.",
+    keywords: ["rainbow button", "gradient button", "glow button", "animated button", "cta button", "shadcn button", "tailwind"],
+  },
+  {
+    name: "Pulsating Button",
+    slug: "pulsating-button",
+    description:
+      "React pulsating button with expanding pulse rings that draw attention to a call to action.",
+    keywords: ["pulsating button", "pulse button", "attention button", "cta", "animated button", "ripple rings", "tailwind"],
+  },
+  {
+    name: "Interactive Hover Button",
+    slug: "interactive-hover-button",
+    description:
+      "React button where a dot expands to fill the button on hover while the label swaps with a sliding arrow.",
+    keywords: ["interactive hover button", "hover button", "animated button", "arrow button", "cta", "pill button", "tailwind"],
+  },
+  {
+    name: "Moving Border",
+    slug: "moving-border",
+    description:
+      "React moving border effect where a soft beam travels around a button or card's rounded edge.",
+    keywords: ["moving border", "border beam", "animated border", "glowing border", "button border", "card border", "motion"],
+  },
+  {
+    name: "Retro Grid",
+    slug: "retro-grid",
+    description:
+      "Synthwave retro grid background for React with a faint perspective floor scrolling toward the horizon and an optional sun.",
+    keywords: ["retro grid", "synthwave", "perspective grid", "80s background", "vaporwave", "animated background", "tailwind"],
+  },
+  {
+    name: "Flickering Grid",
+    slug: "flickering-grid",
+    description:
+      "Canvas flickering grid background for React with softly flickering squares and an optional text mask.",
+    keywords: ["flickering grid", "grid background", "canvas", "pixel grid", "animated background", "text mask", "react"],
+  },
+  {
+    name: "Ripple",
+    slug: "ripple",
+    description:
+      "Animated ripple background for React with concentric circles that pulse outward, plus click-to-ripple.",
+    keywords: ["ripple", "ripple effect", "pulse circles", "concentric circles", "animated background", "click ripple", "tailwind"],
+  },
+  {
+    name: "Wavy Background",
+    slug: "wavy-background",
+    description:
+      "Animated wavy background for React with layered flowing noise waves drawn on canvas.",
+    keywords: ["wavy background", "waves", "canvas animation", "noise", "animated background", "hero background", "react"],
+  },
+  {
+    name: "Lamp",
+    slug: "lamp",
+    description:
+      "Lamp light effect for React where light cones widen from a thin bar above your heading.",
+    keywords: ["lamp", "lamp effect", "spotlight", "light cone", "hero section", "glow", "motion"],
+  },
+  {
+    name: "Globe",
+    slug: "globe",
+    description:
+      "Interactive 3D globe for React on cobe with markers, auto-rotation and drag with spring momentum.",
+    keywords: ["globe", "3d globe", "cobe", "world map", "webgl", "markers", "interactive"],
+  },
+  {
+    name: "Icon Cloud",
+    slug: "icon-cloud",
+    description:
+      "Interactive 3D icon cloud for React that rotates a sphere of icons and logos you can drag to steer.",
+    keywords: ["icon cloud", "tag cloud", "3d sphere", "tech stack", "logos", "interactive", "motion"],
+  },
+  {
+    name: "Card Stack",
+    slug: "card-stack",
+    description:
+      "Swipeable React card stack where the top card is dragged or flicked away and the rest spring forward.",
+    keywords: ["card stack", "swipe cards", "tinder cards", "stacked cards", "drag", "carousel", "motion"],
+  },
+  {
+    name: "Countdown",
+    slug: "countdown",
+    description:
+      "Animated React countdown timer with rolling digits for days, hours, minutes and seconds, hydration-safe.",
+    keywords: ["countdown", "countdown timer", "timer", "launch countdown", "flip clock", "rolling digits", "react"],
+  },
+  {
+    name: "Vanish Input",
+    slug: "vanish-input",
+    description:
+      "React input with cycling placeholders whose text dissolves into particles on submit.",
+    keywords: ["vanish input", "placeholder animation", "search input", "ai prompt", "particles", "input effect", "motion"],
+  },
+  {
+    name: "Image Compare",
+    slug: "image-compare",
+    description:
+      "Accessible before/after image comparison slider for React with drag, touch and keyboard control.",
+    keywords: ["image compare", "before after", "comparison slider", "image slider", "reveal", "react", "accessible"],
+  },
+  {
+    name: "Sortable List",
+    slug: "sortable-list",
+    description:
+      "Drag-to-reorder React list on Motion Reorder with handles, layout springs and keyboard reordering.",
+    keywords: ["sortable list", "drag and drop", "reorder", "drag to sort", "list", "motion", "accessible"],
+  },
+  {
+    name: "Kanban",
+    slug: "kanban",
+    description:
+      "Dependency-free React kanban board with drag between columns, reordering and keyboard moves.",
+    keywords: ["kanban", "kanban board", "drag and drop", "task board", "trello", "columns", "react"],
+  },
+  {
+    name: "Rating",
+    slug: "rating",
+    description:
+      "Accessible animated React star rating with hover preview, half stars and read-only mode.",
+    keywords: ["rating", "star rating", "stars", "review", "feedback", "input", "react"],
+  },
+  {
+    name: "Stepper",
+    slug: "stepper",
+    description:
+      "Animated React stepper for multi-step forms with a progress line, direction-aware panels and validation.",
+    keywords: ["stepper", "multi step form", "wizard", "steps", "onboarding", "progress", "react"],
   },
 ];
 

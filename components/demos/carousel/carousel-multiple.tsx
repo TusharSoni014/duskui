@@ -8,13 +8,13 @@ import {
 } from "@/components/dusk/carousel/carousel";
 
 const products = [
-  { name: "Glow Text", price: "Free", hue: "from-primary/40" },
-  { name: "Blur Panel", price: "Free", hue: "from-sky-500/40" },
-  { name: "Dock", price: "Free", hue: "from-violet-500/40" },
-  { name: "Carousel", price: "Free", hue: "from-rose-500/40" },
-  { name: "Tabs", price: "Free", hue: "from-amber-400/40" },
-  { name: "Navbar", price: "Free", hue: "from-emerald-500/40" },
-  { name: "Pagination", price: "Free", hue: "from-fuchsia-500/40" },
+  { name: "Text Reveal", price: "Free" },
+  { name: "Blur Panel", price: "Free" },
+  { name: "Dock", price: "Free" },
+  { name: "Carousel", price: "Free" },
+  { name: "Tabs", price: "Free" },
+  { name: "Navbar", price: "Free" },
+  { name: "Pagination", price: "Free" },
 ];
 
 export default function CarouselMultipleDemo() {
@@ -34,7 +34,7 @@ export default function CarouselMultipleDemo() {
               href={`#${p.name.toLowerCase().replace(" ", "-")}`}
               className="block rounded-xl border border-white/10 bg-card p-3 outline-none transition-colors hover:border-white/20 focus-visible:ring-[3px] focus-visible:ring-ring/50"
             >
-              <div className={`aspect-square rounded-lg bg-linear-to-br ${p.hue} to-transparent`} />
+              <div className="aspect-square rounded-lg bg-white/[0.04]" />
               <p className="mt-3 text-sm font-medium">{p.name}</p>
               <p className="text-xs text-muted-foreground">{p.price}</p>
             </a>

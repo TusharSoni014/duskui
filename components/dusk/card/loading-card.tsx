@@ -76,7 +76,7 @@ export interface LoadingCardProps extends Omit<CardProps, "asChild"> {
   loadingLabel?: string;
 }
 
-const swap = { type: "spring", duration: 0.45, bounce: 0 } as const;
+const swap = { type: "spring", duration: 0.3, bounce: 0 } as const;
 
 /**
  * A Card that shows a shimmering skeleton while `loading`, then crossfades the
@@ -111,11 +111,10 @@ export function LoadingCard({
               key={loading ? "skeleton" : "content"}
               className="flex flex-col gap-6 py-6"
               aria-hidden={loading || undefined}
-              initial={{ opacity: 0, filter: "blur(4px)" }}
-              // Drop the filter when done: it would trap fixed/absolute children.
-              animate={{ opacity: 1, filter: "blur(0px)", transitionEnd: { filter: "none" } }}
-              exit={{ opacity: 0, filter: "blur(4px)" }}
-              transition={swap}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
             >
               {loading ? skeleton : children}
             </motion.div>

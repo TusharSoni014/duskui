@@ -69,8 +69,8 @@ export function SiteNav() {
       description: (
         <>
           Hover or focus a trigger. Panels share one viewport that eases its width and height to fit
-          each panel, the incoming panel slides in from the side you&apos;re moving toward while the old
-          one leaves the other way (Radix&apos;s <Code>data-motion</Code>), and the mint indicator glides
+          each panel, the incoming panel shifts in from the side you&apos;re moving toward while the old
+          one leaves the other way (Radix&apos;s <Code>data-motion</Code>), and the indicator arrow glides
           under the open trigger.
         </>
       ),
@@ -102,7 +102,7 @@ export function SiteNav() {
       description: (
         <>
           A data-driven header menu. A highlight glides between bar items as you hover (a shared Motion{" "}
-          <Code>layoutId</Code>), the viewport tilts open in 3D and then morphs its width and height
+          <Code>layoutId</Code>), the viewport fades open and then morphs its width and height
           between panels, panels slide in the direction of travel, links stagger in and an arrow tracks
           the open item. Panels can have a featured card and any number of link columns; items without
           a panel are plain links. Pass <Code>linkAs={"{Link}"}</Code> to use Next.js links.

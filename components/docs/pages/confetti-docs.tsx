@@ -101,7 +101,7 @@ async function onSaved() {
       { name: "decay", type: "number", default: "0.93", description: "Share of velocity kept each frame (air resistance)." },
       { name: "drift", type: "number", default: "0", description: "Constant sideways push, like wind." },
       { name: "ticks", type: "number", default: "200", description: "Lifetime in frames. Pieces fade over the last third." },
-      { name: "colors", type: "string[]", default: "primary, cyan, violet, pink, yellow, white", description: "Any CSS colors, including var(--…)." },
+      { name: "colors", type: "string[]", default: "primary plus muted zinc, blue, sand and lilac", description: "Any CSS colors, including var(--…)." },
       { name: "shapes", type: '("square" | "circle" | "star" | "ribbon")[]', default: '["square", "circle", "ribbon"]', description: "Shapes picked at random." },
       { name: "scalar", type: "number", default: "1", description: "Size multiplier." },
       { name: "zIndex", type: "number", default: "100", description: "z-index of the shared canvas." },

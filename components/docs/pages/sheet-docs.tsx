@@ -12,7 +12,7 @@ const block = (file: string) => `components/dusk/sheet/${file}`;
 const config: DocConfig = {
   title: "Sheet",
   intro:
-    "The shadcn/ui Sheet (side drawer) with a smoother slide, blurred backdrop and scrollable content — plus two animated React sheet blocks built with Motion and Radix: stacked sheets where the parent scales back as a new one opens, and a side panel you can drag closed.",
+    "The shadcn/ui Sheet (side drawer) with a short slide, dimmed backdrop and scrollable content — plus two animated React sheet blocks built with Motion and Radix: stacked sheets where the parent scales back as a new one opens, and a side panel you can drag closed.",
   tags: ["Drop-in shadcn API", "Four sides", "Radix focus trap", "Drag to close", "Motion blocks"],
   hero: { Demo: StackedSheetDemo, file: demo("stacked-sheet-demo.tsx"), minHeight: 240 },
   install: {
@@ -63,7 +63,7 @@ export function FiltersSheet() {
       title: "Default",
       description: (
         <>
-          Slides in on an expo-out curve over a blurred backdrop and closes faster than it opened. The
+          Slides in with a short ease-out over a dimmed backdrop and closes faster than it opened. The
           footer stays pinned to the bottom, long content scrolls inside the sheet, and the close
           button has proper hover and focus states.
         </>

@@ -92,7 +92,7 @@ export function MorphingDialogTrigger({ className, style, children, ...props }: 
           style={{ borderRadius: 16, ...style }}
           className={cn(
             "relative flex flex-col overflow-hidden border bg-card text-left text-card-foreground outline-none",
-            "transition-[border-color,box-shadow] duration-200 hover:border-primary/25",
+            "transition-colors duration-150 hover:border-foreground/20",
             "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40",
             className
           )}
@@ -149,7 +149,7 @@ export function MorphingDialogContent({
                   style={{ borderRadius: 24, ...style }}
                   className={cn(
                     "pointer-events-auto relative flex max-h-[calc(100dvh-2rem)] w-full max-w-lg flex-col overflow-y-auto overflow-x-hidden border bg-card text-card-foreground outline-none",
-                    "shadow-[inset_0_1px_0_rgb(255_255_255/0.05),0_24px_64px_-12px_rgb(0_0_0/0.7)]",
+                    "shadow-lg",
                     className
                   )}
                   {...props}
@@ -236,9 +236,9 @@ export function MorphingDialogDescription({
     <DialogPrimitive.Description asChild>
       <motion.div
         className={cn("text-sm leading-relaxed text-muted-foreground", className)}
-        initial={{ opacity: 0, y: reduceMotion ? 0 : 12 }}
+        initial={{ opacity: 0, y: reduceMotion ? 0 : 8 }}
         animate={{ opacity: 1, y: 0, transition: { ...fade, delay: reduceMotion ? 0 : 0.15 } }}
-        exit={{ opacity: 0, y: reduceMotion ? 0 : 6, transition: { duration: 0.1 } }}
+        exit={{ opacity: 0, y: reduceMotion ? 0 : 4, transition: { duration: 0.1 } }}
         {...props}
       />
     </DialogPrimitive.Description>
@@ -251,6 +251,7 @@ export function MorphingDialogClose({
   children,
   ...props
 }: Omit<React.ComponentProps<typeof motion.button>, "initial" | "animate" | "exit">) {
+  const { reduceMotion } = useMorphingDialog();
   return (
     <DialogPrimitive.Close asChild>
       <motion.button
@@ -260,9 +261,9 @@ export function MorphingDialogClose({
           "transition-colors hover:bg-black/60 hover:text-white focus-visible:ring-[3px] focus-visible:ring-ring/50",
           className
         )}
-        initial={{ opacity: 0, scale: 0.6 }}
-        animate={{ opacity: 1, scale: 1, transition: { type: "spring", duration: 0.35, bounce: 0.3, delay: 0.15 } }}
-        exit={{ opacity: 0, scale: 0.6, transition: { duration: 0.1 } }}
+        initial={{ opacity: 0, scale: reduceMotion ? 1 : 0.96 }}
+        animate={{ opacity: 1, scale: 1, transition: { duration: 0.2, ease: "easeOut", delay: reduceMotion ? 0 : 0.15 } }}
+        exit={{ opacity: 0, scale: reduceMotion ? 1 : 0.96, transition: { duration: 0.1 } }}
         {...props}
       >
         {children ?? (

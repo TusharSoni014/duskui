@@ -34,23 +34,14 @@ function Segment({
 }) {
   // How much of this segment is covered by the overall fill, 0–1.
   const amount = useTransform(fill, (v) => Math.min(1, Math.max(0, v - index)));
-  // Light up the segment while it's the one filling, then settle.
-  const boxShadow = useTransform(amount, (a) =>
-    a > 0 && a < 1
-      ? "0 0 12px color-mix(in oklab, var(--color-primary) 50%, transparent)"
-      : "0 0 0px transparent"
-  );
 
   return (
-    <motion.span
-      className={cn("relative h-full flex-1 overflow-hidden rounded-full bg-primary/15", className)}
-      style={{ boxShadow }}
-    >
+    <span className={cn("relative h-full flex-1 overflow-hidden rounded-full bg-muted", className)}>
       <motion.span
         className={cn("absolute inset-0 origin-left rounded-full bg-primary", indicatorClassName)}
         style={{ scaleX: amount }}
       />
-    </motion.span>
+    </span>
   );
 }
 
@@ -58,8 +49,7 @@ function Segment({
  * A progress bar split into segments that fill one after another, like a
  * chunked upload or an onboarding checklist. A single spring drives the whole
  * bar and each segment takes its slice of it, so the fill flows from segment
- * to segment instead of all of them moving at once; the segment being filled
- * glows. A real Radix `progressbar` underneath. Instant under reduced motion.
+ * to segment instead of all of them moving at once. A real Radix `progressbar` underneath. Instant under reduced motion.
  */
 export function SegmentedProgress({
   value,

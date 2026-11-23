@@ -14,7 +14,7 @@ export default function AnimatedEmptyCustomDemo() {
       titleAs="h4"
       description="Push to your main branch or deploy from the CLI and your first build will show up here."
     >
-      <Button variant="soft">Deploy now</Button>
+      <Button>Deploy now</Button>
     </AnimatedEmpty>
   );
 }
