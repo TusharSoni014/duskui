@@ -14,7 +14,7 @@ export default function CustomCursorPage() {
         <Switch checked={on} onCheckedChange={setOn} />
         Page-wide cursor
       </label>
-      <p className="max-w-xs text-xs text-white/45">
+      <p className="max-w-xs text-xs text-white/55">
         With <code className="font-mono text-white/70">scope=&quot;page&quot;</code> the cursor follows you across the
         whole document. Text fields keep their native caret.
       </p>

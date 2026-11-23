@@ -16,7 +16,7 @@ export default function CustomCursorSprings() {
           className="flex h-56 flex-col items-center justify-center gap-4 overflow-hidden rounded-xl border border-white/10 bg-background"
         >
           <p className="text-lg font-semibold text-white">{preset.name}</p>
-          <code className="font-mono text-[11px] text-white/45">
+          <code className="font-mono text-[11px] text-white/55">
             stiffness {preset.spring.stiffness} · damping {preset.spring.damping}
           </code>
           <button

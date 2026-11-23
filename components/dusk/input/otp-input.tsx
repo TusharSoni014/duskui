@@ -68,7 +68,7 @@ export function OTPInput({
   return (
     <div
       ref={scope}
-      className={cn("relative inline-flex items-center gap-2", disabled && "opacity-50", className)}
+      className={cn("relative inline-flex items-center gap-1.5 sm:gap-2", disabled && "opacity-50", className)}
     >
       <input
         ref={inputRef}
@@ -109,7 +109,7 @@ export function OTPInput({
             <div
               aria-hidden
               className={cn(
-                "relative flex size-11 items-center justify-center rounded-lg border border-input bg-transparent font-mono text-lg font-medium shadow-xs transition-colors duration-200 dark:bg-input/30",
+                "relative flex size-10 items-center justify-center rounded-lg border sm:size-11 border-input bg-transparent font-mono text-lg font-medium shadow-xs transition-colors duration-200 dark:bg-input/30",
                 invalid && "border-destructive text-destructive"
               )}
             >

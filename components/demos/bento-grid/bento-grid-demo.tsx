@@ -74,7 +74,7 @@ function PreviewVisual() {
           className="flex items-center justify-between gap-3 rounded-md border border-white/10 bg-black/40 px-3 py-2 text-xs"
         >
           <span className="font-mono text-white/70">{preview.branch}</span>
-          <span className="truncate text-white/40">{preview.url}</span>
+          <span className="truncate text-white/55">{preview.url}</span>
         </div>
       ))}
     </div>

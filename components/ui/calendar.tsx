@@ -133,7 +133,7 @@ function Calendar({
           range_middle: "rounded-none bg-accent first:rounded-l-md last:rounded-r-md",
           range_end: "rounded-r-md bg-accent",
           today: "",
-          outside: "text-muted-foreground/60 aria-selected:text-muted-foreground",
+          outside: "text-muted-foreground/80 aria-selected:text-muted-foreground",
           disabled: "text-muted-foreground opacity-40",
           hidden: "invisible",
           // Single-token marker classes that react-day-picker adds while a month slides.

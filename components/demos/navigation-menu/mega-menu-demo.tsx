@@ -79,7 +79,8 @@ const items: MegaMenuItem[] = [
 export default function MegaMenuDemo() {
   return (
     <div className="flex h-full w-full justify-center pt-2">
-      <MegaMenu items={items} />
+      {/* Phones get one item fewer, as a real mobile header would. */}
+      <MegaMenu items={items} className="max-sm:[&>div>ul>li:nth-child(3)]:hidden" />
     </div>
   );
 }

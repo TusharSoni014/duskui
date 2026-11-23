@@ -139,7 +139,7 @@ export function SaveButton() {
       props: [
         { name: "onConfirm", type: "() => void", description: "Called once the hold completes." },
         { name: "holdDuration", type: "number", default: "1200", description: "Hold time in milliseconds." },
-        { name: "fillClassName", type: "string", default: '"bg-destructive text-white"', description: "Classes for the fill layer." },
+        { name: "fillClassName", type: "string", default: '"bg-[color-mix(…destructive 70%, black)] text-white"', description: "Classes for the fill layer. The default darkens the destructive color so white text stays readable." },
       ],
     },
     {

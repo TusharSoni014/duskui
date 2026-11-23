@@ -31,7 +31,7 @@ export function HoldToConfirmButton({
   holdDuration = 1200,
   variant = "outline",
   className,
-  fillClassName = "bg-destructive text-white",
+  fillClassName = "bg-[color-mix(in_oklab,var(--color-destructive)_70%,black)] text-white",
   children,
   disabled,
   ...props

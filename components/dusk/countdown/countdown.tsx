@@ -221,7 +221,7 @@ export function Countdown({
                 <div
                   className={cn(
                     "relative flex min-w-[2.6em] justify-center overflow-hidden rounded-xl border border-white/10 bg-card px-2.5 py-2",
-                    "text-3xl font-semibold leading-none text-foreground sm:text-5xl",
+                    "text-2xl font-semibold leading-none text-foreground sm:text-5xl",
                     "after:pointer-events-none after:absolute after:inset-x-0 after:top-1/2 after:h-px after:bg-black/40",
                     unitClassName
                   )}

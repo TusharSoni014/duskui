@@ -6,7 +6,7 @@ import { ButtonGroup, ButtonGroupText } from "@/components/ui/button-group";
 export default function ButtonGroupBasicDemo() {
   return (
     <div className="flex flex-col items-center gap-4">
-      <ButtonGroup aria-label="Message actions">
+      <ButtonGroup aria-label="Message actions" className="flex-wrap justify-center gap-y-2">
         <ButtonGroup>
           <Button variant="outline" size="icon" aria-label="Previous message">
             <ChevronLeftIcon />

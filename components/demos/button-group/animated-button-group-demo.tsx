@@ -15,10 +15,10 @@ export default function AnimatedButtonGroupDemo() {
         value={view}
         onValueChange={setView}
         options={[
-          { value: "list", label: "List", icon: <ListIcon /> },
-          { value: "board", label: "Board", icon: <ColumnsIcon /> },
-          { value: "calendar", label: "Calendar", icon: <CalendarDaysIcon /> },
-          { value: "grid", label: "Gallery", icon: <LayoutGridIcon /> },
+          { value: "list", label: <span className="max-sm:sr-only">List</span>, icon: <ListIcon /> },
+          { value: "board", label: <span className="max-sm:sr-only">Board</span>, icon: <ColumnsIcon /> },
+          { value: "calendar", label: <span className="max-sm:sr-only">Calendar</span>, icon: <CalendarDaysIcon /> },
+          { value: "grid", label: <span className="max-sm:sr-only">Gallery</span>, icon: <LayoutGridIcon /> },
         ]}
       />
       <AnimatedButtonGroup

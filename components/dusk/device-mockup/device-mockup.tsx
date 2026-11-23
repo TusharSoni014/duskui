@@ -129,7 +129,7 @@ export function SafariMockup({
         >
           <div
             aria-hidden
-            className="flex h-[clamp(28px,5.5cqw,44px)] items-center gap-[clamp(6px,1.4cqw,12px)] border-b border-white/[0.06] bg-[#1b1b1b] px-[clamp(8px,1.8cqw,16px)] text-white/40"
+            className="flex h-[clamp(28px,5.5cqw,44px)] items-center gap-[clamp(6px,1.4cqw,12px)] border-b border-white/[0.06] bg-[#1b1b1b] px-[clamp(8px,1.8cqw,16px)] text-white/55"
           >
             <span className="flex shrink-0 gap-[clamp(4px,0.8cqw,8px)]">
               {["bg-[#ff5f57]", "bg-[#febc2e]", "bg-[#28c840]"].map((color) => (

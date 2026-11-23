@@ -128,7 +128,7 @@ export function Rating({
           animate={{ scale: 1 }}
           transition={{ type: "spring", bounce: 0.15, duration: 0.25, delay: reduceMotion ? 0 : index * 0.03 }}
         >
-          <Icon className="absolute size-full text-muted-foreground/35" strokeWidth={1.5} />
+          <Icon className="absolute size-full text-muted-foreground/50" strokeWidth={1.5} />
           <span
             className={cn(
               "absolute inset-0 grid place-items-center",

@@ -19,7 +19,7 @@ export default function FileTreeControlled() {
   return (
     <div className="w-full max-w-sm">
       <div className="mb-2 flex items-center justify-between">
-        <p className="font-mono text-xs text-white/45">{expanded.length} open</p>
+        <p className="font-mono text-xs text-white/55">{expanded.length} open</p>
         <div className="flex gap-1">
           <Button variant="ghost" size="sm" onClick={() => setExpanded(allFolders)}>
             <ChevronsUpDown aria-hidden /> Expand all

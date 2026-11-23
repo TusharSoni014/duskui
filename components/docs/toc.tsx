@@ -48,7 +48,7 @@ export function Toc({ items }: { items: TocItem[] }) {
                 className={cn(
                   "block py-1 transition-colors",
                   item.depth === 3 ? "pl-6" : "pl-3",
-                  isActive ? "text-white" : "text-white/45 hover:text-white/75"
+                  isActive ? "text-white" : "text-white/55 hover:text-white/80"
                 )}
               >
                 {item.title}

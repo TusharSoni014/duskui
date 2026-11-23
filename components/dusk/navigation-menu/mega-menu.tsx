@@ -100,7 +100,7 @@ export function MegaMenu({
               />
             );
             const barItem = cn(
-              "group relative isolate inline-flex h-8 items-center gap-1 rounded-full px-3.5 text-sm font-medium text-foreground/75 outline-none select-none",
+              "group relative isolate inline-flex h-8 items-center gap-1 rounded-full px-2.5 text-sm sm:px-3.5 font-medium text-foreground/75 outline-none select-none",
               "transition-colors duration-150 hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 data-[state=open]:text-foreground"
             );
             const track = {

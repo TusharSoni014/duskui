@@ -27,7 +27,7 @@ function Notification({ icon: Icon, title, body }: (typeof notifications)[number
       <div className="min-w-0 flex-1">
         <p className="flex items-center gap-2 text-sm font-medium text-white">
           {title}
-          <span className="text-xs font-normal text-white/40">· just now</span>
+          <span className="text-xs font-normal text-white/55">· just now</span>
         </p>
         <p className="truncate text-sm text-white/55">{body}</p>
       </div>

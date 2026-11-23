@@ -26,13 +26,13 @@ export default function ProgressiveBlurDemo() {
         <ol className="space-y-1">
           {tracks.map((track, i) => (
             <li key={track.title} className="flex items-center gap-3 rounded-lg p-2 hover:bg-white/[0.04]">
-              <span className="w-5 text-right text-xs text-white/35 tabular-nums">{i + 1}</span>
+              <span className="w-5 text-right text-xs text-white/55 tabular-nums">{i + 1}</span>
               <div className="size-11 shrink-0 rounded-md" style={{ background: `oklch(0.32 0.04 ${track.tone})` }} />
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium text-white">{track.title}</p>
                 <p className="truncate text-xs text-white/50">{track.artist}</p>
               </div>
-              <span className="text-xs text-white/40 tabular-nums">{track.time}</span>
+              <span className="text-xs text-white/55 tabular-nums">{track.time}</span>
             </li>
           ))}
         </ol>

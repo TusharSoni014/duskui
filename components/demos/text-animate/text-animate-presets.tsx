@@ -15,7 +15,7 @@ export default function TextAnimatePresets() {
       <div key={run} className="grid w-full gap-x-8 gap-y-5 sm:grid-cols-2">
         {presets.map((preset, i) => (
           <div key={preset}>
-            <p className="mb-1 font-mono text-xs text-white/40">{preset}</p>
+            <p className="mb-1 font-mono text-xs text-white/55">{preset}</p>
             <TextAnimate
               animation={preset}
               by={i % 2 ? "character" : "word"}

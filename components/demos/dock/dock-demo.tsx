@@ -21,7 +21,8 @@ export default function DockDemo() {
 
   return (
     <div className="flex h-56 w-full items-end justify-center">
-      <Dock aria-label="Applications">
+      {/* Phones get a shorter dock: apps 5–8 hide below sm. */}
+      <Dock aria-label="Applications" className="max-sm:[&_li:nth-child(n+5):nth-child(-n+8)]:hidden">
         {apps.map(({ label, icon: Icon }) => (
           <DockItem key={label} label={label} active={active === label} onClick={() => setActive(label)}>
             <Icon />

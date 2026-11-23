@@ -61,13 +61,13 @@ export default function CardStackDecisions() {
       <div>
         <p className="text-sm font-medium text-white">Your votes</p>
         <ul className="mt-3 space-y-2 text-sm">
-          {decisions.length === 0 && <li className="text-white/40">Swipe, click or use ← →</li>}
+          {decisions.length === 0 && <li className="text-white/55">Swipe, click or use ← →</li>}
           {decisions.map((d) => (
             <li key={d.title} className="flex items-center gap-2 text-white/70">
               {d.direction === "right" ? (
                 <Check aria-label="Want it" className="size-4 text-foreground" />
               ) : (
-                <X aria-label="Skip" className="size-4 text-white/40" />
+                <X aria-label="Skip" className="size-4 text-white/55" />
               )}
               {d.title}
             </li>

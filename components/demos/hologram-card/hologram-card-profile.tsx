@@ -17,7 +17,7 @@ export default function HologramCardProfile() {
       <dl className="mt-5 grid grid-cols-3 gap-2">
         {stats.map((s) => (
           <div key={s.label} className="rounded-lg border border-white/10 bg-black/20 py-2">
-            <dt className="text-[11px] text-white/45">{s.label}</dt>
+            <dt className="text-[11px] text-white/55">{s.label}</dt>
             <dd className="text-sm font-medium tabular-nums text-white">{s.value}</dd>
           </div>
         ))}

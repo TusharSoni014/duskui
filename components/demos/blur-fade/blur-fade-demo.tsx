@@ -28,7 +28,7 @@ export default function BlurFadeDemo() {
           </button>
         </div>
       </BlurFadeGroup>
-      <BlurFade delay={0.55} className="mt-8 text-xs text-white/40">
+      <BlurFade delay={0.55} className="mt-8 text-xs text-white/55">
         Press replay to watch it again
       </BlurFade>
     </div>

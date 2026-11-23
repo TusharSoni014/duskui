@@ -35,7 +35,7 @@ function PaginationContent({ className, ...props }: React.ComponentProps<"ul">) 
   return (
     <ul
       data-slot="pagination-content"
-      className={cn("flex flex-row items-center gap-1", className)}
+      className={cn("flex flex-row items-center gap-0.5 sm:gap-1", className)}
       {...props}
     />
   );
@@ -66,6 +66,8 @@ function PaginationLink({ className, isActive, size = "icon", asChild = false, .
         "border border-transparent",
         "data-[active=true]:border-border data-[active=true]:bg-accent/50 data-[active=true]:text-foreground data-[active=true]:hover:bg-accent",
         "aria-disabled:pointer-events-none aria-disabled:opacity-50",
+        // Slightly smaller page buttons on phones so a full row fits in ~290px.
+        size === "icon" && "max-sm:size-8",
         className
       )}
       {...props}
@@ -92,7 +94,7 @@ function PaginationPrevious({ className, children, asChild, ...props }: React.Co
       aria-label="Go to previous page"
       size="default"
       asChild={asChild}
-      className={cn("group/pagination gap-1 px-2.5 sm:pl-2.5", className)}
+      className={cn("group/pagination gap-1 px-2 sm:pl-2.5", className)}
       {...props}
     >
       {withDefaultContent(
@@ -113,7 +115,7 @@ function PaginationNext({ className, children, asChild, ...props }: React.Compon
       aria-label="Go to next page"
       size="default"
       asChild={asChild}
-      className={cn("group/pagination gap-1 px-2.5 sm:pr-2.5", className)}
+      className={cn("group/pagination gap-1 px-2 sm:pr-2.5", className)}
       {...props}
     >
       {withDefaultContent(
@@ -132,7 +134,7 @@ function PaginationEllipsis({ className, ...props }: React.ComponentProps<"span"
   return (
     <span
       data-slot="pagination-ellipsis"
-      className={cn("flex size-9 items-center justify-center text-muted-foreground", className)}
+      className={cn("flex size-8 items-center justify-center text-muted-foreground sm:size-9", className)}
       {...props}
     >
       <MoreHorizontalIcon className="size-4" aria-hidden />

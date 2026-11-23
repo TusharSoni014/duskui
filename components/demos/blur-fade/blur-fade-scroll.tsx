@@ -16,7 +16,7 @@ export default function BlurFadeScroll() {
       aria-label="Scrollable gallery"
       className="h-96 w-full max-w-xl overflow-y-auto overscroll-contain rounded-xl border border-white/10 bg-background p-4 outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
     >
-      <p className="mb-4 text-center text-xs text-white/40">Scroll down. Tiles replay every time they enter.</p>
+      <p className="mb-4 text-center text-xs text-white/55">Scroll down. Tiles replay every time they enter.</p>
       <div className="columns-2 gap-3 sm:columns-3">
         {shots.map((shot, i) => (
           <BlurFade

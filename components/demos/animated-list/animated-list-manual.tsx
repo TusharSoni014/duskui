@@ -42,14 +42,14 @@ export default function AnimatedListManualDemo() {
       </div>
       <div className="h-[17.5rem]">
         {items.length === 0 && (
-          <p className="pt-10 text-center text-sm text-white/40">No notifications yet. Add one.</p>
+          <p className="pt-10 text-center text-sm text-white/55">No notifications yet. Add one.</p>
         )}
         <AnimatedList max={max} className="gap-2" aria-label="Notifications">
           {items.map(({ id, item }) => (
             <div key={id} className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2.5">
               <Bell aria-hidden className="size-4 text-muted-foreground" />
               <span className="text-sm text-white/80">{item}</span>
-              <span className="ml-auto text-xs tabular-nums text-white/35">#{id + 1}</span>
+              <span className="ml-auto text-xs tabular-nums text-white/55">#{id + 1}</span>
             </div>
           ))}
         </AnimatedList>

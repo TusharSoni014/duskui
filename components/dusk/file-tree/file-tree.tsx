@@ -367,7 +367,7 @@ function TreeNode({
             transition={ctx.instant ? { duration: 0 } : { type: "spring", bounce: 0.1, duration: 0.3 }}
           />
         )}
-        <span aria-hidden className="relative grid size-4 shrink-0 place-items-center text-white/40">
+        <span aria-hidden className="relative grid size-4 shrink-0 place-items-center text-white/55">
           {folder && (
             <ChevronRight
               className={cn(
@@ -390,7 +390,7 @@ function TreeNode({
             ))}
         </span>
         <span className={cn("relative truncate", isSelected && "font-medium")}>{item.name}</span>
-        {item.badge != null && <span className="relative ml-auto pl-2 text-xs text-white/45">{item.badge}</span>}
+        {item.badge != null && <span className="relative ml-auto pl-2 text-xs text-white/55">{item.badge}</span>}
       </div>
 
       {folder && (

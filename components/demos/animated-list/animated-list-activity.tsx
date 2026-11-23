@@ -35,7 +35,7 @@ export default function AnimatedListActivityDemo() {
             <div key={id} className="flex items-center gap-3 rounded-md bg-white/[0.03] px-3 py-2 font-mono text-xs">
               <span aria-hidden className={`size-1.5 shrink-0 rounded-full ${dot[item.status]}`} />
               <span className="truncate text-white/80">{item.text}</span>
-              <span className="ml-auto shrink-0 text-white/35">{item.meta}</span>
+              <span className="ml-auto shrink-0 text-white/55">{item.meta}</span>
             </div>
           ))}
         </AnimatedList>

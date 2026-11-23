@@ -149,6 +149,9 @@ export function BentoCard({
       <div
         className={cn(
           "relative transition-transform duration-250 ease-out",
+          // A card-colored scrim under the text so background visuals never collide with it.
+          background &&
+            "before:pointer-events-none before:absolute before:-inset-x-6 before:-bottom-6 before:-top-10 before:-z-10 before:bg-linear-to-t before:from-card before:from-60% before:to-transparent",
           isLink && cta && hoverReveal
         )}
       >

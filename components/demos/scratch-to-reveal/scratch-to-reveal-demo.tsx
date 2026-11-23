@@ -11,7 +11,7 @@ export default function ScratchToRevealDemo() {
   return (
     <div className="flex flex-col items-center gap-4">
       <ScratchToReveal
-        className="h-44 w-80 border border-white/10"
+        className="h-44 w-full max-w-80 border border-white/10"
         minScratchPercentage={45}
         onComplete={() => setWon(true)}
       >

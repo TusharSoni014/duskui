@@ -29,7 +29,7 @@ export default function ScratchToRevealGrid() {
           </ScratchToReveal>
         ))}
       </div>
-      <p className="text-xs text-white/45">Small brush, 30% threshold</p>
+      <p className="text-xs text-white/55">Small brush, 30% threshold</p>
     </div>
   );
 }

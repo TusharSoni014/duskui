@@ -37,7 +37,7 @@ export default function NavigationMenuBasicDemo() {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="max-sm:px-3">Getting started</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-1 p-1 sm:w-[440px] sm:grid-cols-[0.8fr_1fr]">
               <li className="row-span-3">
@@ -66,7 +66,7 @@ export default function NavigationMenuBasicDemo() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="max-sm:px-3">Components</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-1 p-1 sm:w-[520px] sm:grid-cols-2">
               {components.map((component) => (
@@ -77,7 +77,7 @@ export default function NavigationMenuBasicDemo() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
+        <NavigationMenuItem className="max-sm:hidden">
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
             <a href="#docs">Docs</a>
           </NavigationMenuLink>

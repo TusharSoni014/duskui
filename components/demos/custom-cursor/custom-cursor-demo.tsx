@@ -5,7 +5,7 @@ import { CustomCursor } from "@/components/dusk/custom-cursor/custom-cursor";
 export default function CustomCursorDemo() {
   return (
     <CustomCursor className="flex h-80 w-full max-w-xl flex-col justify-between overflow-hidden rounded-xl border border-white/10 bg-background p-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <span className="font-semibold tracking-tight text-foreground">Northwind Studio</span>
         <nav aria-label="Demo" className="flex gap-1 text-sm text-white/70">
           {["Work", "About", "Contact"].map((item) => (

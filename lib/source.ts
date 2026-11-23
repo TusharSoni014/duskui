@@ -4,6 +4,7 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import { cache } from "react";
 import { createHighlighter, type Highlighter } from "shiki";
+import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 
 /** Reads a project file at build time so docs always show the real source. */
 export const readSource = cache(async (relativePath: string) => {
@@ -11,12 +12,17 @@ export const readSource = cache(async (relativePath: string) => {
   return file.trimEnd();
 });
 
-let highlighter: Promise<Highlighter> | undefined;
+// One highlighter per process. It lives on globalThis so dev hot reloads reuse
+// it instead of piling up new instances. The JavaScript regex engine avoids the
+// Oniguruma WASM build, whose memory got corrupted in long-running dev servers
+// ("ShikiError: …scape").
+const store = globalThis as typeof globalThis & { __duskHighlighter?: Promise<Highlighter> };
 
 const getHighlighter = () =>
-  (highlighter ??= createHighlighter({
+  (store.__duskHighlighter ??= createHighlighter({
     themes: ["github-dark-default"],
     langs: ["tsx", "ts", "bash", "json", "css"],
+    engine: createJavaScriptRegexEngine(),
   }));
 
 const escapeHtml = (s: string) =>
@@ -33,7 +39,7 @@ export async function highlight(code: string, lang: string = "tsx") {
   try {
     return await render();
   } catch {
-    highlighter = undefined;
+    store.__duskHighlighter = undefined;
     try {
       return await render();
     } catch (error) {

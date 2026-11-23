@@ -60,7 +60,7 @@ export function CatalogView() {
         ))}
       </ul>
       {visible.length === 0 && (
-        <p className="py-16 text-center text-white/40">No components match “{query}”.</p>
+        <p className="py-16 text-center text-white/55">No components match “{query}”.</p>
       )}
     </div>
   );

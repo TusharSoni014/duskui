@@ -7,15 +7,15 @@ import { Rating } from "@/components/dusk/rating/rating";
 export default function RatingCustomDemo() {
   return (
     <div className="flex flex-col items-start gap-5">
-      <div className="flex items-center gap-4">
+      <div className="flex flex-col items-start gap-1.5 sm:flex-row sm:items-center sm:gap-4">
         <span className="w-20 text-sm text-muted-foreground">Hearts</span>
         <Rating icon={Heart} defaultValue={3} label="Hearts" color="#f472b6" />
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex flex-col items-start gap-1.5 sm:flex-row sm:items-center sm:gap-4">
         <span className="w-20 text-sm text-muted-foreground">Energy</span>
         <Rating icon={Zap} count={10} size="sm" defaultValue={7} label="Energy level" />
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex flex-col items-start gap-1.5 sm:flex-row sm:items-center sm:gap-4">
         <span className="w-20 text-sm text-muted-foreground">Spice</span>
         <Rating
           icon={Flame}

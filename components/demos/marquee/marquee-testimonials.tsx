@@ -33,7 +33,7 @@ function Review({ name, handle, text }: (typeof reviews)[number]) {
         </span>
         <figcaption className="min-w-0">
           <p className="truncate text-sm font-medium text-white">{name}</p>
-          <p className="truncate text-xs text-white/45">{handle}</p>
+          <p className="truncate text-xs text-white/55">{handle}</p>
         </figcaption>
       </div>
       <blockquote className="mt-3 text-sm leading-relaxed text-white/70">{text}</blockquote>

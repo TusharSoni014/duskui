@@ -36,7 +36,7 @@ export function InstallTabs({ registryUrl, manual }: InstallTabsProps) {
             aria-pressed={mode === m}
             className={cn(
               "relative rounded-md px-3 py-1 text-sm font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring/50",
-              mode === m ? "text-white" : "text-white/45 hover:text-white/75"
+              mode === m ? "text-white" : "text-white/55 hover:text-white/80"
             )}
           >
             {mode === m && (
@@ -62,7 +62,7 @@ export function InstallTabs({ registryUrl, manual }: InstallTabsProps) {
                   aria-pressed={pm === m}
                   className={cn(
                     "relative px-2.5 py-2.5 font-mono text-xs outline-none transition-colors focus-visible:text-white",
-                    pm === m ? "text-white" : "text-white/40 hover:text-white/70"
+                    pm === m ? "text-white" : "text-white/55 hover:text-white/80"
                   )}
                 >
                   {m}
@@ -79,7 +79,7 @@ export function InstallTabs({ registryUrl, manual }: InstallTabsProps) {
           </div>
           <pre className="overflow-x-auto p-4 font-mono text-[13px] text-white/85">
             <code>
-              <span className="select-none text-white/30">$ </span>
+              <span className="select-none text-white/45">$ </span>
               {command}
             </code>
           </pre>

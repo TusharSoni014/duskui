@@ -208,7 +208,7 @@ export function AnimatedPagination({
                   label: "Go to previous page",
                   disabled: page <= 1,
                   size: labels ? "default" : "icon",
-                  className: cn("group/pagination", labels && "gap-1 px-2.5"),
+                  className: cn("group/pagination", labels && "gap-1 px-2 sm:px-2.5"),
                 }
               )}
             </PaginationItem>
@@ -277,7 +277,7 @@ export function AnimatedPagination({
                   label: "Go to next page",
                   disabled: page >= total,
                   size: labels ? "default" : "icon",
-                  className: cn("group/pagination", labels && "gap-1 px-2.5"),
+                  className: cn("group/pagination", labels && "gap-1 px-2 sm:px-2.5"),
                 }
               )}
             </PaginationItem>

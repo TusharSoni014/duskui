@@ -112,7 +112,7 @@ const AppSidebar = React.memo(function AppSidebar({
               <span className="relative">Overview</span>
             </Link>
 
-            <p className="mt-4 mb-1.5 flex items-center justify-between px-2.5 text-[11px] font-medium uppercase tracking-wider text-white/35">
+            <p className="mt-4 mb-1.5 flex items-center justify-between px-2.5 text-[11px] font-medium uppercase tracking-wider text-white/55">
               Components
               <span className="tabular-nums">{visible.length}</span>
             </p>
@@ -137,7 +137,7 @@ const AppSidebar = React.memo(function AppSidebar({
               })}
             </ul>
             {visible.length === 0 && (
-              <p className="px-2.5 py-3 text-xs text-white/40">No components match “{query}”.</p>
+              <p className="px-2.5 py-3 text-xs text-white/55">No components match “{query}”.</p>
             )}
           </nav>
         </SidebarGroup>
@@ -186,9 +186,10 @@ export default function ComponentsLayout({
     <SidebarProvider>
       <div className="min-h-screen bg-background flex w-full">
         <AppSidebar currentPath={pathname} />
-        <SidebarInset className="flex-1">
+        {/* min-w-0 stops wide demos from stretching the docs column past the viewport. */}
+        <SidebarInset className="min-w-0 flex-1">
           <ComponentsHeader />
-          <main className="p-6 md:p-10">{children}</main>
+          <div className="min-w-0 p-4 sm:p-6 md:p-10">{children}</div>
         </SidebarInset>
       </div>
     </SidebarProvider>

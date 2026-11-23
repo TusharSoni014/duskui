@@ -226,7 +226,7 @@ export function TimelineItem({
           ref={dotRef}
           aria-hidden
           className={cn(
-            "relative z-10 flex size-(--tl-dot) items-center justify-center rounded-full border border-white/15 bg-background text-white/40",
+            "relative z-10 flex size-(--tl-dot) items-center justify-center rounded-full border border-white/15 bg-background text-white/55",
             "transition-[color,border-color] duration-300 [&_svg]:size-3.5",
             "group-data-reached/tl:border-primary group-data-reached/tl:text-primary"
           )}

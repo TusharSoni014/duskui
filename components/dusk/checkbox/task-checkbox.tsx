@@ -127,7 +127,7 @@ export function TaskCheckbox({
         {description && (
           <p
             id={descriptionId}
-            className="text-xs text-muted-foreground transition-opacity duration-300 group-data-done/task:opacity-60"
+            className="text-xs text-muted-foreground transition-opacity duration-300 group-data-done/task:opacity-80"
           >
             {description}
           </p>

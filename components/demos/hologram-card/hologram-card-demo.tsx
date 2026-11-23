@@ -16,7 +16,7 @@ export default function HologramCardDemo() {
           <p className="text-sm font-medium text-white">Mira Okafor</p>
           <p className="text-xs text-white/50">Speaker · All areas</p>
         </div>
-        <p className="text-xs tabular-nums text-white/40">#0042</p>
+        <p className="text-xs tabular-nums text-white/55">#0042</p>
       </div>
     </HologramCard>
   );

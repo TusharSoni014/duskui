@@ -57,7 +57,7 @@ export function ComponentPreview({
                 onClick={() => setTab(t)}
                 className={cn(
                   "relative px-3 pb-2.5 pt-1 text-sm font-medium outline-none transition-colors focus-visible:text-white",
-                  active ? "text-white" : "text-white/45 hover:text-white/75"
+                  active ? "text-white" : "text-white/55 hover:text-white/80"
                 )}
               >
                 {t}
@@ -94,7 +94,7 @@ export function ComponentPreview({
       >
         <div
           key={replay}
-          className="relative flex flex-wrap items-center justify-center gap-3 overflow-hidden rounded-xl border border-white/10 bg-[radial-gradient(circle,rgb(255_255_255/0.06)_1px,transparent_1px)] bg-size-[16px_16px] p-8 sm:p-10"
+          className="relative flex flex-wrap items-center justify-center gap-3 overflow-hidden rounded-xl border border-white/10 bg-[radial-gradient(circle,rgb(255_255_255/0.06)_1px,transparent_1px)] bg-size-[16px_16px] p-3 sm:p-10"
           style={{ minHeight }}
         >
           {children}

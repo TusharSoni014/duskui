@@ -68,7 +68,7 @@ export function GlobalSearch() {
                 className="flex cursor-pointer flex-col items-start gap-0.5"
               >
                 <span>{component.name}</span>
-                <span className="line-clamp-1 text-xs text-white/40">
+                <span className="line-clamp-1 text-xs text-white/55">
                   {component.description}
                 </span>
               </CommandItem>

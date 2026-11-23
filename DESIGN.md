@@ -52,6 +52,18 @@ badges and toggles that are pills by nature.
 **Type:** Geist Sans for everything, Geist Mono only for code. Headings
 `tracking-tight`, body `text-sm`/`text-base` with `leading-relaxed`, lines under ~80ch.
 
+**Contrast:** readable text never goes below `white/55` (or `text-muted-foreground`)
+on our dark surfaces; that is about 5:1. `white/40` and `white/45` fail WCAG AA
+(4.5:1). Lower alphas are for icons, separators and decoration only. Watch for
+stacked opacity: `text-white/60` inside an `opacity-70` wrapper is really ~40%.
+White text on `--destructive` needs a darker fill
+(`color-mix(in oklab, var(--color-destructive) 70%, black)`).
+
+**Layout:** text never shares space with a decorative visual. If a background
+visual can reach the copy, fade it out or put a card-colored scrim under the text.
+Demos must fit 375px: about 290px inside the preview. Wrap, drop to icon-only with
+an `sr-only` label, or show one item fewer on phones, rather than overflow.
+
 ## Checklist before shipping a component
 
 - [ ] Remove one accessory. Does it still read well? Keep it removed.
@@ -59,3 +71,4 @@ badges and toggles that are pills by nature.
 - [ ] Mint only on the primary action / selected state / focus.
 - [ ] Motion is caused by the user or by a state change, and is reduced-motion safe.
 - [ ] Keyboard focus visible; contrast AA; works at 375px wide.
+- [ ] No text sits on top of other text or a busy visual, at 375px and at 1280px.

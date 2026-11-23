@@ -72,7 +72,7 @@ export function PropsTable({ rows }: { rows: PropRow[] }) {
             <tr key={row.name} className="align-top transition-colors hover:bg-white/[0.02]">
               <td className="px-4 py-3 font-mono text-[13px] text-primary">{row.name}</td>
               <td className="max-w-56 px-4 py-3 font-mono text-[12px] text-white/55">{row.type}</td>
-              <td className="px-4 py-3 font-mono text-[12px] text-white/40">{row.default ?? "—"}</td>
+              <td className="px-4 py-3 font-mono text-[12px] text-white/60">{row.default ?? "—"}</td>
               <td className="px-4 py-3 text-white/60">{row.description}</td>
             </tr>
           ))}

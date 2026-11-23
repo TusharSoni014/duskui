@@ -50,7 +50,7 @@ export default function FileUploadCallbackDemo() {
         onFileComplete={(file) => setLog((l) => [`✓ ${file.name}`, ...l].slice(0, 3))}
       />
       {log.length > 0 && (
-        <p className="font-mono text-xs text-white/40">onFileComplete: {log.join("  ")}</p>
+        <p className="font-mono text-xs text-white/55">onFileComplete: {log.join("  ")}</p>
       )}
     </div>
   );

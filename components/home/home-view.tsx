@@ -90,7 +90,7 @@ function LivePanel() {
     <div className="rounded-xl border border-white/10 bg-card shadow-2xl shadow-black/40">
       <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-3.5">
         <p className="text-sm font-medium text-white">Project settings</p>
-        <span className="text-xs text-white/40">acme-web</span>
+        <span className="text-xs text-white/55">acme-web</span>
       </div>
 
       <Tabs defaultValue="general" className="p-5">
@@ -175,7 +175,7 @@ function Hero() {
             </div>
           </div>
 
-          <p className="mt-8 text-sm text-white/40">
+          <p className="mt-8 text-sm text-white/55">
             React 19 · Tailwind CSS v4 · Motion · Radix UI · TypeScript
           </p>
         </div>
@@ -276,7 +276,7 @@ function Showcase() {
                 <Link
                   href={componentHref(slug)}
                   aria-label={`${title} documentation`}
-                  className="shrink-0 rounded-md p-1.5 text-white/40 transition-colors hover:bg-white/5 hover:text-white"
+                  className="shrink-0 rounded-md p-1.5 text-white/55 transition-colors hover:bg-white/5 hover:text-white"
                 >
                   <ArrowUpRight className="size-4" />
                 </Link>
@@ -436,7 +436,7 @@ function Closing() {
 function Footer() {
   return (
     <footer className="border-t border-white/[0.06] px-4 py-8 sm:px-6">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 text-sm text-white/40 sm:flex-row">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 text-sm text-white/55 sm:flex-row">
         <div className="flex items-center gap-2.5">
           <LogoMark className="size-5" />
           <span>DuskUI</span>

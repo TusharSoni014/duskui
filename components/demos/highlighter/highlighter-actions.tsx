@@ -13,7 +13,7 @@ export default function HighlighterActions() {
     <ul className="grid gap-5 text-xl font-medium text-white/80 sm:grid-cols-2">
       {actions.map(({ action, label }) => (
         <li key={action} className="flex flex-col gap-1">
-          <span className="font-mono text-xs text-white/40">{action}</span>
+          <span className="font-mono text-xs text-white/55">{action}</span>
           <span>
             <Highlighter action={action} duration={0.7}>
               {label}
