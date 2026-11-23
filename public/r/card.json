@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card",
+  "title": "Card",
+  "description": "Drop-in upgrade of the shadcn/ui Card: same parts and data-slots, smooth border/shadow transitions, an `interactive` mode (hover lift, tinted border, focus ring) and `asChild`. CSS only.",
+  "dependencies": [
+    "@radix-ui/react-slot"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/card.tsx",
+      "content": "import * as React from \"react\";\nimport { Slot } from \"@radix-ui/react-slot\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface CardProps extends React.ComponentProps<\"div\"> {\n  /** Render the child element instead of a `<div>` (Radix Slot), e.g. a link. */\n  asChild?: boolean;\n  /** Lift, brighten the border and show a focus ring on hover / focus. Use for clickable cards. */\n  interactive?: boolean;\n}\n\n/**\n * DuskUI Card — a drop-in upgrade of the shadcn/ui Card.\n *\n * Same parts and data-slot attributes as shadcn (Card, CardHeader, CardTitle,\n * CardDescription, CardAction, CardContent, CardFooter) plus:\n * - A subtle top highlight and smooth border / shadow transitions.\n * - `interactive`: hover lift, mint-tinted border and a focus-visible ring for\n *   cards that are links or buttons (combine with `asChild`).\n * - `isolate`, so decorative layers placed at `-z-10` sit above the surface\n *   but below the content.\n * CSS only, so it works in Server Components.\n */\nfunction Card({ className, asChild = false, interactive = false, ...props }: CardProps) {\n  const Comp = asChild ? Slot : \"div\";\n\n  return (\n    <Comp\n      data-slot=\"card\"\n      data-interactive={interactive || undefined}\n      className={cn(\n        \"relative isolate flex flex-col gap-6 rounded-xl border bg-card py-6 text-card-foreground\",\n        \"shadow-[inset_0_1px_0_rgb(255_255_255/0.04),0_1px_2px_rgb(0_0_0/0.3)]\",\n        \"transition-[border-color,box-shadow,background-color,translate] duration-200 ease-out motion-reduce:transition-none\",\n        interactive && [\n          \"outline-none hover:-translate-y-0.5 hover:border-primary/25 motion-reduce:hover:translate-y-0\",\n          \"hover:shadow-[inset_0_1px_0_rgb(255_255_255/0.06),0_16px_40px_-16px_rgb(0_0_0/0.7),0_0_24px_-12px_var(--color-primary)]\",\n          \"focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40\",\n        ],\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\n/** Top section. Lays out title, description and an optional CardAction in a grid. */\nfunction CardHeader({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"card-header\"\n      className={cn(\n        \"@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\n/** The card's title. A `<div>` like shadcn — nest an `<h2>`/`<h3>` inside when it belongs in the page outline. */\nfunction CardTitle({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"card-title\"\n      className={cn(\"leading-none font-semibold tracking-tight\", className)}\n      {...props}\n    />\n  );\n}\n\n/** Muted supporting text under the title. */\nfunction CardDescription({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"card-description\"\n      className={cn(\"text-sm text-muted-foreground\", className)}\n      {...props}\n    />\n  );\n}\n\n/** Top-right slot in the header for a button, menu or badge. */\nfunction CardAction({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"card-action\"\n      className={cn(\"col-start-2 row-span-2 row-start-1 self-start justify-self-end\", className)}\n      {...props}\n    />\n  );\n}\n\n/** Main body. */\nfunction CardContent({ className, ...props }: React.ComponentProps<\"div\">) {\n  return <div data-slot=\"card-content\" className={cn(\"px-6\", className)} {...props} />;\n}\n\n/** Bottom row, usually for actions. */\nfunction CardFooter({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"card-footer\"\n      className={cn(\"flex items-center px-6 [.border-t]:pt-6\", className)}\n      {...props}\n    />\n  );\n}\n\nexport { Card, CardHeader, CardFooter, CardTitle, CardAction, CardDescription, CardContent };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "card"
+  ],
+  "type": "registry:ui"
+}

@@ -1,16 +1,36 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
+
+import { categories } from "@/lib/components-data";
+import { absoluteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://duskui.com";
+  const lastModified = new Date();
 
-  const routes = ["", "/components", "/contact", "/contributers"].map(
-    (route) => ({
-      url: `${baseUrl}${route}`,
-      lastModified: new Date().toISOString(),
+  const categoryPages = categories
+    .filter((category) => category.components.some((c) => c.ready))
+    .map((category) => ({
+      url: absoluteUrl(`/components/${category.slug}`),
+      lastModified,
       changeFrequency: "weekly" as const,
-      priority: route === "" ? 1 : 0.8,
-    })
+      priority: 0.7,
+    }));
+
+  // Only finished components — "coming soon" pages are noindexed.
+  const componentPages = categories.flatMap((category) =>
+    category.components
+      .filter((component) => component.ready)
+      .map((component) => ({
+        url: absoluteUrl(component.href),
+        lastModified,
+        changeFrequency: "weekly" as const,
+        priority: 0.9,
+      }))
   );
 
-  return routes;
+  return [
+    { url: absoluteUrl("/"), lastModified, changeFrequency: "weekly", priority: 1 },
+    { url: absoluteUrl("/components"), lastModified, changeFrequency: "weekly", priority: 0.8 },
+    ...categoryPages,
+    ...componentPages,
+  ];
 }

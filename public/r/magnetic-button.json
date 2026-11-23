@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "magnetic-button",
+  "title": "Magnetic Button",
+  "description": "Button that is pulled toward the cursor on spring physics, with a parallax label.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://duskui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "components/dusk/button/magnetic-button.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport {\n  motion,\n  useMotionValue,\n  useReducedMotion,\n  useSpring,\n  useTransform,\n} from \"motion/react\";\n\nimport { MotionButton, type MotionButtonProps } from \"@/components/ui/button\";\n\nexport interface MagneticButtonProps extends MotionButtonProps {\n  /** How strongly the button follows the cursor (0–1). */\n  strength?: number;\n}\n\nconst spring = { stiffness: 220, damping: 16, mass: 0.4 };\n\n/**\n * The button is pulled toward the cursor and springs back on leave.\n * The label moves a little further than the surface for a parallax feel.\n * Only reacts to a mouse, never to touch, and is static with reduced motion.\n */\nexport function MagneticButton({\n  strength = 0.35,\n  children,\n  onPointerMove,\n  onPointerLeave,\n  ...props\n}: MagneticButtonProps) {\n  const reduceMotion = useReducedMotion();\n  const x = useMotionValue(0);\n  const y = useMotionValue(0);\n  const springX = useSpring(x, spring);\n  const springY = useSpring(y, spring);\n  const labelX = useTransform(springX, (v) => v * 0.4);\n  const labelY = useTransform(springY, (v) => v * 0.4);\n\n  const handleMove = (event: React.PointerEvent<HTMLButtonElement>) => {\n    onPointerMove?.(event);\n    if (reduceMotion || event.pointerType !== \"mouse\") return;\n    const rect = event.currentTarget.getBoundingClientRect();\n    x.set((event.clientX - (rect.left + rect.width / 2)) * strength);\n    y.set((event.clientY - (rect.top + rect.height / 2)) * strength);\n  };\n\n  const handleLeave = (event: React.PointerEvent<HTMLButtonElement>) => {\n    onPointerLeave?.(event);\n    x.set(0);\n    y.set(0);\n  };\n\n  return (\n    <MotionButton\n      style={{ x: springX, y: springY }}\n      onPointerMove={handleMove}\n      onPointerLeave={handleLeave}\n      {...props}\n    >\n      <motion.span\n        className=\"inline-flex items-center [gap:inherit]\"\n        style={{ x: labelX, y: labelY }}\n      >\n        {children}\n      </motion.span>\n    </MotionButton>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "button"
+  ],
+  "type": "registry:component"
+}

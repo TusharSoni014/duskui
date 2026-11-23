@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tilt-card",
+  "title": "Tilt Card",
+  "description": "Card that tilts in 3D toward the cursor on springs with a moving glare highlight. Mouse only, static with reduced motion.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://duskui.com/r/card.json"
+  ],
+  "files": [
+    {
+      "path": "components/dusk/card/tilt-card.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport {\n  motion,\n  useMotionTemplate,\n  useMotionValue,\n  useReducedMotion,\n  useSpring,\n  useTransform,\n} from \"motion/react\";\n\nimport { Card } from \"@/components/ui/card\";\nimport { cn } from \"@/lib/utils\";\n\nconst MotionCard = motion.create(Card);\ntype MotionCardProps = Omit<React.ComponentProps<typeof MotionCard>, \"children\" | \"asChild\"> & {\n  children?: React.ReactNode;\n};\n\nexport interface TiltCardProps extends MotionCardProps {\n  /** Maximum rotation in degrees at the card's edges. */\n  maxTilt?: number;\n  /** Scale while hovered. 1 to disable. */\n  hoverScale?: number;\n  /** Show a light reflection that follows the cursor. */\n  glare?: boolean;\n  /** CSS perspective in px. Lower = more dramatic. */\n  perspective?: number;\n  /** Classes for the outer wrapper that receives the pointer events. */\n  containerClassName?: string;\n}\n\nconst spring = { stiffness: 260, damping: 24, mass: 0.6 };\n\n/**\n * A card that tilts in 3D toward the cursor and springs back on leave, with a\n * glare highlight sliding across the surface. Elements inside the Card parts\n * (CardHeader, CardContent…) can pop out with `[transform:translateZ(40px)]`;\n * add `transform-3d` to any extra wrapper in between. Reacts to a mouse only\n * (never touch), and stays flat when the user prefers reduced motion.\n */\nexport function TiltCard({\n  maxTilt = 10,\n  hoverScale = 1.02,\n  glare = true,\n  perspective = 900,\n  className,\n  containerClassName,\n  style,\n  children,\n  ...props\n}: TiltCardProps) {\n  const reduceMotion = useReducedMotion();\n  // Pointer position in the card, 0–1 on each axis. 0.5 = center.\n  const px = useMotionValue(0.5);\n  const py = useMotionValue(0.5);\n  const hover = useMotionValue(0);\n\n  const rotateX = useSpring(useTransform(py, [0, 1], [maxTilt, -maxTilt]), spring);\n  const rotateY = useSpring(useTransform(px, [0, 1], [-maxTilt, maxTilt]), spring);\n  const scale = useSpring(useTransform(hover, [0, 1], [1, hoverScale]), spring);\n  const glareOpacity = useSpring(hover, { stiffness: 200, damping: 30 });\n  const glareX = useTransform(px, (v) => `${v * 100}%`);\n  const glareY = useTransform(py, (v) => `${v * 100}%`);\n  const glareBackground = useMotionTemplate`radial-gradient(farthest-corner circle at ${glareX} ${glareY}, rgb(255 255 255 / 0.14), transparent 55%)`;\n\n  const handleMove = (event: React.PointerEvent<HTMLDivElement>) => {\n    if (reduceMotion || event.pointerType !== \"mouse\") return;\n    const rect = event.currentTarget.getBoundingClientRect();\n    px.set((event.clientX - rect.left) / rect.width);\n    py.set((event.clientY - rect.top) / rect.height);\n    hover.set(1);\n  };\n\n  const handleLeave = () => {\n    px.set(0.5);\n    py.set(0.5);\n    hover.set(0);\n  };\n\n  return (\n    // The wrapper never moves, so its rect is stable while the card rotates.\n    <div\n      className={cn(\"group/tilt\", containerClassName)}\n      style={{ perspective }}\n      onPointerMove={handleMove}\n      onPointerLeave={handleLeave}\n    >\n      <MotionCard\n        className={cn(\n          // isolation-auto: `isolate` would flatten the 3D scene. Card parts\n          // (header, content, footer) keep it 3D so their children can use translateZ.\n          \"isolation-auto transform-3d will-change-transform [&>[data-slot]]:transform-3d\",\n          className\n        )}\n        style={{ ...style, rotateX, rotateY, scale }}\n        {...props}\n      >\n        {children}\n        {glare && (\n          <motion.div\n            aria-hidden\n            className=\"pointer-events-none absolute inset-0 rounded-[inherit]\"\n            style={{ background: glareBackground, opacity: glareOpacity }}\n          />\n        )}\n      </MotionCard>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "card"
+  ],
+  "type": "registry:component"
+}

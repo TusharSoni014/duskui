@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shimmer-input",
+  "title": "Shimmer Input",
+  "description": "Input with a light beam travelling around its border while loading, for AI prompt fields.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://duskui.com/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "components/dusk/input/shimmer-input.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { AnimatePresence, motion, useReducedMotion } from \"motion/react\";\n\nimport { Input } from \"@/components/ui/input\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface ShimmerInputProps extends React.ComponentProps<\"input\"> {\n  /** Run the light around the border, e.g. while an AI response streams in. */\n  loading?: boolean;\n  /** Classes for the outer border wrapper. */\n  wrapperClassName?: string;\n}\n\n/**\n * An input whose border lights up with a travelling beam while `loading`.\n * The beam is a rotating conic gradient clipped to a 1px frame.\n */\nexport function ShimmerInput({\n  loading = false,\n  className,\n  wrapperClassName,\n  ...props\n}: ShimmerInputProps) {\n  const reduceMotion = useReducedMotion();\n\n  return (\n    <div\n      className={cn(\n        \"relative w-full overflow-hidden rounded-[calc(var(--radius)-1px)] bg-input p-px transition-shadow duration-200\",\n        \"has-[input:focus-visible]:ring-[3px] has-[input:focus-visible]:ring-ring/30\",\n        wrapperClassName\n      )}\n    >\n      <AnimatePresence>\n        {loading && (\n          <motion.span\n            aria-hidden\n            className=\"pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[max(200%,24rem)] -translate-x-1/2 -translate-y-1/2 bg-[conic-gradient(from_0deg,transparent_0%,transparent_65%,var(--color-primary)_85%,white_90%,transparent_100%)]\"\n            initial={{ opacity: 0 }}\n            animate={{ opacity: 1, rotate: reduceMotion ? 0 : 360 }}\n            exit={{ opacity: 0 }}\n            transition={{\n              opacity: { duration: 0.3 },\n              rotate: { duration: 2.2, ease: \"linear\", repeat: Infinity },\n            }}\n          />\n        )}\n      </AnimatePresence>\n      <Input\n        aria-busy={loading || undefined}\n        className={cn(\n          \"relative border-0 bg-card shadow-none hover:bg-card focus-visible:ring-0 dark:bg-card dark:hover:bg-card\",\n          className\n        )}\n        {...props}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "input"
+  ],
+  "type": "registry:component"
+}

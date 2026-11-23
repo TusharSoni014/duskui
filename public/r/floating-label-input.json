@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "floating-label-input",
+  "title": "Floating Label Input",
+  "description": "Input whose label rests inside the field and springs up on focus or when filled.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://duskui.com/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "components/dusk/input/floating-label-input.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion } from \"motion/react\";\n\nimport { Input } from \"@/components/ui/input\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface FloatingLabelInputProps extends React.ComponentProps<\"input\"> {\n  label: string;\n}\n\n/**\n * The label sits inside the field like a placeholder and springs up when the\n * field is focused or filled. It is a real <label>, so it stays accessible.\n */\nexport function FloatingLabelInput({\n  label,\n  id,\n  className,\n  value,\n  defaultValue,\n  onFocus,\n  onBlur,\n  onChange,\n  ...props\n}: FloatingLabelInputProps) {\n  const autoId = React.useId();\n  const inputId = id ?? autoId;\n  const ref = React.useRef<HTMLInputElement>(null);\n  const [focused, setFocused] = React.useState(false);\n  const [hasText, setHasText] = React.useState(Boolean(defaultValue));\n\n  // Catch browser autofill, which may not fire onChange.\n  React.useEffect(() => {\n    const t = setTimeout(() => ref.current?.value && setHasText(true), 300);\n    return () => clearTimeout(t);\n  }, []);\n\n  const filled = value !== undefined ? String(value).length > 0 : hasText;\n  const floated = focused || filled;\n\n  return (\n    <div className=\"relative w-full\">\n      <Input\n        ref={ref}\n        id={inputId}\n        value={value}\n        defaultValue={defaultValue}\n        className={cn(\"h-12 px-3 pb-1.5 pt-5\", className)}\n        onFocus={(e) => {\n          setFocused(true);\n          onFocus?.(e);\n        }}\n        onBlur={(e) => {\n          setFocused(false);\n          onBlur?.(e);\n        }}\n        onChange={(e) => {\n          setHasText(e.target.value.length > 0);\n          onChange?.(e);\n        }}\n        {...props}\n      />\n      <motion.label\n        htmlFor={inputId}\n        className={cn(\n          \"pointer-events-none absolute left-3 top-0 origin-left text-sm leading-5 transition-colors duration-200\",\n          focused ? \"text-primary\" : \"text-muted-foreground\",\n          props[\"aria-invalid\"] && \"text-destructive\"\n        )}\n        initial={false}\n        animate={floated ? { y: 5, scale: 0.78 } : { y: 14, scale: 1 }}\n        transition={{ type: \"spring\", duration: 0.3, bounce: 0.1 }}\n      >\n        {label}\n      </motion.label>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "input"
+  ],
+  "type": "registry:component"
+}

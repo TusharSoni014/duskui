@@ -1,5 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
+import { JsonLd } from "@/components/json-ld";
+import { siteConfig } from "@/lib/site";
+import { Providers } from "./providers";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -11,30 +15,19 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://duskui.com"),
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "DuskUI - Animated React Component Library",
+    default: siteConfig.title,
     template: "%s | DuskUI",
   },
-  description:
-    "Open-source UI component library for Next.js and React with animated and customizable components.",
-  keywords: [
-    "React",
-    "Next.js",
-    "UI library",
-    "components",
-    "animated",
-    "customizable",
-    "open-source",
-    "DuskUI",
-    "React components",
-    "UI components",
-    "component library",
-  ],
-  authors: [{ name: "Tushar Verma" }],
-  creator: "Tushar Verma",
-  publisher: "DuskUI",
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  keywords: [...siteConfig.keywords],
+  authors: [{ name: siteConfig.author.name }],
+  creator: siteConfig.author.name,
+  publisher: siteConfig.name,
   robots: {
     index: true,
     follow: true,
@@ -46,37 +39,29 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  // OG/Twitter images come from app/opengraph-image.tsx (file convention).
   openGraph: {
-    title: "DuskUI - Animated React Component Library",
-    description:
-      "Open-source UI component library for Next.js and React with animated and customizable components.",
+    title: siteConfig.title,
+    description: siteConfig.description,
     type: "website",
-    url: "https://duskui.com",
-    siteName: "DuskUI",
+    siteName: siteConfig.name,
     locale: "en_US",
-    images: [
-      {
-        url: "https://duskui.com/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "DuskUI - Animated React Component Library",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DuskUI - Animated React Component Library",
-    description:
-      "Open-source UI component library for Next.js and React with animated and customizable components.",
-    images: ["https://duskui.com/twitter-image.png"],
-    creator: "@tusharsoni014",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    creator: siteConfig.author.twitter,
   },
-  alternates: {
-    canonical: "https://duskui.com",
-  },
-  verification: {
-    google: "your-google-verification-code",
-  },
+  // Canonical URLs are set per page — a canonical here would point every page at the home page.
+  ...(process.env.GOOGLE_SITE_VERIFICATION && {
+    verification: { google: process.env.GOOGLE_SITE_VERIFICATION },
+  }),
+};
+
+export const viewport: Viewport = {
+  themeColor: "#020604",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({
@@ -85,11 +70,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: siteConfig.name,
+            url: siteConfig.url,
+            description: siteConfig.description,
+            publisher: {
+              "@type": "Organization",
+              name: siteConfig.name,
+              url: siteConfig.url,
+              sameAs: [siteConfig.links.github],
+            },
+          }}
+        />
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

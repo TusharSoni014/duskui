@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "search-input",
+  "title": "Search Input",
+  "description": "Search field with loading spinner, animated clear button, Escape to clear and a ⌘K focus shortcut.",
+  "dependencies": [
+    "motion",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://duskui.com/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "components/dusk/input/search-input.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { AnimatePresence, motion } from \"motion/react\";\nimport { Loader2, Search, X } from \"lucide-react\";\n\nimport { Input } from \"@/components/ui/input\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface SearchInputProps\n  extends Omit<React.ComponentProps<\"input\">, \"type\" | \"value\" | \"defaultValue\" | \"onChange\"> {\n  value?: string;\n  defaultValue?: string;\n  onValueChange?: (value: string) => void;\n  /** Swap the search icon for a spinner while results load. */\n  loading?: boolean;\n  /** Focus with ⌘/Ctrl + this key. Shows a hint while empty. */\n  shortcut?: string;\n}\n\nconst pop = {\n  initial: { opacity: 0, scale: 0.6, filter: \"blur(3px)\" },\n  animate: { opacity: 1, scale: 1, filter: \"blur(0px)\" },\n  exit: { opacity: 0, scale: 0.6, filter: \"blur(3px)\" },\n  transition: { type: \"spring\", duration: 0.25, bounce: 0 },\n} as const;\n\n/** Search field with loading spinner, animated clear button, Escape to clear and a ⌘K shortcut. */\nexport function SearchInput({\n  value,\n  defaultValue = \"\",\n  onValueChange,\n  loading = false,\n  shortcut,\n  className,\n  onKeyDown,\n  placeholder = \"Search…\",\n  ...props\n}: SearchInputProps) {\n  const ref = React.useRef<HTMLInputElement>(null);\n  const [internal, setInternal] = React.useState(defaultValue);\n  const current = value ?? internal;\n\n  const update = (next: string) => {\n    if (value === undefined) setInternal(next);\n    onValueChange?.(next);\n  };\n\n  React.useEffect(() => {\n    if (!shortcut) return;\n    const onKey = (e: KeyboardEvent) => {\n      if (e.key.toLowerCase() === shortcut.toLowerCase() && (e.metaKey || e.ctrlKey)) {\n        e.preventDefault();\n        ref.current?.focus();\n      }\n    };\n    window.addEventListener(\"keydown\", onKey);\n    return () => window.removeEventListener(\"keydown\", onKey);\n  }, [shortcut]);\n\n  return (\n    <div className=\"group/search relative w-full\">\n      <span className=\"pointer-events-none absolute left-3 top-1/2 inline-flex -translate-y-1/2 text-muted-foreground [&_svg]:size-4\">\n        <AnimatePresence mode=\"popLayout\" initial={false}>\n          <motion.span key={loading ? \"loading\" : \"idle\"} className=\"inline-flex\" {...pop}>\n            {loading ? <Loader2 className=\"animate-spin\" /> : <Search />}\n          </motion.span>\n        </AnimatePresence>\n      </span>\n\n      <Input\n        ref={ref}\n        type=\"search\"\n        value={current}\n        placeholder={placeholder}\n        aria-busy={loading || undefined}\n        className={cn(\"pl-9 pr-16\", className)}\n        onChange={(e) => update(e.target.value)}\n        onKeyDown={(e) => {\n          if (e.key === \"Escape\" && current) {\n            e.preventDefault();\n            update(\"\");\n          }\n          onKeyDown?.(e);\n        }}\n        {...props}\n      />\n\n      <span className=\"absolute right-1.5 top-1/2 inline-flex -translate-y-1/2 items-center\">\n        <AnimatePresence mode=\"popLayout\" initial={false}>\n          {current ? (\n            <motion.button\n              key=\"clear\"\n              type=\"button\"\n              aria-label=\"Clear search\"\n              className=\"inline-flex size-6 items-center justify-center rounded-md text-muted-foreground outline-none transition-colors hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 [&_svg]:size-3.5\"\n              onClick={() => {\n                update(\"\");\n                ref.current?.focus();\n              }}\n              {...pop}\n            >\n              <X />\n            </motion.button>\n          ) : shortcut ? (\n            <motion.kbd\n              key=\"kbd\"\n              className=\"pointer-events-none mr-0.5 hidden h-5 items-center gap-0.5 rounded border border-border bg-muted/60 px-1.5 font-mono text-[10px] text-muted-foreground sm:inline-flex transition-opacity group-focus-within/search:opacity-0\"\n              {...pop}\n            >\n              <span className=\"text-xs\">⌘</span>\n              {shortcut.toUpperCase()}\n            </motion.kbd>\n          ) : null}\n        </AnimatePresence>\n      </span>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "input"
+  ],
+  "type": "registry:component"
+}

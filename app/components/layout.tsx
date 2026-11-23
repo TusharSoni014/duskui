@@ -157,6 +157,23 @@ const AppSidebar = React.memo(function AppSidebar({
 }) {
   const { state } = useSidebar();
   const isCollapsed = state === "collapsed";
+  const [query, setQuery] = useState("");
+  const q = query.trim().toLowerCase();
+
+  // Filter components by name or keyword; while searching, every match is shown expanded.
+  const visibleCategories = useMemo(() => {
+    if (!q) return categories;
+    return categories
+      .map((category) => ({
+        ...category,
+        components: category.components.filter(
+          (c) =>
+            c.name.toLowerCase().includes(q) ||
+            c.keywords?.some((k) => k.toLowerCase().includes(q))
+        ),
+      }))
+      .filter((category) => category.components.length > 0);
+  }, [q]);
 
   return (
     <Sidebar collapsible="icon" className="border-r border-white/10">
@@ -188,7 +205,12 @@ const AppSidebar = React.memo(function AppSidebar({
                 <div className="relative">
                   <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" />
                   <Input
-                    placeholder="Search..."
+                    type="search"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    onKeyDown={(e) => e.key === "Escape" && setQuery("")}
+                    placeholder="Filter components..."
+                    aria-label="Filter components"
                     className="pl-8 h-8 text-sm bg-white/5 border-white/10 focus:border-primary/50"
                   />
                 </div>
@@ -198,12 +220,17 @@ const AppSidebar = React.memo(function AppSidebar({
 
           <SidebarGroupContent>
             <SidebarMenu className="space-y-0.5">
-              {categories.map((category, index) => (
+              {visibleCategories.length === 0 && (
+                <p className="px-2 py-3 text-xs text-white/40">
+                  No components match “{query}”.
+                </p>
+              )}
+              {visibleCategories.map((category, index) => (
                 <AnimatedCategory
                   key={category.slug}
                   category={category}
                   index={index}
-                  isOpen={openCategories.includes(category.name)}
+                  isOpen={Boolean(q) || openCategories.includes(category.name)}
                   onToggle={() => toggleCategory(category.name)}
                   isCollapsed={isCollapsed}
                   currentPath={currentPath}

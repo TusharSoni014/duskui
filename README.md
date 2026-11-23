@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DuskUI
 
-## Getting Started
-
-First, run the development server:
+Animated React components for Next.js — shadcn/ui primitives upgraded with [Motion](https://motion.dev), plus ready-made blocks built on top. Every component installs with the shadcn CLI:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx shadcn@latest add https://duskui.com/r/button.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev            # http://localhost:3000
+npm run registry:build # regenerate public/r/*.json from registry.json
+npm run build          # registry + production build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project layout
 
-## Learn More
+| Path | What lives there |
+| --- | --- |
+| `components/ui/` | Base components (shadcn API, upgraded). `button.tsx` is the reference. |
+| `components/dusk/<component>/` | Blocks built on a base component (e.g. `status-button.tsx`). |
+| `components/demos/<component>/` | Live examples. The docs "Code" tab shows these files verbatim. |
+| `components/docs/` | Docs building blocks: `CodeBlock` (Shiki, server), `ComponentPreview`, `InstallTabs`, `Toc`, `PropsTable`. |
+| `components/docs/pages/` | One server component per docs page, e.g. `button-docs.tsx`. |
+| `lib/components-data.ts` | Sidebar, search, sitemap and static routes all read from here. |
+| `registry.json` | shadcn registry definition → built to `public/r/`. |
+| `lib/seo.ts`, `lib/site.ts` | Page metadata helper and site config (`NEXT_PUBLIC_SITE_URL`). |
 
-To learn more about Next.js, take a look at the following resources:
+## Adding a component
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Base** — add/upgrade it in `components/ui/<name>.tsx`. Keep the shadcn API, add `"use client"` if it uses Motion.
+2. **Blocks** — put variations in `components/dusk/<name>/*.tsx`, importing the base.
+3. **Demos** — one small file per example in `components/demos/<name>/`.
+4. **Docs page** — copy `components/docs/pages/button-docs.tsx`, then register it in the `docs` map in `app/components/[category]/[component]/page.tsx`.
+5. **Data** — set `ready: true` on the entry in `lib/components-data.ts` (this indexes it and adds it to the sitemap; unfinished pages stay `noindex`).
+6. **Registry** — add items to `registry.json` and run `npm run registry:build`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Conventions
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Respect reduced motion: the site wraps everything in `<MotionConfig reducedMotion="user">`; blocks that move things with transforms also check `useReducedMotion()`.
+- Use motion values (`useMotionValue`, `useMotionTemplate`) for pointer-driven effects so they never re-render React.
+- Never change a component's size when its state changes (loading, copied…) unless the change is the point, and then animate it.
+- Prefer `aria-disabled` + `aria-busy` over `disabled` for temporary states so keyboard focus is kept.

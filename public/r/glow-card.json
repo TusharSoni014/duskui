@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "glow-card",
+  "title": "Glow Card",
+  "description": "Card whose border lights up where the cursor is, with a soft bloom and surface wash. Driven by motion values and also lights up on keyboard focus.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://duskui.com/r/card.json"
+  ],
+  "files": [
+    {
+      "path": "components/dusk/card/glow-card.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, useMotionTemplate, useMotionValue } from \"motion/react\";\n\nimport { Card, type CardProps } from \"@/components/ui/card\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface GlowCardProps extends Omit<CardProps, \"asChild\"> {\n  /** Radius of the light in px. */\n  radius?: number;\n  /** Any CSS color. Defaults to the theme primary. */\n  color?: string;\n  /** Add a soft blurred bloom around the lit part of the border. */\n  bloom?: boolean;\n}\n\n/**\n * A card whose border lights up where the cursor is, with a faint wash on the\n * surface. The light follows the pointer through motion values, so moving the\n * mouse never re-renders React. It also lights up while a child has keyboard\n * focus, so the effect isn't mouse-only.\n */\nexport function GlowCard({\n  radius = 260,\n  color = \"var(--color-primary)\",\n  bloom = true,\n  className,\n  children,\n  onPointerMove,\n  onFocus,\n  ...props\n}: GlowCardProps) {\n  // Start far outside so nothing shows before the first move.\n  const x = useMotionValue(-radius * 2);\n  const y = useMotionValue(-radius * 2);\n  const border = useMotionTemplate`radial-gradient(${radius}px circle at ${x}px ${y}px, ${color}, transparent 70%)`;\n  const fill = useMotionTemplate`radial-gradient(${radius * 1.4}px circle at ${x}px ${y}px, color-mix(in oklab, ${color} 9%, transparent), transparent 70%)`;\n\n  const handleMove = (event: React.PointerEvent<HTMLDivElement>) => {\n    onPointerMove?.(event);\n    const rect = event.currentTarget.getBoundingClientRect();\n    // +1 because the light layers sit on the 1px border (-inset-px).\n    x.set(event.clientX - rect.left + 1);\n    y.set(event.clientY - rect.top + 1);\n  };\n\n  const handleFocus = (event: React.FocusEvent<HTMLDivElement>) => {\n    onFocus?.(event);\n    // Keyboard focus without a prior hover: light the top edge.\n    if (x.get() < 0) {\n      x.set(event.currentTarget.offsetWidth / 2);\n      y.set(0);\n    }\n  };\n\n  // -z-10 + the Card's `isolate`: above the surface, below the content.\n  const layer =\n    \"pointer-events-none absolute -inset-px -z-10 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover/glow:opacity-100 group-focus-within/glow:opacity-100\";\n  // The gradient is masked down to a 1px ring.\n  const ring =\n    \"absolute inset-0 rounded-[inherit] p-px [mask-composite:exclude] [mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)]\";\n\n  return (\n    <Card\n      className={cn(\"group/glow\", className)}\n      onPointerMove={handleMove}\n      onFocus={handleFocus}\n      {...props}\n    >\n      <motion.div aria-hidden className={layer} style={{ background: fill }} />\n      {bloom && (\n        // Blurring the wrapper (not the masked ring) lets the light spill outside the card.\n        <div aria-hidden className={cn(layer, \"blur-[6px] group-hover/glow:opacity-70 group-focus-within/glow:opacity-70\")}>\n          <motion.div className={ring} style={{ background: border }} />\n        </div>\n      )}\n      <div aria-hidden className={layer}>\n        <motion.div className={ring} style={{ background: border }} />\n      </div>\n      {children}\n    </Card>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "card"
+  ],
+  "type": "registry:component"
+}

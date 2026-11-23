@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "glow-text",
+  "title": "Glow Text",
+  "description": "Real, selectable, SEO-readable text with a layered neon text-shadow glow, optional breathe or flicker animation, any color and any heading level via the as prop.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/dusk/neon/glow-text.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { animate, useMotionValue, useMotionValueEvent, useReducedMotion } from \"motion/react\";\n\nimport { cn } from \"@/lib/utils\";\n\ntype GlowTextTag = \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"p\" | \"span\" | \"div\" | \"strong\";\n\nexport interface GlowTextProps extends Omit<React.HTMLAttributes<HTMLElement>, \"color\"> {\n  /** Element to render. Use a heading level for titles so the text stays in the document outline. */\n  as?: GlowTextTag;\n  /** Any CSS color. Defaults to the theme primary. */\n  color?: string;\n  /** Glow strength multiplier. 1 is the default, 0 removes the glow. */\n  intensity?: number;\n  /**\n   * `breathe`: the glow slowly swells and fades.\n   * `flicker`: steady glow with an occasional double flicker, like an old neon sign.\n   * `none`: static glow. Reduced-motion users always get `none`.\n   */\n  animation?: \"none\" | \"breathe\" | \"flicker\";\n  /** Seconds per animation cycle. Flicker cycles are clamped to at least 2s. */\n  speed?: number;\n}\n\n/*\n * Flicker cycle: steady most of the time, then two short dips close together.\n * With the cycle clamped to >= 2s this is at most 2 flashes per second, under\n * the WCAG 2.3.1 limit of 3. Only the glow dims; the letters stay readable.\n */\nconst FLICKER = {\n  values: [1, 1, 0.3, 1, 1, 0.45, 1, 1],\n  times: [0, 0.62, 0.66, 0.7, 0.78, 0.82, 0.86, 1],\n};\n\n/**\n * Real, selectable text with a layered neon glow. The glow is a `text-shadow`\n * driven by a CSS variable that Motion animates outside React, so the text\n * never re-renders and search engines and screen readers see plain text.\n */\nexport function GlowText({\n  as: Tag = \"span\",\n  color = \"var(--color-primary)\",\n  intensity = 1,\n  animation = \"breathe\",\n  speed,\n  className,\n  style,\n  children,\n  ...props\n}: GlowTextProps) {\n  const ref = React.useRef<HTMLElement>(null);\n  const reduceMotion = useReducedMotion();\n  const mode = reduceMotion ? \"none\" : animation;\n  const glow = useMotionValue(1);\n\n  useMotionValueEvent(glow, \"change\", (value) => {\n    ref.current?.style.setProperty(\"--glow\", value.toFixed(3));\n  });\n\n  React.useEffect(() => {\n    if (mode === \"none\") {\n      glow.set(1);\n      return;\n    }\n    const controls =\n      mode === \"breathe\"\n        ? animate(glow, [1, 0.55, 1], {\n            duration: Math.max(1, speed ?? 3.2),\n            ease: \"easeInOut\",\n            repeat: Infinity,\n          })\n        : animate(glow, FLICKER.values, {\n            duration: Math.max(2, speed ?? 4),\n            times: FLICKER.times,\n            ease: \"linear\",\n            repeat: Infinity,\n          });\n    return () => controls.stop();\n  }, [mode, speed, glow]);\n\n  const i = Math.max(0, intensity);\n  const layer = (blur: number, alpha: number) =>\n    `0 0 calc(${blur * i}px * var(--glow)) color-mix(in oklab, var(--glow-color) ${alpha}%, transparent)`;\n\n  const vars = {\n    \"--glow\": 1,\n    \"--glow-color\": color,\n    color: \"color-mix(in oklab, var(--glow-color) 45%, white)\",\n    textShadow:\n      i === 0\n        ? undefined\n        : [layer(2, 90), layer(6, 80), layer(14, 65), layer(28, 45), layer(56, 30)].join(\", \"),\n  } as React.CSSProperties;\n\n  // Cast keeps JSX happy with a union of intrinsic tags; every option accepts the same props.\n  const Comp = Tag as \"span\";\n\n  return (\n    <Comp\n      ref={ref as React.Ref<HTMLSpanElement>}\n      data-slot=\"glow-text\"\n      className={cn(\"[text-wrap:balance]\", className)}\n      style={{ ...vars, ...style }}\n      {...props}\n    >\n      {children}\n    </Comp>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "neon"
+  ],
+  "type": "registry:component"
+}
