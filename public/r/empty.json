@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty",
+  "title": "Empty",
+  "description": "shadcn-style Empty state parts with a dashed glowing surface, icon tile media and an outline toggle.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/empty.tsx",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * DuskUI Empty — an empty state for lists, tables, search results and inboxes.\n *\n * Same parts and data-slot attributes as shadcn/ui's Empty (Empty,\n * EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription, EmptyContent) plus:\n * - A dashed outline with a faint mint glow at the top, for dark surfaces.\n * - `EmptyMedia variant=\"icon\"`: a glassy tile with a mint-tinted icon and a\n *   soft halo. `variant=\"default\"` leaves your illustration untouched.\n * - `outline={false}` drops the dashed border to sit inside a card.\n * CSS only, so it works in Server Components.\n */\nfunction Empty({\n  className,\n  outline = true,\n  ...props\n}: React.ComponentProps<\"div\"> & {\n  /** Draw the dashed border and glow. Turn off when the empty state sits inside a card. */\n  outline?: boolean;\n}) {\n  return (\n    <div\n      data-slot=\"empty\"\n      className={cn(\n        \"relative isolate flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-xl p-6 text-center text-balance md:p-12\",\n        outline && [\n          \"border border-dashed border-white/10\",\n          \"bg-[radial-gradient(120%_70%_at_50%_0%,color-mix(in_oklab,var(--color-primary)_6%,transparent),transparent_70%)]\",\n        ],\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\n/** Groups the media, title and description. */\nfunction EmptyHeader({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"empty-header\"\n      className={cn(\"flex max-w-sm flex-col items-center gap-2 text-center\", className)}\n      {...props}\n    />\n  );\n}\n\nconst emptyMediaVariants = cva(\n  \"relative mb-2 flex shrink-0 items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-transparent\",\n        icon: [\n          \"size-12 rounded-xl border border-white/10 bg-linear-to-b from-white/[0.08] to-white/[0.02] text-primary\",\n          \"shadow-[inset_0_1px_0_rgb(255_255_255/0.08),0_8px_24px_-8px_rgb(0_0_0/0.6),0_0_32px_-10px_var(--color-primary)]\",\n          \"[&_svg:not([class*='size-'])]:size-6\",\n        ],\n      },\n    },\n    defaultVariants: { variant: \"default\" },\n  }\n);\n\n/** The icon or illustration. Use `variant=\"icon\"` for a single icon in a tile. */\nfunction EmptyMedia({\n  className,\n  variant = \"default\",\n  ...props\n}: React.ComponentProps<\"div\"> & VariantProps<typeof emptyMediaVariants>) {\n  return (\n    <div\n      data-slot=\"empty-icon\"\n      data-variant={variant}\n      className={cn(emptyMediaVariants({ variant, className }))}\n      {...props}\n    />\n  );\n}\n\n/** The headline. A `<div>` like shadcn — nest an `<h2>`/`<h3>` when it belongs in the page outline. */\nfunction EmptyTitle({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"empty-title\"\n      className={cn(\"text-lg font-medium tracking-tight\", className)}\n      {...props}\n    />\n  );\n}\n\n/** Supporting text. Links inside are underlined and turn mint on hover. */\nfunction EmptyDescription({ className, ...props }: React.ComponentProps<\"p\">) {\n  return (\n    <p\n      data-slot=\"empty-description\"\n      className={cn(\n        \"text-sm/relaxed text-muted-foreground [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\n/** Actions or extra content under the header, e.g. buttons or a search field. */\nfunction EmptyContent({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"empty-content\"\n      className={cn(\"flex w-full max-w-sm min-w-0 flex-col items-center gap-4 text-sm text-balance\", className)}\n      {...props}\n    />\n  );\n}\n\nexport { Empty, EmptyHeader, EmptyTitle, EmptyDescription, EmptyContent, EmptyMedia, emptyMediaVariants };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "empty"
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,9 @@
+import { SparklesText } from "@/components/dusk/sparkles-text/sparkles-text";
+
+export default function SparklesTextDemo() {
+  return (
+    <SparklesText as="h2" className="text-5xl font-bold tracking-tight text-white sm:text-6xl">
+      Magic, shipped
+    </SparklesText>
+  );
+}

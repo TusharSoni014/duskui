@@ -473,6 +473,146 @@ const list: Component[] = [
       "Animated React hover card for shadcn/ui with spring profile previews and link preview panels that grow from the trigger.",
     keywords: ["hover card", "profile card", "user preview", "link preview", "popover", "radix hover card", "shadcn hover card"],
   },
+  {
+    name: "Confetti",
+    slug: "confetti",
+    description:
+      "Dependency-free React canvas confetti with an imperative confetti() helper and a ConfettiButton, with custom origin, spread, colors and shapes, skipped under reduced motion.",
+    keywords: ["confetti", "celebration", "canvas confetti", "confetti button", "party", "success animation", "burst", "fireworks"],
+  },
+  {
+    name: "Sparkles Text",
+    slug: "sparkles-text",
+    description:
+      "React sparkling text effect where small stars pop in and out around a heading, deterministic and hydration-safe, with color and density props.",
+    keywords: ["sparkles text", "sparkle effect", "glitter text", "animated heading", "text effect", "stars", "magic text", "motion"],
+  },
+  {
+    name: "Animated Beam",
+    slug: "animated-beam",
+    description:
+      "Animated SVG beam for React that connects two elements with a curved path and a glowing gradient pulse, ideal for integration and data-flow diagrams.",
+    keywords: ["animated beam", "svg beam", "connector line", "integration diagram", "data flow", "gradient pulse", "how it works", "motion"],
+  },
+  {
+    name: "Orbiting Circles",
+    slug: "orbiting-circles",
+    description:
+      "React orbiting icons that travel around a centre on multiple circular rings, upright and evenly spaced, with pause on hover and reduced-motion support.",
+    keywords: ["orbiting circles", "orbit animation", "orbiting icons", "tech stack", "integrations", "circular animation", "solar system", "motion"],
+  },
+  {
+    name: "Lens",
+    slug: "lens",
+    description:
+      "React magnifying glass lens that follows the cursor over images or any content with configurable zoom and size, plus keyboard and touch support.",
+    keywords: ["lens", "magnifier", "magnifying glass", "image zoom", "zoom on hover", "product image", "loupe", "motion values"],
+  },
+  {
+    name: "Theme Toggle",
+    slug: "theme-toggle",
+    description:
+      "Animated dark mode toggle for React with a sun-to-moon morphing icon and a circular View Transitions reveal that works with next-themes or any element.",
+    keywords: ["theme toggle", "dark mode toggle", "light dark switch", "view transitions", "next-themes", "sun moon icon", "react theme switcher"],
+  },
+  {
+    name: "Morphing Text",
+    slug: "morphing-text",
+    description:
+      "Morphing text animation for React where words melt into each other with a gooey SVG filter or blur crossfade, with no layout shift.",
+    keywords: ["morphing text", "gooey text", "text morph", "blur text animation", "animated headline", "rotating words", "text effect"],
+  },
+  {
+    name: "Expandable Card",
+    slug: "expandable-card",
+    description:
+      "Expandable cards for React that morph into an accessible overlay panel with shared layout animations, built on Radix Dialog and Motion.",
+    keywords: ["expandable card", "card to modal", "shared layout animation", "layoutId", "morphing card", "radix dialog", "framer motion card"],
+  },
+  {
+    name: "Device Mockup",
+    slug: "device-mockup",
+    description:
+      "Pure CSS Safari browser and iPhone mockups for React that wrap screenshots or live components, scale responsively and tilt in 3D.",
+    keywords: ["device mockup", "iphone mockup", "browser mockup", "safari mockup", "phone frame", "screenshot frame", "css mockup"],
+  },
+  {
+    name: "Pricing Table",
+    slug: "pricing-table",
+    description:
+      "Animated React pricing table with a monthly/yearly toggle, rolling prices, a highlighted popular plan and accessible feature lists.",
+    keywords: ["pricing table", "pricing cards", "pricing page", "monthly yearly toggle", "saas pricing", "animated pricing", "shadcn pricing"],
+  },
+  {
+    name: "Command",
+    slug: "command",
+    description:
+      "Animated React command menu and \u2318K command palette for shadcn/ui with cmdk filtering, a gliding highlight, recent items and nested pages.",
+    keywords: ["command", "command palette", "cmdk", "cmd k", "ctrl k", "spotlight", "search", "launcher", "shadcn", "motion"],
+  },
+  {
+    name: "Context Menu",
+    slug: "context-menu",
+    description:
+      "Accessible animated React context menu for shadcn/ui that springs open from the cursor, with sub-menus, checkbox and radio items and a gliding highlight.",
+    keywords: ["context menu", "right click menu", "right-click", "menu", "submenu", "radix", "shadcn", "motion"],
+  },
+  {
+    name: "Navigation Menu",
+    slug: "navigation-menu",
+    description:
+      "Animated React navigation menu and mega menu for shadcn/ui with a morphing viewport, direction-aware panel slides and a gliding hover highlight.",
+    keywords: ["navigation menu", "mega menu", "nav menu", "header menu", "dropdown navigation", "navbar", "radix", "shadcn", "motion"],
+  },
+  {
+    name: "Sheet",
+    slug: "sheet",
+    description:
+      "Animated React sheet and side drawer for shadcn/ui with stacked nested sheets, drag-to-close side panels and a fade-only reduced-motion mode.",
+    keywords: ["sheet", "drawer", "side panel", "side sheet", "slide over", "off-canvas", "modal", "radix", "shadcn", "motion"],
+  },
+  {
+    name: "Scroll Area",
+    slug: "scroll-area",
+    description:
+      "Custom React scroll area for shadcn/ui with fading scrollbars, edge fade masks that appear only when there's more content, and a scroll progress bar.",
+    keywords: ["scroll area", "scrollbar", "custom scrollbar", "scroll fade", "scroll shadow", "scroll progress", "reading progress", "radix", "shadcn", "motion"],
+  },
+  {
+    name: "Table",
+    slug: "table",
+    description:
+      "Animated React table and data table for shadcn/ui with sorting, filtering, row selection, pagination and expandable rows, built with Motion.",
+    keywords: ["react table", "shadcn table", "data table", "sortable table", "expandable rows", "tailwind table", "motion"],
+  },
+  {
+    name: "Calendar",
+    slug: "calendar",
+    description:
+      "Animated React calendar, date picker and date range picker with presets, built on react-day-picker v10, shadcn/ui and Motion.",
+    keywords: ["react calendar", "shadcn calendar", "date picker", "date range picker", "react-day-picker", "tailwind calendar"],
+  },
+  {
+    name: "Kbd",
+    slug: "kbd",
+    description:
+      "React keyboard key (Kbd) components styled as keycaps, with an animated shortcut display that lights up as you press \u2318K or Ctrl+K.",
+    keywords: ["kbd", "keyboard shortcut", "react hotkeys", "keycap", "shadcn kbd", "useShortcut"],
+  },
+  {
+    name: "Empty State",
+    slug: "empty",
+    description:
+      "React empty state component with shadcn/ui's Empty API and an animated empty state with a floating illustration, built with Motion.",
+    keywords: ["empty state", "react empty state", "shadcn empty", "no results", "zero state", "tailwind"],
+  },
+  {
+    name: "Spinner",
+    slug: "spinner",
+    description:
+      "Accessible React loading spinner plus five animated Motion loaders (dots, bars, ring, orbit, pulse) that respect reduced motion.",
+    keywords: ["react spinner", "loading spinner", "loader", "shadcn spinner", "tailwind loader", "loading indicator"],
+  },
 ];
 
 export const components = [...list].sort((a, b) => a.name.localeCompare(b.name));

@@ -2724,6 +2724,763 @@
       "categories": [
         "hover-card"
       ]
+    },
+    {
+      "name": "confetti",
+      "type": "registry:component",
+      "title": "Confetti",
+      "description": "Dependency-free canvas confetti: an imperative confetti() helper with origin, spread, colors and shapes, plus a ConfettiButton that bursts from itself. Skipped under reduced motion.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/confetti/confetti.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "confetti"
+      ]
+    },
+    {
+      "name": "sparkles-text",
+      "type": "registry:component",
+      "title": "Sparkles Text",
+      "description": "Real, selectable text with four-point stars that pop in and out around it from a seeded generator; no hydration mismatch, pauses off-screen.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/sparkles-text/sparkles-text.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "sparkles-text"
+      ]
+    },
+    {
+      "name": "animated-beam",
+      "type": "registry:component",
+      "title": "Animated Beam",
+      "description": "SVG beam that connects two elements with a curved path and a travelling gradient pulse, redrawn on resize.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/animated-beam/animated-beam.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "animated-beam"
+      ]
+    },
+    {
+      "name": "orbiting-circles",
+      "type": "registry:component",
+      "title": "Orbiting Circles",
+      "description": "Children orbit a shared centre on circular rings that stay upright, with radius, speed, reverse, visible path and pause on hover.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/orbiting-circles/orbiting-circles.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "orbiting-circles"
+      ]
+    },
+    {
+      "name": "lens",
+      "type": "registry:component",
+      "title": "Lens",
+      "description": "Magnifier lens that follows the cursor over any content and shows a zoomed view in a circle, with keyboard and touch support.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/lens/lens.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "lens"
+      ]
+    },
+    {
+      "name": "theme-toggle",
+      "type": "registry:component",
+      "title": "Theme Toggle",
+      "description": "Light/dark toggle with a sun-to-moon morphing icon and a circular View Transitions reveal from the button; toggles a dark class on any target element.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/theme-toggle/theme-toggle.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "theme-toggle"
+      ]
+    },
+    {
+      "name": "morphing-text",
+      "type": "registry:component",
+      "title": "Morphing Text",
+      "description": "Cycles through words with a gooey SVG threshold morph or blur crossfade, reserving the widest word so nothing shifts.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/morphing-text/morphing-text.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "morphing-text"
+      ]
+    },
+    {
+      "name": "expandable-card",
+      "type": "registry:component",
+      "title": "Expandable Card",
+      "description": "Cards that expand into an overlay panel with shared Motion layoutIds, built on Radix Dialog for focus trap, Escape and focus return.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/expandable-card/expandable-card.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "expandable-card"
+      ]
+    },
+    {
+      "name": "device-mockup",
+      "type": "registry:component",
+      "title": "Device Mockup",
+      "description": "Pure CSS/SVG Safari window and iPhone frame that wrap any content, scale with container queries and optionally tilt in 3D on hover.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/device-mockup/device-mockup.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "device-mockup"
+      ]
+    },
+    {
+      "name": "pricing-table",
+      "type": "registry:component",
+      "title": "Pricing Table",
+      "description": "Data-driven pricing cards with a gliding monthly/yearly toggle, digit-rolling prices, an animated border on the popular plan and feature lists.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/pricing-table/pricing-table.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "pricing-table"
+      ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "Drop-in upgrade of the shadcn/ui Command (cmdk): result list eases its height, mint selection marker, keycap shortcuts and a top-aligned CommandDialog. Same exports and props.",
+      "dependencies": [
+        "cmdk",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/dialog.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/command.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "command"
+      ]
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "title": "Context Menu",
+      "description": "shadcn/ui Context Menu that grows from the cursor point, with smooth highlights, popping check/radio indicators and sub-menus.",
+      "dependencies": [
+        "@radix-ui/react-context-menu",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/context-menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "context-menu"
+      ]
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "title": "Navigation Menu",
+      "description": "shadcn/ui Navigation Menu with a viewport that morphs between panels, direction-aware panel slides and a gliding indicator.",
+      "dependencies": [
+        "@radix-ui/react-navigation-menu",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/navigation-menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "navigation-menu"
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "Drop-in upgrade of the shadcn/ui Sheet: smoother slide on all four sides, blurred backdrop, scrollable content and a fade-only reduced-motion mode.",
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "sheet"
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "shadcn/ui Scroll Area with slim scrollbars that fade in on hover and out when idle, plus viewportRef/viewportClassName.",
+      "dependencies": [
+        "@radix-ui/react-scroll-area"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/scroll-area.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "scroll-area"
+      ]
+    },
+    {
+      "name": "command-palette",
+      "type": "registry:component",
+      "title": "Command Palette",
+      "description": "\u2318K command palette with a gliding highlight, recent items and nested pages that slide in with a breadcrumb and a springing height.",
+      "dependencies": [
+        "motion",
+        "cmdk",
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/command.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/command/command-palette.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "command"
+      ]
+    },
+    {
+      "name": "animated-context-menu",
+      "type": "registry:component",
+      "title": "Animated Context Menu",
+      "description": "Right-click menu that springs open from the cursor point with staggered items, a gliding highlight and animated sub-menus.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-context-menu",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/context-menu.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/context-menu/animated-context-menu.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "context-menu"
+      ]
+    },
+    {
+      "name": "mega-menu",
+      "type": "registry:component",
+      "title": "Mega Menu",
+      "description": "Header mega menu whose viewport morphs width and height between panels, with direction-aware slides and a gliding hover highlight.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-navigation-menu",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/navigation-menu/mega-menu.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "navigation-menu"
+      ]
+    },
+    {
+      "name": "stacked-sheet",
+      "type": "registry:component",
+      "title": "Stacked Sheet",
+      "description": "Nested side sheets where each new sheet slides over the last while the one underneath scales back and dims.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/sheet/stacked-sheet.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "sheet"
+      ]
+    },
+    {
+      "name": "side-panel",
+      "type": "registry:component",
+      "title": "Side Panel",
+      "description": "Side sheet that can be dragged or flicked closed by its edge handle or header, with the backdrop fading as you drag.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/sheet/side-panel.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "sheet"
+      ]
+    },
+    {
+      "name": "fade-scroll-area",
+      "type": "registry:component",
+      "title": "Fade Scroll Area",
+      "description": "Scroll area whose edges fade out only when there's more content in that direction.",
+      "dependencies": [
+        "@radix-ui/react-scroll-area"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/scroll-area.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/scroll-area/fade-scroll-area.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "scroll-area"
+      ]
+    },
+    {
+      "name": "scroll-progress",
+      "type": "registry:component",
+      "title": "Scroll Progress",
+      "description": "Scroll area with a spring-smoothed reading-progress bar and a back-to-top button whose ring traces progress.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-scroll-area",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/scroll-area.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/scroll-area/scroll-progress.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "scroll-area"
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "Drop-in upgrade of the shadcn/ui Table: row hover with a mint leading bar, lit selected rows, tabular numbers and containerClassName.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "table"
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:component",
+      "title": "Data Table",
+      "description": "Self-contained data table with animated sort icons, filtering, checkbox row selection, pagination and rows that glide on reorder.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/table.json",
+        "https://duskui.com/r/button.json",
+        "https://duskui.com/r/checkbox.json",
+        "https://duskui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/table/data-table.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "table"
+      ]
+    },
+    {
+      "name": "expandable-table",
+      "type": "registry:component",
+      "title": "Expandable Table",
+      "description": "Table rows that spring open to reveal a detail panel, with a rotating chevron and aria-expanded toggles.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/table/expandable-table.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "table"
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "shadcn/ui Calendar on react-day-picker v10: gliding selected pill, today ring, range styles and months that slide in the navigation direction.",
+      "dependencies": [
+        "react-day-picker",
+        "date-fns",
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/calendar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "calendar"
+      ]
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:component",
+      "title": "Date Picker",
+      "description": "Popover date picker with a spring-open panel, rolling formatted trigger and hidden form input.",
+      "dependencies": [
+        "@radix-ui/react-popover",
+        "react-day-picker",
+        "date-fns",
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/calendar.json",
+        "https://duskui.com/r/button.json",
+        "https://duskui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/calendar/date-picker.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "calendar"
+      ]
+    },
+    {
+      "name": "date-range-picker",
+      "type": "registry:component",
+      "title": "Date Range Picker",
+      "description": "Two-month range picker with presets, a gliding active-preset pill, day count footer and animated trigger.",
+      "dependencies": [
+        "@radix-ui/react-popover",
+        "react-day-picker",
+        "date-fns",
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/calendar.json",
+        "https://duskui.com/r/button.json",
+        "https://duskui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/calendar/date-range-picker.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "calendar"
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "Keycap-styled Kbd and KbdGroup with sizes and a pressed state that sinks and glows.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/kbd.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "kbd"
+      ]
+    },
+    {
+      "name": "shortcut-kbd",
+      "type": "registry:component",
+      "title": "Shortcut Kbd",
+      "description": "Keycaps that light up as you press a shortcut, flash on trigger, show \u2318 or Ctrl without hydration mismatch, plus a useShortcut hook.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/kbd/shortcut-kbd.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "kbd"
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "shadcn-style Empty state parts with a dashed glowing surface, icon tile media and an outline toggle.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/empty.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "empty"
+      ]
+    },
+    {
+      "name": "animated-empty",
+      "type": "registry:component",
+      "title": "Animated Empty",
+      "description": "Empty state with a floating icon tile, drifting satellite icons, breathing rings and a staggered entrance.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/empty.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/empty/animated-empty.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "empty"
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "Accessible role=status spinner with screen-reader label, four sizes, currentColor arc and slower spin under reduced motion.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/spinner.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "loaders",
+      "type": "registry:component",
+      "title": "Animated Loaders",
+      "description": "Five accessible Motion loaders (dots, bars, ring, orbit, pulse) in currentColor that fade instead of moving under reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/spinner/loaders.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
     }
   ]
 }

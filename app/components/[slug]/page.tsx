@@ -68,6 +68,26 @@ import { AlertDialogDocs } from "@/components/docs/pages/alert-dialog-docs";
 import { ToastDocs } from "@/components/docs/pages/toast-docs";
 import { SkeletonDocs } from "@/components/docs/pages/skeleton-docs";
 import { HoverCardDocs } from "@/components/docs/pages/hover-card-docs";
+import { ConfettiDocs } from "@/components/docs/pages/confetti-docs";
+import { SparklesTextDocs } from "@/components/docs/pages/sparkles-text-docs";
+import { AnimatedBeamDocs } from "@/components/docs/pages/animated-beam-docs";
+import { OrbitingCirclesDocs } from "@/components/docs/pages/orbiting-circles-docs";
+import { LensDocs } from "@/components/docs/pages/lens-docs";
+import { ThemeToggleDocs } from "@/components/docs/pages/theme-toggle-docs";
+import { MorphingTextDocs } from "@/components/docs/pages/morphing-text-docs";
+import { ExpandableCardDocs } from "@/components/docs/pages/expandable-card-docs";
+import { DeviceMockupDocs } from "@/components/docs/pages/device-mockup-docs";
+import { PricingTableDocs } from "@/components/docs/pages/pricing-table-docs";
+import { CommandDocs } from "@/components/docs/pages/command-docs";
+import { ContextMenuDocs } from "@/components/docs/pages/context-menu-docs";
+import { NavigationMenuDocs } from "@/components/docs/pages/navigation-menu-docs";
+import { SheetDocs } from "@/components/docs/pages/sheet-docs";
+import { ScrollAreaDocs } from "@/components/docs/pages/scroll-area-docs";
+import { TableDocs } from "@/components/docs/pages/table-docs";
+import { CalendarDocs } from "@/components/docs/pages/calendar-docs";
+import { KbdDocs } from "@/components/docs/pages/kbd-docs";
+import { EmptyDocs } from "@/components/docs/pages/empty-docs";
+import { SpinnerDocs } from "@/components/docs/pages/spinner-docs";
 import { JsonLd } from "@/components/json-ld";
 import { componentHref, components, getComponent } from "@/lib/components-data";
 import { pageMetadata } from "@/lib/seo";
@@ -77,6 +97,26 @@ type Params = { slug: string };
 
 /** slug → docs page. Add new component docs here. */
 const docs: Record<string, React.ComponentType> = {
+  spinner: SpinnerDocs,
+  empty: EmptyDocs,
+  kbd: KbdDocs,
+  calendar: CalendarDocs,
+  table: TableDocs,
+  "scroll-area": ScrollAreaDocs,
+  sheet: SheetDocs,
+  "navigation-menu": NavigationMenuDocs,
+  "context-menu": ContextMenuDocs,
+  command: CommandDocs,
+  "pricing-table": PricingTableDocs,
+  "device-mockup": DeviceMockupDocs,
+  "expandable-card": ExpandableCardDocs,
+  "morphing-text": MorphingTextDocs,
+  "theme-toggle": ThemeToggleDocs,
+  lens: LensDocs,
+  "orbiting-circles": OrbitingCirclesDocs,
+  "animated-beam": AnimatedBeamDocs,
+  "sparkles-text": SparklesTextDocs,
+  confetti: ConfettiDocs,
   "hover-card": HoverCardDocs,
   skeleton: SkeletonDocs,
   toast: ToastDocs,
