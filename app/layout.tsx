@@ -85,6 +85,7 @@ export default function RootLayout({
               "@type": "Organization",
               name: siteConfig.name,
               url: siteConfig.url,
+              logo: `${siteConfig.url}/logo.svg`,
               sameAs: [siteConfig.links.github],
             },
           }}

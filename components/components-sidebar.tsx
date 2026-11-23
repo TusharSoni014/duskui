@@ -23,6 +23,7 @@ import {
   SidebarInset,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { LogoMark } from "@/components/brand/logo";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { GlobalSearch } from "@/components/global-search";
@@ -186,9 +187,7 @@ function AppSidebar({ currentPath }: { currentPath: string }) {
     <Sidebar collapsible="icon" className="border-r border-white/10">
       <SidebarHeader className="p-2">
         <Link href="/" className="flex items-center gap-2 px-1">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shrink-0">
-            <span className="font-bold text-black">D</span>
-          </div>
+          <LogoMark className="size-8" />
           <span
             className={`font-semibold text-lg tracking-tight whitespace-nowrap transition-all duration-200 ${isCollapsed ? "hidden" : "block"}`}
           >

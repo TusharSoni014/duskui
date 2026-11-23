@@ -20,6 +20,7 @@ import {
   Globe,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Logo, LogoMark } from "@/components/brand/logo";
 import { Badge } from "@/components/ui/badge";
 import { GlobalSearch } from "@/components/global-search";
 
@@ -78,14 +79,17 @@ const FeatureCard = ({
 
 const CodeBlock = () => {
   const [copied, setCopied] = useState(false);
-  const code = `import { motion } from "duskui";
+  const code = `// npx shadcn@latest add https://duskui.com/r/status-button.json
+import { StatusButton, useStatusAction } from "@/components/dusk/button/status-button";
 
-export const Card = () => (
-  <motion.div
-    animate={{ scale: 1.1 }}
-    transition={{ duration: 0.5 }}
-  />
-);`;
+export function Deploy() {
+  const { status, run } = useStatusAction(deploy);
+  return (
+    <StatusButton status={status} onClick={run}>
+      Deploy
+    </StatusButton>
+  );
+}`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(code);
@@ -116,38 +120,31 @@ export const Card = () => (
       <div className="p-6 font-mono text-sm overflow-x-auto">
         <pre>
           <code className="text-white/80">
+            <span className="text-white/35">
+              {"// npx shadcn@latest add https://duskui.com/r/status-button.json"}
+            </span>
+            {"\n"}
             <span className="text-purple-400">import</span>{" "}
-            <span className="text-yellow-300">{`{ motion }`}</span>{" "}
+            <span className="text-yellow-300">{"{ StatusButton, useStatusAction }"}</span>{" "}
             <span className="text-purple-400">from</span>{" "}
-            <span className="text-green-400">&quot;duskui&quot;</span>;{"\n\n"}
-            <span className="text-purple-400">export const</span>{" "}
-            <span className="text-blue-400">Card</span>{" "}
-            <span className="text-white">=</span>{" "}
-            <span className="text-yellow-300">()</span>{" "}
-            <span className="text-purple-400">{`=>`}</span> ({"\n"}
-            {"  "}
-            <span className="text-blue-400">{`<motion.div`}</span>
-            {"\n"}
-            {"    "}
-            <span className="text-purple-400">animate</span>
-            <span className="text-white">=</span>
-            <span className="text-yellow-300">{`{{`}</span>{" "}
-            <span className="text-white">scale:</span>{" "}
-            <span className="text-orange-400">1.1</span>{" "}
-            <span className="text-yellow-300">{`}}`}</span>
-            {"\n"}
-            {"    "}
-            <span className="text-purple-400">transition</span>
-            <span className="text-white">=</span>
-            <span className="text-yellow-300">{`{{`}</span>{" "}
-            <span className="text-white">duration:</span>{" "}
-            <span className="text-orange-400">0.5</span>{" "}
-            <span className="text-yellow-300">{`}}`}</span>
-            {"\n"}
-            {"  "}
-            <span className="text-blue-400">{`/>`}</span>
-            {"\n"}
-            );
+            <span className="text-green-400">&quot;@/components/dusk/button/status-button&quot;</span>;
+            {"\n\n"}
+            <span className="text-purple-400">export function</span>{" "}
+            <span className="text-blue-400">Deploy</span>() {"{"}
+            {"\n  "}
+            <span className="text-purple-400">const</span> {"{ status, run }"} ={" "}
+            <span className="text-blue-400">useStatusAction</span>(deploy);
+            {"\n  "}
+            <span className="text-purple-400">return</span> (
+            {"\n    "}
+            <span className="text-blue-400">{"<StatusButton"}</span>{" "}
+            <span className="text-purple-400">status</span>={"{status}"}{" "}
+            <span className="text-purple-400">onClick</span>={"{run}"}
+            <span className="text-blue-400">{">"}</span>
+            {"\n      "}Deploy{"\n    "}
+            <span className="text-blue-400">{"</StatusButton>"}</span>
+            {"\n  "});{"\n"}
+            {"}"}
           </code>
         </pre>
       </div>
@@ -168,12 +165,9 @@ export function HomeView() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-white/5 bg-background/50">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <span className="font-bold text-black">D</span>
-            </div>
-            <span className="font-bold text-xl tracking-tight">DuskUI</span>
-          </div>
+          <Link href="/" aria-label="DuskUI home" className="rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring/50">
+            <Logo markClassName="size-8" />
+          </Link>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-white/60">
             <Link
               href="/components/shadcn-plus/button"
@@ -401,9 +395,7 @@ export function HomeView() {
       <footer className="py-12 px-6 border-t border-white/10 bg-background">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-white/10 rounded flex items-center justify-center">
-              <span className="font-bold text-[10px]">D</span>
-            </div>
+            <LogoMark className="size-6" />
             <span className="text-sm font-medium text-white/60">
               © {new Date().getFullYear()} DuskUI
             </span>

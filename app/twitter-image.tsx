@@ -1,5 +1,7 @@
 import { ImageResponse } from "next/og";
 
+import { logoDataUri } from "@/components/brand/logo";
+
 export const alt = "DuskUI — Animated React components built on shadcn/ui and Motion";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -23,22 +25,8 @@ export default function TwitterImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <div
-            style={{
-              width: 64,
-              height: 64,
-              borderRadius: 16,
-              background: "#34e6a0",
-              color: "#020604",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 40,
-              fontWeight: 800,
-            }}
-          >
-            D
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={logoDataUri} width={72} height={72} alt="" />
           <div style={{ fontSize: 40, fontWeight: 700 }}>DuskUI</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <title>DuskUI</title>
+  <defs>
+    <linearGradient id="dusk-fill" x1="9" y1="4" x2="22" y2="28" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#C8FFE6"/>
+      <stop offset="0.45" stop-color="#34E6A0"/>
+      <stop offset="1" stop-color="#0B8F8C"/>
+    </linearGradient>
+    <mask id="dusk-cut" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32">
+      <rect width="32" height="32" fill="#fff"/>
+      <!-- the moon passing over the sun -->
+      <circle cx="24" cy="8" r="6" fill="#000"/>
+      <!-- horizon bands, widening as the light sinks -->
+      <rect x="0" y="18.2" width="32" height="1.4" fill="#000"/>
+      <rect x="0" y="21.6" width="32" height="1.9" fill="#000"/>
+      <rect x="0" y="25.2" width="32" height="3.2" fill="#000"/>
+    </mask>
+  </defs>
+  <circle cx="15" cy="16" r="12" fill="url(#dusk-fill)" mask="url(#dusk-cut)"/>
+</svg>
