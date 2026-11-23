@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "status-avatar",
+  "title": "Status Avatar",
+  "description": "Avatar with an online/away/busy/offline dot and ring; live statuses pulse and status changes pop.",
+  "dependencies": [
+    "motion",
+    "@radix-ui/react-avatar"
+  ],
+  "registryDependencies": [
+    "https://duskui.com/r/avatar.json"
+  ],
+  "files": [
+    {
+      "path": "components/dusk/avatar/status-avatar.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { AnimatePresence, motion, useReducedMotion } from \"motion/react\";\n\nimport { Avatar, AvatarFallback, AvatarImage } from \"@/components/ui/avatar\";\nimport { cn } from \"@/lib/utils\";\n\nexport type AvatarStatus = \"online\" | \"away\" | \"busy\" | \"offline\";\n\nconst statuses: Record<AvatarStatus, { label: string; dot: string; ring: string; pulse: boolean }> = {\n  online: { label: \"Online\", dot: \"bg-emerald-400\", ring: \"ring-emerald-400/50\", pulse: true },\n  away: { label: \"Away\", dot: \"bg-amber-400\", ring: \"ring-amber-400/50\", pulse: false },\n  busy: { label: \"Busy\", dot: \"bg-rose-500\", ring: \"ring-rose-500/50\", pulse: true },\n  offline: { label: \"Offline\", dot: \"bg-zinc-500\", ring: \"ring-zinc-500/40\", pulse: false },\n};\n\nconst sizes = {\n  sm: { avatar: \"size-8 text-[0.65rem]\", dot: \"size-2.5\", ring: \"ring-[1.5px] ring-offset-[1.5px]\" },\n  default: { avatar: \"size-10 text-xs\", dot: \"size-3\", ring: \"ring-2 ring-offset-2\" },\n  lg: { avatar: \"size-14 text-sm\", dot: \"size-3.5\", ring: \"ring-2 ring-offset-[3px]\" },\n} as const;\n\nexport interface StatusAvatarProps extends Omit<React.ComponentProps<\"span\">, \"children\"> {\n  /** Full name. Used for the accessible label and the default initials. */\n  name: string;\n  src?: string;\n  /** Custom fallback content (defaults to initials). */\n  fallback?: React.ReactNode;\n  status?: AvatarStatus;\n  size?: keyof typeof sizes;\n  /** Draw a colored ring around the avatar in the status color. */\n  showRing?: boolean;\n  /** Pulse the dot for live statuses (online, busy). Off by default. */\n  pulse?: boolean;\n}\n\nfunction initials(name: string) {\n  const parts = name.trim().split(/\\s+/);\n  return ((parts[0]?.[0] ?? \"\") + (parts.length > 1 ? parts[parts.length - 1][0] : \"\")).toUpperCase();\n}\n\n/**\n * Avatar with a presence indicator. The status dot scales in when the status\n * changes, the optional ring crossfades to the new color, and `pulse` adds a\n * faint ring to live statuses. Labelled as “Name (Status)” for screen readers;\n * the pulse stops under reduced motion.\n */\nexport function StatusAvatar({\n  name,\n  src,\n  fallback,\n  status = \"online\",\n  size = \"default\",\n  showRing = true,\n  pulse = false,\n  className,\n  ...props\n}: StatusAvatarProps) {\n  const reduceMotion = useReducedMotion() ?? false;\n  const config = statuses[status];\n  const sizing = sizes[size];\n\n  return (\n    <span\n      role=\"img\"\n      aria-label={`${name} (${config.label})`}\n      className={cn(\"relative inline-flex shrink-0\", className)}\n      {...props}\n    >\n      <Avatar\n        className={cn(\n          sizing.avatar,\n          showRing && [sizing.ring, config.ring, \"ring-offset-background transition-[box-shadow] duration-300\"]\n        )}\n      >\n        {src && <AvatarImage src={src} alt=\"\" />}\n        <AvatarFallback aria-hidden>{fallback ?? initials(name)}</AvatarFallback>\n      </Avatar>\n\n      <span aria-hidden className={cn(\"absolute right-0 bottom-0 grid place-items-center\", sizing.dot)}>\n        {pulse && config.pulse && !reduceMotion && (\n          <motion.span\n            key={`pulse-${status}`}\n            className={cn(\"absolute inset-0 rounded-full\", config.dot)}\n            initial={{ scale: 1, opacity: 0.3 }}\n            animate={{ scale: 1.8, opacity: 0 }}\n            transition={{ duration: 2, ease: \"easeOut\", repeat: Infinity, repeatDelay: 1 }}\n          />\n        )}\n        <AnimatePresence initial={false}>\n          <motion.span\n            key={status}\n            className={cn(\"relative col-start-1 row-start-1 size-full rounded-full ring-2 ring-background\", config.dot)}\n            initial={reduceMotion ? { opacity: 0 } : { scale: 0.6, opacity: 0 }}\n            animate={{ scale: 1, opacity: 1 }}\n            exit={reduceMotion ? { opacity: 0 } : { scale: 0.6, opacity: 0 }}\n            transition={reduceMotion ? { duration: 0.15 } : { type: \"spring\", duration: 0.25, bounce: 0.15 }}\n          />\n        </AnimatePresence>\n      </span>\n    </span>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "avatar"
+  ],
+  "type": "registry:component"
+}

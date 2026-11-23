@@ -13,6 +13,19 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 
+/**
+ * DuskUI Command — a drop-in upgrade of the shadcn/ui Command (cmdk).
+ *
+ * Same parts, props and data-slot attributes as shadcn, plus:
+ * - The result list eases its height as results filter in and out (cmdk's
+ *   `--cmdk-list-height`), so the palette never jumps.
+ * - The selected item eases its background in and its icon brightens.
+ * - `CommandDialog` sits near the top of the screen like a real palette, and
+ *   its accessible title lives inside the dialog.
+ * - Shortcuts render as small keycaps.
+ * - Under `prefers-reduced-motion` the height and highlight changes are instant.
+ * CSS only. cmdk handles filtering, sorting and keyboard navigation.
+ */
 function Command({
   className,
   ...props
@@ -21,7 +34,7 @@ function Command({
     <CommandPrimitive
       data-slot="command"
       className={cn(
-        "bg-popover text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-md",
+        "bg-popover text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-xl",
         className
       )}
       {...props}
@@ -29,6 +42,7 @@ function Command({
   )
 }
 
+/** A Command inside a Dialog — the classic ⌘K palette. Wire the shortcut yourself. */
 function CommandDialog({
   title = "Command Palette",
   description = "Search for a command to run...",
@@ -37,22 +51,27 @@ function CommandDialog({
   showCloseButton = true,
   ...props
 }: React.ComponentProps<typeof Dialog> & {
+  /** Accessible title (visually hidden). */
   title?: string
+  /** Accessible description (visually hidden). */
   description?: string
   className?: string
   showCloseButton?: boolean
 }) {
   return (
     <Dialog {...props}>
-      <DialogHeader className="sr-only">
-        <DialogTitle>{title}</DialogTitle>
-        <DialogDescription>{description}</DialogDescription>
-      </DialogHeader>
       <DialogContent
-        className={cn("overflow-hidden p-0", className)}
+        className={cn(
+          "top-[max(1rem,12dvh)] translate-y-0 gap-0 overflow-hidden p-0 sm:max-w-xl",
+          className
+        )}
         showCloseButton={showCloseButton}
       >
-        <Command className="[&_[cmdk-group-heading]]:text-muted-foreground **:data-[slot=command-input-wrapper]:h-12 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]]:px-2 [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
+        <DialogHeader className="sr-only">
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription>{description}</DialogDescription>
+        </DialogHeader>
+        <Command className="[&_[cmdk-group-heading]]:text-muted-foreground **:data-[slot=command-input-wrapper]:h-12 **:data-[slot=command-input-wrapper]:pr-12 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]]:px-2 [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5 **:data-[slot=command-list]:max-h-[min(360px,60dvh)]">
           {children}
         </Command>
       </DialogContent>
@@ -60,6 +79,7 @@ function CommandDialog({
   )
 }
 
+/** The search field. Filters items as you type. */
 function CommandInput({
   className,
   ...props
@@ -67,9 +87,9 @@ function CommandInput({
   return (
     <div
       data-slot="command-input-wrapper"
-      className="flex h-9 items-center gap-2 border-b px-3"
+      className="group/command-input flex h-10 items-center gap-2 border-b px-3"
     >
-      <SearchIcon className="size-4 shrink-0 opacity-50" />
+      <SearchIcon className="size-4 shrink-0 text-muted-foreground" />
       <CommandPrimitive.Input
         data-slot="command-input"
         className={cn(
@@ -82,6 +102,7 @@ function CommandInput({
   )
 }
 
+/** The scrollable result list. Its height eases as results change. */
 function CommandList({
   className,
   ...props
@@ -90,7 +111,8 @@ function CommandList({
     <CommandPrimitive.List
       data-slot="command-list"
       className={cn(
-        "max-h-[300px] scroll-py-1 overflow-x-hidden overflow-y-auto",
+        "h-(--cmdk-list-height) max-h-[300px] scroll-py-1 overflow-x-hidden overflow-y-auto overscroll-contain",
+        "transition-[height] duration-200 ease-out motion-reduce:transition-none",
         className
       )}
       {...props}
@@ -98,18 +120,24 @@ function CommandList({
   )
 }
 
+/** Shown when nothing matches the search. Fades in. */
 function CommandEmpty({
+  className,
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Empty>) {
   return (
     <CommandPrimitive.Empty
       data-slot="command-empty"
-      className="py-6 text-center text-sm"
+      className={cn(
+        "text-muted-foreground animate-in fade-in-0 py-6 text-center text-sm duration-200",
+        className
+      )}
       {...props}
     />
   )
 }
 
+/** A titled group of items. Hidden automatically when none of its items match. */
 function CommandGroup({
   className,
   ...props
@@ -126,6 +154,7 @@ function CommandGroup({
   )
 }
 
+/** A thin divider between groups. */
 function CommandSeparator({
   className,
   ...props
@@ -139,6 +168,7 @@ function CommandSeparator({
   )
 }
 
+/** A selectable row. `onSelect` fires on click or Enter. */
 function CommandItem({
   className,
   ...props
@@ -147,7 +177,11 @@ function CommandItem({
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        "data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "relative flex cursor-default items-center gap-2 rounded-md px-2 py-1.5 text-sm outline-hidden select-none",
+        "transition-[color,background-color] duration-150 ease-out motion-reduce:transition-none",
+        "data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground",
+        "data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50",
+        "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground [&_svg:not([class*='text-'])]:transition-colors data-[selected=true]:[&_svg:not([class*='text-'])]:text-foreground",
         className
       )}
       {...props}
@@ -155,6 +189,7 @@ function CommandItem({
   )
 }
 
+/** Right-aligned keyboard hint, e.g. ⌘K. Visual only; wire the shortcut yourself. */
 function CommandShortcut({
   className,
   ...props
@@ -163,7 +198,7 @@ function CommandShortcut({
     <span
       data-slot="command-shortcut"
       className={cn(
-        "text-muted-foreground ml-auto text-xs tracking-widest",
+        "text-muted-foreground ml-auto rounded border border-white/10 bg-white/[0.04] px-1.5 py-px font-mono text-[0.7rem] tracking-widest",
         className
       )}
       {...props}

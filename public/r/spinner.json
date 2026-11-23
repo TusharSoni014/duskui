@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "title": "Spinner",
+  "description": "Accessible role=status spinner with screen-reader label, four sizes, currentColor arc and slower spin under reduced motion.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/spinner.tsx",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"@/lib/utils\";\n\nconst spinnerVariants = cva(\"relative inline-flex shrink-0 items-center justify-center\", {\n  variants: {\n    size: {\n      sm: \"size-3.5\",\n      default: \"size-4\",\n      lg: \"size-6\",\n      xl: \"size-10\",\n    },\n  },\n  defaultVariants: { size: \"default\" },\n});\n\nexport interface SpinnerProps\n  extends Omit<React.ComponentProps<\"span\">, \"children\">,\n    VariantProps<typeof spinnerVariants> {\n  /** Text announced to screen readers. */\n  label?: string;\n}\n\n/**\n * DuskUI Spinner — an accessible loading indicator.\n *\n * Like shadcn/ui's Spinner, plus:\n * - `role=\"status\"` with a screen-reader-only `label` (\"Loading\" by default),\n *   so the busy state is announced instead of being a silent icon.\n * - A faint track with a rounded arc.\n * - `size`: sm, default, lg, xl. Colored with `currentColor` (use `text-*`).\n * - Under `prefers-reduced-motion` it turns slowly instead of spinning.\n * CSS only, so it works in Server Components.\n */\nfunction Spinner({ className, size, label = \"Loading\", ...props }: SpinnerProps) {\n  return (\n    <span\n      role=\"status\"\n      data-slot=\"spinner\"\n      className={cn(spinnerVariants({ size }), className)}\n      {...props}\n    >\n      <svg\n        viewBox=\"0 0 24 24\"\n        fill=\"none\"\n        aria-hidden\n        className=\"size-full animate-spin [animation-duration:0.8s] motion-reduce:[animation-duration:2.4s]\"\n      >\n        <circle cx=\"12\" cy=\"12\" r=\"9.5\" stroke=\"currentColor\" strokeWidth=\"2.5\" className=\"opacity-20\" />\n        <path\n          d=\"M12 2.5a9.5 9.5 0 0 1 9.5 9.5\"\n          stroke=\"currentColor\"\n          strokeWidth=\"2.5\"\n          strokeLinecap=\"round\"\n        />\n      </svg>\n      <span className=\"sr-only\">{label}</span>\n    </span>\n  );\n}\n\nexport { Spinner, spinnerVariants };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "spinner"
+  ],
+  "type": "registry:ui"
+}

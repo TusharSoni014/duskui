@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rainbow-button",
+  "title": "Rainbow Button",
+  "description": "DuskUI Button with an animated rainbow gradient border; default and outline variants.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "utils",
+    "https://duskui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "components/dusk/rainbow-button/rainbow-button.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport {\n  animate,\n  useInView,\n  useMotionTemplate,\n  useMotionValue,\n  useReducedMotion,\n} from \"motion/react\";\n\nimport { MotionButton, type MotionButtonProps } from \"@/components/ui/button\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface RainbowButtonProps extends Omit<MotionButtonProps, \"variant\" | \"asChild\"> {\n  /** `default` has a dark fill; `outline` is see-through. */\n  variant?: \"default\" | \"outline\";\n  /** Gradient colors, in order. The loop is seamless, so the last color blends back into the first. */\n  colors?: string[];\n  /** Seconds for the gradient to scroll one full cycle. */\n  duration?: number;\n  /** Border width in px. */\n  borderWidth?: number;\n}\n\nconst RAINBOW = [\"#fb7185\", \"#fbbf24\", \"#a3e635\", \"#38bdf8\", \"#a78bfa\"];\n\n/*\n * The border is the button's own ::before, not a child, so it stays put while\n * the base Button crossfades its label to a spinner. It reads the gradient\n * and its scroll position from CSS variables.\n */\n/** Button with a slowly scrolling rainbow gradient border. */\nexport function RainbowButton({\n  variant = \"default\",\n  colors = RAINBOW,\n  duration = 6,\n  borderWidth = 1,\n  className,\n  style,\n  children,\n  ...props\n}: RainbowButtonProps) {\n  const sentinel = React.useRef<HTMLSpanElement>(null);\n  const reduceMotion = useReducedMotion();\n  const inView = useInView(sentinel);\n  const x = useMotionValue(0);\n  const position = useMotionTemplate`${x}%`;\n\n  React.useEffect(() => {\n    if (reduceMotion || !inView) return;\n    // The gradient repeats twice across a 200%-wide image, so 0% → 100% is one seamless cycle.\n    const controls = animate(x, [x.get() % 100, (x.get() % 100) + 100], {\n      duration: Math.max(0.5, duration),\n      ease: \"linear\",\n      repeat: Infinity,\n    });\n    return () => controls.stop();\n  }, [duration, inView, reduceMotion, x]);\n\n  const palette = colors.length ? colors : RAINBOW;\n  const loop = [...palette, ...palette, palette[0]].join(\", \");\n  const vars = {\n    \"--rb-gradient\": `linear-gradient(90deg, ${loop})`,\n    \"--rb-x\": position,\n    \"--rb-w\": `${borderWidth}px`,\n  } as unknown as MotionButtonProps[\"style\"];\n\n  return (\n    <MotionButton\n      variant=\"default\"\n      data-rainbow-variant={variant}\n      className={cn(\n        \"group/rainbow isolate bg-transparent text-white shadow-none\",\n        // Border layer (::before).\n        \"before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:rounded-[inherit]\",\n        variant === \"default\"\n          ? [\n              // Fill and border in one layer: a dark padding-box over the gradient border-box.\n              \"[--rb-fill:oklch(0.13_0.02_260)] hover:bg-transparent hover:[--rb-fill:oklch(0.18_0.02_260)]\",\n              \"before:border-(length:--rb-w) before:border-transparent\",\n              \"before:[background:linear-gradient(var(--rb-fill),var(--rb-fill))_padding-box,var(--rb-gradient)_var(--rb-x)_0/200%_100%_repeat-x_border-box]\",\n            ]\n          : [\n              // Gradient masked down to a ring, so the fill stays see-through.\n              \"hover:bg-white/[0.04]\",\n              \"before:p-(--rb-w) before:[background:var(--rb-gradient)_var(--rb-x)_0/200%_100%_repeat-x]\",\n              \"before:[mask-image:linear-gradient(#000_0_0),linear-gradient(#000_0_0)] before:[mask-clip:content-box,border-box] before:[mask-composite:exclude]\",\n            ],\n        className\n      )}\n      style={{ ...vars, ...style } as MotionButtonProps[\"style\"]}\n      {...props}\n    >\n      {/* Off-screen detection only: the gradient pauses when the button isn't visible. */}\n      <span ref={sentinel} aria-hidden className=\"pointer-events-none absolute inset-0\" />\n      {children}\n    </MotionButton>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "rainbow-button"
+  ],
+  "type": "registry:component"
+}

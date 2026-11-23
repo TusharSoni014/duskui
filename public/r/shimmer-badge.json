@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shimmer-badge",
+  "title": "Shimmer Badge",
+  "description": "Badge with a band of light sweeping across it every few seconds, for New, Beta or Pro labels.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://duskui.com/r/badge.json"
+  ],
+  "files": [
+    {
+      "path": "components/dusk/badge/shimmer-badge.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, useReducedMotion } from \"motion/react\";\n\nimport { Badge, type BadgeProps } from \"@/components/ui/badge\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface ShimmerBadgeProps extends Omit<BadgeProps, \"asChild\"> {\n  /** Seconds for one sweep. */\n  duration?: number;\n  /** Pause between sweeps, in seconds. */\n  delay?: number;\n}\n\n/**\n * A badge with a faint band of light sweeping across it every few seconds — for\n * \"New\", \"Beta\" or \"Pro\" labels that should catch the eye without blinking.\n * Static under reduced motion.\n */\nexport function ShimmerBadge({\n  variant = \"soft\",\n  duration = 1.4,\n  delay = 4,\n  className,\n  children,\n  ...props\n}: ShimmerBadgeProps) {\n  const reduceMotion = useReducedMotion();\n  return (\n    <Badge variant={variant} className={cn(\"relative isolate\", className)} {...props}>\n      {children}\n      {!reduceMotion && (\n        <motion.span\n          aria-hidden\n          className=\"pointer-events-none absolute inset-y-0 left-0 -z-10 w-full bg-[linear-gradient(100deg,transparent_35%,rgb(255_255_255/0.1)_50%,transparent_65%)]\"\n          initial={{ x: \"-100%\" }}\n          animate={{ x: \"100%\" }}\n          transition={{ duration, ease: \"easeInOut\", repeat: Infinity, repeatDelay: delay }}\n        />\n      )}\n    </Badge>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "badge"
+  ],
+  "type": "registry:component"
+}

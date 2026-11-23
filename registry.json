@@ -1,0 +1,4702 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "duskui",
+  "homepage": "https://duskui.com",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Drop-in upgrade of the shadcn/ui Button with Motion: width-stable loading state, loadingText, tactile press feedback, a `soft` variant and reduced-motion support. Also exports MotionButton.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-slot",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "button"
+      ]
+    },
+    {
+      "name": "status-button",
+      "type": "registry:component",
+      "title": "Status Button",
+      "description": "Button that animates through idle, loading, success and error states with a springy width change, self-drawing check mark and error shake. Includes the useStatusAction hook.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/button/status-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "button"
+      ]
+    },
+    {
+      "name": "hold-to-confirm-button",
+      "type": "registry:component",
+      "title": "Hold to Confirm Button",
+      "description": "Press-and-hold button for destructive actions. A fill wipes across while held and springs back if released early. Mouse, touch and keyboard.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/button/hold-to-confirm-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "button"
+      ]
+    },
+    {
+      "name": "shimmer-button",
+      "type": "registry:component",
+      "title": "Shimmer Button",
+      "description": "Button with a light sheen that sweeps across on hover or on an idle loop.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/button/shimmer-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "button"
+      ]
+    },
+    {
+      "name": "magnetic-button",
+      "type": "registry:component",
+      "title": "Magnetic Button",
+      "description": "Button that is pulled toward the cursor on spring physics, with a parallax label.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/button/magnetic-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "button"
+      ]
+    },
+    {
+      "name": "spotlight-button",
+      "type": "registry:component",
+      "title": "Spotlight Button",
+      "description": "Button with a cursor-following light on its border and surface.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/button/spotlight-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "button"
+      ]
+    },
+    {
+      "name": "copy-button",
+      "type": "registry:component",
+      "title": "Copy Button",
+      "description": "Icon button that copies text to the clipboard and morphs into a check mark.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/button/copy-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "button"
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Drop-in upgrade of the shadcn/ui Input: hover state, softer focus ring, clear invalid state, on-theme autofill and tidy file inputs. CSS only.",
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "input"
+      ]
+    },
+    {
+      "name": "otp-input",
+      "type": "registry:component",
+      "title": "OTP Input",
+      "description": "One-time-code input with a gliding active ring, pop-in digits and an error shake. Paste and SMS autofill supported.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/input/otp-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "input"
+      ]
+    },
+    {
+      "name": "floating-label-input",
+      "type": "registry:component",
+      "title": "Floating Label Input",
+      "description": "Input whose label rests inside the field and springs up on focus or when filled.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/input/floating-label-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "input"
+      ]
+    },
+    {
+      "name": "password-input",
+      "type": "registry:component",
+      "title": "Password Input",
+      "description": "Password field with animated show/hide toggle and an optional spring-filled strength meter.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/input.json",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/input/password-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "input"
+      ]
+    },
+    {
+      "name": "search-input",
+      "type": "registry:component",
+      "title": "Search Input",
+      "description": "Search field with loading spinner, animated clear button, Escape to clear and a ⌘K focus shortcut.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/input/search-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "input"
+      ]
+    },
+    {
+      "name": "shimmer-input",
+      "type": "registry:component",
+      "title": "Shimmer Input",
+      "description": "Input with a light beam travelling around its border while loading, for AI prompt fields.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/input/shimmer-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "input"
+      ]
+    },
+    {
+      "name": "neon-button",
+      "type": "registry:component",
+      "title": "Neon Button",
+      "description": "Neon-tube button with one soft glow that brightens on hover and keyboard focus, optional flicker-on, any CSS color, solid or outline. Built on the DuskUI Button, so loading and loadingText keep working.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/neon/neon-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "neon"
+      ]
+    },
+    {
+      "name": "glow-text",
+      "type": "registry:component",
+      "title": "Glow Text",
+      "description": "Real, selectable, SEO-readable text with a single soft neon text-shadow, optional breathe or flicker animation, any color and any heading level via the as prop.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/neon/glow-text.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "neon"
+      ]
+    },
+    {
+      "name": "neon-border",
+      "type": "registry:component",
+      "title": "Neon Border",
+      "description": "Wrapper that draws an animated neon border around any content: a thin beam travels around the edge with a low, adjustable glow. Color, two-tone, speed, thickness, radius and hover trigger props.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/neon/neon-border.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "neon"
+      ]
+    },
+    {
+      "name": "electric-card",
+      "type": "registry:component",
+      "title": "Electric Card",
+      "description": "Card whose border crackles with procedurally generated SVG lightning on hover or keyboard focus. Tunable chaos, arc count, speed, radius and color.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/neon/electric-card.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "neon"
+      ]
+    },
+    {
+      "name": "plasma-loader",
+      "type": "registry:component",
+      "title": "Plasma Loader",
+      "description": "Accessible loading spinner with a plasma effect: blobs orbit a ring and fuse through an SVG gooey filter. Size, color, secondary color, speed and screen-reader label props.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/neon/plasma-loader.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "neon"
+      ]
+    },
+    {
+      "name": "circuit-board",
+      "type": "registry:component",
+      "title": "Circuit Board",
+      "description": "Animated circuit board background with 45°-routed SVG traces, solder pads and pulses of light travelling along them.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/techy/circuit-board.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "techy"
+      ]
+    },
+    {
+      "name": "data-stream",
+      "type": "registry:component",
+      "title": "Data Stream",
+      "description": "Canvas data-flow effect where faint packets stream along horizontal lanes at varying speeds. A quiet hero accent.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/techy/data-stream.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "techy"
+      ]
+    },
+    {
+      "name": "hologram-card",
+      "type": "registry:component",
+      "title": "Hologram Card",
+      "description": "Holographic card with a faint iridescent foil, rainbow rim, optional static scanlines and a gentle 3D tilt toward the pointer.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/techy/hologram-card.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "techy"
+      ]
+    },
+    {
+      "name": "binary-rain",
+      "type": "registry:component",
+      "title": "Binary Rain",
+      "description": "Falling columns of 0s and 1s with bright heads and fading trails, drawn on a high-DPI canvas.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/techy/binary-rain.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "techy"
+      ]
+    },
+    {
+      "name": "tech-grid",
+      "type": "registry:component",
+      "title": "Tech Grid",
+      "description": "Animated tech grid background: cells light up near the cursor under a sweeping scan line, or a retro perspective floor variant.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/techy/tech-grid.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "techy"
+      ]
+    },
+    {
+      "name": "terminal-window",
+      "type": "registry:component",
+      "title": "Terminal Window",
+      "description": "Animated terminal window that types out a scripted session: commands typed character by character, output revealed, auto-scroll, blinking cursor, loop/replay and onComplete. Full transcript always in the DOM; reduced motion shows the finished session.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/hacker/terminal-window.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "hacker"
+      ]
+    },
+    {
+      "name": "glitch-text",
+      "type": "registry:component",
+      "title": "Glitch Text",
+      "description": "Text with a digital glitch: RGB-split layers jump in clip-path slices on hover, on a loop or once in view. Real text stays selectable; bursts throttled to one per second and off under reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/hacker/glitch-text.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "hacker"
+      ]
+    },
+    {
+      "name": "matrix-rain",
+      "type": "registry:component",
+      "title": "Matrix Rain",
+      "description": "Classic Matrix digital rain on a high-DPI canvas with katakana and digits. Configurable color, font size, speed, fade and characters; pauses off-screen and draws a still frame under reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/hacker/matrix-rain.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "hacker"
+      ]
+    },
+    {
+      "name": "cyber-button",
+      "type": "registry:component",
+      "title": "Cyber Button",
+      "description": "Cyberpunk button built on the DuskUI Button: angled clip-path corners and a monospace label that scrambles then resolves on hover and focus without changing width, plus the loading state.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/button.json",
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/hacker/cyber-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "hacker"
+      ]
+    },
+    {
+      "name": "scan-line",
+      "type": "registry:component",
+      "title": "Scan Line",
+      "description": "CRT overlay wrapper in pure CSS: horizontal scanlines, a slowly rolling scan bar, optional vignette, flicker and curvature. aria-hidden, pointer-events-none, works in Server Components.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/hacker/scan-line.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "hacker"
+      ]
+    },
+    {
+      "name": "glass-card",
+      "type": "registry:component",
+      "title": "Glass Card",
+      "description": "Frosted-glass card with backdrop blur and saturation, a 1px hairline border, film grain and optional 3D tilt.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/glass/glass-card.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "glass"
+      ]
+    },
+    {
+      "name": "blur-panel",
+      "type": "registry:component",
+      "title": "Blur Panel",
+      "description": "Backdrop-blur panel for sticky headers, toolbars and sidebars whose blur, saturation and tint fade in with scroll, with intensity presets.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/glass/blur-panel.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "glass"
+      ]
+    },
+    {
+      "name": "frost-button",
+      "type": "registry:component",
+      "title": "Frost Button",
+      "description": "Frosted-glass button built on the DuskUI Button with a light sweep on hover and focus, a press ripple, three tones and the loading state.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/glass/frost-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "glass"
+      ]
+    },
+    {
+      "name": "crystal-modal",
+      "type": "registry:component",
+      "title": "Crystal Modal",
+      "description": "Glass modal on Radix Dialog with Motion scale-and-blur enter/exit, a frosted overlay, focus trap and Escape to close.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/glass/crystal-modal.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "glass"
+      ]
+    },
+    {
+      "name": "ice-input",
+      "type": "registry:component",
+      "title": "Ice Input",
+      "description": "Frosted-glass input built on the DuskUI Input where frost spreads from the click point on focus, with a standard focus ring.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/glass/ice-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "glass"
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Drop-in upgrade of the shadcn/ui Card: same parts and data-slots, smooth border/shadow transitions, an `interactive` mode (hover lift, tinted border, focus ring) and `asChild`. CSS only.",
+      "dependencies": [
+        "@radix-ui/react-slot"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "card"
+      ]
+    },
+    {
+      "name": "glow-card",
+      "type": "registry:component",
+      "title": "Glow Card",
+      "description": "Card whose border lights up where the cursor is, with a soft bloom and surface wash. Driven by motion values and also lights up on keyboard focus.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/card.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/card/glow-card.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "card"
+      ]
+    },
+    {
+      "name": "tilt-card",
+      "type": "registry:component",
+      "title": "Tilt Card",
+      "description": "Card that tilts in 3D toward the cursor on springs, with an optional faint glare. Mouse only, static with reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/card.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/card/tilt-card.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "card"
+      ]
+    },
+    {
+      "name": "loading-card",
+      "type": "registry:component",
+      "title": "Loading Card",
+      "description": "Card that shows a shimmering skeleton while loading, then crossfades the content in while its height springs to fit.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/card.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/card/loading-card.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "card"
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "Drop-in upgrade of the shadcn/ui Dialog: smoother open/close animation, blurred backdrop, scrollable content, larger close button and a fade-only reduced-motion mode. Same exports and props.",
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "dialog"
+      ]
+    },
+    {
+      "name": "morphing-dialog",
+      "type": "registry:component",
+      "title": "Morphing Dialog",
+      "description": "A card that morphs into a dialog with shared Motion layoutIds for the surface, media, title and subtitle. Built on Radix Dialog for focus trap, Escape and aria.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/dialog/morphing-dialog.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "dialog"
+      ]
+    },
+    {
+      "name": "confirm-dialog",
+      "type": "registry:component",
+      "title": "Confirm Dialog",
+      "description": "Async confirmation dialog: loading confirm button, dismiss blocked mid-request, shake + inline error on failure, optional type-to-confirm. role=alertdialog.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/dialog.json",
+        "https://duskui.com/r/button.json",
+        "https://duskui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/dialog/confirm-dialog.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "dialog"
+      ]
+    },
+    {
+      "name": "drawer-dialog",
+      "type": "registry:component",
+      "title": "Drawer Dialog",
+      "description": "Bottom sheet built on Radix Dialog that slides up and can be dragged or flicked down to dismiss, with the backdrop fading as you drag.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/dialog/drawer-dialog.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "dialog"
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Drop-in upgrade of the shadcn/ui Badge with soft, success, warning and info variants, sm/lg sizes, a status `dot` and hover states for link badges. CSS only.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "badge"
+      ]
+    },
+    {
+      "name": "pulse-badge",
+      "type": "registry:component",
+      "title": "Pulse Badge",
+      "description": "Status badge with a pulsing ring around its dot for Live, Online or Deploying states. Also exports PulseDot.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/badge/pulse-badge.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "badge"
+      ]
+    },
+    {
+      "name": "animated-count-badge",
+      "type": "registry:component",
+      "title": "Animated Count Badge",
+      "description": "Count badge whose digits roll like an odometer on springs, with a bump on increase, max+ capping and a screen-reader label.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/badge/animated-count-badge.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "badge"
+      ]
+    },
+    {
+      "name": "shimmer-badge",
+      "type": "registry:component",
+      "title": "Shimmer Badge",
+      "description": "Badge with a band of light sweeping across it every few seconds, for New, Beta or Pro labels.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/badge/shimmer-badge.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "badge"
+      ]
+    },
+    {
+      "name": "aurora-background",
+      "type": "registry:component",
+      "title": "Aurora Background",
+      "description": "A soft, slowly shifting aurora of blurred gradient bands animated with GPU-friendly transforms.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/backgrounds/aurora-background.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "backgrounds"
+      ]
+    },
+    {
+      "name": "background-beams",
+      "type": "registry:component",
+      "title": "Background Beams",
+      "description": "Thin beams of light travelling along a fan of curved SVG paths with soft tails and bright heads.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/backgrounds/background-beams.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "backgrounds"
+      ]
+    },
+    {
+      "name": "particles",
+      "type": "registry:component",
+      "title": "Particles",
+      "description": "A drifting canvas particle field that repels from or gathers toward the cursor, with optional connecting lines.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/backgrounds/particles.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "backgrounds"
+      ]
+    },
+    {
+      "name": "dot-spotlight",
+      "type": "registry:component",
+      "title": "Dot Spotlight",
+      "description": "A dot-grid background with a soft spotlight that follows the cursor and brightens nearby dots.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/backgrounds/dot-spotlight.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "backgrounds"
+      ]
+    },
+    {
+      "name": "meteors",
+      "type": "registry:component",
+      "title": "Meteors",
+      "description": "Shooting stars with soft fading tails streaking diagonally across the container at staggered intervals.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/backgrounds/meteors.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "backgrounds"
+      ]
+    },
+    {
+      "name": "typewriter",
+      "type": "registry:component",
+      "title": "Typewriter",
+      "description": "Types and deletes a list of phrases with a blinking caret. Reserves the size of the longest phrase (no layout shift), pauses off-screen and keeps every phrase in the DOM for SEO and screen readers.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/text/typewriter.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "text"
+      ]
+    },
+    {
+      "name": "number-ticker",
+      "type": "registry:component",
+      "title": "Number Ticker",
+      "description": "Animated number that springs to its value when it scrolls into view. Intl.NumberFormat locales, currency, decimals, prefix and suffix, tabular digits, final value rendered on the server.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/text/number-ticker.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "text"
+      ]
+    },
+    {
+      "name": "word-rotate",
+      "type": "registry:component",
+      "title": "Word Rotate",
+      "description": "Cycles through words with a vertical slide and blur swap while the container width springs between them.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/text/word-rotate.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "text"
+      ]
+    },
+    {
+      "name": "scroll-reveal-text",
+      "type": "registry:component",
+      "title": "Scroll Reveal Text",
+      "description": "Paragraph whose words light up one by one as it scrolls through the viewport. Scroll-linked Motion values with no React re-renders.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/text/scroll-reveal-text.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "text"
+      ]
+    },
+    {
+      "name": "shiny-text",
+      "type": "registry:component",
+      "title": "Shiny Text",
+      "description": "Real, selectable text with a band of light sweeping across it via a background-clip text gradient, on any heading level.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/text/shiny-text.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "text"
+      ]
+    },
+    {
+      "name": "split-text",
+      "type": "registry:component",
+      "title": "Split Text",
+      "description": "Letters or words stagger in with a rise, drop, blur or fade when the text scrolls into view, with server-rendered final text.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/text/split-text.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "text"
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "Drop-in upgrade of the shadcn/ui Avatar: soft image fade-in once loaded, hairline edge and an on-theme initials fallback.",
+      "dependencies": [
+        "@radix-ui/react-avatar"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "avatar"
+      ]
+    },
+    {
+      "name": "avatar-group",
+      "type": "registry:component",
+      "title": "Avatar Group",
+      "description": "Overlapping avatar stack that fans out on hover, lifts the hovered avatar with a name tag and collapses extras into a +N chip.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-avatar"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/avatar/avatar-group.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "avatar"
+      ]
+    },
+    {
+      "name": "status-avatar",
+      "type": "registry:component",
+      "title": "Status Avatar",
+      "description": "Avatar with an online/away/busy/offline dot and ring; live statuses pulse and status changes pop.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-avatar"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/avatar/status-avatar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "avatar"
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Drop-in upgrade of the shadcn/ui Progress: spring-animated indicator, fill-in on mount, indeterminate sweep and indicatorClassName.",
+      "dependencies": [
+        "@radix-ui/react-progress",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/progress.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "progress"
+      ]
+    },
+    {
+      "name": "circular-progress",
+      "type": "registry:component",
+      "title": "Circular Progress",
+      "description": "SVG progress ring that springs to its value while the center number counts along. Radix progressbar semantics.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-progress"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/progress/circular-progress.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "progress"
+      ]
+    },
+    {
+      "name": "stepper-progress",
+      "type": "registry:component",
+      "title": "Stepper Progress",
+      "description": "Multi-step stepper: connectors fill with a spring, completed steps draw a check, the current step breathes.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/progress/stepper-progress.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "progress"
+      ]
+    },
+    {
+      "name": "segmented-progress",
+      "type": "registry:component",
+      "title": "Segmented Progress",
+      "description": "Progress bar split into segments that fill one after another from a single spring.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-progress"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/progress/segmented-progress.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "progress"
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "Drop-in upgrade of the shadcn/ui Slider: the thumb grows while dragging, labels are forwarded to thumbs. Single, range and vertical.",
+      "dependencies": [
+        "@radix-ui/react-slider"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/slider.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "slider"
+      ]
+    },
+    {
+      "name": "value-slider",
+      "type": "registry:component",
+      "title": "Value Slider",
+      "description": "Slider with a floating value bubble on each thumb that springs up on hover, focus or drag. Supports ranges.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-slider"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/slider/value-slider.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "slider"
+      ]
+    },
+    {
+      "name": "stepped-slider",
+      "type": "registry:component",
+      "title": "Stepped Slider",
+      "description": "Slider that snaps between named steps with tick marks that light up and clickable labels.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-slider"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/slider/stepped-slider.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "slider"
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "Drop-in upgrade of the shadcn/ui Dropdown Menu: grows from the trigger's side, smoother highlights, popping check/radio indicators. Same exports and props.",
+      "dependencies": [
+        "@radix-ui/react-dropdown-menu",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/dropdown-menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "dropdown-menu"
+      ]
+    },
+    {
+      "name": "animated-dropdown",
+      "type": "registry:component",
+      "title": "Animated Dropdown",
+      "description": "Dropdown menu that springs open with staggered items and a highlight pill that glides between items via a shared layoutId.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-dropdown-menu"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/dropdown-menu.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/dropdown-menu/animated-dropdown.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "dropdown-menu"
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Drop-in upgrade of the shadcn/ui Popover: grows out of its trigger, slides from its side, plus PopoverClose.",
+      "dependencies": [
+        "@radix-ui/react-popover"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/popover.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "popover"
+      ]
+    },
+    {
+      "name": "animated-popover",
+      "type": "registry:component",
+      "title": "Animated Popover",
+      "description": "Motion popover that springs from the trigger's transform origin with a blur-in and optional arrow.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-popover"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/popover/animated-popover.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "popover"
+      ]
+    },
+    {
+      "name": "feedback-popover",
+      "type": "registry:component",
+      "title": "Feedback Popover",
+      "description": "Feedback button that morphs into a textarea panel via shared layoutIds, with async submit, inline error and a success state.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/popover/feedback-popover.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "popover"
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Drop-in upgrade of the shadcn/ui Tabs: a `line` variant with a growing underline, vertical orientation, panels that fade and rise in. CSS only.",
+      "dependencies": [
+        "@radix-ui/react-tabs",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "tabs"
+      ]
+    },
+    {
+      "name": "animated-tabs",
+      "type": "registry:component",
+      "title": "Animated Tabs",
+      "description": "Tabs with a pill or underline indicator that glides between triggers, direction-aware panel slides and a springing panel height.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-tabs"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/tabs.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/tabs/animated-tabs.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "tabs"
+      ]
+    },
+    {
+      "name": "segmented-control",
+      "type": "registry:component",
+      "title": "Segmented Control",
+      "description": "iOS-style segmented control on native radios with a springing thumb; form-ready.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/tabs/segmented-control.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "tabs"
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Drop-in upgrade of the shadcn/ui Accordion: smoother height, quicker close, content that fades and un-blurs in, overshooting chevron, `icon` prop. CSS only.",
+      "dependencies": [
+        "@radix-ui/react-accordion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "accordion"
+      ]
+    },
+    {
+      "name": "motion-accordion",
+      "type": "registry:component",
+      "title": "Motion Accordion",
+      "description": "Spring-physics accordion with a gliding hover highlight and mint outline on the open item; closed answers stay in the DOM for SEO.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-accordion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/accordion.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/accordion/motion-accordion.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "accordion"
+      ]
+    },
+    {
+      "name": "faq-accordion",
+      "type": "registry:component",
+      "title": "FAQ Accordion",
+      "description": "Data-driven FAQ section with numbered questions, plus-to-minus icon and optional FAQPage JSON-LD. Server Component friendly.",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://duskui.com/r/accordion.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/accordion/faq-accordion.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "accordion"
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "Drop-in upgrade of the shadcn/ui Switch: spring-loaded thumb (CSS linear()), sm/default/lg sizes, thumbContent.",
+      "dependencies": [
+        "@radix-ui/react-switch",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "switch"
+      ]
+    },
+    {
+      "name": "icon-switch",
+      "type": "registry:component",
+      "title": "Icon Switch",
+      "description": "Theme toggle whose thumb morphs from a sun into a crescent moon, or spins between any two icons.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/switch/icon-switch.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "switch"
+      ]
+    },
+    {
+      "name": "loading-switch",
+      "type": "registry:component",
+      "title": "Loading Switch",
+      "description": "Async switch that moves optimistically, spins while onCheckedChange resolves and springs back with a shake on error.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/switch.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/switch/loading-switch.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "switch"
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "Drop-in upgrade of the shadcn/ui Checkbox: the check draws itself, indeterminate draws a dash, pure CSS so forms keep working.",
+      "dependencies": [
+        "@radix-ui/react-checkbox"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "checkbox"
+      ]
+    },
+    {
+      "name": "task-checkbox",
+      "type": "registry:component",
+      "title": "Task Checkbox",
+      "description": "To-do row whose label strikes through across wrapped lines with a ring and particle burst.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/checkbox.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/checkbox/task-checkbox.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "checkbox"
+      ]
+    },
+    {
+      "name": "checkbox-card",
+      "type": "registry:component",
+      "title": "Checkbox Card",
+      "description": "Selectable card whose mint outline traces itself; the icon lifts and the check draws.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/checkbox.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/checkbox/checkbox-card.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "checkbox"
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Drop-in upgrade of the shadcn/ui Tooltip: elevated surface with a bordered arrow, opens with scale, slide and blur. Same exports and props.",
+      "dependencies": [
+        "@radix-ui/react-tooltip"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "tooltip"
+      ]
+    },
+    {
+      "name": "animated-tooltip",
+      "type": "registry:component",
+      "title": "Animated Tooltip",
+      "description": "Spring tooltip with a one-line API that scales and un-blurs out of its trigger and animates out.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-tooltip"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/tooltip/animated-tooltip.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "tooltip"
+      ]
+    },
+    {
+      "name": "avatar-tooltip-group",
+      "type": "registry:component",
+      "title": "Avatar Tooltip Group",
+      "description": "Overlapping avatars with name cards that tilt toward the cursor and a +N overflow chip.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-tooltip"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/tooltip/avatar-tooltip-group.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "tooltip"
+      ]
+    },
+    {
+      "name": "marquee",
+      "type": "registry:component",
+      "title": "Marquee",
+      "description": "Infinitely scrolling row or column for logos and testimonials: seamless transform-only loop, pause on hover/focus, fade edges, static under reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/marquee/marquee.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "marquee"
+      ]
+    },
+    {
+      "name": "bento-grid",
+      "type": "registry:component",
+      "title": "Bento Grid",
+      "description": "Responsive bento layout with column/row spans; cards reveal a CTA and zoom their background on hover or focus.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/bento-grid/bento-grid.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "bento-grid"
+      ]
+    },
+    {
+      "name": "animated-list",
+      "type": "registry:component",
+      "title": "Animated List",
+      "description": "Notification-style list where new items spring in at the top and older ones glide down, with a max visible count and a polite live region.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/animated-list/animated-list.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "animated-list"
+      ]
+    },
+    {
+      "name": "timeline",
+      "type": "registry:component",
+      "title": "Timeline",
+      "description": "Vertical timeline whose progress line traces down as you scroll (works in scroll containers), with dots that light up and sticky dates.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/timeline/timeline.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "timeline"
+      ]
+    },
+    {
+      "name": "file-upload",
+      "type": "registry:component",
+      "title": "File Upload",
+      "description": "Drag-and-drop dropzone on a real file input with animated drag-over, validation errors, and a file list with per-file progress, cancel and retry.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json",
+        "https://duskui.com/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/file-upload/file-upload.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "file-upload"
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Drop-in shadcn Select that grows out of its trigger, flips its chevron and pops in the check mark.",
+      "dependencies": [
+        "@radix-ui/react-select",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "select"
+      ]
+    },
+    {
+      "name": "animated-select",
+      "type": "registry:component",
+      "title": "Animated Select",
+      "description": "Select whose list springs open, options cascade in, a highlight pill glides between items and the check pops in.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-select",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/select/animated-select.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "select"
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "Drop-in shadcn Radio Group with a dot that springs in when checked.",
+      "dependencies": [
+        "@radix-ui/react-radio-group"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "radio-group"
+      ]
+    },
+    {
+      "name": "radio-cards",
+      "type": "registry:component",
+      "title": "Radio Cards",
+      "description": "Selectable plan cards with a 1px primary outline that glides to the selected card.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-radio-group"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/radio-group.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/radio-group/radio-cards.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "radio-group"
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Drop-in shadcn Textarea that grows with its content, with hover, focus and invalid states.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "textarea"
+      ]
+    },
+    {
+      "name": "auto-resize-textarea",
+      "type": "registry:component",
+      "title": "Auto-resize Textarea",
+      "description": "Textarea that springs to fit its content, with a character-limit ring that turns amber then red.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/textarea/auto-resize-textarea.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "textarea"
+      ]
+    },
+    {
+      "name": "chat-input",
+      "type": "registry:component",
+      "title": "Chat Input",
+      "description": "Chat composer with an auto-growing textarea, Enter to send, Shift+Enter for a new line and a loading send button.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/textarea.json",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/textarea/chat-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "textarea"
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "Drop-in shadcn Toggle with a tactile press and a mint on state.",
+      "dependencies": [
+        "@radix-ui/react-toggle",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/toggle.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "toggle-group"
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "Drop-in shadcn Toggle Group with variants, sizes, spacing and a mint on state.",
+      "dependencies": [
+        "@radix-ui/react-toggle-group",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/toggle.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/toggle-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "toggle-group"
+      ]
+    },
+    {
+      "name": "animated-toggle-group",
+      "type": "registry:component",
+      "title": "Animated Toggle Group",
+      "description": "Toggle group whose active pill glides between items (single) or springs in per item (multiple).",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-toggle-group"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/toggle-group.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/toggle-group/animated-toggle-group.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "toggle-group"
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:component",
+      "title": "Combobox",
+      "description": "Animated searchable select with spring open, layout-animated filtering, match highlighting and an empty state.",
+      "dependencies": [
+        "motion",
+        "cmdk",
+        "@radix-ui/react-popover",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/button.json",
+        "https://duskui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/combobox/combobox.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "combobox"
+      ]
+    },
+    {
+      "name": "multi-combobox",
+      "type": "registry:component",
+      "title": "Multi-select Combobox",
+      "description": "Autocomplete multi-select with animated removable chips, self-drawing checkboxes and an optional max.",
+      "dependencies": [
+        "motion",
+        "cmdk",
+        "@radix-ui/react-popover",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/combobox/multi-combobox.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "combobox"
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Drop-in shadcn Pagination built on the DuskUI Button variants.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "pagination"
+      ]
+    },
+    {
+      "name": "animated-pagination",
+      "type": "registry:component",
+      "title": "Animated Pagination",
+      "description": "Controlled pagination with an active indicator that glides between pages, smart ellipsis range and rolling page numbers.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/pagination.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/pagination/animated-pagination.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "pagination"
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "Drop-in shadcn Breadcrumb with hover and current-page states.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "breadcrumb"
+      ]
+    },
+    {
+      "name": "collapsible-breadcrumb",
+      "type": "registry:component",
+      "title": "Collapsible Breadcrumb",
+      "description": "Breadcrumb whose middle items fold into an animated ellipsis menu when there are too many.",
+      "dependencies": [
+        "motion",
+        "lucide-react",
+        "@radix-ui/react-dropdown-menu"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/breadcrumb.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/breadcrumb/collapsible-breadcrumb.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "breadcrumb"
+      ]
+    },
+    {
+      "name": "carousel",
+      "type": "registry:component",
+      "title": "Carousel",
+      "description": "Dependency-free Motion carousel with drag, momentum and snap, arrows, dots, keyboard, loop and autoplay that pauses on hover and reduced motion.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/carousel/carousel.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "carousel"
+      ]
+    },
+    {
+      "name": "coverflow-carousel",
+      "type": "registry:component",
+      "title": "Coverflow Carousel",
+      "description": "3D coverflow carousel where slides rotate and scale around the active one, driven by a single drag motion value.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/carousel/coverflow-carousel.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "carousel"
+      ]
+    },
+    {
+      "name": "dock",
+      "type": "registry:component",
+      "title": "Dock",
+      "description": "macOS-style dock whose icons magnify toward the cursor with springs, with labels, active dots, keyboard focus and a vertical option.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-slot"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/dock/dock.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "dock"
+      ]
+    },
+    {
+      "name": "floating-navbar",
+      "type": "registry:component",
+      "title": "Floating Navbar",
+      "description": "Navbar that hides on scroll down and returns on scroll up, with a gliding active-link pill and animated mobile menu; works in scroll containers.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/navbar/floating-navbar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "navbar"
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Drop-in shadcn Alert with success, warning and info variants alongside default and destructive.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/alert.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "alert"
+      ]
+    },
+    {
+      "name": "dismissible-alert",
+      "type": "registry:component",
+      "title": "Dismissible Alert",
+      "description": "Alert that collapses its height when dismissed, with optional auto-dismiss and a draining progress line.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/alert.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/alert/dismissible-alert.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "alert"
+      ]
+    },
+    {
+      "name": "banner-alert",
+      "type": "registry:component",
+      "title": "Banner Alert",
+      "description": "Top-of-page announcement banner that slides in and can be dismissed.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/alert/banner-alert.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "alert"
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "Drop-in shadcn Alert Dialog with a blurred backdrop and scale-in surface, using the DuskUI Button for actions.",
+      "dependencies": [
+        "@radix-ui/react-alert-dialog",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/alert-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "alert-dialog"
+      ]
+    },
+    {
+      "name": "destructive-alert-dialog",
+      "type": "registry:component",
+      "title": "Destructive Alert Dialog",
+      "description": "Destructive confirmation with a pulsing warning icon, optional type-to-confirm, async loading action and a shake on error.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/alert-dialog.json",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/alert-dialog/destructive-alert-dialog.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "alert-dialog"
+      ]
+    },
+    {
+      "name": "session-timeout-dialog",
+      "type": "registry:component",
+      "title": "Session Timeout Dialog",
+      "description": "Alert dialog that counts down to sign-out with a draining ring and a stay-signed-in action.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/alert-dialog.json",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/alert-dialog/session-timeout-dialog.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "alert-dialog"
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "DuskUI-styled Sonner Toaster: on-theme surfaces, icons and actions. Same Toaster export and props.",
+      "dependencies": [
+        "sonner",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/sonner.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "toast"
+      ]
+    },
+    {
+      "name": "animated-toast",
+      "type": "registry:component",
+      "title": "Animated Toast",
+      "description": "Custom Sonner toast whose icon morphs from loading to success or error, with a duration progress bar.",
+      "dependencies": [
+        "motion",
+        "sonner",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/toast.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/toast/animated-toast.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "toast"
+      ]
+    },
+    {
+      "name": "undo-toast",
+      "type": "registry:component",
+      "title": "Undo Toast",
+      "description": "Undo pattern for destructive actions: a toast with a countdown and an Undo button that cancels the action.",
+      "dependencies": [
+        "motion",
+        "sonner",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/toast.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/toast/undo-toast.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "toast"
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Drop-in shadcn Skeleton with a shimmer sweep that turns static under reduced motion.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "skeleton"
+      ]
+    },
+    {
+      "name": "skeleton-presets",
+      "type": "registry:component",
+      "title": "Skeleton Presets",
+      "description": "Ready-made skeletons for text lines, avatar rows, cards and tables.",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://duskui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/skeleton/skeleton-presets.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "skeleton"
+      ]
+    },
+    {
+      "name": "content-loader",
+      "type": "registry:component",
+      "title": "Content Loader",
+      "description": "Crossfades a skeleton into real content while the height springs to fit.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/skeleton/content-loader.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "skeleton"
+      ]
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "title": "Hover Card",
+      "description": "Drop-in shadcn Hover Card that grows out of its trigger.",
+      "dependencies": [
+        "@radix-ui/react-hover-card"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/hover-card.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "hover-card"
+      ]
+    },
+    {
+      "name": "profile-hover-card",
+      "type": "registry:component",
+      "title": "Profile Hover Card",
+      "description": "User preview card that springs from the trigger origin with avatar, bio and stats.",
+      "dependencies": [
+        "motion",
+        "lucide-react",
+        "@radix-ui/react-hover-card"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/hover-card.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/hover-card/profile-hover-card.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "hover-card"
+      ]
+    },
+    {
+      "name": "link-preview",
+      "type": "registry:component",
+      "title": "Link Preview",
+      "description": "Hover a link to see a preview panel with a skeleton while it loads.",
+      "dependencies": [
+        "motion",
+        "lucide-react",
+        "@radix-ui/react-hover-card"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/hover-card.json",
+        "https://duskui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/hover-card/link-preview.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "hover-card"
+      ]
+    },
+    {
+      "name": "confetti",
+      "type": "registry:component",
+      "title": "Confetti",
+      "description": "Dependency-free canvas confetti: an imperative confetti() helper with origin, spread, colors and shapes, plus a ConfettiButton that bursts from itself. Skipped under reduced motion.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/confetti/confetti.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "confetti"
+      ]
+    },
+    {
+      "name": "sparkles-text",
+      "type": "registry:component",
+      "title": "Sparkles Text",
+      "description": "Real, selectable text with four-point stars that pop in and out around it from a seeded generator; no hydration mismatch, pauses off-screen.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/sparkles-text/sparkles-text.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "sparkles-text"
+      ]
+    },
+    {
+      "name": "animated-beam",
+      "type": "registry:component",
+      "title": "Animated Beam",
+      "description": "SVG beam that connects two elements with a curved path and a travelling gradient pulse, redrawn on resize.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/animated-beam/animated-beam.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "animated-beam"
+      ]
+    },
+    {
+      "name": "orbiting-circles",
+      "type": "registry:component",
+      "title": "Orbiting Circles",
+      "description": "Children orbit a shared centre on circular rings that stay upright, with radius, speed, reverse, visible path and pause on hover.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/orbiting-circles/orbiting-circles.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "orbiting-circles"
+      ]
+    },
+    {
+      "name": "lens",
+      "type": "registry:component",
+      "title": "Lens",
+      "description": "Magnifier lens that follows the cursor over any content and shows a zoomed view in a circle, with keyboard and touch support.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/lens/lens.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "lens"
+      ]
+    },
+    {
+      "name": "theme-toggle",
+      "type": "registry:component",
+      "title": "Theme Toggle",
+      "description": "Light/dark toggle with a sun-to-moon morphing icon and a circular View Transitions reveal from the button; toggles a dark class on any target element.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/theme-toggle/theme-toggle.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "theme-toggle"
+      ]
+    },
+    {
+      "name": "morphing-text",
+      "type": "registry:component",
+      "title": "Morphing Text",
+      "description": "Cycles through words with a gooey SVG threshold morph or blur crossfade, reserving the widest word so nothing shifts.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/morphing-text/morphing-text.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "morphing-text"
+      ]
+    },
+    {
+      "name": "expandable-card",
+      "type": "registry:component",
+      "title": "Expandable Card",
+      "description": "Cards that expand into an overlay panel with shared Motion layoutIds, built on Radix Dialog for focus trap, Escape and focus return.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/expandable-card/expandable-card.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "expandable-card"
+      ]
+    },
+    {
+      "name": "device-mockup",
+      "type": "registry:component",
+      "title": "Device Mockup",
+      "description": "Pure CSS/SVG Safari window and iPhone frame that wrap any content, scale with container queries and optionally tilt in 3D on hover.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/device-mockup/device-mockup.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "device-mockup"
+      ]
+    },
+    {
+      "name": "pricing-table",
+      "type": "registry:component",
+      "title": "Pricing Table",
+      "description": "Data-driven pricing cards with a gliding monthly/yearly toggle, digit-rolling prices, an animated border on the popular plan and feature lists.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/pricing-table/pricing-table.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "pricing-table"
+      ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "Drop-in upgrade of the shadcn/ui Command (cmdk): result list eases its height, mint selection marker, keycap shortcuts and a top-aligned CommandDialog. Same exports and props.",
+      "dependencies": [
+        "cmdk",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/dialog.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/command.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "command"
+      ]
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "title": "Context Menu",
+      "description": "shadcn/ui Context Menu that grows from the cursor point, with smooth highlights, popping check/radio indicators and sub-menus.",
+      "dependencies": [
+        "@radix-ui/react-context-menu",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/context-menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "context-menu"
+      ]
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "title": "Navigation Menu",
+      "description": "shadcn/ui Navigation Menu with a viewport that morphs between panels, direction-aware panel slides and a gliding indicator.",
+      "dependencies": [
+        "@radix-ui/react-navigation-menu",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/navigation-menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "navigation-menu"
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "Drop-in upgrade of the shadcn/ui Sheet: smoother slide on all four sides, blurred backdrop, scrollable content and a fade-only reduced-motion mode.",
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "sheet"
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "shadcn/ui Scroll Area with slim scrollbars that fade in on hover and out when idle, plus viewportRef/viewportClassName.",
+      "dependencies": [
+        "@radix-ui/react-scroll-area"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/scroll-area.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "scroll-area"
+      ]
+    },
+    {
+      "name": "command-palette",
+      "type": "registry:component",
+      "title": "Command Palette",
+      "description": "⌘K command palette with a gliding highlight, recent items and nested pages that slide in with a breadcrumb and a springing height.",
+      "dependencies": [
+        "motion",
+        "cmdk",
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/command.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/command/command-palette.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "command"
+      ]
+    },
+    {
+      "name": "animated-context-menu",
+      "type": "registry:component",
+      "title": "Animated Context Menu",
+      "description": "Right-click menu that springs open from the cursor point with staggered items, a gliding highlight and animated sub-menus.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-context-menu",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/context-menu.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/context-menu/animated-context-menu.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "context-menu"
+      ]
+    },
+    {
+      "name": "mega-menu",
+      "type": "registry:component",
+      "title": "Mega Menu",
+      "description": "Header mega menu whose viewport morphs width and height between panels, with direction-aware slides and a gliding hover highlight.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-navigation-menu",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/navigation-menu/mega-menu.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "navigation-menu"
+      ]
+    },
+    {
+      "name": "stacked-sheet",
+      "type": "registry:component",
+      "title": "Stacked Sheet",
+      "description": "Nested side sheets where each new sheet slides over the last while the one underneath scales back and dims.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/sheet/stacked-sheet.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "sheet"
+      ]
+    },
+    {
+      "name": "side-panel",
+      "type": "registry:component",
+      "title": "Side Panel",
+      "description": "Side sheet that can be dragged or flicked closed by its edge handle or header, with the backdrop fading as you drag.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/sheet/side-panel.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "sheet"
+      ]
+    },
+    {
+      "name": "fade-scroll-area",
+      "type": "registry:component",
+      "title": "Fade Scroll Area",
+      "description": "Scroll area whose edges fade out only when there's more content in that direction.",
+      "dependencies": [
+        "@radix-ui/react-scroll-area"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/scroll-area.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/scroll-area/fade-scroll-area.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "scroll-area"
+      ]
+    },
+    {
+      "name": "scroll-progress",
+      "type": "registry:component",
+      "title": "Scroll Progress",
+      "description": "Scroll area with a spring-smoothed reading-progress bar and a back-to-top button whose ring traces progress.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-scroll-area",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/scroll-area.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/scroll-area/scroll-progress.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "scroll-area"
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "Drop-in upgrade of the shadcn/ui Table: row hover with a mint leading bar, lit selected rows, tabular numbers and containerClassName.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "table"
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:component",
+      "title": "Data Table",
+      "description": "Self-contained data table with animated sort icons, filtering, checkbox row selection, pagination and rows that glide on reorder.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/table.json",
+        "https://duskui.com/r/button.json",
+        "https://duskui.com/r/checkbox.json",
+        "https://duskui.com/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/table/data-table.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "table"
+      ]
+    },
+    {
+      "name": "expandable-table",
+      "type": "registry:component",
+      "title": "Expandable Table",
+      "description": "Table rows that spring open to reveal a detail panel, with a rotating chevron and aria-expanded toggles.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/table/expandable-table.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "table"
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "shadcn/ui Calendar on react-day-picker v10: gliding selected pill, today ring, range styles and months that slide in the navigation direction.",
+      "dependencies": [
+        "react-day-picker",
+        "date-fns",
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/calendar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "calendar"
+      ]
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:component",
+      "title": "Date Picker",
+      "description": "Popover date picker with a spring-open panel, rolling formatted trigger and hidden form input.",
+      "dependencies": [
+        "@radix-ui/react-popover",
+        "react-day-picker",
+        "date-fns",
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/calendar.json",
+        "https://duskui.com/r/button.json",
+        "https://duskui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/calendar/date-picker.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "calendar"
+      ]
+    },
+    {
+      "name": "date-range-picker",
+      "type": "registry:component",
+      "title": "Date Range Picker",
+      "description": "Two-month range picker with presets, a gliding active-preset pill, day count footer and animated trigger.",
+      "dependencies": [
+        "@radix-ui/react-popover",
+        "react-day-picker",
+        "date-fns",
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/calendar.json",
+        "https://duskui.com/r/button.json",
+        "https://duskui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/calendar/date-range-picker.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "calendar"
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "Keycap-styled Kbd and KbdGroup with sizes and a pressed state that sinks.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/kbd.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "kbd"
+      ]
+    },
+    {
+      "name": "shortcut-kbd",
+      "type": "registry:component",
+      "title": "Shortcut Kbd",
+      "description": "Keycaps that light up as you press a shortcut, flash on trigger, show ⌘ or Ctrl without hydration mismatch, plus a useShortcut hook.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/kbd/shortcut-kbd.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "kbd"
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "shadcn-style Empty state parts with a dashed surface, icon tile media and an outline toggle.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/empty.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "empty"
+      ]
+    },
+    {
+      "name": "animated-empty",
+      "type": "registry:component",
+      "title": "Animated Empty",
+      "description": "Empty state with a floating icon tile, drifting satellite icons, breathing rings and a staggered entrance.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/empty.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/empty/animated-empty.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "empty"
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "Accessible role=status spinner with screen-reader label, four sizes, currentColor arc and slower spin under reduced motion.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/spinner.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "loaders",
+      "type": "registry:component",
+      "title": "Animated Loaders",
+      "description": "Five accessible Motion loaders (dots, bars, ring, orbit, pulse) in currentColor that fade instead of moving under reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/spinner/loaders.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "title": "Menubar",
+      "description": "Drop-in shadcn/ui Menubar styled to match DuskUI menus, with sub-menus, checkbox and radio items.",
+      "dependencies": [
+        "@radix-ui/react-menubar",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/menubar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "menubar"
+      ]
+    },
+    {
+      "name": "animated-menubar",
+      "type": "registry:component",
+      "title": "Animated Menubar",
+      "description": "Desktop-app style menubar whose menus spring open and whose highlight glides between top-level triggers.",
+      "dependencies": [
+        "@radix-ui/react-menubar",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/menubar.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/menubar/animated-menubar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "menubar"
+      ]
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "title": "Resizable",
+      "description": "shadcn/ui Resizable panels on react-resizable-panels v4 with a handle that highlights while dragging.",
+      "dependencies": [
+        "react-resizable-panels"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/resizable.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "resizable"
+      ]
+    },
+    {
+      "name": "resizable-layout",
+      "type": "registry:component",
+      "title": "Resizable Layout",
+      "description": "IDE-style resizable layout with a sidebar panel that animates collapse and expand; keyboard resizing works.",
+      "dependencies": [
+        "lucide-react",
+        "motion",
+        "react-resizable-panels"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/resizable.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/resizable/resizable-layout.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "resizable"
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "Drop-in upgrade of the shadcn/ui Collapsible with smooth height animation.",
+      "dependencies": [
+        "@radix-ui/react-collapsible"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/collapsible.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "collapsible"
+      ]
+    },
+    {
+      "name": "motion-collapsible",
+      "type": "registry:component",
+      "title": "Motion Collapsible",
+      "description": "Collapsible with spring height, content fade and a rotating chevron.",
+      "dependencies": [
+        "@radix-ui/react-collapsible",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/collapsible/motion-collapsible.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "collapsible"
+      ]
+    },
+    {
+      "name": "show-more",
+      "type": "registry:component",
+      "title": "Show More",
+      "description": "Show more / show less block that springs open long text or lists behind a fading mask.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/collapsible/show-more.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "collapsible"
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "shadcn/ui Drawer on vaul, styled for DuskUI with a drag handle.",
+      "dependencies": [
+        "vaul"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/drawer.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "drawer"
+      ]
+    },
+    {
+      "name": "responsive-dialog",
+      "type": "registry:component",
+      "title": "Responsive Dialog",
+      "description": "Dialog on desktop, drawer on mobile, chosen by a hydration-safe media query.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/dialog.json",
+        "https://duskui.com/r/drawer.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/drawer/responsive-dialog.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "drawer"
+      ]
+    },
+    {
+      "name": "snap-drawer",
+      "type": "registry:component",
+      "title": "Snap Drawer",
+      "description": "Bottom drawer with snap points that settles at partial heights as you drag.",
+      "dependencies": [
+        "motion",
+        "vaul"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/drawer/snap-drawer.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "drawer"
+      ]
+    },
+    {
+      "name": "chart",
+      "type": "registry:ui",
+      "title": "Chart",
+      "description": "shadcn/ui Chart helpers (ChartContainer, tooltip, legend) on Recharts v3, themed for DuskUI.",
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/chart.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "chart"
+      ]
+    },
+    {
+      "name": "area-chart",
+      "type": "registry:component",
+      "title": "Area Chart",
+      "description": "Area chart with a gradient fill that draws in, styled tooltip and reduced-motion support.",
+      "dependencies": [
+        "motion",
+        "recharts"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/chart.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/chart/area-chart.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "chart"
+      ]
+    },
+    {
+      "name": "bar-chart",
+      "type": "registry:component",
+      "title": "Bar Chart",
+      "description": "Bar chart with a hover highlight on the active bar and themed tooltip.",
+      "dependencies": [
+        "motion",
+        "recharts"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/chart.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/chart/bar-chart.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "chart"
+      ]
+    },
+    {
+      "name": "radial-stat",
+      "type": "registry:component",
+      "title": "Radial Stat",
+      "description": "Radial progress stat on Recharts with an animated value in the centre.",
+      "dependencies": [
+        "motion",
+        "recharts"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/chart.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/chart/radial-stat.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "chart"
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "shadcn-style Field primitives (Field, FieldLabel, FieldDescription, FieldError, FieldGroup, FieldSet) plus Label.",
+      "dependencies": [
+        "@radix-ui/react-label",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/label.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/field.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "field"
+      ]
+    },
+    {
+      "name": "animated-field-error",
+      "type": "registry:component",
+      "title": "Animated Field Error",
+      "description": "Field error message that animates its height in and out and shakes the field once on submit.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/field.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/field/animated-field-error.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "field"
+      ]
+    },
+    {
+      "name": "signup-form",
+      "type": "registry:component",
+      "title": "Signup Form",
+      "description": "Dependency-free validated sign-up form built from Field, Input, Checkbox and Button with animated errors.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json",
+        "https://duskui.com/r/checkbox.json",
+        "https://duskui.com/r/field.json",
+        "https://duskui.com/r/input.json",
+        "https://duskui.com/r/animated-field-error.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/field/signup-form.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "field"
+      ]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "shadcn-style Input Group with inline and block addons, buttons and text, focused as one control.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json",
+        "https://duskui.com/r/input.json",
+        "https://duskui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/input-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "input-group"
+      ]
+    },
+    {
+      "name": "copy-input",
+      "type": "registry:component",
+      "title": "Copy Input",
+      "description": "Read-only input with a copy button whose icon morphs into a check.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/input-group.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/input-group/copy-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "input-group"
+      ]
+    },
+    {
+      "name": "url-input",
+      "type": "registry:component",
+      "title": "Url Input",
+      "description": "URL input with an animated protocol addon and validity indicator.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/input-group.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/input-group/url-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "input-group"
+      ]
+    },
+    {
+      "name": "button-group",
+      "type": "registry:ui",
+      "title": "Button Group",
+      "description": "shadcn-style Button Group that joins DuskUI Buttons horizontally or vertically, with separators and text.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/button-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "button-group"
+      ]
+    },
+    {
+      "name": "animated-button-group",
+      "type": "registry:component",
+      "title": "Animated Button Group",
+      "description": "Button group with an active indicator that glides between options.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button-group.json",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/button-group/animated-button-group.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "button-group"
+      ]
+    },
+    {
+      "name": "split-button",
+      "type": "registry:component",
+      "title": "Split Button",
+      "description": "Primary action joined to a dropdown of secondary actions.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button-group.json",
+        "https://duskui.com/r/button.json",
+        "https://duskui.com/r/dropdown-menu.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/button-group/split-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "button-group"
+      ]
+    },
+    {
+      "name": "number-input",
+      "type": "registry:component",
+      "title": "Number Input",
+      "description": "Stepper number input with rolling digits, press-and-hold repeat, keyboard and Intl formatting; spinbutton semantics.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/number-input/number-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "number-input"
+      ]
+    },
+    {
+      "name": "tag-input",
+      "type": "registry:component",
+      "title": "Tag Input",
+      "description": "Tag input where Enter or comma adds chips that pop in, Backspace removes, duplicates shake, with optional suggestions.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/tag-input/tag-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "tag-input"
+      ]
+    },
+    {
+      "name": "hyper-text",
+      "type": "registry:component",
+      "title": "Hyper Text",
+      "description": "Text whose letters scramble and resolve left to right on hover, in view or on mount, without layout shift.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/hyper-text/hyper-text.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "hyper-text"
+      ]
+    },
+    {
+      "name": "text-animate",
+      "type": "registry:component",
+      "title": "Text Animate",
+      "description": "Animate text by character, word or line with presets like blurIn, slideUp and scaleUp, on mount or in view.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/text-animate/text-animate.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "text-animate"
+      ]
+    },
+    {
+      "name": "flip-words",
+      "type": "registry:component",
+      "title": "Flip Words",
+      "description": "A word in a sentence flips in 3D to the next word on an interval while the width springs to fit.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/flip-words/flip-words.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "flip-words"
+      ]
+    },
+    {
+      "name": "highlighter",
+      "type": "registry:component",
+      "title": "Highlighter",
+      "description": "Marker highlight, underline, circle, box or strike-through that draws itself behind inline text in view.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/highlighter/highlighter.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "highlighter"
+      ]
+    },
+    {
+      "name": "aurora-text",
+      "type": "registry:component",
+      "title": "Aurora Text",
+      "description": "Selectable text filled with a slowly moving multi-colour aurora gradient.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/aurora-text/aurora-text.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "aurora-text"
+      ]
+    },
+    {
+      "name": "blur-fade",
+      "type": "registry:component",
+      "title": "Blur Fade",
+      "description": "Entrance wrapper that fades children in from blur and offset when they enter view, with stagger support.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/blur-fade/blur-fade.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "blur-fade"
+      ]
+    },
+    {
+      "name": "custom-cursor",
+      "type": "registry:component",
+      "title": "Custom Cursor",
+      "description": "Smooth trailing dot-and-ring cursor that grows over interactive elements and shows labels; scoped or page-wide.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/custom-cursor/custom-cursor.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "custom-cursor"
+      ]
+    },
+    {
+      "name": "scratch-to-reveal",
+      "type": "registry:component",
+      "title": "Scratch To Reveal",
+      "description": "Canvas scratch card that reveals its content as you scratch, with a keyboard-accessible Reveal button.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/scratch-to-reveal/scratch-to-reveal.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "scratch-to-reveal"
+      ]
+    },
+    {
+      "name": "progressive-blur",
+      "type": "registry:component",
+      "title": "Progressive Blur",
+      "description": "Layered backdrop-blur bands that fade content into a smooth blur at any edge.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/progressive-blur/progressive-blur.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "progressive-blur"
+      ]
+    },
+    {
+      "name": "file-tree",
+      "type": "registry:component",
+      "title": "File Tree",
+      "description": "Accessible file tree with keyboard navigation, animated expand and collapse and a gliding selection highlight.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/file-tree/file-tree.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "file-tree"
+      ]
+    },
+    {
+      "name": "shine-border",
+      "type": "registry:component",
+      "title": "Shine Border",
+      "description": "Wrapper that sweeps a soft multi-colour sheen around a thin border.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/shine-border/shine-border.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "shine-border"
+      ]
+    },
+    {
+      "name": "rainbow-button",
+      "type": "registry:component",
+      "title": "Rainbow Button",
+      "description": "DuskUI Button with an animated rainbow gradient border; default and outline variants.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/rainbow-button/rainbow-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "rainbow-button"
+      ]
+    },
+    {
+      "name": "pulsating-button",
+      "type": "registry:component",
+      "title": "Pulsating Button",
+      "description": "DuskUI Button with expanding pulse rings that pause on hover, focus and reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/pulsating-button/pulsating-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "pulsating-button"
+      ]
+    },
+    {
+      "name": "interactive-hover-button",
+      "type": "registry:component",
+      "title": "Interactive Hover Button",
+      "description": "Pill button whose dot expands to fill it on hover while the label swaps for an arrow.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/interactive-hover-button/interactive-hover-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "interactive-hover-button"
+      ]
+    },
+    {
+      "name": "moving-border",
+      "type": "registry:component",
+      "title": "Moving Border",
+      "description": "A soft beam that travels around an element's rounded border, plus a ready MovingBorderButton.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/moving-border/moving-border.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "moving-border"
+      ]
+    },
+    {
+      "name": "retro-grid",
+      "type": "registry:component",
+      "title": "Retro Grid",
+      "description": "A synthwave perspective grid: a faint floor that scrolls toward the viewer and recedes to the horizon, with an optional striped sun.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/retro-grid/retro-grid.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "retro-grid"
+      ]
+    },
+    {
+      "name": "flickering-grid",
+      "type": "registry:component",
+      "title": "Flickering Grid",
+      "description": "A canvas grid of small squares that flicker at random, optionally masked so squares only appear inside a word.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/flickering-grid/flickering-grid.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "flickering-grid"
+      ]
+    },
+    {
+      "name": "ripple",
+      "type": "registry:component",
+      "title": "Ripple",
+      "description": "Concentric rings that expand from the center in a staggered, seamless loop, with optional ripples spawned wherever the pointer presses.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/ripple/ripple.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "ripple"
+      ]
+    },
+    {
+      "name": "wavy-background",
+      "type": "registry:component",
+      "title": "Wavy Background",
+      "description": "Layered, flowing waves drawn on a canvas from seeded noise, each in its own color and softened with a blur.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/wavy-background/wavy-background.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "wavy-background"
+      ]
+    },
+    {
+      "name": "lamp",
+      "type": "registry:component",
+      "title": "Lamp",
+      "description": "An overhead lamp: a thin bar whose two conic light cones widen into place when the section scrolls into view, lighting the content below.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/lamp/lamp.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "lamp"
+      ]
+    },
+    {
+      "name": "globe",
+      "type": "registry:component",
+      "title": "Globe",
+      "description": "Interactive WebGL globe with markers and arcs that auto-rotates and spins with spring momentum when dragged.",
+      "dependencies": [
+        "cobe",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/globe/globe.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "globe"
+      ]
+    },
+    {
+      "name": "icon-cloud",
+      "type": "registry:component",
+      "title": "Icon Cloud",
+      "description": "A slowly rotating 3D sphere of icons that you can steer by hovering or spin by dragging, with nearer icons larger and brighter.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/icon-cloud/icon-cloud.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "icon-cloud"
+      ]
+    },
+    {
+      "name": "card-stack",
+      "type": "registry:component",
+      "title": "Card Stack",
+      "description": "A stack of cards where the top one can be swiped left or right, by drag, buttons or arrow keys, while the rest spring forward.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/card-stack/card-stack.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "card-stack"
+      ]
+    },
+    {
+      "name": "countdown",
+      "type": "registry:component",
+      "title": "Countdown",
+      "description": "A countdown to a target date with rolling or flipping digits, a compact variant and throttled screen reader announcements.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/countdown/countdown.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "countdown"
+      ]
+    },
+    {
+      "name": "vanish-input",
+      "type": "registry:component",
+      "title": "Vanish Input",
+      "description": "A prompt field whose placeholder cycles through suggestions and whose text dissolves into particles when submitted.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/vanish-input/vanish-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "vanish-input"
+      ]
+    },
+    {
+      "name": "image-compare",
+      "type": "registry:component",
+      "title": "Image Compare",
+      "description": "A before/after comparison slider that reveals one layer over another with a clip-path as you drag the divider, hover, or use the keyboard.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/image-compare/image-compare.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "image-compare"
+      ]
+    },
+    {
+      "name": "sortable-list",
+      "type": "registry:component",
+      "title": "Sortable List",
+      "description": "A vertical drag-to-reorder list built on Motion's Reorder: drag rows by their handle, neighbours spring out of the way, and the keyboard can pick up, move and drop rows too.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/sortable-list/sortable-list.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "sortable-list"
+      ]
+    },
+    {
+      "name": "kanban",
+      "type": "registry:component",
+      "title": "Kanban",
+      "description": "A kanban board whose cards drag between columns and reorder with layout springs, with a live drop slot, column counts and a full keyboard alternative.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/dropdown-menu.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/kanban/kanban.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "kanban"
+      ]
+    },
+    {
+      "name": "rating",
+      "type": "registry:component",
+      "title": "Rating",
+      "description": "A star rating input with hover preview, half steps and a pop as stars fill, exposed as a keyboard-friendly slider that also submits with forms.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/rating/rating.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "rating"
+      ]
+    },
+    {
+      "name": "stepper",
+      "type": "registry:component",
+      "title": "Stepper",
+      "description": "A multi-step flow that manages content panels and navigation, with an animated progress line, check marks that draw on completed steps, direction-aware panel slides and optional per-step validation.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/stepper/stepper.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "stepper"
+      ]
+    }
+  ]
+}

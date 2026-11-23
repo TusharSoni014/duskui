@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "segmented-progress",
+  "title": "Segmented Progress",
+  "description": "Progress bar split into segments that fill one after another from a single spring.",
+  "dependencies": [
+    "motion",
+    "@radix-ui/react-progress"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/dusk/progress/segmented-progress.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport * as ProgressPrimitive from \"@radix-ui/react-progress\";\nimport { motion, useReducedMotion, useSpring, useTransform, type MotionValue } from \"motion/react\";\n\nimport { cn } from \"@/lib/utils\";\n\nconst fillSpring = { stiffness: 70, damping: 18, mass: 0.9 };\n\nexport interface SegmentedProgressProps\n  extends Omit<React.ComponentProps<typeof ProgressPrimitive.Root>, \"value\" | \"max\" | \"children\"> {\n  /** Current value, from 0 to `max`. */\n  value: number;\n  max?: number;\n  /** Number of segments. Defaults to `max` when it's 12 or less, otherwise 10. */\n  segments?: number;\n  /** Classes for each segment's track. */\n  segmentClassName?: string;\n  /** Classes for the filled part of each segment (e.g. a different `bg-*`). */\n  indicatorClassName?: string;\n}\n\nfunction Segment({\n  fill,\n  index,\n  className,\n  indicatorClassName,\n}: {\n  fill: MotionValue<number>;\n  index: number;\n  className?: string;\n  indicatorClassName?: string;\n}) {\n  // How much of this segment is covered by the overall fill, 0–1.\n  const amount = useTransform(fill, (v) => Math.min(1, Math.max(0, v - index)));\n\n  return (\n    <span className={cn(\"relative h-full flex-1 overflow-hidden rounded-full bg-muted\", className)}>\n      <motion.span\n        className={cn(\"absolute inset-0 origin-left rounded-full bg-primary\", indicatorClassName)}\n        style={{ scaleX: amount }}\n      />\n    </span>\n  );\n}\n\n/**\n * A progress bar split into segments that fill one after another, like a\n * chunked upload or an onboarding checklist. A single spring drives the whole\n * bar and each segment takes its slice of it, so the fill flows from segment\n * to segment instead of all of them moving at once. A real Radix `progressbar` underneath. Instant under reduced motion.\n */\nexport function SegmentedProgress({\n  value,\n  max = 100,\n  segments,\n  segmentClassName,\n  indicatorClassName,\n  className,\n  ...props\n}: SegmentedProgressProps) {\n  const reduceMotion = useReducedMotion() ?? false;\n  const count = Math.max(1, Math.round(segments ?? (max <= 12 ? max : 10)));\n  const clamped = Math.min(max, Math.max(0, value));\n  const fill = useSpring(0, fillSpring);\n\n  React.useEffect(() => {\n    const target = max > 0 ? (clamped / max) * count : 0;\n    if (reduceMotion) fill.jump(target);\n    else fill.set(target);\n  }, [clamped, max, count, reduceMotion, fill]);\n\n  return (\n    <ProgressPrimitive.Root\n      value={clamped}\n      max={max}\n      className={cn(\"flex h-2 w-full items-stretch gap-1.5\", className)}\n      {...props}\n    >\n      {Array.from({ length: count }, (_, index) => (\n        <Segment\n          key={index}\n          fill={fill}\n          index={index}\n          className={segmentClassName}\n          indicatorClassName={indicatorClassName}\n        />\n      ))}\n    </ProgressPrimitive.Root>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "progress"
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover",
+  "title": "Popover",
+  "description": "Drop-in upgrade of the shadcn/ui Popover: grows out of its trigger, slides from its side, plus PopoverClose.",
+  "dependencies": [
+    "@radix-ui/react-popover"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/popover.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport * as PopoverPrimitive from \"@radix-ui/react-popover\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * DuskUI Popover — a drop-in upgrade of the shadcn/ui Popover.\n *\n * Same parts, props and data-slot attributes as shadcn, plus:\n * - Grows out of its trigger: the scale origin follows Radix's transform\n *   origin and it shifts in slightly from the side it opens on (150ms\n *   ease-out), then closes quicker than it opened.\n * - A neutral shadow on the surface.\n * - Never taller than the space available; long content scrolls.\n * - `PopoverClose` for close buttons inside the content.\n * - Under `prefers-reduced-motion` it only fades.\n * CSS only (tw-animate-css). Radix handles focus, Escape, outside clicks,\n * collision avoidance and aria.\n */\nfunction Popover({\n  ...props\n}: React.ComponentProps<typeof PopoverPrimitive.Root>) {\n  return <PopoverPrimitive.Root data-slot=\"popover\" {...props} />\n}\n\n/** The element that toggles the popover. Use `asChild` to render your own Button. */\nfunction PopoverTrigger({\n  ...props\n}: React.ComponentProps<typeof PopoverPrimitive.Trigger>) {\n  return <PopoverPrimitive.Trigger data-slot=\"popover-trigger\" {...props} />\n}\n\n/** The floating panel. Portalled and positioned next to the trigger (or anchor). */\nfunction PopoverContent({\n  className,\n  align = \"center\",\n  sideOffset = 6,\n  ...props\n}: React.ComponentProps<typeof PopoverPrimitive.Content>) {\n  return (\n    <PopoverPrimitive.Portal>\n      <PopoverPrimitive.Content\n        data-slot=\"popover-content\"\n        align={align}\n        sideOffset={sideOffset}\n        className={cn(\n          \"z-50 max-h-(--radix-popover-content-available-height) w-72 overflow-y-auto rounded-xl border bg-popover p-4 text-popover-foreground outline-hidden\",\n          \"origin-(--radix-popover-content-transform-origin)\",\n          \"shadow-md ease-out\",\n          \"data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:duration-150\",\n          \"data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:duration-100\",\n          \"data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2\",\n          \"motion-reduce:data-[state=open]:zoom-in-100 motion-reduce:data-[state=closed]:zoom-out-100\",\n          \"motion-reduce:data-[side=bottom]:slide-in-from-top-0 motion-reduce:data-[side=left]:slide-in-from-right-0 motion-reduce:data-[side=right]:slide-in-from-left-0 motion-reduce:data-[side=top]:slide-in-from-bottom-0\",\n          className\n        )}\n        {...props}\n      />\n    </PopoverPrimitive.Portal>\n  )\n}\n\n/** Positions the popover against something other than the trigger. */\nfunction PopoverAnchor({\n  ...props\n}: React.ComponentProps<typeof PopoverPrimitive.Anchor>) {\n  return <PopoverPrimitive.Anchor data-slot=\"popover-anchor\" {...props} />\n}\n\n/** Closes the popover. Use `asChild` to render your own Button. */\nfunction PopoverClose({\n  ...props\n}: React.ComponentProps<typeof PopoverPrimitive.Close>) {\n  return <PopoverPrimitive.Close data-slot=\"popover-close\" {...props} />\n}\n\nexport { Popover, PopoverTrigger, PopoverContent, PopoverAnchor, PopoverClose }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "popover"
+  ],
+  "type": "registry:ui"
+}

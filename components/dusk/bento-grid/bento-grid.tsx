@@ -1,0 +1,183 @@
+"use client";
+
+import * as React from "react";
+import { ArrowRight } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+
+type Columns = 2 | 3 | 4;
+
+const BentoContext = React.createContext<Columns>(3);
+
+const gridColumns: Record<Columns, string> = {
+  2: "sm:grid-cols-2",
+  3: "sm:grid-cols-2 lg:grid-cols-3",
+  4: "sm:grid-cols-2 lg:grid-cols-4",
+};
+
+// Spans only kick in from `sm`, where the grid has 2+ columns.
+const colSpans: Record<number, string> = {
+  1: "",
+  2: "sm:col-span-2",
+  3: "sm:col-span-2 lg:col-span-3",
+  4: "sm:col-span-2 lg:col-span-4",
+};
+
+const rowSpans: Record<number, string> = {
+  1: "",
+  2: "sm:row-span-2",
+  3: "sm:row-span-3",
+};
+
+export interface BentoGridProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Columns on large screens. Phones get one column, tablets two. */
+  columns?: Columns;
+}
+
+/**
+ * A responsive bento layout: one column on phones, two on tablets and
+ * `columns` from `lg`. Rows are at least 14rem tall; give a card `rowSpan` to
+ * make it taller. Set `auto-rows-*` in `className` to change the row height.
+ */
+export function BentoGrid({ columns = 3, className, children, ...props }: BentoGridProps) {
+  return (
+    <BentoContext.Provider value={columns}>
+      <div
+        data-slot="bento-grid"
+        className={cn("grid w-full auto-rows-[minmax(14rem,auto)] grid-cols-1 gap-4", gridColumns[columns], className)}
+        {...props}
+      >
+        {children}
+      </div>
+    </BentoContext.Provider>
+  );
+}
+
+type CardBaseProps = Omit<
+  React.HTMLAttributes<HTMLElement>,
+  "title" | "onDrag" | "onDragStart" | "onDragEnd" | "onAnimationStart"
+>;
+
+export interface BentoCardProps extends CardBaseProps {
+  /** Card heading. */
+  title: React.ReactNode;
+  /** One or two lines under the title. */
+  description?: React.ReactNode;
+  /** Small icon above the title. */
+  icon?: React.ReactNode;
+  /** Visual behind the content (illustration, mini UI). It brightens slightly on hover. */
+  background?: React.ReactNode;
+  /** Makes the whole card a link. */
+  href?: string;
+  /** Link component to render when `href` is set, e.g. Next.js `Link`. */
+  linkAs?: React.ElementType;
+  /** Call-to-action label that slides up on hover / focus. Shown only on links. */
+  cta?: React.ReactNode;
+  /** Columns to span (clamped to the grid's `columns`). */
+  colSpan?: 1 | 2 | 3 | 4;
+  /** Rows to span. */
+  rowSpan?: 1 | 2 | 3;
+  /** Heading element for the title. */
+  titleAs?: "h2" | "h3" | "h4";
+}
+
+/**
+ * A bento cell. On hover (and keyboard focus) the border and background
+ * visual brighten and the content lifts to reveal a call to action. With
+ * `href` the whole card is one link, so it is a single Tab stop with a clear
+ * focus ring.
+ *
+ * The reveal is pure CSS transform/opacity, so nothing re-renders on hover. Touch screens (no hover) always show the
+ * call to action; reduced motion keeps the fades and drops the movement.
+ */
+export function BentoCard({
+  title,
+  description,
+  icon,
+  background,
+  href,
+  linkAs,
+  cta = "Learn more",
+  colSpan = 1,
+  rowSpan = 1,
+  titleAs: Title = "h3",
+  className,
+  children,
+  ...props
+}: BentoCardProps) {
+  const columns = React.useContext(BentoContext);
+  const span = Math.min(colSpan, columns);
+
+  const isLink = Boolean(href);
+  const Comp: React.ElementType = isLink ? (linkAs ?? "a") : "div";
+
+  // Hover-only hidden states live under (hover: hover), so touch screens show everything.
+  const hoverReveal =
+    "[@media(hover:hover)]:translate-y-(--bento-shift) group-hover/bento:translate-y-0 group-focus-visible/bento:translate-y-0";
+
+  return (
+    <Comp
+      data-slot="bento-card"
+      href={href}
+      className={cn(
+        "group/bento relative isolate flex flex-col justify-end overflow-hidden rounded-xl border border-white/10 bg-card p-6 text-card-foreground",
+        "transition-[border-color,box-shadow] duration-200 ease-out hover:border-white/20",
+        // Movement distances as variables so reduced motion can zero them in one place.
+        "[--bento-shift:2.75rem] [--bento-nudge:0.125rem]",
+        "motion-reduce:[--bento-shift:0px] motion-reduce:[--bento-nudge:0px]",
+        isLink && "outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
+        colSpans[span],
+        rowSpans[rowSpan],
+        className
+      )}
+      {...props}
+    >
+      {background && (
+        <div
+          aria-hidden
+          className={cn(
+            "pointer-events-none absolute inset-0 -z-10 opacity-70",
+            "transition-opacity duration-200 ease-out",
+            "group-hover/bento:opacity-100 group-focus-visible/bento:opacity-100",
+            "[mask-image:linear-gradient(to_bottom,#000_35%,transparent_85%)]"
+          )}
+        >
+          {background}
+        </div>
+      )}
+
+      <div
+        className={cn(
+          "relative transition-transform duration-250 ease-out",
+          // A card-colored scrim under the text so background visuals never collide with it.
+          background &&
+            "before:pointer-events-none before:absolute before:-inset-x-6 before:-bottom-6 before:-top-10 before:-z-10 before:bg-linear-to-t before:from-card before:from-60% before:to-transparent",
+          isLink && cta && hoverReveal
+        )}
+      >
+        {icon && (
+          <div className="mb-3 inline-flex size-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-white/80 [&_svg]:size-5">
+            {icon}
+          </div>
+        )}
+        <Title className="text-lg font-semibold tracking-tight text-white">{title}</Title>
+        {description && <p className="mt-1.5 max-w-prose text-sm leading-relaxed text-white/60">{description}</p>}
+        {children}
+        {isLink && cta && (
+          <span
+            className={cn(
+              "mt-4 inline-flex h-7 items-center gap-1.5 text-sm font-medium text-foreground",
+              "transition-opacity duration-200 [@media(hover:hover)]:opacity-0 group-hover/bento:opacity-100 group-focus-visible/bento:opacity-100"
+            )}
+          >
+            {cta}
+            <ArrowRight
+              aria-hidden
+              className="size-4 transition-transform duration-200 group-hover/bento:translate-x-(--bento-nudge)"
+            />
+          </span>
+        )}
+      </div>
+    </Comp>
+  );
+}

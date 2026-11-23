@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-field-error",
+  "title": "Animated Field Error",
+  "description": "Field error message that animates its height in and out and shakes the field once on submit.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "utils",
+    "https://duskui.com/r/field.json"
+  ],
+  "files": [
+    {
+      "path": "components/dusk/field/animated-field-error.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { AnimatePresence, motion, useAnimate, useReducedMotion, type Transition } from \"motion/react\";\n\nimport { Field } from \"@/components/ui/field\";\nimport { cn } from \"@/lib/utils\";\n\nconst heightSpring: Transition = { type: \"spring\", duration: 0.32, bounce: 0 };\nconst swapSpring: Transition = { type: \"spring\", duration: 0.28, bounce: 0 };\n\nexport interface AnimatedFieldProps extends React.ComponentProps<typeof Field> {\n  /** Marks the field invalid (sets `data-invalid`). */\n  invalid?: boolean;\n  /**\n   * Change this value — e.g. a submit counter — to shake the field once.\n   * It only shakes while `invalid` is true, and never on the first render.\n   */\n  shakeKey?: number | string;\n}\n\n/**\n * A Field that shakes once when `shakeKey` changes while it's invalid — the\n * classic \"nope\" after a failed submit. The shake is a short decaying\n * translate, so nothing around it reflows. Skipped under reduced motion.\n */\nexport function AnimatedField({ invalid = false, shakeKey, className, ...props }: AnimatedFieldProps) {\n  const [scope, animate] = useAnimate<HTMLDivElement>();\n  const reduceMotion = useReducedMotion() ?? false;\n  const lastKey = React.useRef(shakeKey);\n\n  React.useEffect(() => {\n    if (lastKey.current === shakeKey) return;\n    lastKey.current = shakeKey;\n    if (!invalid || reduceMotion || !scope.current) return;\n    animate(scope.current, { x: [0, -8, 7, -5, 3, -1, 0] }, { duration: 0.45, ease: \"easeOut\" });\n  }, [shakeKey, invalid, reduceMotion, animate, scope]);\n\n  return (\n    <Field\n      ref={scope}\n      data-invalid={invalid || undefined}\n      className={cn(\"will-change-transform\", className)}\n      {...props}\n    />\n  );\n}\n\nexport interface AnimatedFieldErrorProps {\n  /** Put this id in the control's `aria-describedby`. */\n  id?: string;\n  /** The message. Falsy hides the error. */\n  children?: React.ReactNode;\n  /**\n   * Classes for the collapsing wrapper. It carries `-mt-3` to cancel the\n   * Field's `gap-3` while collapsed; change it if your Field uses another gap.\n   */\n  className?: string;\n}\n\n/**\n * A field error that grows open and collapses shut (height + opacity) so the\n * form below glides instead of jumping. When the message changes it\n * cross-fades in place. The last message stays visible while collapsing, and\n * the element is a live `role=\"alert\"`, so each new message is announced.\n * Under reduced motion it fades without moving.\n */\nexport function AnimatedFieldError({ id, children, className }: AnimatedFieldErrorProps) {\n  const reduceMotion = useReducedMotion() ?? false;\n  const hasError = Boolean(children);\n\n  // Keep the last message so it can collapse with its text instead of blanking first.\n  const [shown, setShown] = React.useState<React.ReactNode>(children);\n  if (hasError && children !== shown) setShown(children);\n\n  const swapKey = typeof shown === \"string\" || typeof shown === \"number\" ? String(shown) : \"message\";\n\n  return (\n    <AnimatePresence initial={false}>\n      {hasError && (\n        <motion.div\n          key=\"field-error\"\n          initial={{ height: 0, opacity: 0 }}\n          animate={{ height: \"auto\", opacity: 1 }}\n          exit={{ height: 0, opacity: 0 }}\n          transition={reduceMotion ? { duration: 0.15 } : heightSpring}\n          className={cn(\"-mt-3 overflow-hidden\", className)}\n        >\n          <div id={id} role=\"alert\" data-slot=\"field-error\" className=\"grid pt-2 text-sm text-destructive\">\n            <AnimatePresence initial={false} mode=\"popLayout\">\n              <motion.span\n                key={swapKey}\n                className=\"[grid-area:1/1]\"\n                initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -4 }}\n                animate={{ opacity: 1, y: 0 }}\n                exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 4 }}\n                transition={swapSpring}\n              >\n                {shown}\n              </motion.span>\n            </AnimatePresence>\n          </div>\n        </motion.div>\n      )}\n    </AnimatePresence>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "field"
+  ],
+  "type": "registry:component"
+}

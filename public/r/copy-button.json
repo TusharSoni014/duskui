@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "copy-button",
+  "title": "Copy Button",
+  "description": "Icon button that copies text to the clipboard and morphs into a check mark.",
+  "dependencies": [
+    "motion",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://duskui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "components/dusk/button/copy-button.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { AnimatePresence, motion } from \"motion/react\";\nimport { Check, Copy } from \"lucide-react\";\n\nimport { Button, type ButtonProps } from \"@/components/ui/button\";\n\nexport interface CopyButtonProps extends Omit<ButtonProps, \"value\"> {\n  /** Text written to the clipboard. */\n  value: string;\n  /** Called after a successful copy. */\n  onCopied?: (value: string) => void;\n  /** How long the success state stays visible, in ms. */\n  timeout?: number;\n}\n\nconst iconMotion = {\n  initial: { opacity: 0, scale: 0.6 },\n  animate: { opacity: 1, scale: 1 },\n  exit: { opacity: 0, scale: 0.6 },\n  transition: { type: \"spring\", duration: 0.2, bounce: 0 },\n} as const;\n\n/** Icon button that copies text and morphs its icon into a check mark. */\nexport function CopyButton({\n  value,\n  onCopied,\n  timeout = 1600,\n  variant = \"ghost\",\n  size = \"icon-sm\",\n  children,\n  onClick,\n  ...props\n}: CopyButtonProps) {\n  const [copied, setCopied] = React.useState(false);\n  const timer = React.useRef<ReturnType<typeof setTimeout>>(undefined);\n\n  React.useEffect(() => () => clearTimeout(timer.current), []);\n\n  const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {\n    onClick?.(event);\n    try {\n      await navigator.clipboard.writeText(value);\n      setCopied(true);\n      onCopied?.(value);\n      clearTimeout(timer.current);\n      timer.current = setTimeout(() => setCopied(false), timeout);\n    } catch {\n      setCopied(false);\n    }\n  };\n\n  return (\n    <Button\n      variant={variant}\n      size={size}\n      aria-label={copied ? \"Copied\" : \"Copy to clipboard\"}\n      onClick={handleClick}\n      {...props}\n    >\n      <span className=\"relative inline-flex\">\n        <AnimatePresence mode=\"popLayout\" initial={false}>\n          {copied ? (\n            <motion.span key=\"check\" className=\"inline-flex text-emerald-400\" {...iconMotion}>\n              <Check />\n            </motion.span>\n          ) : (\n            <motion.span key=\"copy\" className=\"inline-flex\" {...iconMotion}>\n              <Copy />\n            </motion.span>\n          )}\n        </AnimatePresence>\n      </span>\n      {children}\n    </Button>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "button"
+  ],
+  "type": "registry:component"
+}

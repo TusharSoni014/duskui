@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fade-scroll-area",
+  "title": "Fade Scroll Area",
+  "description": "Scroll area whose edges fade out only when there's more content in that direction.",
+  "dependencies": [
+    "@radix-ui/react-scroll-area"
+  ],
+  "registryDependencies": [
+    "https://duskui.com/r/scroll-area.json"
+  ],
+  "files": [
+    {
+      "path": "components/dusk/scroll-area/fade-scroll-area.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\n\nimport { ScrollArea, ScrollBar } from \"@/components/ui/scroll-area\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface FadeScrollAreaProps extends React.ComponentProps<typeof ScrollArea> {\n  /** Scroll direction. Horizontal areas get a horizontal scrollbar and side fades. */\n  orientation?: \"vertical\" | \"horizontal\";\n  /** Length of each edge fade in px. */\n  fadeSize?: number;\n}\n\nfunction assignRef<T>(ref: React.Ref<T> | undefined, value: T | null) {\n  if (typeof ref === \"function\") ref(value);\n  else if (ref) (ref as React.RefObject<T | null>).current = value;\n}\n\n/**\n * A Scroll Area whose edges fade out only when there's more to see. Scroll\n * down and the top edge starts to fade; reach the end and the bottom fade\n * disappears. If the content fits, there's no fade at all. The fades are a\n * CSS mask, so they work over any background, and they grow with the scroll\n * distance instead of popping. Updates run in a requestAnimationFrame and\n * never re-render React.\n */\nexport function FadeScrollArea({\n  orientation = \"vertical\",\n  fadeSize = 40,\n  className,\n  viewportClassName,\n  viewportRef,\n  children,\n  ...props\n}: FadeScrollAreaProps) {\n  const localRef = React.useRef<HTMLDivElement | null>(null);\n  const vertical = orientation === \"vertical\";\n\n  const setViewport = React.useCallback(\n    (node: HTMLDivElement | null) => {\n      localRef.current = node;\n      assignRef(viewportRef, node);\n    },\n    [viewportRef]\n  );\n\n  React.useEffect(() => {\n    const el = localRef.current;\n    if (!el) return;\n    let frame = 0;\n\n    const update = () => {\n      frame = 0;\n      const position = vertical ? el.scrollTop : Math.abs(el.scrollLeft);\n      const max = vertical ? el.scrollHeight - el.clientHeight : el.scrollWidth - el.clientWidth;\n      const start = Math.min(fadeSize, Math.max(0, position));\n      const end = Math.min(fadeSize, Math.max(0, max - position));\n      el.style.setProperty(\"--fade-start\", `${start}px`);\n      el.style.setProperty(\"--fade-end\", `${end}px`);\n    };\n    const schedule = () => {\n      if (!frame) frame = requestAnimationFrame(update);\n    };\n\n    update();\n    el.addEventListener(\"scroll\", schedule, { passive: true });\n    // Re-measure when the area or its content changes size.\n    const observer = new ResizeObserver(schedule);\n    observer.observe(el);\n    if (el.firstElementChild) observer.observe(el.firstElementChild);\n\n    return () => {\n      el.removeEventListener(\"scroll\", schedule);\n      observer.disconnect();\n      cancelAnimationFrame(frame);\n    };\n  }, [vertical, fadeSize]);\n\n  return (\n    <ScrollArea\n      data-slot=\"fade-scroll-area\"\n      className={className}\n      viewportRef={setViewport}\n      viewportClassName={cn(\n        vertical\n          ? \"[mask-image:linear-gradient(to_bottom,transparent,#000_var(--fade-start),#000_calc(100%_-_var(--fade-end)),transparent)]\"\n          : \"[mask-image:linear-gradient(to_right,transparent,#000_var(--fade-start),#000_calc(100%_-_var(--fade-end)),transparent)]\",\n        viewportClassName\n      )}\n      {...props}\n    >\n      {children}\n      {!vertical && <ScrollBar orientation=\"horizontal\" />}\n    </ScrollArea>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "scroll-area"
+  ],
+  "type": "registry:component"
+}

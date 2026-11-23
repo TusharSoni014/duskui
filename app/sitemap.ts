@@ -1,16 +1,19 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
+
+import { componentHref, components } from "@/lib/components-data";
+import { absoluteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://duskui.com";
+  const lastModified = new Date();
 
-  const routes = ["", "/components", "/contact", "/contributers"].map(
-    (route) => ({
-      url: `${baseUrl}${route}`,
-      lastModified: new Date().toISOString(),
+  return [
+    { url: absoluteUrl("/"), lastModified, changeFrequency: "weekly", priority: 1 },
+    { url: absoluteUrl("/components"), lastModified, changeFrequency: "weekly", priority: 0.8 },
+    ...components.map((c) => ({
+      url: absoluteUrl(componentHref(c.slug)),
+      lastModified,
       changeFrequency: "weekly" as const,
-      priority: route === "" ? 1 : 0.8,
-    })
-  );
-
-  return routes;
+      priority: 0.9,
+    })),
+  ];
 }

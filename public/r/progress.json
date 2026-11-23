@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress",
+  "title": "Progress",
+  "description": "Drop-in upgrade of the shadcn/ui Progress: spring-animated indicator, fill-in on mount, indeterminate sweep and indicatorClassName.",
+  "dependencies": [
+    "@radix-ui/react-progress",
+    "motion"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/progress.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport * as ProgressPrimitive from \"@radix-ui/react-progress\"\nimport { motion, useReducedMotion, type Transition } from \"motion/react\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst fill: Transition = { type: \"spring\", duration: 0.4, bounce: 0 }\n\n/**\n * DuskUI Progress — a drop-in upgrade of the shadcn/ui Progress.\n *\n * Same API as shadcn (`value`, `max` and the Radix props) plus:\n * - The indicator eases to each new value (no overshoot), and fills in from\n *   empty when it mounts.\n * - An indeterminate state: pass `value={null}` (or leave it out) and a\n *   short bar slides across the track. Under reduced motion it gently pulses\n *   instead.\n * - A solid indicator in the primary color.\n * - `indicatorClassName` to recolor the bar without touching the track.\n * Powered by Radix Progress, so role=\"progressbar\" and the aria-value* attributes are set.\n */\nfunction Progress({\n  className,\n  indicatorClassName,\n  value,\n  max = 100,\n  ...props\n}: React.ComponentProps<typeof ProgressPrimitive.Root> & {\n  /** Classes for the moving bar, e.g. a different color. */\n  indicatorClassName?: string\n}) {\n  const reduceMotion = useReducedMotion() ?? false\n  const indeterminate = value === null || value === undefined\n  const percent = indeterminate ? 0 : Math.min(100, Math.max(0, (value / max) * 100))\n\n  return (\n    <ProgressPrimitive.Root\n      data-slot=\"progress\"\n      value={value}\n      max={max}\n      className={cn(\"relative h-2 w-full overflow-hidden rounded-full bg-primary/15\", className)}\n      {...props}\n    >\n      <ProgressPrimitive.Indicator data-slot=\"progress-indicator\" asChild>\n        {indeterminate ? (\n          <motion.div\n            key=\"indeterminate\"\n            className={cn(\n              \"h-full w-2/5 rounded-full bg-primary\",\n              indicatorClassName\n            )}\n            initial={reduceMotion ? { opacity: 0.4 } : { x: \"-100%\" }}\n            animate={reduceMotion ? { opacity: [0.4, 1, 0.4] } : { x: \"250%\" }}\n            transition={{\n              duration: reduceMotion ? 1.6 : 1.3,\n              ease: \"easeInOut\",\n              repeat: Infinity,\n            }}\n          />\n        ) : (\n          <motion.div\n            key=\"determinate\"\n            className={cn(\n              \"h-full w-full rounded-full bg-primary\",\n              indicatorClassName\n            )}\n            initial={{ x: \"-100%\" }}\n            animate={{ x: `${percent - 100}%` }}\n            transition={reduceMotion ? { duration: 0 } : fill}\n          />\n        )}\n      </ProgressPrimitive.Indicator>\n    </ProgressPrimitive.Root>\n  )\n}\n\nexport { Progress }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "progress"
+  ],
+  "type": "registry:ui"
+}

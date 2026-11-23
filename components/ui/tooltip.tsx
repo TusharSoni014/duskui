@@ -5,6 +5,19 @@ import * as TooltipPrimitive from "@radix-ui/react-tooltip"
 
 import { cn } from "@/lib/utils"
 
+/**
+ * DuskUI Tooltip — a drop-in upgrade of the shadcn/ui Tooltip.
+ *
+ * Same parts, props and data-slot attributes as shadcn (Tooltip,
+ * TooltipTrigger, TooltipContent, TooltipProvider) plus:
+ * - An elevated dark surface with a hairline border and a matching arrow.
+ * - Opens from the trigger: scales slightly from the Radix transform origin and
+ *   shifts a few pixels from the side it opens on (150ms ease-out).
+ *   Closes faster than it opens.
+ * - `showArrow={false}` to hide the arrow.
+ * - Under `prefers-reduced-motion` it only fades.
+ * CSS only (tw-animate-css), powered by Radix for hover/focus intent and aria.
+ */
 function TooltipProvider({
   delayDuration = 0,
   ...props
@@ -18,6 +31,7 @@ function TooltipProvider({
   )
 }
 
+/** Root. Wraps itself in a TooltipProvider, like shadcn, so it works anywhere. */
 function Tooltip({
   ...props
 }: React.ComponentProps<typeof TooltipPrimitive.Root>) {
@@ -28,31 +42,44 @@ function Tooltip({
   )
 }
 
+/** The element that shows the tooltip on hover and keyboard focus. Use `asChild` for your own button. */
 function TooltipTrigger({
   ...props
 }: React.ComponentProps<typeof TooltipPrimitive.Trigger>) {
   return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />
 }
 
+/** The floating label, portalled to `document.body`. */
 function TooltipContent({
   className,
   sideOffset = 0,
+  showArrow = true,
   children,
   ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Content>) {
+}: React.ComponentProps<typeof TooltipPrimitive.Content> & {
+  /** Render the small arrow pointing at the trigger. */
+  showArrow?: boolean
+}) {
   return (
     <TooltipPrimitive.Portal>
       <TooltipPrimitive.Content
         data-slot="tooltip-content"
         sideOffset={sideOffset}
         className={cn(
-          "bg-foreground text-background animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 w-fit origin-(--radix-tooltip-content-transform-origin) rounded-md px-3 py-1.5 text-xs text-balance",
+          "z-50 w-fit max-w-xs origin-(--radix-tooltip-content-transform-origin) rounded-md border border-white/10 bg-popover px-2.5 py-1.5 text-xs text-balance text-popover-foreground",
+          "shadow-md",
+          "animate-in fade-in-0 zoom-in-95 duration-150 ease-out",
+          "data-[side=bottom]:slide-in-from-top-1 data-[side=left]:slide-in-from-right-1 data-[side=right]:slide-in-from-left-1 data-[side=top]:slide-in-from-bottom-1",
+          "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:duration-100 data-[state=closed]:ease-in",
+          "motion-reduce:[--tw-enter-scale:1]! motion-reduce:[--tw-enter-translate-x:0]! motion-reduce:[--tw-enter-translate-y:0]! motion-reduce:[--tw-exit-scale:1]!",
           className
         )}
         {...props}
       >
         {children}
-        <TooltipPrimitive.Arrow className="bg-foreground fill-foreground z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]" />
+        {showArrow && (
+          <TooltipPrimitive.Arrow className="z-50 size-2.5 translate-y-[calc(-50%_-_1px)] rotate-45 rounded-[2px] border-r border-b border-white/10 bg-popover fill-popover" />
+        )}
       </TooltipPrimitive.Content>
     </TooltipPrimitive.Portal>
   )

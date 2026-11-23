@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  ChevronDown,
   Home,
   Search,
   PanelLeftClose,
@@ -15,104 +14,16 @@ import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
-  SidebarGroupContent,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuItem,
   SidebarProvider,
   SidebarInset,
   useSidebar,
 } from "@/components/ui/sidebar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { LogoMark } from "@/components/brand/logo";
 import { GlobalSearch } from "@/components/global-search";
-import { categories } from "@/lib/components-data";
-
-// Memoized category item to prevent unnecessary re-renders
-const AnimatedCategory = React.memo(function AnimatedCategory({
-  category,
-  index,
-  isOpen,
-  onToggle,
-  isCollapsed,
-  currentPath,
-}: {
-  category: (typeof categories)[0];
-  index: number;
-  isOpen: boolean;
-  onToggle: () => void;
-  isCollapsed: boolean;
-  currentPath: string;
-}) {
-  const Icon = category.icon;
-
-  return (
-    <div>
-      <SidebarMenuItem>
-        <motion.button
-          onClick={onToggle}
-          className={`
-            flex w-full items-center gap-2.5 rounded-md px-2 py-2 text-left text-sm
-            transition-colors hover:bg-white/5
-            ${isCollapsed ? "justify-center" : ""}
-          `}
-          whileTap={{ scale: 0.98 }}
-        >
-          <Icon className="w-4 h-4 text-primary shrink-0" />
-          {!isCollapsed && (
-            <>
-              <span className="flex-1 text-white/80">{category.name}</span>
-              <motion.div
-                animate={{ rotate: isOpen ? 180 : 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <ChevronDown className="w-3.5 h-3.5 text-white/30" />
-              </motion.div>
-            </>
-          )}
-        </motion.button>
-
-        {/* Animated dropdown */}
-        <AnimatePresence initial={false}>
-          {isOpen && !isCollapsed && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{
-                height: { duration: 0.2 },
-                opacity: { duration: 0.15 },
-              }}
-              className="overflow-hidden"
-            >
-              <div className="relative ml-[7px] pl-3 py-1 mt-0.5">
-                {/* Vertical line inside the dropdown */}
-                <div className="absolute left-0 top-0 bottom-0 w-px bg-white/10" />
-
-                {category.components.map((component) => {
-                  const isActive = currentPath === component.href;
-                  return (
-                    <Link
-                      key={component.slug}
-                      href={component.href}
-                      className={`block px-2 py-1.5 text-[13px] rounded transition-colors ${
-                        isActive
-                          ? "text-primary bg-primary/10"
-                          : "text-white/50 hover:text-white"
-                      }`}
-                    >
-                      {component.name}
-                    </Link>
-                  );
-                })}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </SidebarMenuItem>
-    </div>
-  );
-});
+import { componentHref, searchComponents } from "@/lib/components-data";
 
 // Custom sidebar trigger with animation
 function AnimatedSidebarTrigger() {
@@ -145,77 +56,105 @@ function AnimatedSidebarTrigger() {
   );
 }
 
-// Memoized sidebar component
+// Flat, alphabetical component list — no categories.
 const AppSidebar = React.memo(function AppSidebar({
   currentPath,
-  openCategories,
-  toggleCategory,
 }: {
   currentPath: string;
-  openCategories: string[];
-  toggleCategory: (name: string) => void;
 }) {
   const { state } = useSidebar();
   const isCollapsed = state === "collapsed";
+  const [query, setQuery] = useState("");
+  const visible = useMemo(() => searchComponents(query), [query]);
+  const activeRef = React.useRef<HTMLAnchorElement>(null);
+
+  // Keep the current page in view when landing deep in the list.
+  React.useEffect(() => {
+    activeRef.current?.scrollIntoView({ block: "nearest" });
+  }, [currentPath]);
+
+  const linkClass = (active: boolean) =>
+    `relative block rounded-md px-2.5 py-1.5 text-[13px] transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring/50 ${
+      active ? "text-primary" : "text-white/55 hover:text-white"
+    }`;
 
   return (
     <Sidebar collapsible="icon" className="border-r border-white/10">
       <SidebarHeader className="p-2">
-        <Link href="/" className="flex items-center gap-2 px-1">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shrink-0">
-            <span className="font-bold text-black">D</span>
-          </div>
+        <Link href="/" aria-label="DuskUI home" className="flex items-center gap-2 px-1">
+          <LogoMark className="size-8" />
           <span
             className={`font-semibold text-lg tracking-tight whitespace-nowrap transition-all duration-200 ${isCollapsed ? "hidden" : "block"}`}
           >
-            DuskUI
+            Dusk<span className="text-primary">UI</span>
           </span>
         </Link>
       </SidebarHeader>
 
-      <SidebarContent className="px-2 py-2">
-        <SidebarGroup>
-          {/* Search bar */}
-          <AnimatePresence>
-            {!isCollapsed && (
-              <motion.div
-                initial={{ opacity: 0, filter: "blur(8px)" }}
-                animate={{ opacity: 1, filter: "blur(0px)" }}
-                exit={{ opacity: 0, filter: "blur(8px)" }}
-                transition={{ duration: 0.2 }}
-                className="mb-3"
-              >
-                <div className="relative">
-                  <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" />
-                  <Input
-                    placeholder="Search..."
-                    className="pl-8 h-8 text-sm bg-white/5 border-white/10 focus:border-primary/50"
-                  />
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+      <SidebarContent className={`px-2 py-2 ${isCollapsed ? "hidden" : ""}`}>
+        <SidebarGroup className="p-0">
+          <div className="relative mb-3">
+            <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" />
+            <Input
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => e.key === "Escape" && setQuery("")}
+              placeholder="Filter components..."
+              aria-label="Filter components"
+              className="pl-8 h-8 text-sm bg-white/5 border-white/10 focus:border-primary/50"
+            />
+          </div>
 
-          <SidebarGroupContent>
-            <SidebarMenu className="space-y-0.5">
-              {categories.map((category, index) => (
-                <AnimatedCategory
-                  key={category.slug}
-                  category={category}
-                  index={index}
-                  isOpen={openCategories.includes(category.name)}
-                  onToggle={() => toggleCategory(category.name)}
-                  isCollapsed={isCollapsed}
-                  currentPath={currentPath}
-                />
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
+          <nav aria-label="Components">
+            <Link href="/components" className={linkClass(currentPath === "/components")}>
+              {currentPath === "/components" && <ActivePill />}
+              <span className="relative">Overview</span>
+            </Link>
+
+            <p className="mt-4 mb-1.5 flex items-center justify-between px-2.5 text-[11px] font-medium uppercase tracking-wider text-white/55">
+              Components
+              <span className="tabular-nums">{visible.length}</span>
+            </p>
+
+            <ul className="space-y-px">
+              {visible.map((component) => {
+                const href = componentHref(component.slug);
+                const active = currentPath === href;
+                return (
+                  <li key={component.slug}>
+                    <Link
+                      ref={active ? activeRef : undefined}
+                      href={href}
+                      aria-current={active ? "page" : undefined}
+                      className={linkClass(active)}
+                    >
+                      {active && <ActivePill />}
+                      <span className="relative">{component.name}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+            {visible.length === 0 && (
+              <p className="px-2.5 py-3 text-xs text-white/55">No components match “{query}”.</p>
+            )}
+          </nav>
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
   );
 });
+
+function ActivePill() {
+  return (
+    <motion.span
+      layoutId="sidebar-active"
+      className="absolute inset-0 rounded-md bg-primary/10"
+      transition={{ type: "spring", duration: 0.3, bounce: 0.15 }}
+    />
+  );
+}
 
 function ComponentsHeader() {
   return (
@@ -243,45 +182,14 @@ export default function ComponentsLayout({
 }) {
   const pathname = usePathname();
 
-  // Find which category contains the current path
-  const activeCategory = useMemo(
-    () =>
-      categories.find((cat) =>
-        cat.components.some((comp) => comp.href === pathname)
-      ),
-    [pathname]
-  );
-
-  // Initialize with the active category open, or first category
-  const [openCategories, setOpenCategories] = useState<string[]>(() =>
-    activeCategory ? [activeCategory.name] : [categories[0]?.name || ""]
-  );
-
-  // Memoized toggle function
-  const toggleCategory = useCallback((name: string) => {
-    setOpenCategories((prev) =>
-      prev.includes(name) ? prev.filter((c) => c !== name) : [...prev, name]
-    );
-  }, []);
-
-  // Auto-open category when navigating to a component in a different category
-  React.useEffect(() => {
-    if (activeCategory && !openCategories.includes(activeCategory.name)) {
-      setOpenCategories((prev) => [...prev, activeCategory.name]);
-    }
-  }, [activeCategory, openCategories]);
-
   return (
     <SidebarProvider>
       <div className="min-h-screen bg-background flex w-full">
-        <AppSidebar
-          currentPath={pathname}
-          openCategories={openCategories}
-          toggleCategory={toggleCategory}
-        />
-        <SidebarInset className="flex-1">
+        <AppSidebar currentPath={pathname} />
+        {/* min-w-0 stops wide demos from stretching the docs column past the viewport. */}
+        <SidebarInset className="min-w-0 flex-1">
           <ComponentsHeader />
-          <main className="p-6 md:p-10">{children}</main>
+          <div className="min-w-0 p-4 sm:p-6 md:p-10">{children}</div>
         </SidebarInset>
       </div>
     </SidebarProvider>

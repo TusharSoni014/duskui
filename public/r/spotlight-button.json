@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spotlight-button",
+  "title": "Spotlight Button",
+  "description": "Button with a cursor-following light on its border and surface.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://duskui.com/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "components/dusk/button/spotlight-button.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { motion, useMotionTemplate, useMotionValue } from \"motion/react\";\n\nimport { Button, type ButtonProps } from \"@/components/ui/button\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface SpotlightButtonProps extends ButtonProps {\n  /** Radius of the light in px. */\n  radius?: number;\n  /** Any CSS color. Mixed in at low opacity; defaults to white. */\n  color?: string;\n}\n\n/**\n * A faint highlight follows the cursor along the 1px border, with a barely\n * visible tint on the surface. Pairs well with `variant=\"outline\"` on dark\n * backgrounds.\n */\nexport function SpotlightButton({\n  radius = 60,\n  color = \"#ffffff\",\n  variant = \"outline\",\n  className,\n  children,\n  onPointerMove,\n  ...props\n}: SpotlightButtonProps) {\n  const x = useMotionValue(-radius * 2);\n  const y = useMotionValue(-radius * 2);\n  const border = useMotionTemplate`radial-gradient(${radius}px circle at ${x}px ${y}px, color-mix(in oklab, ${color} 35%, transparent), transparent 70%)`;\n  const fill = useMotionTemplate`radial-gradient(${radius}px circle at ${x}px ${y}px, color-mix(in oklab, ${color} 4%, transparent), transparent 70%)`;\n\n  const handleMove = (event: React.PointerEvent<HTMLButtonElement>) => {\n    onPointerMove?.(event);\n    const rect = event.currentTarget.getBoundingClientRect();\n    x.set(event.clientX - rect.left);\n    y.set(event.clientY - rect.top);\n  };\n\n  const layer =\n    \"pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-200 group-hover/spotlight:opacity-100 group-focus-visible/spotlight:opacity-100\";\n\n  return (\n    <Button\n      variant={variant}\n      className={cn(\"group/spotlight\", className)}\n      onPointerMove={handleMove}\n      {...props}\n    >\n      {/* Border light: the gradient is masked to a 1px ring. */}\n      <motion.span\n        aria-hidden\n        className={cn(\n          layer,\n          \"p-px [mask-image:linear-gradient(#000_0_0),linear-gradient(#000_0_0)] [mask-clip:content-box,border-box] [mask-composite:exclude]\"\n        )}\n        style={{ background: border }}\n      />\n      <motion.span aria-hidden className={layer} style={{ background: fill }} />\n      {children}\n    </Button>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "button"
+  ],
+  "type": "registry:component"
+}

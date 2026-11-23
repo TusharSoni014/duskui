@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible",
+  "title": "Collapsible",
+  "description": "Drop-in upgrade of the shadcn/ui Collapsible with smooth height animation.",
+  "dependencies": [
+    "@radix-ui/react-collapsible"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/collapsible.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport * as CollapsiblePrimitive from \"@radix-ui/react-collapsible\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * DuskUI Collapsible — a drop-in upgrade of the shadcn/ui Collapsible.\n *\n * Same parts, props and data-slot attributes as shadcn (Collapsible,\n * CollapsibleTrigger, CollapsibleContent), plus:\n * - The content eases its height open (200ms ease-out), using Radix's\n *   measured `--radix-collapsible-content-height`, and closes quicker than it\n *   opens.\n * - Content fades in while it grows, and fades out as it closes.\n * - Nothing below the panel jumps: the height animates, so the layout\n *   follows smoothly.\n * - Under `prefers-reduced-motion` the panel opens and closes instantly.\n * CSS only (tw-animate-css keyframes), powered by Radix for aria-expanded,\n * aria-controls and keyboard support.\n */\nfunction Collapsible({\n  ...props\n}: React.ComponentProps<typeof CollapsiblePrimitive.Root>) {\n  return <CollapsiblePrimitive.Root data-slot=\"collapsible\" {...props} />\n}\n\n/** The button that toggles the panel. Use `asChild` to render your own Button. */\nfunction CollapsibleTrigger({\n  ...props\n}: React.ComponentProps<typeof CollapsiblePrimitive.CollapsibleTrigger>) {\n  return (\n    <CollapsiblePrimitive.CollapsibleTrigger\n      data-slot=\"collapsible-trigger\"\n      {...props}\n    />\n  )\n}\n\n/** The panel. Animates its height between 0 and its measured content height. */\nfunction CollapsibleContent({\n  className,\n  ...props\n}: React.ComponentProps<typeof CollapsiblePrimitive.CollapsibleContent>) {\n  return (\n    <CollapsiblePrimitive.CollapsibleContent\n      data-slot=\"collapsible-content\"\n      className={cn(\n        \"overflow-hidden\",\n        // Height (Radix CSS var) and a fade run as one animation list, so Radix\n        // waits for both before unmounting the closed panel.\n        \"[--tw-enter-opacity:0] [--tw-enter-translate-y:-4px] [--tw-exit-opacity:0]\",\n        \"data-[state=open]:animate-[collapsible-down_200ms_ease-out,enter_200ms_ease-out]\",\n        \"data-[state=closed]:animate-[collapsible-up_150ms_ease-in,exit_150ms_ease-in]\",\n        \"motion-reduce:animate-none\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Collapsible, CollapsibleTrigger, CollapsibleContent }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "collapsible"
+  ],
+  "type": "registry:ui"
+}

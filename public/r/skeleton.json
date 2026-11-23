@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "title": "Skeleton",
+  "description": "Drop-in shadcn Skeleton with a shimmer sweep that turns static under reduced motion.",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/skeleton.tsx",
+      "content": "import * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface SkeletonProps extends React.ComponentProps<\"div\"> {\n  /**\n   * `shimmer` (default) sweeps a soft light across the block, `pulse` fades it\n   * like shadcn, `none` is static. All become static under reduced motion.\n   */\n  animation?: \"shimmer\" | \"pulse\" | \"none\";\n}\n\n/**\n * DuskUI Skeleton — a drop-in upgrade of the shadcn/ui Skeleton.\n *\n * Same API as shadcn (size and shape it with classes) plus:\n * - A shimmer sweep instead of a pulse, tuned for dark surfaces.\n * - `animation`: \"shimmer\" | \"pulse\" | \"none\".\n * - Under `prefers-reduced-motion` it is static: no sweep and no pulse.\n * CSS only (tw-animate-css keyframes), so it works in Server Components and\n * renders identically on the server and client.\n */\nfunction Skeleton({ className, animation = \"shimmer\", children, ...props }: SkeletonProps) {\n  return (\n    <div\n      data-slot=\"skeleton\"\n      data-animation={animation}\n      className={cn(\n        \"relative isolate overflow-hidden rounded-md bg-accent/60\",\n        animation === \"pulse\" && \"animate-pulse motion-reduce:animate-none\",\n        className\n      )}\n      {...props}\n    >\n      {animation === \"shimmer\" && (\n        // Starts one width to the left of the block and travels one width past\n        // its right edge, so every sweep fully enters and leaves.\n        <span\n          aria-hidden\n          data-slot=\"skeleton-shimmer\"\n          className={cn(\n            \"pointer-events-none absolute inset-y-0 left-full -z-10 w-full\",\n            \"bg-linear-to-r from-transparent via-white/[0.07] to-transparent\",\n            \"animate-in slide-in-from-left-[200%] repeat-infinite animation-duration-[1.8s] ease-in-out\",\n            \"motion-reduce:hidden\"\n          )}\n        />\n      )}\n      {children}\n    </div>\n  );\n}\n\nexport { Skeleton };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "skeleton"
+  ],
+  "type": "registry:ui"
+}

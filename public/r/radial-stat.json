@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radial-stat",
+  "title": "Radial Stat",
+  "description": "Radial progress stat on Recharts with an animated value in the centre.",
+  "dependencies": [
+    "motion",
+    "recharts"
+  ],
+  "registryDependencies": [
+    "utils",
+    "https://duskui.com/r/chart.json"
+  ],
+  "files": [
+    {
+      "path": "components/dusk/chart/radial-stat.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { PolarAngleAxis, RadialBar, RadialBarChart } from \"recharts\";\nimport { animate, motion, useMotionValue, useReducedMotion, useTransform } from \"motion/react\";\n\nimport { ChartContainer, type ChartConfig } from \"@/components/ui/chart\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface RadialStatProps extends Omit<React.ComponentProps<\"figure\">, \"children\"> {\n  /** Current value. */\n  value: number;\n  /** Value that fills the ring. */\n  max?: number;\n  /** What is measured, e.g. \"Storage\". Used in the accessible name. */\n  label: string;\n  /** Unit after the number, e.g. \"GB\". */\n  unit?: string;\n  /** Ring color. Any CSS color; defaults to the primary mint. */\n  color?: string;\n  /** Formats the center number. Defaults to en-US grouping. */\n  valueFormatter?: (value: number) => string;\n  /** Small line under the ring. Defaults to \"value of max unit\". */\n  caption?: React.ReactNode;\n  /** Ring thickness as a fraction of the radius (0–1). */\n  thickness?: number;\n}\n\nconst numberFormat = new Intl.NumberFormat(\"en-US\");\nconst defaultValueFormatter = (value: number) => numberFormat.format(value);\n\n/**\n * A radial progress stat: a rounded ring sweeps to the value while the\n * number in the middle counts up to match. The figure is labelled with the\n * exact value (\"Storage: 72 of 100 GB, 72%\"), and the counter is hidden from\n * screen readers so it isn't read mid-count. Under reduced motion the ring\n * and number appear at their final values.\n */\nexport function RadialStat({\n  value,\n  max = 100,\n  label,\n  unit,\n  color = \"var(--color-primary)\",\n  valueFormatter = defaultValueFormatter,\n  caption,\n  thickness = 0.14,\n  className,\n  ...props\n}: RadialStatProps) {\n  const reduceMotion = useReducedMotion() ?? false;\n  const clamped = Math.min(Math.max(value, 0), max);\n  const percent = max > 0 ? Math.round((clamped / max) * 100) : 0;\n  const count = useMotionValue(0);\n  const text = useTransform(count, (v) => valueFormatter(Math.round(v)));\n\n  React.useEffect(() => {\n    if (reduceMotion) {\n      count.set(clamped);\n      return;\n    }\n    const controls = animate(count, clamped, { duration: 1.1, ease: [0.16, 1, 0.3, 1] });\n    return () => controls.stop();\n  }, [clamped, count, reduceMotion]);\n\n  const config = { value: { label, color } } satisfies ChartConfig;\n  const data = [{ name: label, value: clamped, fill: \"var(--color-value)\" }];\n  const unitText = unit ? ` ${unit}` : \"\";\n  const name = `${label}: ${valueFormatter(clamped)} of ${valueFormatter(max)}${unitText}, ${percent}%`;\n\n  return (\n    <figure className={cn(\"flex w-full max-w-56 flex-col items-center gap-2\", className)} aria-label={name} {...props}>\n      <div className=\"relative aspect-square w-full\">\n        <ChartContainer config={config} className=\"aspect-square h-full w-full\" aria-hidden>\n          <RadialBarChart\n            data={data}\n            startAngle={90}\n            endAngle={-270}\n            innerRadius={`${Math.round((1 - thickness) * 100)}%`}\n            outerRadius=\"100%\"\n            accessibilityLayer={false}\n          >\n            <PolarAngleAxis type=\"number\" domain={[0, max]} tick={false} axisLine={false} />\n            <RadialBar\n              dataKey=\"value\"\n              background\n              cornerRadius={999}\n              isAnimationActive={!reduceMotion}\n              animationDuration={1100}\n              animationEasing=\"ease-out\"\n            />\n          </RadialBarChart>\n        </ChartContainer>\n        <div aria-hidden className=\"pointer-events-none absolute inset-0 flex flex-col items-center justify-center\">\n          <span className=\"flex items-baseline gap-1\">\n            <motion.span className=\"text-3xl font-semibold tracking-tight tabular-nums\">{text}</motion.span>\n            {unit && <span className=\"text-sm text-muted-foreground\">{unit}</span>}\n          </span>\n          <span className=\"text-xs text-muted-foreground\">{label}</span>\n        </div>\n      </div>\n      <figcaption className=\"text-xs text-muted-foreground tabular-nums\">\n        {caption ?? `${valueFormatter(clamped)} of ${valueFormatter(max)}${unitText} · ${percent}%`}\n      </figcaption>\n    </figure>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "chart"
+  ],
+  "type": "registry:component"
+}

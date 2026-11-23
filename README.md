@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DuskUI
 
-## Getting Started
-
-First, run the development server:
+Animated React components for Next.js — shadcn/ui primitives upgraded with [Motion](https://motion.dev), plus ready-made blocks built on top. Every component installs with the shadcn CLI:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx shadcn@latest add https://duskui.com/r/button.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev            # http://localhost:3000
+npm run registry:build # regenerate public/r/*.json from registry.json
+npm run build          # registry + production build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project layout
 
-## Learn More
+| Path | What lives there |
+| --- | --- |
+| `components/ui/` | Base components (shadcn API, upgraded). `button.tsx` is the reference. |
+| `components/dusk/<component>/` | Components and blocks built on the bases (e.g. `button/status-button.tsx`, `text/typewriter.tsx`). |
+| `components/demos/<component>/` | Live examples. The docs "Code" tab shows these files verbatim. |
+| `components/docs/` | Docs building blocks: `CodeBlock` (Shiki, server), `ComponentPreview`, `InstallTabs`, `Toc`, `PropsTable`. |
+| `components/docs/pages/` | One server component per docs page, e.g. `button-docs.tsx`. |
+| `lib/components-data.ts` | The one flat component list. Sidebar, search, catalog, sitemap and static routes all read from here. |
+| `registry.json` | shadcn registry definition → built to `public/r/`. |
+| `lib/seo.ts`, `lib/site.ts` | Page metadata helper and site config (`NEXT_PUBLIC_SITE_URL`). |
 
-To learn more about Next.js, take a look at the following resources:
+## Adding a component
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Components are one flat list (no categories), served at `/components/<slug>`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Code** — a shadcn primitive upgrade goes in `components/ui/<name>.tsx` (keep the shadcn API); anything else, and blocks built on a primitive, go in `components/dusk/<name>/`.
+2. **Demos** — one small file per example in `components/demos/<name>/`.
+3. **Docs page** — copy `components/docs/pages/input-docs.tsx` (with blocks) or `glow-text-docs.tsx` (standalone), then register it in the `docs` map in `app/components/[slug]/page.tsx`.
+4. **List it** — add `{ name, slug, description, keywords }` to `lib/components-data.ts`. That's what puts it in the sidebar, search, catalog and sitemap.
+5. **Registry** — add items to `registry.json` and run `npm run registry:build`.
 
-## Deploy on Vercel
+### Conventions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Respect reduced motion: the site wraps everything in `<MotionConfig reducedMotion="user">`; blocks that move things with transforms also check `useReducedMotion()`.
+- Use motion values (`useMotionValue`, `useMotionTemplate`) for pointer-driven effects so they never re-render React.
+- Never change a component's size when its state changes (loading, copied…) unless the change is the point, and then animate it.
+- Prefer `aria-disabled` + `aria-busy` over `disabled` for temporary states so keyboard focus is kept.

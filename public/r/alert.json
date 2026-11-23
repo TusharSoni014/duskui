@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert",
+  "title": "Alert",
+  "description": "Drop-in shadcn Alert with success, warning and info variants alongside default and destructive.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/alert.tsx",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * DuskUI Alert — a drop-in upgrade of the shadcn/ui Alert.\n *\n * Same parts, props and data-slot attributes as shadcn (Alert, AlertTitle,\n * AlertDescription, variants `default` and `destructive`) plus:\n * - Tinted status variants for dark UIs: `success`, `warning`, `info`.\n * - `AlertAction`: a top-right slot for a close button or menu; the text\n *   makes room for it automatically.\n * - Titles wrap instead of being clipped to one line.\n * CSS only, so it works in Server Components.\n */\nconst alertVariants = cva(\n  [\n    \"relative grid w-full grid-cols-[0_1fr] items-start gap-y-1 rounded-xl border px-4 py-3.5 text-sm\",\n    \"has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] has-[>svg]:gap-x-3\",\n    \"has-data-[slot=alert-action]:pr-12\",\n    \"[&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current\",\n  ],\n  {\n    variants: {\n      variant: {\n        default:\n          \"bg-card text-card-foreground\",\n        destructive:\n          \"border-destructive/30 bg-destructive/[0.08] text-destructive *:data-[slot=alert-description]:text-destructive\",\n        success:\n          \"border-emerald-400/20 bg-emerald-400/[0.06] text-emerald-300 *:data-[slot=alert-description]:text-emerald-100/70\",\n        warning:\n          \"border-amber-400/20 bg-amber-400/[0.06] text-amber-300 *:data-[slot=alert-description]:text-amber-100/70\",\n        info: \"border-sky-400/20 bg-sky-400/[0.06] text-sky-300 *:data-[slot=alert-description]:text-sky-100/70\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n);\n\nexport interface AlertProps\n  extends React.ComponentProps<\"div\">,\n    VariantProps<typeof alertVariants> {}\n\n/**\n * A callout for important messages. Put an optional lucide icon first, then\n * AlertTitle and/or AlertDescription. Uses role=\"alert\" like shadcn; pass\n * role=\"status\" for non-urgent messages so screen readers don't interrupt.\n */\nfunction Alert({ className, variant, ...props }: AlertProps) {\n  return (\n    <div\n      data-slot=\"alert\"\n      data-variant={variant ?? \"default\"}\n      role=\"alert\"\n      className={cn(alertVariants({ variant }), className)}\n      {...props}\n    />\n  );\n}\n\n/** The alert's heading. */\nfunction AlertTitle({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-title\"\n      className={cn(\"col-start-2 min-h-4 leading-snug font-medium tracking-tight\", className)}\n      {...props}\n    />\n  );\n}\n\n/** Supporting text. Paragraphs, lists and links inside are spaced for you. */\nfunction AlertDescription({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-description\"\n      className={cn(\n        \"col-start-2 grid justify-items-start gap-1 text-sm text-muted-foreground [&_p]:leading-relaxed\",\n        \"[&_a]:font-medium [&_a]:text-current [&_a]:underline [&_a]:underline-offset-4\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\n/** Top-right slot for a close button or menu. The alert's text makes room for it. */\nfunction AlertAction({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-action\"\n      className={cn(\"absolute top-2.5 right-2.5 flex items-center gap-1\", className)}\n      {...props}\n    />\n  );\n}\n\nexport { Alert, AlertTitle, AlertDescription, AlertAction, alertVariants };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "alert"
+  ],
+  "type": "registry:ui"
+}

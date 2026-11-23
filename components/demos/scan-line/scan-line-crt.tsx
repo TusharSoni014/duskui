@@ -1,0 +1,21 @@
+import { ScanLine } from "@/components/dusk/hacker/scan-line";
+
+export default function ScanLineCrtDemo() {
+  return (
+    <ScanLine
+      curvature
+      lineSpacing={4}
+      lineOpacity={0.35}
+      barColor="#fbbf24"
+      barDuration={5}
+      className="w-full max-w-md bg-[#140d02]"
+    >
+      <div className="flex aspect-[4/3] flex-col justify-center gap-2 p-10 font-mono text-amber-300">
+        <p className="text-xs text-amber-300/70">READY.</p>
+        <p className="text-2xl font-bold">10 PRINT &quot;HELLO&quot;</p>
+        <p className="text-2xl font-bold">20 GOTO 10</p>
+        <p className="text-sm text-amber-300/70">RUN</p>
+      </div>
+    </ScanLine>
+  );
+}

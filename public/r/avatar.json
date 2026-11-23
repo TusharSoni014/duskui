@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar",
+  "title": "Avatar",
+  "description": "Drop-in upgrade of the shadcn/ui Avatar: soft image fade-in once loaded, hairline edge and an on-theme initials fallback.",
+  "dependencies": [
+    "@radix-ui/react-avatar"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/avatar.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport * as AvatarPrimitive from \"@radix-ui/react-avatar\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * DuskUI Avatar — a drop-in upgrade of the shadcn/ui Avatar.\n *\n * Same parts, props and data-slot attributes as shadcn, plus:\n * - The image fades in once it has loaded, instead of popping in over the\n *   fallback.\n * - A hairline inner border so photos don't bleed into dark backgrounds.\n * - A neutral fallback for initials and icons.\n * - Under `prefers-reduced-motion` the image appears instantly.\n * CSS only (tw-animate-css). Radix renders the image only after it loads and\n * shows the fallback while it loads or if it fails.\n */\nfunction Avatar({\n  className,\n  ...props\n}: React.ComponentProps<typeof AvatarPrimitive.Root>) {\n  return (\n    <AvatarPrimitive.Root\n      data-slot=\"avatar\"\n      className={cn(\n        \"relative flex size-8 shrink-0 overflow-hidden rounded-full select-none\",\n        // Hairline edge drawn above the image, following the avatar's radius.\n        \"after:pointer-events-none after:absolute after:inset-0 after:rounded-[inherit] after:border after:border-white/10\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/** The photo. Rendered only once it has loaded, then fades in. Always pass `alt`. */\nfunction AvatarImage({\n  className,\n  ...props\n}: React.ComponentProps<typeof AvatarPrimitive.Image>) {\n  return (\n    <AvatarPrimitive.Image\n      data-slot=\"avatar-image\"\n      className={cn(\n        \"aspect-square size-full object-cover\",\n        \"animate-in fade-in-0 duration-200 ease-out motion-reduce:animate-none\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/** Shown while the image loads or when it fails. Usually initials or an icon. */\nfunction AvatarFallback({\n  className,\n  ...props\n}: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {\n  return (\n    <AvatarPrimitive.Fallback\n      data-slot=\"avatar-fallback\"\n      className={cn(\n        \"flex size-full items-center justify-center rounded-full text-xs font-medium uppercase\",\n        \"bg-muted text-muted-foreground\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Avatar, AvatarImage, AvatarFallback }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "avatar"
+  ],
+  "type": "registry:ui"
+}

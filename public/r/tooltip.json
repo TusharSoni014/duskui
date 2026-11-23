@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip",
+  "title": "Tooltip",
+  "description": "Drop-in upgrade of the shadcn/ui Tooltip: elevated surface with a bordered arrow, opens with scale, slide and blur. Same exports and props.",
+  "dependencies": [
+    "@radix-ui/react-tooltip"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/tooltip.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport * as TooltipPrimitive from \"@radix-ui/react-tooltip\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * DuskUI Tooltip — a drop-in upgrade of the shadcn/ui Tooltip.\n *\n * Same parts, props and data-slot attributes as shadcn (Tooltip,\n * TooltipTrigger, TooltipContent, TooltipProvider) plus:\n * - An elevated dark surface with a hairline border and a matching arrow.\n * - Opens from the trigger: scales slightly from the Radix transform origin and\n *   shifts a few pixels from the side it opens on (150ms ease-out).\n *   Closes faster than it opens.\n * - `showArrow={false}` to hide the arrow.\n * - Under `prefers-reduced-motion` it only fades.\n * CSS only (tw-animate-css), powered by Radix for hover/focus intent and aria.\n */\nfunction TooltipProvider({\n  delayDuration = 0,\n  ...props\n}: React.ComponentProps<typeof TooltipPrimitive.Provider>) {\n  return (\n    <TooltipPrimitive.Provider\n      data-slot=\"tooltip-provider\"\n      delayDuration={delayDuration}\n      {...props}\n    />\n  )\n}\n\n/** Root. Wraps itself in a TooltipProvider, like shadcn, so it works anywhere. */\nfunction Tooltip({\n  ...props\n}: React.ComponentProps<typeof TooltipPrimitive.Root>) {\n  return (\n    <TooltipProvider>\n      <TooltipPrimitive.Root data-slot=\"tooltip\" {...props} />\n    </TooltipProvider>\n  )\n}\n\n/** The element that shows the tooltip on hover and keyboard focus. Use `asChild` for your own button. */\nfunction TooltipTrigger({\n  ...props\n}: React.ComponentProps<typeof TooltipPrimitive.Trigger>) {\n  return <TooltipPrimitive.Trigger data-slot=\"tooltip-trigger\" {...props} />\n}\n\n/** The floating label, portalled to `document.body`. */\nfunction TooltipContent({\n  className,\n  sideOffset = 0,\n  showArrow = true,\n  children,\n  ...props\n}: React.ComponentProps<typeof TooltipPrimitive.Content> & {\n  /** Render the small arrow pointing at the trigger. */\n  showArrow?: boolean\n}) {\n  return (\n    <TooltipPrimitive.Portal>\n      <TooltipPrimitive.Content\n        data-slot=\"tooltip-content\"\n        sideOffset={sideOffset}\n        className={cn(\n          \"z-50 w-fit max-w-xs origin-(--radix-tooltip-content-transform-origin) rounded-md border border-white/10 bg-popover px-2.5 py-1.5 text-xs text-balance text-popover-foreground\",\n          \"shadow-md\",\n          \"animate-in fade-in-0 zoom-in-95 duration-150 ease-out\",\n          \"data-[side=bottom]:slide-in-from-top-1 data-[side=left]:slide-in-from-right-1 data-[side=right]:slide-in-from-left-1 data-[side=top]:slide-in-from-bottom-1\",\n          \"data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:duration-100 data-[state=closed]:ease-in\",\n          \"motion-reduce:[--tw-enter-scale:1]! motion-reduce:[--tw-enter-translate-x:0]! motion-reduce:[--tw-enter-translate-y:0]! motion-reduce:[--tw-exit-scale:1]!\",\n          className\n        )}\n        {...props}\n      >\n        {children}\n        {showArrow && (\n          <TooltipPrimitive.Arrow className=\"z-50 size-2.5 translate-y-[calc(-50%_-_1px)] rotate-45 rounded-[2px] border-r border-b border-white/10 bg-popover fill-popover\" />\n        )}\n      </TooltipPrimitive.Content>\n    </TooltipPrimitive.Portal>\n  )\n}\n\nexport { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "tooltip"
+  ],
+  "type": "registry:ui"
+}

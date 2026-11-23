@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group",
+  "title": "Radio Group",
+  "description": "Drop-in shadcn Radio Group with a dot that springs in when checked.",
+  "dependencies": [
+    "@radix-ui/react-radio-group"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/radio-group.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport * as RadioGroupPrimitive from \"@radix-ui/react-radio-group\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * DuskUI Radio Group — a drop-in upgrade of the shadcn/ui Radio Group.\n *\n * Same parts, props and data-slot attributes as shadcn (RadioGroup,\n * RadioGroupItem) plus:\n * - The dot scales in quickly (CSS only, no overshoot) and shrinks away when\n *   another option is picked.\n * - The ring turns mint when checked.\n * - Works uncontrolled, in forms and with form reset (pure CSS, no extra state).\n * - Under `prefers-reduced-motion` the dot appears instantly.\n * Powered by Radix for roving focus (arrow keys), form submission and aria.\n */\nfunction RadioGroup({ className, ...props }: React.ComponentProps<typeof RadioGroupPrimitive.Root>) {\n  return (\n    <RadioGroupPrimitive.Root\n      data-slot=\"radio-group\"\n      className={cn(\"grid gap-3\", className)}\n      {...props}\n    />\n  );\n}\n\n/** One option. Pair it with a `<label htmlFor>` so the text is clickable and announced. */\nfunction RadioGroupItem({ className, ...props }: React.ComponentProps<typeof RadioGroupPrimitive.Item>) {\n  return (\n    <RadioGroupPrimitive.Item\n      data-slot=\"radio-group-item\"\n      className={cn(\n        \"peer group/radio relative grid aspect-square size-4 shrink-0 place-items-center rounded-full border border-input bg-input/30 text-primary shadow-xs outline-none\",\n        \"transition-[border-color,box-shadow] duration-150 ease-out motion-reduce:transition-none\",\n        \"data-[state=checked]:border-primary\",\n        \"focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50\",\n        \"aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        className\n      )}\n      {...props}\n    >\n      {/* forceMount keeps the dot in the DOM so it can shrink away as well as scale in. */}\n      <RadioGroupPrimitive.Indicator\n        forceMount\n        data-slot=\"radio-group-indicator\"\n        className=\"pointer-events-none grid place-items-center\"\n      >\n        <span\n          aria-hidden\n          className={cn(\n            \"block size-2 rounded-full bg-current\",\n            \"scale-0 opacity-0 group-data-[state=checked]/radio:scale-100 group-data-[state=checked]/radio:opacity-100\",\n            // Out: quick ease-in. In: short ease-out, no overshoot.\n            \"[transition:scale_120ms_ease-in,opacity_120ms_ease-in]\",\n            \"group-data-[state=checked]/radio:[transition:scale_180ms_ease-out,opacity_150ms_ease-out]\",\n            \"motion-reduce:transition-none motion-reduce:group-data-[state=checked]/radio:transition-none\"\n          )}\n        />\n      </RadioGroupPrimitive.Indicator>\n    </RadioGroupPrimitive.Item>\n  );\n}\n\nexport { RadioGroup, RadioGroupItem };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "radio-group"
+  ],
+  "type": "registry:ui"
+}
