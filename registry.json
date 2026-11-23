@@ -1843,6 +1843,887 @@
       "categories": [
         "tooltip"
       ]
+    },
+    {
+      "name": "marquee",
+      "type": "registry:component",
+      "title": "Marquee",
+      "description": "Infinitely scrolling row or column for logos and testimonials: seamless transform-only loop, pause on hover/focus, fade edges, static under reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/marquee/marquee.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "marquee"
+      ]
+    },
+    {
+      "name": "bento-grid",
+      "type": "registry:component",
+      "title": "Bento Grid",
+      "description": "Responsive bento layout with column/row spans; cards reveal a CTA, zoom their background and follow the cursor with a glow on hover or focus.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/bento-grid/bento-grid.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "bento-grid"
+      ]
+    },
+    {
+      "name": "animated-list",
+      "type": "registry:component",
+      "title": "Animated List",
+      "description": "Notification-style list where new items spring in at the top and older ones glide down, with a max visible count and a polite live region.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/animated-list/animated-list.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "animated-list"
+      ]
+    },
+    {
+      "name": "timeline",
+      "type": "registry:component",
+      "title": "Timeline",
+      "description": "Vertical timeline whose progress line traces down as you scroll (works in scroll containers), with dots that light up and sticky dates.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/timeline/timeline.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "timeline"
+      ]
+    },
+    {
+      "name": "file-upload",
+      "type": "registry:component",
+      "title": "File Upload",
+      "description": "Drag-and-drop dropzone on a real file input with animated drag-over, validation errors, and a file list with per-file progress, cancel and retry.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json",
+        "https://duskui.com/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/file-upload/file-upload.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "file-upload"
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Drop-in shadcn Select that grows out of its trigger, flips its chevron and pops in the check mark.",
+      "dependencies": [
+        "@radix-ui/react-select",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "select"
+      ]
+    },
+    {
+      "name": "animated-select",
+      "type": "registry:component",
+      "title": "Animated Select",
+      "description": "Select whose list springs open, options cascade in, a highlight pill glides between items and the check pops in.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-select",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/select/animated-select.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "select"
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "Drop-in shadcn Radio Group with a dot that springs in and a mint glow when checked.",
+      "dependencies": [
+        "@radix-ui/react-radio-group"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "radio-group"
+      ]
+    },
+    {
+      "name": "radio-cards",
+      "type": "registry:component",
+      "title": "Radio Cards",
+      "description": "Selectable plan cards with a glowing outline that glides to the selected card.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-radio-group"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/radio-group.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/radio-group/radio-cards.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "radio-group"
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Drop-in shadcn Textarea that grows with its content, with hover, focus and invalid states.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "textarea"
+      ]
+    },
+    {
+      "name": "auto-resize-textarea",
+      "type": "registry:component",
+      "title": "Auto-resize Textarea",
+      "description": "Textarea that springs to fit its content, with a character-limit ring that turns amber then red.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/textarea/auto-resize-textarea.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "textarea"
+      ]
+    },
+    {
+      "name": "chat-input",
+      "type": "registry:component",
+      "title": "Chat Input",
+      "description": "Chat composer with an auto-growing textarea, Enter to send, Shift+Enter for a new line and a loading send button.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/textarea.json",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/textarea/chat-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "textarea"
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "Drop-in shadcn Toggle with a tactile press and a mint on state.",
+      "dependencies": [
+        "@radix-ui/react-toggle",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/toggle.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "toggle-group"
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "Drop-in shadcn Toggle Group with variants, sizes, spacing and a mint on state.",
+      "dependencies": [
+        "@radix-ui/react-toggle-group",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/toggle.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/toggle-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "toggle-group"
+      ]
+    },
+    {
+      "name": "animated-toggle-group",
+      "type": "registry:component",
+      "title": "Animated Toggle Group",
+      "description": "Toggle group whose active pill glides between items (single) or springs in per item (multiple).",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-toggle-group"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/toggle-group.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/toggle-group/animated-toggle-group.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "toggle-group"
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:component",
+      "title": "Combobox",
+      "description": "Animated searchable select with spring open, layout-animated filtering, match highlighting and an empty state.",
+      "dependencies": [
+        "motion",
+        "cmdk",
+        "@radix-ui/react-popover",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/button.json",
+        "https://duskui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/combobox/combobox.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "combobox"
+      ]
+    },
+    {
+      "name": "multi-combobox",
+      "type": "registry:component",
+      "title": "Multi-select Combobox",
+      "description": "Autocomplete multi-select with animated removable chips, self-drawing checkboxes and an optional max.",
+      "dependencies": [
+        "motion",
+        "cmdk",
+        "@radix-ui/react-popover",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/combobox/multi-combobox.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "combobox"
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Drop-in shadcn Pagination built on the DuskUI Button variants.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "pagination"
+      ]
+    },
+    {
+      "name": "animated-pagination",
+      "type": "registry:component",
+      "title": "Animated Pagination",
+      "description": "Controlled pagination with an active indicator that glides between pages, smart ellipsis range and rolling page numbers.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/pagination.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/pagination/animated-pagination.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "pagination"
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "Drop-in shadcn Breadcrumb with hover and current-page states.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "breadcrumb"
+      ]
+    },
+    {
+      "name": "collapsible-breadcrumb",
+      "type": "registry:component",
+      "title": "Collapsible Breadcrumb",
+      "description": "Breadcrumb whose middle items fold into an animated ellipsis menu when there are too many.",
+      "dependencies": [
+        "motion",
+        "lucide-react",
+        "@radix-ui/react-dropdown-menu"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/breadcrumb.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/breadcrumb/collapsible-breadcrumb.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "breadcrumb"
+      ]
+    },
+    {
+      "name": "carousel",
+      "type": "registry:component",
+      "title": "Carousel",
+      "description": "Dependency-free Motion carousel with drag, momentum and snap, arrows, dots, keyboard, loop and autoplay that pauses on hover and reduced motion.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/carousel/carousel.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "carousel"
+      ]
+    },
+    {
+      "name": "coverflow-carousel",
+      "type": "registry:component",
+      "title": "Coverflow Carousel",
+      "description": "3D coverflow carousel where slides rotate and scale around the active one, driven by a single drag motion value.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/carousel/coverflow-carousel.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "carousel"
+      ]
+    },
+    {
+      "name": "dock",
+      "type": "registry:component",
+      "title": "Dock",
+      "description": "macOS-style dock whose icons magnify toward the cursor with springs, with labels, active dots, keyboard focus and a vertical option.",
+      "dependencies": [
+        "motion",
+        "@radix-ui/react-slot"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/dock/dock.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "dock"
+      ]
+    },
+    {
+      "name": "floating-navbar",
+      "type": "registry:component",
+      "title": "Floating Navbar",
+      "description": "Navbar that hides on scroll down and returns on scroll up, with a gliding active-link pill and animated mobile menu; works in scroll containers.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/navbar/floating-navbar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "navbar"
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Drop-in shadcn Alert with success, warning and info variants alongside default and destructive.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/alert.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "alert"
+      ]
+    },
+    {
+      "name": "dismissible-alert",
+      "type": "registry:component",
+      "title": "Dismissible Alert",
+      "description": "Alert that collapses its height when dismissed, with optional auto-dismiss and a draining progress line.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/alert.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/alert/dismissible-alert.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "alert"
+      ]
+    },
+    {
+      "name": "banner-alert",
+      "type": "registry:component",
+      "title": "Banner Alert",
+      "description": "Top-of-page announcement banner that slides in and can be dismissed.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/alert/banner-alert.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "alert"
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "Drop-in shadcn Alert Dialog with a blurred backdrop and scale-in surface, using the DuskUI Button for actions.",
+      "dependencies": [
+        "@radix-ui/react-alert-dialog",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/alert-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "alert-dialog"
+      ]
+    },
+    {
+      "name": "destructive-alert-dialog",
+      "type": "registry:component",
+      "title": "Destructive Alert Dialog",
+      "description": "Destructive confirmation with a pulsing warning icon, optional type-to-confirm, async loading action and a shake on error.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/alert-dialog.json",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/alert-dialog/destructive-alert-dialog.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "alert-dialog"
+      ]
+    },
+    {
+      "name": "session-timeout-dialog",
+      "type": "registry:component",
+      "title": "Session Timeout Dialog",
+      "description": "Alert dialog that counts down to sign-out with a draining ring and a stay-signed-in action.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/alert-dialog.json",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/alert-dialog/session-timeout-dialog.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "alert-dialog"
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "DuskUI-styled Sonner Toaster: on-theme surfaces, icons and actions. Same Toaster export and props.",
+      "dependencies": [
+        "sonner",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/sonner.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "toast"
+      ]
+    },
+    {
+      "name": "animated-toast",
+      "type": "registry:component",
+      "title": "Animated Toast",
+      "description": "Custom Sonner toast whose icon morphs from loading to success or error, with a duration progress bar.",
+      "dependencies": [
+        "motion",
+        "sonner",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/toast.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/toast/animated-toast.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "toast"
+      ]
+    },
+    {
+      "name": "undo-toast",
+      "type": "registry:component",
+      "title": "Undo Toast",
+      "description": "Undo pattern for destructive actions: a toast with a countdown and an Undo button that cancels the action.",
+      "dependencies": [
+        "motion",
+        "sonner",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/toast.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/toast/undo-toast.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "toast"
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Drop-in shadcn Skeleton with a shimmer sweep that turns static under reduced motion.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "skeleton"
+      ]
+    },
+    {
+      "name": "skeleton-presets",
+      "type": "registry:component",
+      "title": "Skeleton Presets",
+      "description": "Ready-made skeletons for text lines, avatar rows, cards and tables.",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://duskui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/skeleton/skeleton-presets.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "skeleton"
+      ]
+    },
+    {
+      "name": "content-loader",
+      "type": "registry:component",
+      "title": "Content Loader",
+      "description": "Crossfades a skeleton into real content while the height springs to fit.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/skeleton/content-loader.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "skeleton"
+      ]
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "title": "Hover Card",
+      "description": "Drop-in shadcn Hover Card that grows out of its trigger.",
+      "dependencies": [
+        "@radix-ui/react-hover-card"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/hover-card.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "hover-card"
+      ]
+    },
+    {
+      "name": "profile-hover-card",
+      "type": "registry:component",
+      "title": "Profile Hover Card",
+      "description": "User preview card that springs from the trigger origin with avatar, bio and stats.",
+      "dependencies": [
+        "motion",
+        "lucide-react",
+        "@radix-ui/react-hover-card"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/hover-card.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/hover-card/profile-hover-card.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "hover-card"
+      ]
+    },
+    {
+      "name": "link-preview",
+      "type": "registry:component",
+      "title": "Link Preview",
+      "description": "Hover a link to see a preview panel with a skeleton while it loads.",
+      "dependencies": [
+        "motion",
+        "lucide-react",
+        "@radix-ui/react-hover-card"
+      ],
+      "registryDependencies": [
+        "https://duskui.com/r/hover-card.json",
+        "https://duskui.com/r/skeleton.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/hover-card/link-preview.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "hover-card"
+      ]
     }
   ]
 }

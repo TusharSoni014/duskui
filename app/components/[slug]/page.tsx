@@ -48,6 +48,26 @@ import { AccordionDocs } from "@/components/docs/pages/accordion-docs";
 import { SwitchDocs } from "@/components/docs/pages/switch-docs";
 import { CheckboxDocs } from "@/components/docs/pages/checkbox-docs";
 import { TooltipDocs } from "@/components/docs/pages/tooltip-docs";
+import { AnimatedListDocs } from "@/components/docs/pages/animated-list-docs";
+import { BentoGridDocs } from "@/components/docs/pages/bento-grid-docs";
+import { FileUploadDocs } from "@/components/docs/pages/file-upload-docs";
+import { MarqueeDocs } from "@/components/docs/pages/marquee-docs";
+import { TimelineDocs } from "@/components/docs/pages/timeline-docs";
+import { SelectDocs } from "@/components/docs/pages/select-docs";
+import { RadioGroupDocs } from "@/components/docs/pages/radio-group-docs";
+import { TextareaDocs } from "@/components/docs/pages/textarea-docs";
+import { ToggleGroupDocs } from "@/components/docs/pages/toggle-group-docs";
+import { ComboboxDocs } from "@/components/docs/pages/combobox-docs";
+import { PaginationDocs } from "@/components/docs/pages/pagination-docs";
+import { BreadcrumbDocs } from "@/components/docs/pages/breadcrumb-docs";
+import { CarouselDocs } from "@/components/docs/pages/carousel-docs";
+import { DockDocs } from "@/components/docs/pages/dock-docs";
+import { NavbarDocs } from "@/components/docs/pages/navbar-docs";
+import { AlertDocs } from "@/components/docs/pages/alert-docs";
+import { AlertDialogDocs } from "@/components/docs/pages/alert-dialog-docs";
+import { ToastDocs } from "@/components/docs/pages/toast-docs";
+import { SkeletonDocs } from "@/components/docs/pages/skeleton-docs";
+import { HoverCardDocs } from "@/components/docs/pages/hover-card-docs";
 import { JsonLd } from "@/components/json-ld";
 import { componentHref, components, getComponent } from "@/lib/components-data";
 import { pageMetadata } from "@/lib/seo";
@@ -57,6 +77,26 @@ type Params = { slug: string };
 
 /** slug → docs page. Add new component docs here. */
 const docs: Record<string, React.ComponentType> = {
+  "hover-card": HoverCardDocs,
+  skeleton: SkeletonDocs,
+  toast: ToastDocs,
+  "alert-dialog": AlertDialogDocs,
+  alert: AlertDocs,
+  navbar: NavbarDocs,
+  dock: DockDocs,
+  carousel: CarouselDocs,
+  breadcrumb: BreadcrumbDocs,
+  pagination: PaginationDocs,
+  combobox: ComboboxDocs,
+  "toggle-group": ToggleGroupDocs,
+  textarea: TextareaDocs,
+  "radio-group": RadioGroupDocs,
+  select: SelectDocs,
+  timeline: TimelineDocs,
+  marquee: MarqueeDocs,
+  "file-upload": FileUploadDocs,
+  "bento-grid": BentoGridDocs,
+  "animated-list": AnimatedListDocs,
   tooltip: TooltipDocs,
   checkbox: CheckboxDocs,
   switch: SwitchDocs,

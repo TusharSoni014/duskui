@@ -333,6 +333,146 @@ const list: Component[] = [
       "Animated React tooltip for shadcn/ui with spring scale and blur, plus an avatar group whose tooltips tilt toward the cursor.",
     keywords: ["tooltip", "animated tooltip", "avatar group", "avatar tooltip", "shadcn tooltip", "radix tooltip", "framer motion tooltip"],
   },
+  {
+    name: "Animated List",
+    slug: "animated-list",
+    description:
+      "An animated notification list for React where new items spring in at the top and older ones glide down with Motion layout animations, built with Tailwind CSS.",
+    keywords: ["animated list", "notification list", "notification feed", "activity feed", "layout animation", "animatepresence", "popLayout", "live region", "motion"],
+  },
+  {
+    name: "Bento Grid",
+    slug: "bento-grid",
+    description:
+      "A responsive bento grid for React and Tailwind CSS with hover-reveal call-to-action cards, cursor glow and zooming background visuals for feature sections.",
+    keywords: ["bento grid", "bento", "feature grid", "feature section", "landing page", "card grid", "hover reveal", "cursor glow", "motion"],
+  },
+  {
+    name: "File Upload",
+    slug: "file-upload",
+    description:
+      "An animated drag-and-drop file upload component for React with file validation, per-file progress bars, cancel and retry, built on a real accessible file input.",
+    keywords: ["file upload", "dropzone", "drag and drop", "file input", "upload progress", "file validation", "uploader", "shadcn", "motion"],
+  },
+  {
+    name: "Marquee",
+    slug: "marquee",
+    description:
+      "An infinite scrolling marquee for React and Tailwind CSS with a seamless loop for logo clouds and testimonials, horizontal or vertical, with pause on hover.",
+    keywords: ["marquee", "infinite scroll", "logo cloud", "logo carousel", "ticker", "testimonials", "scrolling text", "loop", "motion"],
+  },
+  {
+    name: "Timeline",
+    slug: "timeline",
+    description:
+      "A scroll-animated vertical timeline for React with a progress line that traces down as you scroll and sticky dates, for changelogs and roadmaps.",
+    keywords: ["timeline", "changelog", "roadmap", "vertical timeline", "scroll animation", "scroll progress", "sticky", "history", "motion"],
+  },
+  {
+    name: "Select",
+    slug: "select",
+    description:
+      "Animated React select built on shadcn/ui and Radix, with a spring-open list, cascading options and a gliding highlight.",
+    keywords: ["select", "dropdown select", "react select", "shadcn select", "radix select", "animated select", "listbox", "form"],
+  },
+  {
+    name: "Radio Group",
+    slug: "radio-group",
+    description:
+      "Animated React radio group built on shadcn/ui and Radix, with a springy dot and selectable radio cards whose outline glides.",
+    keywords: ["radio group", "radio button", "radio cards", "plan selector", "pricing cards", "shadcn radio group", "radix radio", "form"],
+  },
+  {
+    name: "Textarea",
+    slug: "textarea",
+    description:
+      "Auto-growing React textarea built on shadcn/ui, with a spring auto-resize block, character counter and AI chat input.",
+    keywords: ["textarea", "auto resize textarea", "character counter", "chat input", "ai prompt input", "shadcn textarea", "form"],
+  },
+  {
+    name: "Toggle Group",
+    slug: "toggle-group",
+    description:
+      "Animated React toggle group built on shadcn/ui and Radix, with an active pill that glides between options.",
+    keywords: ["toggle group", "toggle", "segmented buttons", "text formatting toolbar", "shadcn toggle group", "radix toggle group", "animated toggle"],
+  },
+  {
+    name: "Combobox",
+    slug: "combobox",
+    description:
+      "Animated React combobox and multi-select autocomplete built on shadcn/ui Popover and Command (cmdk), with layout-animated filtering and removable chips.",
+    keywords: ["combobox", "autocomplete", "searchable select", "multi select", "tag input", "cmdk", "shadcn combobox", "command"],
+  },
+  {
+    name: "Pagination",
+    slug: "pagination",
+    description:
+      "Animated React pagination for shadcn/ui with a gliding active page indicator, smart ellipsis ranges and rolling page numbers.",
+    keywords: ["pagination", "pager", "page numbers", "animated pagination", "shadcn pagination", "table pagination", "navigation"],
+  },
+  {
+    name: "Breadcrumb",
+    slug: "breadcrumb",
+    description:
+      "Accessible React breadcrumb for shadcn/ui with a collapsible variant that folds middle items into an animated menu.",
+    keywords: ["breadcrumb", "breadcrumbs", "navigation", "collapsible breadcrumb", "shadcn breadcrumb", "page path", "seo navigation"],
+  },
+  {
+    name: "Carousel",
+    slug: "carousel",
+    description:
+      "Dependency-free React carousel built with Motion: drag with momentum and snap, dots, arrows, keyboard, loop, autoplay and a 3D coverflow variant.",
+    keywords: ["carousel", "slider", "image slider", "coverflow", "swipe", "drag", "autoplay", "gallery", "motion"],
+  },
+  {
+    name: "Dock",
+    slug: "dock",
+    description:
+      "macOS-style React dock where icons magnify toward the cursor with springs, with labels, active dots, keyboard focus and a vertical option.",
+    keywords: ["dock", "macos dock", "magnification", "app dock", "icon bar", "toolbar", "motion values", "navigation"],
+  },
+  {
+    name: "Navbar",
+    slug: "navbar",
+    description:
+      "Floating React navbar that hides on scroll down and returns on scroll up, with a gliding active-link pill and an animated mobile menu.",
+    keywords: ["navbar", "floating navbar", "header", "hide on scroll", "sticky header", "navigation menu", "mobile menu", "motion"],
+  },
+  {
+    name: "Alert",
+    slug: "alert",
+    description:
+      "Animated React alert for shadcn/ui with success, warning, info and destructive variants, dismissible alerts with auto-dismiss progress and slide-in banners.",
+    keywords: ["alert", "callout", "notice", "banner", "dismissible alert", "announcement bar", "shadcn alert", "status message"],
+  },
+  {
+    name: "Alert Dialog",
+    slug: "alert-dialog",
+    description:
+      "Accessible animated React alert dialog for shadcn/ui with a destructive confirm flow, async loading actions and a session-timeout countdown.",
+    keywords: ["alert dialog", "confirm dialog", "destructive action", "delete confirmation", "session timeout", "modal", "radix alert dialog", "shadcn"],
+  },
+  {
+    name: "Toast",
+    slug: "toast",
+    description:
+      "Animated React toast notifications for shadcn/ui on Sonner, with morphing loading-to-success icons, duration progress and an undo toast.",
+    keywords: ["toast", "notification", "sonner", "snackbar", "undo toast", "promise toast", "shadcn toast", "alert"],
+  },
+  {
+    name: "Skeleton",
+    slug: "skeleton",
+    description:
+      "Shimmering React skeleton loaders for shadcn/ui with ready-made text, avatar, card and table presets and a skeleton-to-content crossfade.",
+    keywords: ["skeleton", "skeleton loader", "loading placeholder", "shimmer", "content loader", "loading state", "shadcn skeleton"],
+  },
+  {
+    name: "Hover Card",
+    slug: "hover-card",
+    description:
+      "Animated React hover card for shadcn/ui with spring profile previews and link preview panels that grow from the trigger.",
+    keywords: ["hover card", "profile card", "user preview", "link preview", "popover", "radix hover card", "shadcn hover card"],
+  },
 ];
 
 export const components = [...list].sort((a, b) => a.name.localeCompare(b.name));
