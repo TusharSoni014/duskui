@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group",
+  "title": "Button Group",
+  "description": "shadcn-style Button Group that joins DuskUI Buttons horizontally or vertically, with separators and text.",
+  "dependencies": [
+    "@radix-ui/react-slot",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/button-group.tsx",
+      "content": "import * as React from \"react\";\nimport { Slot } from \"@radix-ui/react-slot\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * DuskUI Button Group — a drop-in upgrade of the shadcn/ui Button Group.\n *\n * Same parts, props and data-slot attributes as shadcn (ButtonGroup,\n * ButtonGroupSeparator, ButtonGroupText) plus:\n * - Joined DuskUI Buttons press as one surface: the press scale is swapped\n *   for a 1px sink, so seams never pull apart mid-click.\n * - The focused or hovered segment rises above its neighbours, so its ring\n *   and border are never clipped.\n * - Works with Inputs, Select triggers and nested groups (nested groups get\n *   a gap, so a toolbar is one ButtonGroup of ButtonGroups).\n * - `orientation`: horizontal or vertical.\n * CSS only, so it works in Server Components.\n */\nconst buttonGroupVariants = cva(\n  [\n    \"flex w-fit items-stretch\",\n    \"[&>*]:relative [&>*]:hover:z-[1] [&>*]:focus-visible:z-10 [&>*:focus-within]:z-10\",\n    \"[&>[data-slot=button]]:active:scale-100 [&>[data-slot=button]]:active:translate-y-px motion-reduce:[&>[data-slot=button]]:active:translate-y-0\",\n    \"[&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1\",\n    \"has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-md\",\n    \"has-[>[data-slot=button-group]]:gap-2\",\n  ],\n  {\n    variants: {\n      orientation: {\n        horizontal:\n          \"[&>*:not(:first-child)]:rounded-l-none [&>*:not(:first-child)]:border-l-0 [&>*:not(:last-child)]:rounded-r-none\",\n        vertical:\n          \"flex-col [&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child)]:border-t-0 [&>*:not(:last-child)]:rounded-b-none\",\n      },\n    },\n    defaultVariants: { orientation: \"horizontal\" },\n  }\n);\n\n/** Joins Buttons, Inputs and Select triggers into one control. */\nfunction ButtonGroup({\n  className,\n  orientation = \"horizontal\",\n  ...props\n}: React.ComponentProps<\"div\"> & VariantProps<typeof buttonGroupVariants>) {\n  return (\n    <div\n      role=\"group\"\n      data-slot=\"button-group\"\n      data-orientation={orientation}\n      className={cn(buttonGroupVariants({ orientation }), className)}\n      {...props}\n    />\n  );\n}\n\n/** A non-interactive segment for a label, prefix or unit. `asChild` to render a `<label>`. */\nfunction ButtonGroupText({\n  className,\n  asChild = false,\n  ...props\n}: React.ComponentProps<\"div\"> & { asChild?: boolean }) {\n  const Comp = asChild ? Slot : \"div\";\n  return (\n    <Comp\n      data-slot=\"button-group-text\"\n      className={cn(\n        \"flex items-center gap-2 rounded-md border bg-muted px-4 text-sm font-medium text-muted-foreground shadow-xs\",\n        \"[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\n/**\n * A hairline between segments — needed between filled buttons (default,\n * secondary) that have no border of their own. Decorative.\n */\nfunction ButtonGroupSeparator({\n  className,\n  orientation = \"vertical\",\n  ...props\n}: React.ComponentProps<\"div\"> & { orientation?: \"horizontal\" | \"vertical\" }) {\n  return (\n    <div\n      aria-hidden\n      data-slot=\"button-group-separator\"\n      data-orientation={orientation}\n      className={cn(\n        \"relative z-[2] !m-0 shrink-0 self-stretch bg-input\",\n        \"data-[orientation=vertical]:w-px data-[orientation=horizontal]:h-px\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { ButtonGroup, ButtonGroupSeparator, ButtonGroupText, buttonGroupVariants };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "button-group"
+  ],
+  "type": "registry:ui"
+}

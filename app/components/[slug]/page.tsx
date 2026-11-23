@@ -88,6 +88,26 @@ import { CalendarDocs } from "@/components/docs/pages/calendar-docs";
 import { KbdDocs } from "@/components/docs/pages/kbd-docs";
 import { EmptyDocs } from "@/components/docs/pages/empty-docs";
 import { SpinnerDocs } from "@/components/docs/pages/spinner-docs";
+import { MenubarDocs } from "@/components/docs/pages/menubar-docs";
+import { ResizableDocs } from "@/components/docs/pages/resizable-docs";
+import { CollapsibleDocs } from "@/components/docs/pages/collapsible-docs";
+import { DrawerDocs } from "@/components/docs/pages/drawer-docs";
+import { ChartDocs } from "@/components/docs/pages/chart-docs";
+import { FieldDocs } from "@/components/docs/pages/field-docs";
+import { InputGroupDocs } from "@/components/docs/pages/input-group-docs";
+import { ButtonGroupDocs } from "@/components/docs/pages/button-group-docs";
+import { NumberInputDocs } from "@/components/docs/pages/number-input-docs";
+import { TagInputDocs } from "@/components/docs/pages/tag-input-docs";
+import { HyperTextDocs } from "@/components/docs/pages/hyper-text-docs";
+import { TextAnimateDocs } from "@/components/docs/pages/text-animate-docs";
+import { FlipWordsDocs } from "@/components/docs/pages/flip-words-docs";
+import { HighlighterDocs } from "@/components/docs/pages/highlighter-docs";
+import { AuroraTextDocs } from "@/components/docs/pages/aurora-text-docs";
+import { BlurFadeDocs } from "@/components/docs/pages/blur-fade-docs";
+import { CustomCursorDocs } from "@/components/docs/pages/custom-cursor-docs";
+import { ScratchToRevealDocs } from "@/components/docs/pages/scratch-to-reveal-docs";
+import { ProgressiveBlurDocs } from "@/components/docs/pages/progressive-blur-docs";
+import { FileTreeDocs } from "@/components/docs/pages/file-tree-docs";
 import { JsonLd } from "@/components/json-ld";
 import { componentHref, components, getComponent } from "@/lib/components-data";
 import { pageMetadata } from "@/lib/seo";
@@ -97,6 +117,26 @@ type Params = { slug: string };
 
 /** slug → docs page. Add new component docs here. */
 const docs: Record<string, React.ComponentType> = {
+  "file-tree": FileTreeDocs,
+  "progressive-blur": ProgressiveBlurDocs,
+  "scratch-to-reveal": ScratchToRevealDocs,
+  "custom-cursor": CustomCursorDocs,
+  "blur-fade": BlurFadeDocs,
+  "aurora-text": AuroraTextDocs,
+  highlighter: HighlighterDocs,
+  "flip-words": FlipWordsDocs,
+  "text-animate": TextAnimateDocs,
+  "hyper-text": HyperTextDocs,
+  "tag-input": TagInputDocs,
+  "number-input": NumberInputDocs,
+  "button-group": ButtonGroupDocs,
+  "input-group": InputGroupDocs,
+  field: FieldDocs,
+  chart: ChartDocs,
+  drawer: DrawerDocs,
+  collapsible: CollapsibleDocs,
+  resizable: ResizableDocs,
+  menubar: MenubarDocs,
   spinner: SpinnerDocs,
   empty: EmptyDocs,
   kbd: KbdDocs,

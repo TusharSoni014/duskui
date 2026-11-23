@@ -613,6 +613,146 @@ const list: Component[] = [
       "Accessible React loading spinner plus five animated Motion loaders (dots, bars, ring, orbit, pulse) that respect reduced motion.",
     keywords: ["react spinner", "loading spinner", "loader", "shadcn spinner", "tailwind loader", "loading indicator"],
   },
+  {
+    name: "Menubar",
+    slug: "menubar",
+    description:
+      "Animated React menubar for shadcn/ui with desktop-app style menus, sub-menus, checkbox and radio items and a gliding highlight.",
+    keywords: ["menubar", "menu bar", "app menu", "desktop menu", "radix menubar", "shadcn menubar", "motion"],
+  },
+  {
+    name: "Resizable",
+    slug: "resizable",
+    description:
+      "Resizable React panels for shadcn/ui on react-resizable-panels v4, with glowing handles and an IDE-style collapsible layout.",
+    keywords: ["resizable", "resizable panels", "split pane", "panel group", "ide layout", "shadcn resizable", "react-resizable-panels"],
+  },
+  {
+    name: "Collapsible",
+    slug: "collapsible",
+    description:
+      "Animated React collapsible for shadcn/ui with spring height, rotating chevron and a show-more block for long content.",
+    keywords: ["collapsible", "expand collapse", "show more", "read more", "disclosure", "radix collapsible", "shadcn"],
+  },
+  {
+    name: "Drawer",
+    slug: "drawer",
+    description:
+      "Animated React drawer for shadcn/ui on vaul, with snap points and a responsive dialog that becomes a drawer on mobile.",
+    keywords: ["drawer", "bottom sheet", "vaul", "responsive dialog", "snap points", "mobile drawer", "shadcn drawer"],
+  },
+  {
+    name: "Chart",
+    slug: "chart",
+    description:
+      "Animated React charts for shadcn/ui on Recharts v3 \u2014 area, bar and radial stat charts with themed tooltips.",
+    keywords: ["chart", "react charts", "recharts", "area chart", "bar chart", "radial chart", "dashboard", "shadcn chart"],
+  },
+  {
+    name: "Field",
+    slug: "field",
+    description:
+      "Accessible React form fields for shadcn/ui with labels, descriptions, animated error messages and a validated sign-up form.",
+    keywords: ["field", "form field", "label", "form validation", "error message", "react form", "shadcn field"],
+  },
+  {
+    name: "Input Group",
+    slug: "input-group",
+    description:
+      "React input group for shadcn/ui with icons, buttons and text addons, plus copy and URL inputs.",
+    keywords: ["input group", "input addon", "input with button", "copy input", "url input", "shadcn input group", "form"],
+  },
+  {
+    name: "Button Group",
+    slug: "button-group",
+    description:
+      "React button group for shadcn/ui that joins buttons, with an animated selection indicator and a split button.",
+    keywords: ["button group", "segmented buttons", "split button", "toolbar", "shadcn button group", "joined buttons"],
+  },
+  {
+    name: "Number Input",
+    slug: "number-input",
+    description:
+      "Animated React number input with stepper buttons, rolling digits, press-and-hold repeat and keyboard support.",
+    keywords: ["number input", "stepper", "quantity input", "spinbutton", "increment decrement", "counter input", "react"],
+  },
+  {
+    name: "Tag Input",
+    slug: "tag-input",
+    description:
+      "Animated React tag input with chips that pop in, keyboard removal, duplicate detection and suggestions.",
+    keywords: ["tag input", "chips input", "tags", "multi value input", "keywords input", "token input", "react"],
+  },
+  {
+    name: "Hyper Text",
+    slug: "hyper-text",
+    description:
+      "React hyper text effect where letters scramble and decode into place on hover or in view, with no layout shift.",
+    keywords: ["hyper text", "text scramble", "decode text", "glitch text", "hacker text", "text effect", "motion"],
+  },
+  {
+    name: "Text Animate",
+    slug: "text-animate",
+    description:
+      "React text animation with blur, fade, slide and scale presets by character, word or line, SEO-friendly.",
+    keywords: ["text animate", "text animation", "blur in text", "staggered text", "headline animation", "text effect", "motion"],
+  },
+  {
+    name: "Flip Words",
+    slug: "flip-words",
+    description:
+      "React flip words effect where a word in a headline flips in 3D to the next one with a springy width.",
+    keywords: ["flip words", "rotating words", "3d text", "animated headline", "word switcher", "text effect", "motion"],
+  },
+  {
+    name: "Highlighter",
+    slug: "highlighter",
+    description:
+      "Hand-drawn style React highlighter that marks, underlines or circles inline text as it scrolls into view.",
+    keywords: ["highlighter", "text highlight", "underline animation", "marker", "rough notation", "annotate text", "motion"],
+  },
+  {
+    name: "Aurora Text",
+    slug: "aurora-text",
+    description:
+      "React aurora gradient text effect with a slowly moving multi-colour fill on real, selectable text.",
+    keywords: ["aurora text", "gradient text", "animated gradient", "colorful text", "headline", "text effect", "tailwind"],
+  },
+  {
+    name: "Blur Fade",
+    slug: "blur-fade",
+    description:
+      "React blur fade entrance animation that reveals content from blur and offset as it scrolls into view, with stagger.",
+    keywords: ["blur fade", "fade in", "scroll animation", "entrance animation", "reveal on scroll", "stagger", "motion"],
+  },
+  {
+    name: "Custom Cursor",
+    slug: "custom-cursor",
+    description:
+      "Smooth custom cursor for React with a trailing ring that grows over links and buttons and shows hover labels.",
+    keywords: ["custom cursor", "cursor follower", "mouse follower", "cursor animation", "pointer", "interactive", "motion"],
+  },
+  {
+    name: "Scratch to Reveal",
+    slug: "scratch-to-reveal",
+    description:
+      "React scratch card component that reveals hidden content as users scratch, with an accessible reveal button.",
+    keywords: ["scratch to reveal", "scratch card", "reveal", "coupon", "prize", "canvas", "interactive"],
+  },
+  {
+    name: "Progressive Blur",
+    slug: "progressive-blur",
+    description:
+      "React progressive blur that fades content into a smooth layered backdrop blur at any edge of a scroll area.",
+    keywords: ["progressive blur", "blur edge", "backdrop blur", "fade edge", "scroll fade", "glass", "tailwind"],
+  },
+  {
+    name: "File Tree",
+    slug: "file-tree",
+    description:
+      "Accessible animated React file tree with keyboard navigation, file icons and expandable folders.",
+    keywords: ["file tree", "tree view", "file explorer", "folder tree", "sidebar tree", "treeview", "react"],
+  },
 ];
 
 export const components = [...list].sort((a, b) => a.name.localeCompare(b.name));

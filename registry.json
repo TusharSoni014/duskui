@@ -3481,6 +3481,788 @@
       "categories": [
         "spinner"
       ]
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "title": "Menubar",
+      "description": "Drop-in shadcn/ui Menubar styled to match DuskUI menus, with sub-menus, checkbox and radio items.",
+      "dependencies": [
+        "@radix-ui/react-menubar",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/menubar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "menubar"
+      ]
+    },
+    {
+      "name": "animated-menubar",
+      "type": "registry:component",
+      "title": "Animated Menubar",
+      "description": "Desktop-app style menubar whose menus spring open and whose highlight glides between top-level triggers.",
+      "dependencies": [
+        "@radix-ui/react-menubar",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/menubar.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/menubar/animated-menubar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "menubar"
+      ]
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "title": "Resizable",
+      "description": "shadcn/ui Resizable panels on react-resizable-panels v4 with a handle that glows while dragging.",
+      "dependencies": [
+        "react-resizable-panels"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/resizable.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "resizable"
+      ]
+    },
+    {
+      "name": "resizable-layout",
+      "type": "registry:component",
+      "title": "Resizable Layout",
+      "description": "IDE-style resizable layout with a sidebar panel that animates collapse and expand; keyboard resizing works.",
+      "dependencies": [
+        "lucide-react",
+        "motion",
+        "react-resizable-panels"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/resizable.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/resizable/resizable-layout.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "resizable"
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "Drop-in upgrade of the shadcn/ui Collapsible with smooth height animation.",
+      "dependencies": [
+        "@radix-ui/react-collapsible"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/collapsible.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "collapsible"
+      ]
+    },
+    {
+      "name": "motion-collapsible",
+      "type": "registry:component",
+      "title": "Motion Collapsible",
+      "description": "Collapsible with spring height, content fade and a rotating chevron.",
+      "dependencies": [
+        "@radix-ui/react-collapsible",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/collapsible/motion-collapsible.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "collapsible"
+      ]
+    },
+    {
+      "name": "show-more",
+      "type": "registry:component",
+      "title": "Show More",
+      "description": "Show more / show less block that springs open long text or lists behind a fading mask.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/collapsible/show-more.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "collapsible"
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "shadcn/ui Drawer on vaul, styled for DuskUI with a drag handle.",
+      "dependencies": [
+        "vaul"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/drawer.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "drawer"
+      ]
+    },
+    {
+      "name": "responsive-dialog",
+      "type": "registry:component",
+      "title": "Responsive Dialog",
+      "description": "Dialog on desktop, drawer on mobile, chosen by a hydration-safe media query.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/dialog.json",
+        "https://duskui.com/r/drawer.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/drawer/responsive-dialog.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "drawer"
+      ]
+    },
+    {
+      "name": "snap-drawer",
+      "type": "registry:component",
+      "title": "Snap Drawer",
+      "description": "Bottom drawer with snap points that settles at partial heights as you drag.",
+      "dependencies": [
+        "motion",
+        "vaul"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/drawer/snap-drawer.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "drawer"
+      ]
+    },
+    {
+      "name": "chart",
+      "type": "registry:ui",
+      "title": "Chart",
+      "description": "shadcn/ui Chart helpers (ChartContainer, tooltip, legend) on Recharts v3, themed for DuskUI.",
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/chart.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "chart"
+      ]
+    },
+    {
+      "name": "area-chart",
+      "type": "registry:component",
+      "title": "Area Chart",
+      "description": "Area chart with a gradient fill that draws in, styled tooltip and reduced-motion support.",
+      "dependencies": [
+        "motion",
+        "recharts"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/chart.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/chart/area-chart.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "chart"
+      ]
+    },
+    {
+      "name": "bar-chart",
+      "type": "registry:component",
+      "title": "Bar Chart",
+      "description": "Bar chart with a hover highlight on the active bar and themed tooltip.",
+      "dependencies": [
+        "motion",
+        "recharts"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/chart.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/chart/bar-chart.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "chart"
+      ]
+    },
+    {
+      "name": "radial-stat",
+      "type": "registry:component",
+      "title": "Radial Stat",
+      "description": "Radial progress stat on Recharts with an animated value in the centre.",
+      "dependencies": [
+        "motion",
+        "recharts"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/chart.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/chart/radial-stat.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "chart"
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "shadcn-style Field primitives (Field, FieldLabel, FieldDescription, FieldError, FieldGroup, FieldSet) plus Label.",
+      "dependencies": [
+        "@radix-ui/react-label",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/label.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/field.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "field"
+      ]
+    },
+    {
+      "name": "animated-field-error",
+      "type": "registry:component",
+      "title": "Animated Field Error",
+      "description": "Field error message that animates its height in and out and shakes the field once on submit.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/field.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/field/animated-field-error.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "field"
+      ]
+    },
+    {
+      "name": "signup-form",
+      "type": "registry:component",
+      "title": "Signup Form",
+      "description": "Dependency-free validated sign-up form built from Field, Input, Checkbox and Button with animated errors.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json",
+        "https://duskui.com/r/checkbox.json",
+        "https://duskui.com/r/field.json",
+        "https://duskui.com/r/input.json",
+        "https://duskui.com/r/animated-field-error.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/field/signup-form.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "field"
+      ]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "shadcn-style Input Group with inline and block addons, buttons and text, focused as one control.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button.json",
+        "https://duskui.com/r/input.json",
+        "https://duskui.com/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/input-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "input-group"
+      ]
+    },
+    {
+      "name": "copy-input",
+      "type": "registry:component",
+      "title": "Copy Input",
+      "description": "Read-only input with a copy button whose icon morphs into a check.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/input-group.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/input-group/copy-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "input-group"
+      ]
+    },
+    {
+      "name": "url-input",
+      "type": "registry:component",
+      "title": "Url Input",
+      "description": "URL input with an animated protocol addon and validity indicator.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/input-group.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/input-group/url-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "input-group"
+      ]
+    },
+    {
+      "name": "button-group",
+      "type": "registry:ui",
+      "title": "Button Group",
+      "description": "shadcn-style Button Group that joins DuskUI Buttons horizontally or vertically, with separators and text.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/button-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "button-group"
+      ]
+    },
+    {
+      "name": "animated-button-group",
+      "type": "registry:component",
+      "title": "Animated Button Group",
+      "description": "Button group with an active indicator that glides between options.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button-group.json",
+        "https://duskui.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/button-group/animated-button-group.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "button-group"
+      ]
+    },
+    {
+      "name": "split-button",
+      "type": "registry:component",
+      "title": "Split Button",
+      "description": "Primary action joined to a dropdown of secondary actions.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://duskui.com/r/button-group.json",
+        "https://duskui.com/r/button.json",
+        "https://duskui.com/r/dropdown-menu.json"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/button-group/split-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "button-group"
+      ]
+    },
+    {
+      "name": "number-input",
+      "type": "registry:component",
+      "title": "Number Input",
+      "description": "Stepper number input with rolling digits, press-and-hold repeat, keyboard and Intl formatting; spinbutton semantics.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/number-input/number-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "number-input"
+      ]
+    },
+    {
+      "name": "tag-input",
+      "type": "registry:component",
+      "title": "Tag Input",
+      "description": "Tag input where Enter or comma adds chips that pop in, Backspace removes, duplicates shake, with optional suggestions.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/tag-input/tag-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "tag-input"
+      ]
+    },
+    {
+      "name": "hyper-text",
+      "type": "registry:component",
+      "title": "Hyper Text",
+      "description": "Text whose letters scramble and resolve left to right on hover, in view or on mount, without layout shift.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/hyper-text/hyper-text.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "hyper-text"
+      ]
+    },
+    {
+      "name": "text-animate",
+      "type": "registry:component",
+      "title": "Text Animate",
+      "description": "Animate text by character, word or line with presets like blurIn, slideUp and scaleUp, on mount or in view.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/text-animate/text-animate.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "text-animate"
+      ]
+    },
+    {
+      "name": "flip-words",
+      "type": "registry:component",
+      "title": "Flip Words",
+      "description": "A word in a sentence flips in 3D to the next word on an interval while the width springs to fit.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/flip-words/flip-words.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "flip-words"
+      ]
+    },
+    {
+      "name": "highlighter",
+      "type": "registry:component",
+      "title": "Highlighter",
+      "description": "Marker highlight, underline, circle, box or strike-through that draws itself behind inline text in view.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/highlighter/highlighter.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "highlighter"
+      ]
+    },
+    {
+      "name": "aurora-text",
+      "type": "registry:component",
+      "title": "Aurora Text",
+      "description": "Selectable text filled with a slowly moving multi-colour aurora gradient.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/aurora-text/aurora-text.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "aurora-text"
+      ]
+    },
+    {
+      "name": "blur-fade",
+      "type": "registry:component",
+      "title": "Blur Fade",
+      "description": "Entrance wrapper that fades children in from blur and offset when they enter view, with stagger support.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/blur-fade/blur-fade.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "blur-fade"
+      ]
+    },
+    {
+      "name": "custom-cursor",
+      "type": "registry:component",
+      "title": "Custom Cursor",
+      "description": "Smooth trailing dot-and-ring cursor that grows over interactive elements and shows labels; scoped or page-wide.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/custom-cursor/custom-cursor.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "custom-cursor"
+      ]
+    },
+    {
+      "name": "scratch-to-reveal",
+      "type": "registry:component",
+      "title": "Scratch To Reveal",
+      "description": "Canvas scratch card that reveals its content as you scratch, with a keyboard-accessible Reveal button.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/scratch-to-reveal/scratch-to-reveal.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "scratch-to-reveal"
+      ]
+    },
+    {
+      "name": "progressive-blur",
+      "type": "registry:component",
+      "title": "Progressive Blur",
+      "description": "Layered backdrop-blur bands that fade content into a smooth blur at any edge.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/progressive-blur/progressive-blur.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "progressive-blur"
+      ]
+    },
+    {
+      "name": "file-tree",
+      "type": "registry:component",
+      "title": "File Tree",
+      "description": "Accessible file tree with keyboard navigation, animated expand and collapse and a gliding selection highlight.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/dusk/file-tree/file-tree.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "file-tree"
+      ]
     }
   ]
 }
